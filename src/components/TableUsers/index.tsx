@@ -23,7 +23,7 @@ export function TableUsers() {
             <td>Belo Horizonte/MG</td>
             <td>Ativo</td>
             <td>
-              <Link href="/">
+              <Link href="/users/1">
                 <a title="Editar usuário">
                   <FiEdit />
                 </a>
