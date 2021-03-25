@@ -5,3 +5,14 @@
     margin-top: 1rem;
   }
 }
+
+.filesWrapper {
+  display: flex;
+  margin-top: 0;
+
+
+  div + div {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+}

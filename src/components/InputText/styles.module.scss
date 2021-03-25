@@ -1,5 +1,11 @@
 .container {
   width: 100%;
+
+  label {
+    display: block;
+    color: var(--green-900);
+    margin-bottom: 0.5rem;
+  }
 }
 
 .wrapperInput {
