@@ -14,9 +14,7 @@ export function Content({ title, children }: ContentProps) {
         <h1>{title}</h1>
       </header>
 
-      <div className={styles.content}>
-        <div>{children}</div>
-      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   )
 }
