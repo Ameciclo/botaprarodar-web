@@ -1,0 +1,48 @@
+.container {
+  max-width: 14rem;
+  position: relative;
+  margin-bottom: 2rem;
+  align-self: center;
+
+  img {
+    width: 14rem;
+    height: 14rem;
+    border-radius: var(--border-radius);
+  }
+
+  label {
+    position: absolute;
+    width: 100%;
+    height: 3rem;
+    background: var(--green-500);
+    border: none;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    bottom: 0;
+    transition: filter 0.2s;
+
+    cursor: pointer;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        margin-right: 0.5rem;
+        color: var(--white);
+      }
+    }
+
+    input {
+      display: none;
+    }
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
