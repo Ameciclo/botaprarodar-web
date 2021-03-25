@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  max-width: 260px;
+  height: 100vh;
+
+  background: var(--white);
+  color: var(--gray-100);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+
+  header {
+    height: 3rem;
+    padding: 0 0.5rem;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--green-500);
+    border-bottom: 1px solid var(--green-500);
+  }
+
+  nav {
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+
+      li + li {
+        margin-top: 1rem;
+      }
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--green-500);
+      }
+    }
+  }
+}
+
+.wrapperSignOut {
+  padding: 0 0.5rem 0.5rem;
+}

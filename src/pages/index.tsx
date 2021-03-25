@@ -1,3 +1,9 @@
+import { Sidebar } from 'components/Sidebar'
+
 export default function Home() {
-  return <h1>hello</h1>
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  )
 }
