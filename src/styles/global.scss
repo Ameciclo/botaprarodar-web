@@ -6,8 +6,13 @@
 
 :root {
   --white: #fff;
-  --background: #408080;
-  --text: #1f2937;
+
+  --green-500: #408080;
+  --green-900: #122424;
+
+  --gray-100: #A5ADAD;
+
+  --border-radius: 0.25rem;
 }
 
 @media(max-width: 1080px) {
@@ -23,7 +28,7 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--green-500);
   color: var(--white);
 }
 
