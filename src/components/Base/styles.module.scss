@@ -1,4 +1,9 @@
 .container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+}
+
+.content {
   background: var(--white);
 
   header {
@@ -10,9 +15,9 @@
     border-bottom: 1px solid var(--green-500);
     color: var(--green-500);
   }
-}
 
-.content {
-  width: 100%;
-  padding: 0 1rem;
+  > div {
+    width: 100%;
+    padding: 0 1rem;
+  }
 }
