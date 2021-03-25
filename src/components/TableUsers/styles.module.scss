@@ -4,7 +4,7 @@
     border-spacing: 0 0.5rem;
 
     th {
-      color: var(--white);
+      color: var(--green-500);
       font-weight: 400;
       padding: 1rem 2rem;
       text-align: left;
@@ -14,8 +14,8 @@
     td {
       padding: 1rem 2rem;
       border: 0;
-      background: var(--white);
-      color: var(--green-500);
+      background: var(--green-500);
+      color: var(--white);
     }
   }
 }

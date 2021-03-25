@@ -3,17 +3,19 @@
   max-width: 260px;
   height: 100vh;
 
-  background: var(--white);
-  color: var(--gray-100);
+  background: var(--green-500);
+  color: var(--white);
 
   display: flex;
   flex-direction: column;
 
   box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.08);
+  border-right: 1px solid var(--white);
 }
 
 .content {
   flex: 1;
+
 
   header {
     height: 3rem;
@@ -22,8 +24,8 @@
     display: flex;
     align-items: center;
 
-    color: var(--green-500);
-    border-bottom: 1px solid var(--green-500);
+    color: var(--white);
+    border-bottom: 1px solid var(--white);
   }
 
   nav {

@@ -1,5 +1,5 @@
 .container {
-  background: var(--green-500);
+  background: var(--white);
 
   header {
     height: 3rem;
@@ -7,8 +7,8 @@
     align-items: center;
     padding: 0 1rem;
 
-    border-bottom: 1px solid var(--white);
-    color: var(--white);
+    border-bottom: 1px solid var(--green-500);
+    color: var(--green-500);
   }
 }
 
