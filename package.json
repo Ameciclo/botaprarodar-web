@@ -15,7 +15,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.(ts|tsx)$": [
+    "src/**/*.{ts, tsx}$": [
       "yarn lint --fix"
     ]
   },
