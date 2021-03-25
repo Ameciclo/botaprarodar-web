@@ -1,6 +1,6 @@
 import '../styles/global.scss'
 
-const b = 'foo'
+const a = 'foo'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
