@@ -9,12 +9,14 @@ type ContentProps = {
 
 export function Content({ title, children }: ContentProps) {
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <header>
         <h1>{title}</h1>
       </header>
 
-      <div className={styles.content}>{children}</div>
-    </main>
+      <div className={styles.content}>
+        <div>{children}</div>
+      </div>
+    </div>
   )
 }

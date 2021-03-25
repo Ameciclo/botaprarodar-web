@@ -1,6 +1,5 @@
 .container {
   background: var(--green-500);
-  color: var(--white);
 
   header {
     height: 3rem;
@@ -9,9 +8,17 @@
     padding: 0 1rem;
 
     border-bottom: 1px solid var(--white);
+    color: var(--white);
   }
 }
 
 .content {
+  width: 100%;
   padding: 1rem;
+
+  div {
+    background: var(--white);
+    color: var(--green-500);
+    padding: 1rem;
+  }
 }
