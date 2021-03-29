@@ -18,7 +18,7 @@ export function Sidebar() {
         <Heading color="white">Logo</Heading>
       </Flex>
       <VStack mt={4} color="white">
-        <NextLink href="/login">
+        <NextLink href="/users">
           <Link>Usuários</Link>
         </NextLink>
       </VStack>
