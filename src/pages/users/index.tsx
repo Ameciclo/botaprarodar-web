@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import NextLink from 'next/link'
 
 import { Base } from 'components/Base'
@@ -12,6 +13,14 @@ export default function Users() {
           Novo usuário
         </Button>
       </NextLink>
+=======
+import { Base } from 'components/Base'
+import { TableUsers } from 'components/TableUsers'
+
+export default function Home() {
+  return (
+    <Base title="Todos usuários">
+>>>>>>> 603671b799ed46a5556a28ca055dad3683a2289d
       <TableUsers />
     </Base>
   )
