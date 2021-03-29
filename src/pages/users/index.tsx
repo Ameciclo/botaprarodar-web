@@ -12,6 +12,7 @@ export default function Users() {
           Novo usuário
         </Button>
       </NextLink>
+
       <TableUsers />
     </Base>
   )
