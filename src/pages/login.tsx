@@ -1,15 +1,22 @@
-import { FormSignIn } from 'components/FormSignIn'
+import { Container, Flex, Heading } from '@chakra-ui/react'
 
-import styles from '../styles/pages/login.module.scss'
+import { FormSignIn } from 'components/FormSignIn'
 
 export default function Login() {
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <h1>Login</h1>
-
+    <Flex
+      w="100%"
+      h="100vh"
+      bg="gray.900"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Container>
+        <Heading color="white" mb={4}>
+          Login
+        </Heading>
         <FormSignIn />
-      </div>
-    </div>
+      </Container>
+    </Flex>
   )
 }
