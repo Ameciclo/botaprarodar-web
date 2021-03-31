@@ -30,13 +30,6 @@ export function FormEditUser() {
           <Input type="text" />
         </FormControl>
 
-        <FormControl id="status">
-          <FormLabel>Status</FormLabel>
-          <Select placeholder="Status da conta">
-            <option value="option1">Ativo</option>
-          </Select>
-        </FormControl>
-
         <Button colorScheme="green">Salvar</Button>
       </Stack>
     </form>
