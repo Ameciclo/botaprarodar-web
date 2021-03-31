@@ -30,13 +30,13 @@ export function CommunityActionMenu() {
               Editar
             </MenuItem>
           </Link>
-          <Link href="/communities/1/documents">
+          <Link href="#">
             <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
               Lista de membros
             </MenuItem>
           </Link>
 
-          <Link href="/communities/1/documents">
+          <Link href="#">
             <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
               Bicicletas
             </MenuItem>
