@@ -1,4 +1,5 @@
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react'
+import { CommunityActionMenu } from 'components/CommunityActionMenu'
 
 export function TableCommunities() {
   return (
@@ -18,7 +19,9 @@ export function TableCommunities() {
           <Td>Lucas Lopes</Td>
           <Td>contato@mail.com</Td>
           <Td>Ativa</Td>
-          <Td>{/* <UserActionMenu /> */}</Td>
+          <Td>
+            <CommunityActionMenu />
+          </Td>
         </Tr>
       </Tbody>
       <Tfoot>
