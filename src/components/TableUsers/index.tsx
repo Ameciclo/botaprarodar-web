@@ -1,16 +1,7 @@
-import NextLink from 'next/link'
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  Button
-} from '@chakra-ui/react'
+import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react'
 
 import { User } from 'pages/users'
+import { UserActionButton } from 'components/UserActionButton'
 
 type TableUsersProps = {
   users: User[]
@@ -36,9 +27,7 @@ export function TableUsers({ users }: TableUsersProps) {
             <Td>Aglomerado da Serra</Td>
             <Td>{user.available ? 'Ativo' : 'Desativado'}</Td>
             <Td>
-              <NextLink href="/users/1">
-                <Button colorScheme="green">Editar</Button>
-              </NextLink>
+              <UserActionButton />
             </Td>
           </Tr>
         ))}
