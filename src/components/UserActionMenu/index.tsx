@@ -34,7 +34,11 @@ export function UserActionMenu() {
         <MenuButton
           as={Button}
           rightIcon={<ChevronDownIcon />}
-          colorScheme="green"
+          variant="outline"
+          _expanded={{
+            bg: 'gray.400',
+            color: 'gray.900'
+          }}
         >
           Ver todas
         </MenuButton>
