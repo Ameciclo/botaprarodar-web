@@ -21,6 +21,9 @@ export function Sidebar() {
         <NextLink href="/users">
           <Link>Usuários</Link>
         </NextLink>
+        <NextLink href="/communities">
+          <Link>Comunidades</Link>
+        </NextLink>
       </VStack>
     </Box>
   )
