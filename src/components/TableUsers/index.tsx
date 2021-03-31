@@ -1,7 +1,7 @@
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react'
 
 import { User } from 'pages/users'
-import { UserActionButton } from 'components/UserActionButton'
+import { UserActionMenu } from 'components/UserActionMenu'
 
 type TableUsersProps = {
   users: User[]
@@ -27,7 +27,7 @@ export function TableUsers({ users }: TableUsersProps) {
             <Td>Aglomerado da Serra</Td>
             <Td>{user.available ? 'Ativo' : 'Desativado'}</Td>
             <Td>
-              <UserActionButton />
+              <UserActionMenu />
             </Td>
           </Tr>
         ))}
