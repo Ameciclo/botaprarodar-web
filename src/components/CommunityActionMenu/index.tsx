@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@chakra-ui/button'
 import { ChevronDownIcon } from '@chakra-ui/icons'
@@ -9,7 +10,19 @@ import {
   MenuList
 } from '@chakra-ui/menu'
 
+import { AlertDisableCommunity } from 'components/AlertDisableCommunity'
+
 export function CommunityActionMenu() {
+  const [
+    alertDisableCommunityIsOpen,
+    setAlertDisableCommunityIsOpen
+  ] = useState(false)
+
+  const alertDisableCommunityOnClose = () =>
+    setAlertDisableCommunityIsOpen(false)
+
+  const alertDisableCommunityCancelRef = useRef()
+
   return (
     <>
       <Menu>
@@ -46,11 +59,21 @@ export function CommunityActionMenu() {
             Movimentações
           </MenuItem>
           <MenuDivider />
-          <MenuItem _hover={{ bg: 'red.500' }} _focus={{ bg: 'red.500' }}>
+          <MenuItem
+            _hover={{ bg: 'red.500' }}
+            _focus={{ bg: 'red.500' }}
+            onClick={() => setAlertDisableCommunityIsOpen(true)}
+          >
             Desativar comunidade
           </MenuItem>
         </MenuList>
       </Menu>
+
+      <AlertDisableCommunity
+        isOpen={alertDisableCommunityIsOpen}
+        onClose={alertDisableCommunityOnClose}
+        cancelRef={alertDisableCommunityCancelRef}
+      />
     </>
   )
 }
