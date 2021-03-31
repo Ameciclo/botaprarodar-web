@@ -10,23 +10,15 @@ import {
   MenuList
 } from '@chakra-ui/menu'
 import { AlertDisableAccount } from 'components/AlertDisableAccount'
-import { AlertSetCoordinator } from 'components/AlertSetCoordinator'
 
 export function UserActionMenu() {
   const [alertDisableAccountIsOpen, setAlertDisableAccountIsOpen] = useState(
     false
   )
-  const [alertSetCoordinatorIsOpen, setAlertSetCoordinatorIsOpen] = useState(
-    false
-  )
 
   const alertDisableAccountOnClose = () => setAlertDisableAccountIsOpen(false)
 
-  const alertSetCoordinatorOnClose = () => setAlertSetCoordinatorIsOpen(false)
-
   const alertDisableaccountCancelRef = useRef()
-
-  const alertSetCoordinatorCancelRef = useRef()
 
   return (
     <>
@@ -55,14 +47,6 @@ export function UserActionMenu() {
             </MenuItem>
           </Link>
 
-          <MenuItem
-            _hover={{ bg: 'yellow.500' }}
-            _focus={{ bg: 'yellow.500' }}
-            onClick={() => setAlertSetCoordinatorIsOpen(true)}
-          >
-            Definir como coordenador
-          </MenuItem>
-
           <MenuDivider />
 
           <MenuItem
@@ -79,12 +63,6 @@ export function UserActionMenu() {
         isOpen={alertDisableAccountIsOpen}
         onClose={alertDisableAccountOnClose}
         cancelRef={alertDisableaccountCancelRef}
-      />
-
-      <AlertSetCoordinator
-        isOpen={alertSetCoordinatorIsOpen}
-        onClose={alertSetCoordinatorOnClose}
-        cancelRef={alertSetCoordinatorCancelRef}
       />
     </>
   )
