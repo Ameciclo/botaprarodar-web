@@ -10,9 +10,15 @@ import {
   Button
 } from '@chakra-ui/react'
 
-export function TableUsers() {
+import { User } from 'pages/users'
+
+type TableUsersProps = {
+  users: User[]
+}
+
+export function TableUsers({ users }: TableUsersProps) {
   return (
-    <Table variant="striped" colorScheme="green">
+    <Table variant="simple">
       <Thead>
         <Tr>
           <Th>Nome</Th>
@@ -23,50 +29,19 @@ export function TableUsers() {
         </Tr>
       </Thead>
       <Tbody>
-        <Tr>
-          <Td>Lucas Lopes</Td>
-          <Td>lucas@mail.com</Td>
-          <Td>Aglomerado da Serra</Td>
-          <Td>Ativo</Td>
-          <Td>
-            <NextLink href="/users/1">
-              <Button colorScheme="green">Editar</Button>
-            </NextLink>
-          </Td>
-        </Tr>
-        <Tr>
-          <Td>Lucas Lopes</Td>
-          <Td>lucas@mail.com</Td>
-          <Td>Aglomerado da Serra</Td>
-          <Td>Ativo</Td>
-          <Td>
-            <NextLink href="/users/1">
-              <Button colorScheme="green">Editar</Button>
-            </NextLink>
-          </Td>
-        </Tr>
-        <Tr>
-          <Td>Lucas Lopes</Td>
-          <Td>lucas@mail.com</Td>
-          <Td>Aglomerado da Serra</Td>
-          <Td>Ativo</Td>
-          <Td>
-            <NextLink href="/users/1">
-              <Button colorScheme="green">Editar</Button>
-            </NextLink>
-          </Td>
-        </Tr>
-        <Tr>
-          <Td>Lucas Lopes</Td>
-          <Td>lucas@mail.com</Td>
-          <Td>Aglomerado da Serra</Td>
-          <Td>Ativo</Td>
-          <Td>
-            <NextLink href="/users/1">
-              <Button colorScheme="green">Editar</Button>
-            </NextLink>
-          </Td>
-        </Tr>
+        {users.map((user) => (
+          <Tr key={user.id}>
+            <Td>{user.name}</Td>
+            <Td>lucas@mail.com</Td>
+            <Td>Aglomerado da Serra</Td>
+            <Td>{user.available ? 'Ativo' : 'Desativado'}</Td>
+            <Td>
+              <NextLink href="/users/1">
+                <Button colorScheme="green">Editar</Button>
+              </NextLink>
+            </Td>
+          </Tr>
+        ))}
       </Tbody>
       <Tfoot>
         <Tr>
