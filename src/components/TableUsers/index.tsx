@@ -15,7 +15,6 @@ export function TableUsers({ users }: TableUsersProps) {
           <Th>Nome</Th>
           <Th>E-mail</Th>
           <Th>Comunidade</Th>
-          <Th>Tipo de conta</Th>
           <Th>Status</Th>
           <Th>Ações</Th>
         </Tr>
@@ -26,7 +25,6 @@ export function TableUsers({ users }: TableUsersProps) {
             <Td>{user.name}</Td>
             <Td>lucas@mail.com</Td>
             <Td>Aglomerado da Serra</Td>
-            <Td>Coordenador</Td>
             <Td>{user.available ? 'Ativo' : 'Desativado'}</Td>
             <Td>
               <UserActionMenu />
@@ -39,7 +37,6 @@ export function TableUsers({ users }: TableUsersProps) {
           <Th>Nome</Th>
           <Th>E-mail</Th>
           <Th>Comunidade</Th>
-          <Th>Tipo de conta</Th>
           <Th>Status</Th>
           <Th>Ações</Th>
         </Tr>
