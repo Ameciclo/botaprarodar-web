@@ -10,18 +10,14 @@ import {
   MenuList
 } from '@chakra-ui/menu'
 
-import { AlertDisableCommunity } from 'components/AlertDisableCommunity'
+import { AlertDisableBike } from 'components/AlertDisableBike'
 
 export function BikeActionMenu() {
-  const [
-    alertDisableCommunityIsOpen,
-    setAlertDisableCommunityIsOpen
-  ] = useState(false)
+  const [alertDisableBikeIsOpen, setAlertDisableBikeIsOpen] = useState(false)
 
-  const alertDisableCommunityOnClose = () =>
-    setAlertDisableCommunityIsOpen(false)
+  const alertDisableBikeOnClose = () => setAlertDisableBikeIsOpen(false)
 
-  const alertDisableCommunityCancelRef = useRef()
+  const alertDisableBikeCancelRef = useRef()
 
   return (
     <>
@@ -61,17 +57,17 @@ export function BikeActionMenu() {
           <MenuItem
             _hover={{ bg: 'red.500' }}
             _focus={{ bg: 'red.500' }}
-            onClick={() => setAlertDisableCommunityIsOpen(true)}
+            onClick={() => setAlertDisableBikeIsOpen(true)}
           >
             Desativar bicicleta
           </MenuItem>
         </MenuList>
       </Menu>
 
-      <AlertDisableCommunity
-        isOpen={alertDisableCommunityIsOpen}
-        onClose={alertDisableCommunityOnClose}
-        cancelRef={alertDisableCommunityCancelRef}
+      <AlertDisableBike
+        isOpen={alertDisableBikeIsOpen}
+        onClose={alertDisableBikeOnClose}
+        cancelRef={alertDisableBikeCancelRef}
       />
     </>
   )
