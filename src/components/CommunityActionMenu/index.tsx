@@ -49,7 +49,7 @@ export function CommunityActionMenu() {
             </MenuItem>
           </Link>
 
-          <Link href="#">
+          <Link href="/communities/1/bikes">
             <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
               Bicicletas
             </MenuItem>
