@@ -43,11 +43,6 @@ export function CommunityActionMenu() {
               Editar
             </MenuItem>
           </Link>
-          <Link href="#">
-            <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
-              Lista de membros
-            </MenuItem>
-          </Link>
 
           <Link href="/communities/1/bikes">
             <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
