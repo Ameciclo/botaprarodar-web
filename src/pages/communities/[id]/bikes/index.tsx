@@ -3,7 +3,7 @@ import { TableBikes } from 'components/TableBikes'
 
 export default function Bikes() {
   return (
-    <Base title="Bicicletas da comunidade: Aglomerado da Serra">
+    <Base title="Aglomerado da Serra: Bicicletas da comunidade">
       <TableBikes />
     </Base>
   )

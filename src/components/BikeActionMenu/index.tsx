@@ -34,33 +34,11 @@ export function BikeActionMenu() {
           Ver todas
         </MenuButton>
         <MenuList bgColor="gray.900">
-          <Link href="/communities/1">
-            <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
-              Editar
-            </MenuItem>
-          </Link>
-
-          <Link href="/communities/1">
-            <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
-              Alterar status
-            </MenuItem>
-          </Link>
-
           <Link href="#">
             <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
               Movimentações
             </MenuItem>
           </Link>
-
-          <MenuDivider />
-
-          <MenuItem
-            _hover={{ bg: 'red.500' }}
-            _focus={{ bg: 'red.500' }}
-            onClick={() => setAlertDisableBikeIsOpen(true)}
-          >
-            Desativar bicicleta
-          </MenuItem>
         </MenuList>
       </Menu>
 

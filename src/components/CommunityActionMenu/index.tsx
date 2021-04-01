@@ -50,10 +50,14 @@ export function CommunityActionMenu() {
             </MenuItem>
           </Link>
 
-          <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
-            Movimentações
-          </MenuItem>
+          <Link href="/communities/1/withdrawals">
+            <MenuItem _hover={{ bg: 'gray.400' }} _focus={{ bg: 'gray.400' }}>
+              Movimentações
+            </MenuItem>
+          </Link>
+
           <MenuDivider />
+
           <MenuItem
             _hover={{ bg: 'red.500' }}
             _focus={{ bg: 'red.500' }}
