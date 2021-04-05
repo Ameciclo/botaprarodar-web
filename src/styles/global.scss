@@ -105,3 +105,14 @@ button.chakra-button {
     }
   }
 }
+
+nav.chakra-breadcrumb {
+  a {
+    &:hover {
+      background-color: $hover;
+    }
+  }
+  span {
+    color: $headerText;
+  }
+}
