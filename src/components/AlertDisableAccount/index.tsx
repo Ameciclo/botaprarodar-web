@@ -7,11 +7,12 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay
 } from '@chakra-ui/modal'
+import { MutableRefObject } from 'react'
 
 type AlertDisableAccountProps = {
   isOpen: boolean
   onClose: () => void
-  cancelRef: any
+  cancelRef: MutableRefObject<undefined>
 }
 
 export function AlertDisableAccount({

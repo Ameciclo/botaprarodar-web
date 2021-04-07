@@ -2,13 +2,7 @@ import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@chakra-ui/button'
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import {
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList
-} from '@chakra-ui/menu'
+import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/menu'
 
 import { AlertDisableBike } from 'components/AlertDisableBike'
 
