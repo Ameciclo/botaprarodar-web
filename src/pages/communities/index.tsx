@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Users() {
   return (
-    <Base title="Todos as comunidades">
+    <Base>
       <Box>
         <Link href="/communities/create">
           <Button

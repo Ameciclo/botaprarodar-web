@@ -3,7 +3,7 @@ import { FormEditCommunity } from 'components/FormEditCommunity'
 
 export default function EditCommunity() {
   return (
-    <Base title="Editar comunidade">
+    <Base>
       <FormEditCommunity />
     </Base>
   )

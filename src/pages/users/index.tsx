@@ -29,7 +29,7 @@ export default function Users() {
   }
 
   return (
-    <Base title="Todos os usuários">
+    <Base>
       <FilterUser
         value={search}
         setValue={setSearch}

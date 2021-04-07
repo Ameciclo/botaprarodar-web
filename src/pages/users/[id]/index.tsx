@@ -3,7 +3,7 @@ import { FormEditUser } from 'components/FormEditUser'
 
 export default function EditUser() {
   return (
-    <Base title="Editar usuário">
+    <Base>
       <FormEditUser />
     </Base>
   )

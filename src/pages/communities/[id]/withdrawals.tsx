@@ -3,7 +3,7 @@ import { TableWithdrawals } from 'components/TableWithdrawals'
 
 export default function Withdrawals() {
   return (
-    <Base title="Aglomerado da Serra: Movimentações">
+    <Base>
       <TableWithdrawals />
     </Base>
   )
