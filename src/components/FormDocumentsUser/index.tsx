@@ -1,12 +1,10 @@
 import {
   Box,
-  Button,
   FormControl,
   FormLabel,
   HStack,
   Image,
   Input,
-  Select,
   Stack
 } from '@chakra-ui/react'
 
@@ -51,8 +49,6 @@ export function FormDocumentsUser() {
             <Input type="file" variant="unstyled" />
           </FormControl>
         </HStack>
-
-        {/* <Button colorScheme="green">Cadastrar</Button> */}
       </Stack>
     </form>
   )

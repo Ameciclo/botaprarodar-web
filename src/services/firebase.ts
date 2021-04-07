@@ -23,7 +23,7 @@ type GetDataProps = {
 
 export const getData = (
   { nodePath, limit = 10 }: GetDataProps,
-  cb: (data: any) => void
+  cb: (data) => void
 ) => {
   const query = Firebase.ref(nodePath).limitToFirst(limit)
 
