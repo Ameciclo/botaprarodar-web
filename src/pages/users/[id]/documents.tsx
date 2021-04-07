@@ -3,7 +3,7 @@ import { FormDocumentsUser } from 'components/FormDocumentsUser'
 
 export default function UserDocuments() {
   return (
-    <Base title="Documentação">
+    <Base>
       <FormDocumentsUser />
     </Base>
   )

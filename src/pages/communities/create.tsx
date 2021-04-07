@@ -3,7 +3,7 @@ import { FormCreateCommunity } from 'components/FormCreateCommunity'
 
 export default function CreateCommunity() {
   return (
-    <Base title="Criar comunidade">
+    <Base>
       <FormCreateCommunity />
     </Base>
   )
