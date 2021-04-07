@@ -2,18 +2,28 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
+type CrumbItemProps = {
+  page: string
+  href: string
+}
+
 const formatPath = (path: string) => {
   switch (path) {
     case 'users':
       return 'Usuários'
+    case 'communities':
+      return 'Comunidades'
+    case 'documents':
+      return 'Documentos'
+    case 'bikes':
+      return 'Bicicletas'
+    case 'withdrawals':
+      return 'Movimentações'
+    case 'create':
+      return 'Cadastrar'
     default:
-      return 'Edição'
+      return 'Editar'
   }
-}
-
-type CrumbItemProps = {
-  page: string
-  href: string
 }
 
 export function BreadCrumb() {

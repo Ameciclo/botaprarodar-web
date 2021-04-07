@@ -1,5 +1,5 @@
 import { BreadCrumb } from '.'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
@@ -33,5 +33,18 @@ describe('<BreadCrumb />', () => {
     render(<BreadCrumb />)
 
     expect(screen.getByText(/usuários/i)).toHaveAttribute('href', '/users')
+  })
+
+  it('should navigate to correct path when click', () => {
+    useRouter.mockImplementation(() => ({
+      asPath: '/users/1'
+    }))
+
+    render(<BreadCrumb />)
+    const link = screen.getByText(/usuários/i)
+
+    fireEvent.click(link)
+
+    expect(link).toHaveAttribute('href', '/users')
   })
 })
