@@ -21,6 +21,8 @@ const formatPath = (path: string) => {
       return 'Movimentações'
     case 'create':
       return 'Cadastrar'
+    case 'dashboard':
+      return 'Dashboard'
     default:
       return 'Editar'
   }
