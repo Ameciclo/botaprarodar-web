@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBicycle, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { Spinner } from '@chakra-ui/react'
 
-import { getData } from '../../services/firebase'
-
-export function Dashboard() {
-  const [countCommunities, setCountCommunities] = useState(0)
-  const [countBikes, setCountBikes] = useState(0)
-
-  useEffect(() => {
-    getData({ nodePath: 'communities' }, (data) => {
-      setCountCommunities(data.length)
-    })
-    getData({ nodePath: 'bikes' }, (data) => {
-      setCountBikes(data.length)
-    })
-  }, [])
-
+type DashboardParams = {
+  countCommunities: number
+  countBikes: number
+}
+export function Dashboard({ countCommunities, countBikes }: DashboardParams) {
   return (
     <Flex ml="1em" justifyContent="space-evenly" backgroundColor="#0f1a2e">
       <Flex
