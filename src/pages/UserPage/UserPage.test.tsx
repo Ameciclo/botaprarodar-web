@@ -6,8 +6,6 @@ import UserPage from './UserPage';
 
 describe('UserPage', () => {
   it('should list users', () => {
-    render(<UserPage />);
-    const userTable = screen.findByTestId('user-table');
     const tableName = screen.findByText('NOME');
     const tableEmail = screen.findByText('E-MAIL');
     const tableComunity = screen.findByText('COMUNIDADE');
