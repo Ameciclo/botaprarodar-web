@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Community from '../../components/Community';
+
 export interface CommunityInterface {
   name: string;
   description: string;
@@ -18,7 +20,9 @@ const CommunityPage: React.FC<{ props: CommunityInterface[] }> = ({
     <div>
       <ul data-testid="communities-list">
         {communities.map((community, index) => (
-          <li key={index}>community.name</li>
+          <li key={index}>
+            <Community {...community} />
+          </li>
         ))}
       </ul>
     </div>
