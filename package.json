@@ -30,7 +30,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku": "serve -s build",
+    "heroku-prebuild": "npm install -g serve"
   },
   "eslintConfig": {
     "extends": [
