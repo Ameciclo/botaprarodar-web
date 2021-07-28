@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const CommunityPage: React.FC = () => {
-  return <div>Communities</div>;
+  //  const [communities, setCommunities] = useState([]);
+  return (
+    <div>
+      <ul data-testid="communities-list">
+        <li>Communitie 1</li>
+      </ul>
+    </div>
+  );
 };
 
 export default CommunityPage;
