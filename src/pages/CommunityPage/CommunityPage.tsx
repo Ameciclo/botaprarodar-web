@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-interface Community {
+export interface CommunityInterface {
   name: string;
   description: string;
   address: string;
 }
 
-const CommunityPage: React.FC<{ props: Community[] }> = ({ props }) => {
-  const [communities, setCommunities] = useState<Community[]>(props);
+const CommunityPage: React.FC<{ props: CommunityInterface[] }> = ({
+  props,
+}) => {
+  const [communities, setCommunities] = useState<CommunityInterface[]>(props);
 
   useEffect(() => {
     setCommunities(props);
