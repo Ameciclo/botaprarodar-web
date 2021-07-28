@@ -8,7 +8,7 @@ import TemplatePage from './templatePage';
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/users" exact component={UserPage} />
-    <Route path="/comunities" component={CommunityPage} />
+    <Route path="/communities" component={CommunityPage} />
   </Switch>
 );
 
