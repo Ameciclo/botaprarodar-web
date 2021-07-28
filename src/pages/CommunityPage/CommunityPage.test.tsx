@@ -1,7 +1,7 @@
 import CommunityPage from './CommunityPage';
 import { render, screen } from '@testing-library/react';
 
-const defaultCommunities: string[] = [];
+const defaultCommunities: [] = [];
 
 describe('CommunityPage', () => {
   it('renders communities page without error', () => {
@@ -16,7 +16,10 @@ describe('CommunityPage', () => {
   });
 
   it('renders a list with two communities', () => {
-    const newCommunities = ['First Community', 'Second Community'];
+    const newCommunities = [
+      { name: 'First Community', description: '', address: 'Recife' },
+      { name: 'Second Community', description: '', address: 'Rio de Janeiro' },
+    ];
     render(<CommunityPage props={newCommunities} />);
     const communitiesList = screen.getByTestId('communities-list').childNodes;
     expect(communitiesList).toHaveLength(2);
