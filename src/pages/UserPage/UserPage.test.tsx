@@ -1,7 +1,6 @@
 // Qual o foco? Listar os usuários
 // O que eu preciso saber? Listar os usuários
 // O que eu espero? Uma tabela com a lista de usuários contento seu nome, e-mail, comunidade, status e ações
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import UserPage from './UserPage';
 
