@@ -18,7 +18,7 @@ describe('CommunityPage', () => {
   it('renders a list with two communities', () => {
     const newCommunities = ['First Community', 'Second Community'];
     render(<CommunityPage props={newCommunities} />);
-    const communitiesList = screen.getByTestId('communities-list');
+    const communitiesList = screen.getByTestId('communities-list').childNodes;
     expect(communitiesList).toHaveLength(2);
   });
 });

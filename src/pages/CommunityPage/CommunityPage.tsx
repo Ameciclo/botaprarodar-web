@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 interface Communities {
   Community: {
     name: string;
@@ -6,12 +6,18 @@ interface Communities {
 }
 
 const CommunityPage: React.FC<{ props: string[] }> = ({ props }) => {
-  const [communities, setCommunities] = useState<Communities>();
+  const [communities, setCommunities] = useState<string[]>(props);
+
+  useEffect(() => {
+    setCommunities(props);
+  }, [props]);
 
   return (
     <div>
       <ul data-testid="communities-list">
-        <li>Community 1</li>
+        {communities.map((community, index) => (
+          <li key={index}>community</li>
+        ))}
       </ul>
     </div>
   );
