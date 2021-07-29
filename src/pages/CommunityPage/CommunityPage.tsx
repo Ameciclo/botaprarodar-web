@@ -7,20 +7,24 @@ export interface CommunityInterface {
   address: string;
 }
 
-const CommunityPage: React.FC<{ props: CommunityInterface[] }> = ({
-  props,
-}) => {
-  const [communities, setCommunities] = useState<CommunityInterface[]>(props);
+const CommunityPage: React.FC = () => {
+  const [communities, setCommunities] = useState<CommunityInterface[]>([]);
 
   useEffect(() => {
-    setCommunities(props);
-  }, [props]);
+    setCommunities([
+      {
+        name: 'Comunidade 1',
+        description: 'Isso é uma comunidade',
+        address: 'Rua dos bobos',
+      },
+    ]);
+  }, []);
 
   return (
     <div>
       <ul data-testid="communities-list">
-        {communities.map((community, index) => (
-          <li key={index}>
+        {communities.map(community => (
+          <li key={community.name}>
             <Community {...community} />
           </li>
         ))}

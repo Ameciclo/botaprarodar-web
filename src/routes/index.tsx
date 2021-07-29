@@ -3,7 +3,6 @@ import { Switch } from 'react-router-dom';
 import CommunityPage from '../pages/CommunityPage/CommunityPage';
 import UserPage from '../pages/UserPage/UserPage';
 import Route from './Route';
-import TemplatePage from './templatePage';
 
 const Routes: React.FC = () => (
   <Switch>

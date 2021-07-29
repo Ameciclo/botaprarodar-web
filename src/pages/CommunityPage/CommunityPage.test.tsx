@@ -1,5 +1,5 @@
-import CommunityPage from './CommunityPage';
 import { render, screen } from '@testing-library/react';
+import CommunityPage from './CommunityPage';
 
 const defaultCommunities: [] = [];
 

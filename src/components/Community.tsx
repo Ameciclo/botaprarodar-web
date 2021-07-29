@@ -1,4 +1,5 @@
 import React from 'react';
+
 interface CommunityProps {
   name: string;
   description: string;

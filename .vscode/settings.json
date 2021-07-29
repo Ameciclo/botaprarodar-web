@@ -2,7 +2,6 @@
   "git.ignoreLimitWarning": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.colorTheme": "Solarized Dark",
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
   "html.format.indentHandlebars": true,
