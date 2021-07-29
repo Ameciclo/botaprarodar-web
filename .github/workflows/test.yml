@@ -1,4 +1,4 @@
-name: Build and Test
+name: Run tests
 
 on: [push, pull_request]
 jobs:
@@ -6,15 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
         with:
-          node-version: '14'
-      - run: npm test
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - run: npm run build
+          fetch-depth: 0
+      - name: Get main
+        run: git fetch origin main
+      - name: Install dependencies
+        run: npm install
+      - name: Install Jest globally
+        run: sudo npm install -g jest
+      - name: Run Tests
+        run: npm run test
