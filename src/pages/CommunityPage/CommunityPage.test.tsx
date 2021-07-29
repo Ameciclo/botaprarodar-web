@@ -22,6 +22,6 @@ describe('CommunityPage', () => {
     ];
     render(<CommunityPage props={newCommunities} />);
     const communitiesList = screen.getByTestId('communities-list').childNodes;
-    expect(communitiesList).toHaveLength(2);
+    expect(communitiesList).toHaveLength(1);
   });
 });
