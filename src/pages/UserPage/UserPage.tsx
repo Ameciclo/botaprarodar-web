@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers } from '../../services/UserService/UserService';
+import UserService from '../../services/UserService/UserService';
 
 interface User {
   name: string;
@@ -13,7 +13,7 @@ const UserPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    getUsers()
+    UserService.getUsers()
       .then(response => {
         const usersParsed = Object.keys(response.data).map(id => {
           return { uuid: id, ...response.data[id], status: true };

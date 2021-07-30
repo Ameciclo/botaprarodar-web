@@ -1,3 +1,9 @@
 import api from '../api';
 
-export const getUsers = () => api.get('/users.json');
+const UserService = {
+  getUsers() {
+    return api.get('/users.json');
+  },
+};
+
+export default UserService;
