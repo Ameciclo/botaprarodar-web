@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../services/api';
+import { getUsers } from '../../services/UserService/UserService';
 
 interface User {
   name: string;
@@ -13,16 +13,15 @@ const UserPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    api
-      .get('/users.json')
+    getUsers()
       .then(response => {
         const usersParsed = Object.keys(response.data).map(id => {
           return { uuid: id, ...response.data[id], status: true };
         });
         setUsers(usersParsed);
       })
-      .catch(() => {
-        console.error;
+      .catch(error => {
+        console.error(error);
       });
   }, []);
 
