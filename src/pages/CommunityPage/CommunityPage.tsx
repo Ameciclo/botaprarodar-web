@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Community from '../../components/Community';
-
-export interface CommunityInterface {
-  name: string;
-  description: string;
-  address: string;
-}
+import ComunityComponent from '../../components/Community';
+import Community from '../../models/Community/Community';
+import CommunityService from '../../services/CommunityService/CommunityService';
 
 const CommunityPage: React.FC = () => {
-  const [communities, setCommunities] = useState<CommunityInterface[]>([]);
+  const [communities, setCommunities] = useState<Community[]>([]);
 
   useEffect(() => {
+    CommunityService.getAllCommunities();
     setCommunities([
       {
         name: 'Comunidade 1',
@@ -25,7 +22,7 @@ const CommunityPage: React.FC = () => {
       <ul data-testid="communities-list">
         {communities.map(community => (
           <li key={community.name}>
-            <Community {...community} />
+            <ComunityComponent {...community} />
           </li>
         ))}
       </ul>
