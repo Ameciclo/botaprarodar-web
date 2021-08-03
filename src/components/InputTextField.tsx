@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputField: React.FC<{ label: string }> = ({ label }) => {
+const InputTextField: React.FC<{ label: string }> = ({ label }) => {
   return (
     <div>
       <span>{label}</span>
@@ -9,4 +9,4 @@ const InputField: React.FC<{ label: string }> = ({ label }) => {
   );
 };
 
-export default InputField;
+export default InputTextField;

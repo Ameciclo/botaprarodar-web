@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import InputField from './InputField';
+import InputTextField from './InputTextField';
 
 test('renders without error', () => {
-  const { container } = render(<InputField />);
+  const { container } = render(<InputTextField />);
   expect(container).toBeInTheDocument;
 });
 
 test('should set label', () => {
-  render(<InputField label="Email" />);
+  render(<InputTextField label="Email" />);
   const inputField = screen.getByText('Email');
   expect(inputField).toBeInTheDocument;
 });
