@@ -1,8 +1,18 @@
-import api from '../api';
+import User from '../../models/Users/User';
+import { database } from '../firebase';
 
 const UserService = {
-  getUsers() {
-    return api.get('/users.json');
+  async getAllUsers() {
+    const usersRef = database.ref('users');
+    return usersRef
+      .once('value')
+      .then(snapshot => {
+        const data: User[] = Object.keys(snapshot.val()).map(id => {
+          return { id, ...snapshot.val()[id] };
+        });
+        return data;
+      })
+      .catch(err => err);
   },
 };
 

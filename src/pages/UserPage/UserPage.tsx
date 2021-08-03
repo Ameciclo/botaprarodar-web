@@ -1,27 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import User from '../../models/Users/User';
 import UserService from '../../services/UserService/UserService';
-
-interface User {
-  name: string;
-  communityId: string;
-  telephone: string;
-  status: boolean;
-  id: string;
-}
 
 const UserPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    UserService.getUsers()
-      .then(response => {
-        const usersParsed = Object.keys(response.data).map(id => {
-          return { uuid: id, ...response.data[id], status: true };
-        });
-        setUsers(usersParsed);
+    UserService.getAllUsers()
+      .then(res => {
+        setUsers(res);
       })
-      .catch(error => {
-        console.error(error);
+      .catch(err => {
+        console.error(err);
       });
   }, []);
 
