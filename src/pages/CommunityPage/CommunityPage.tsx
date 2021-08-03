@@ -7,14 +7,13 @@ const CommunityPage: React.FC = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
 
   useEffect(() => {
-    CommunityService.getAllCommunities();
-    setCommunities([
-      {
-        name: 'Comunidade 1',
-        description: 'Isso é uma comunidade',
-        address: 'Rua dos bobos',
-      },
-    ]);
+    CommunityService.getAllCommunities()
+      .then(res => {
+        setCommunities(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }, []);
 
   return (
