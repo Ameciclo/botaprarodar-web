@@ -53,7 +53,16 @@
       }
     ],
     "prettier/prettier": "error",
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
