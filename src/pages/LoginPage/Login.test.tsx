@@ -6,4 +6,18 @@ describe('Login Page', () => {
     const { container } = render(<Login />);
     expect(container).toBeInTheDocument();
   });
+
+  it('should have e-mail and password fields', () => {
+    render(<Login />);
+    const emailField = screen.getByText('E-mail');
+    const passwordField = screen.getByText('Senha');
+    expect(emailField).toBeInTheDocument();
+    expect(passwordField).toBeInTheDocument();
+  });
+
+  it('should have submit button', () => {
+    render(<Login />);
+    const submitButton = screen.getByTestId('submit-button');
+    expect(submitButton).toBeInTheDocument;
+  });
 });
