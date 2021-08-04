@@ -9,7 +9,7 @@ const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={DashboardPage} />
     <Route path="/users" exact component={UserPage} />
-    <Route path="/communities" component={CommunityPage} />
+    <Route path="/comunidades" component={CommunityPage} />
   </Switch>
 );
 
