@@ -1,5 +1,5 @@
-import { Paper } from '@material-ui/core';
 import React, { FC, useEffect, useState } from 'react';
+import DashboardCard from '../../components/DashboardCard/DashboardCard';
 import PieChart from '../../components/PieChart/PieChart';
 import DashboardInfo from '../../models/DashboardInfo/DashboardInfo';
 import DashboardService from '../../services/DashboardService/DashboardService';
@@ -19,16 +19,21 @@ const DashboardPage: FC = () => {
     <>
       <div style={{ display: 'flex', flex: '1', flexDirection: 'column' }}>
         <div
-          style={{ display: 'flex', flex: '1', justifyContent: 'space-around' }}
+          style={{
+            display: 'flex',
+            flex: '1',
+            justifyContent: 'space-around',
+            marginBottom: '10px',
+          }}
         >
-          <Paper style={{ padding: '10px' }}>
-            <div>Quantidade de Bicicletas</div>
-            <div>{dashboardData?.bikesQuantity || 0}</div>
-          </Paper>
-          <Paper style={{ padding: '10px' }}>
-            <div>Quantidade de Comunidades</div>
-            <div>{dashboardData?.communitiesQuantity || 0}</div>
-          </Paper>
+          <DashboardCard
+            title="Quantidade de Bicicletas"
+            text={dashboardData?.bikesQuantity}
+          />
+          <DashboardCard
+            title="Quantidade de Comunidades"
+            text={dashboardData?.communitiesQuantity}
+          />
         </div>
         <div
           style={{ display: 'flex', flex: '1', justifyContent: 'space-around' }}
