@@ -3,8 +3,8 @@ import React from 'react';
 const InputTextField: React.FC<{
   label: string;
   type: string;
-  testID: string;
-  changeHandler: any;
+  testID?: string;
+  changeHandler?: any;
 }> = ({ label, type, changeHandler, testID }) => {
   return (
     <div>
