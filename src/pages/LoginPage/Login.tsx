@@ -5,6 +5,7 @@ import LoginService from '../../services/LoginService/LoginService';
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -16,7 +17,12 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    LoginService.requestLogin(email, password);
+
+    if (email && password) {
+      LoginService.requestLogin(email, password);
+    } else {
+      setErrorMessage('Todos os campos são obrigatórios');
+    }
   };
 
   return (
@@ -36,6 +42,7 @@ const Login: React.FC = () => {
       <button data-testid="submit-button" type="submit">
         Logar
       </button>
+      <span data-testid="login-errormessage">{errorMessage}</span>
     </form>
   );
 };
