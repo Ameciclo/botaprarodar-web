@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import InputTextField from '../../components/InputTextField';
 import LoginService from '../../services/LoginService/LoginService';
 
-const Login: React.FC = () => {
+const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -47,4 +47,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

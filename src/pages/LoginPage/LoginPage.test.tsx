@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LoginService from '../../services/LoginService/LoginService';
-import Login from './Login';
+import LoginPage from './LoginPage';
 
 jest.mock('../../services/LoginService/LoginService');
 
@@ -22,12 +22,12 @@ async function fillAndSubmitLoginForm(email: string, password: string) {
 
 describe('Login Page', () => {
   it('Should render login page', async () => {
-    const { container } = render(<Login />);
+    const { container } = render(<LoginPage />);
     expect(container).toBeInTheDocument();
   });
 
   it('should have e-mail and password fields', () => {
-    render(<Login />);
+    render(<LoginPage />);
     const emailField = screen.getByText('E-mail');
     const passwordField = screen.getByText('Senha');
     expect(emailField).toBeInTheDocument();
@@ -35,13 +35,13 @@ describe('Login Page', () => {
   });
 
   it('should have submit button', () => {
-    render(<Login />);
+    render(<LoginPage />);
     const submitButton = screen.getByTestId('submit-button');
     expect(submitButton).toBeInTheDocument;
   });
 
   it('Should submit login form', async () => {
-    render(<Login />);
+    render(<LoginPage />);
 
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
 
@@ -52,7 +52,7 @@ describe('Login Page', () => {
   });
 
   it('should show error message when one of the fields is empty', async () => {
-    render(<Login />);
+    render(<LoginPage />);
 
     await fillAndSubmitLoginForm('', '123');
 
