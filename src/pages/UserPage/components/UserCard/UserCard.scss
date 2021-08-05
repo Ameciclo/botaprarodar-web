@@ -10,4 +10,27 @@
 #user-avatar {
   width: 64px;
   height: 64px;
+  display: block;
+  margin: auto;
+  margin-bottom: 16px;
+}
+
+.name-typography {
+  color: #515151;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.description-typography {
+  color: #828282;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
 }

@@ -1,15 +1,17 @@
 import React from 'react';
-import { Avatar, Card, CardContent } from '@material-ui/core';
+import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
 import './UserCard.scss';
 
 interface UserCardProps {
   user: {
-    id: string;
     name: string;
     communityId: string;
     telephone: string;
-    profilePicture: string;
     status: boolean;
+    profilePicture: string;
+    id: string;
+    address: string;
+    docNumber: bigint;
   };
 }
 
@@ -19,18 +21,13 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
       <CardContent>
         <li key={user.id}>
           <Avatar id="user-avatar" src={user.profilePicture} alt="profile" />
-          <p>
-            NOME <span> {user.name} </span>
-          </p>
-          <p>
-            Comunidade <span>{user.communityId}</span>
-          </p>
-          <p>
-            TELEFONE <span>{user.telephone ? user.telephone : ' - '}</span>
-          </p>
-          <p>
-            STATUS <span>{user.status ? 'Ativo' : 'Inativo'}</span>
-          </p>
+          <Typography className="name-typography">{user.name}</Typography>
+          <Typography className="description-typography">
+            {user.address}
+          </Typography>
+          <Typography className="description-typography">
+            {user.docNumber}
+          </Typography>
         </li>
       </CardContent>
     </Card>

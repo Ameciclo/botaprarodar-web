@@ -5,4 +5,6 @@ export default interface User {
   status: boolean;
   profilePicture: string;
   id: string;
+  address: string;
+  docNumber: bigint;
 }
