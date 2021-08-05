@@ -4,7 +4,7 @@ const InputTextField: React.FC<{
   label: string;
   type: string;
   testID?: string;
-  changeHandler?: any;
+  changeHandler(event: React.ChangeEvent): void;
 }> = ({ label, type, changeHandler, testID }) => {
   return (
     <div>

@@ -1,7 +1,7 @@
 import { auth } from '../firebase';
 
 const LoginService = {
-  requestLogin(email: string, password: string, setErrorMessage?: any) {
+  requestLogin(email: string, password: string) {
     let user;
     try {
       auth.signInWithEmailAndPassword(email, password).then(userCredential => {
