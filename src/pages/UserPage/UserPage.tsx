@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import User from '../../models/Users/User';
 import UserService from '../../services/UserService/UserService';
+import UserCard from './components/UserCard/UserCard';
+import './UserPage.scss';
 
 const UserPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -19,20 +21,7 @@ const UserPage: React.FC = () => {
     <div>
       <ul data-testid="userList">
         {users?.map(user => (
-          <li key={user.id}>
-            <p>
-              NOME <span> {user.name} </span>
-            </p>
-            <p>
-              Comunidade <span>{user.communityId}</span>
-            </p>
-            <p>
-              TELEFONE <span>{user.telephone ? user.telephone : ' - '}</span>
-            </p>
-            <p>
-              STATUS <span>{user.status ? 'Ativo' : 'Inativo'}</span>
-            </p>
-          </li>
+          <UserCard user={user} />
         ))}
       </ul>
     </div>

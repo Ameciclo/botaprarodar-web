@@ -3,5 +3,6 @@ export default interface User {
   communityId: string;
   telephone: string;
   status: boolean;
+  profilePicture: string;
   id: string;
 }
