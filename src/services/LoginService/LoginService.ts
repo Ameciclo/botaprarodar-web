@@ -1,17 +1,15 @@
 import { auth } from '../firebase';
 
 const LoginService = {
-  requestLogin(email: string, password: string) {
-    let user;
-    try {
-      auth.signInWithEmailAndPassword(email, password).then(userCredential => {
-        user = userCredential.user;
-      });
-      console.log(user);
-    } catch (error) {
-      console.log(error.message);
-    }
-    return user;
+  async requestLogin(email: string, password: string) {
+    const loginResponse = await auth.signInWithEmailAndPassword(
+      email,
+      password,
+    );
+    const userDetails = loginResponse.user;
+    console.log(userDetails);
+
+    //  return user;
   },
 };
 
