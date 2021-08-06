@@ -4,11 +4,11 @@ import Withdrawal from '../Withdrawal/Withdrawal';
 export default interface Community {
   id: string;
   address: string;
-  created_date: Date;
+  createdDate: Date;
   description: string;
   name: string;
-  org_email: string;
-  org_name: string;
+  orgEmail: string;
+  orgName: string;
   bicycles: Bicycle[];
   withdrawals: Withdrawal[];
 }

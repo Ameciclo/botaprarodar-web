@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ComunityComponent from './components/Community';
 import Community from '../../models/Community/Community';
 import CommunityService from '../../services/CommunityService/CommunityService';
 
@@ -21,7 +20,11 @@ const CommunityPage: React.FC = () => {
       <ul data-testid="communities-list">
         {communities.map(community => (
           <li key={community.id}>
-            <ComunityComponent {...community} />
+            <ul>
+              <li>Nome: {community.name}</li>
+              <li>Organizador: {community.orgName}</li>
+              <li>E-mail: {community.orgEmail}</li>
+            </ul>
           </li>
         ))}
       </ul>
