@@ -1,11 +1,14 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import InputTextField from '../../components/InputTextField';
+import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const { onChange } = useHandleAuth();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -19,7 +22,12 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
 
     if (email && password) {
-      LoginService.requestLogin(email, password);
+      LoginService.requestLogin(email, password)
+        .then(user => {
+          console.log(user);
+          onChange(user);
+        })
+        .catch(err => console.log('err', err));
     } else {
       setErrorMessage('Todos os campos são obrigatórios');
     }

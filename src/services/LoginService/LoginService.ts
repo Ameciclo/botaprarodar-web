@@ -7,10 +7,12 @@ const LoginService = {
       password,
     );
     const userDetails = loginResponse.user;
-    // eslint-disable-next-line no-console
-    console.log(userDetails);
 
-    return userDetails;
+    return {
+      displayName: userDetails?.displayName || '',
+      email: userDetails?.email || '',
+      authenticated: userDetails?.emailVerified || false,
+    };
   },
 };
 
