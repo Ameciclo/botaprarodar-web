@@ -7,9 +7,9 @@
   margin: 24px;
 }
 
-#user-avatar {
-  width: 64px;
-  height: 64px;
+.user-avatar {
+  width: 64px !important;
+  height: 64px !important;
   display: block;
   margin: auto;
   margin-bottom: 16px;
@@ -23,14 +23,24 @@
   font-size: 16px;
   line-height: 20px;
   text-align: center;
+  margin-bottom: 16px !important;
 }
 
-.description-typography {
-  color: #828282;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
+.description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  img {
+    margin-right: 12px;
+  }
+  p {
+    color: #828282;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
 }

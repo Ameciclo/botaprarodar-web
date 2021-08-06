@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
 import './UserCard.scss';
+import { Document, MapPin } from '../../../../assets/icons';
 
 interface UserCardProps {
   user: {
@@ -20,14 +21,20 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
     <Card className="user-card">
       <CardContent>
         <li key={user.id}>
-          <Avatar id="user-avatar" src={user.profilePicture} alt="profile" />
+          <Avatar
+            className="user-avatar"
+            src={user.profilePicture}
+            alt="profile"
+          />
           <Typography className="name-typography">{user.name}</Typography>
-          <Typography className="description-typography">
-            {user.address}
-          </Typography>
-          <Typography className="description-typography">
-            {user.docNumber}
-          </Typography>
+          <div className="description">
+            <img src={MapPin} alt="map pin" />
+            <Typography>{user.address}</Typography>
+          </div>
+          <div className="description">
+            <img src={Document} alt="document" />
+            <Typography>{user.docNumber}</Typography>
+          </div>
         </li>
       </CardContent>
     </Card>
