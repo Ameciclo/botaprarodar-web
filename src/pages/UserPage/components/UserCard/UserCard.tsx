@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
 import { Document, MapPin } from '../../../../assets/icons';
 import useStyles from './UserCard.styles';
+import UserMenu from '../UserMenu/UserMenu';
 
 interface UserCardProps {
   user: {
@@ -21,6 +22,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 
   return (
     <Card className={classes.card}>
+      <UserMenu />
       <CardContent>
         <li key={user.id}>
           <Avatar
