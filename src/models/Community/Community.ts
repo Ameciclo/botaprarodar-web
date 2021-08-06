@@ -1,3 +1,6 @@
+import Bicycle from '../Bicycle/Bicycle';
+import Withdrawal from '../Withdrawal/Withdrawal';
+
 export default interface Community {
   id: string;
   address: string;
@@ -6,4 +9,6 @@ export default interface Community {
   name: string;
   org_email: string;
   org_name: string;
+  bicycles: Bicycle[];
+  withdrawals: Withdrawal[];
 }
