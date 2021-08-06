@@ -17,7 +17,7 @@ async function fillAndSubmitLoginForm(email: string, password: string) {
     target: { value: password },
   });
 
-  userEvent.click(screen.getByTestId('submit-button'));
+  await userEvent.click(screen.getByTestId('submit-button'));
 }
 
 describe('Login Page', () => {
