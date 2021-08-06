@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, MenuItem, Menu } from '@material-ui/core';
-import { MoreHorizontal } from '../../../../assets/icons';
+import { Lock, MoreHorizontal, UnLock } from '../../../../assets/icons';
 import useStyles from './UserMenu.styles';
 
 const UserMenu: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [userBlocked] = useState(false);
   const classes = useStyles();
 
   const handleClick = (event: any) => {
@@ -31,9 +32,18 @@ const UserMenu: React.FC = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        {userBlocked ? (
+          <MenuItem onClick={handleClose}>
+            {' '}
+            <img className={classes.icon} src={UnLock} alt="unblock" />{' '}
+            Desbloquear
+          </MenuItem>
+        ) : (
+          <MenuItem onClick={handleClose}>
+            {' '}
+            <img className={classes.icon} src={Lock} alt="block" /> Bloquear
+          </MenuItem>
+        )}
       </Menu>
     </div>
   );

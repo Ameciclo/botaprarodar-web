@@ -5,4 +5,7 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'flex-end',
   },
+  icon: {
+    marginRight: 20,
+  },
 });
