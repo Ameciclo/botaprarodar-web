@@ -7,9 +7,10 @@ const LoginService = {
       password,
     );
     const userDetails = loginResponse.user;
+    // eslint-disable-next-line no-console
     console.log(userDetails);
 
-    //  return user;
+    return userDetails;
   },
 };
 
