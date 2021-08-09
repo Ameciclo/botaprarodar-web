@@ -1,14 +1,15 @@
-/* eslint-disable no-console */
 import React, { useState } from 'react';
 import InputTextField from '../../components/InputTextField';
 import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
+import useStyles from './LoginPage.styles'
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const { onChange } = useHandleAuth();
+  const classes = useStyles();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -34,6 +35,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
+    const classes = 
     <form onSubmit={handleSubmit}>
       <InputTextField
         label="E-mail"
