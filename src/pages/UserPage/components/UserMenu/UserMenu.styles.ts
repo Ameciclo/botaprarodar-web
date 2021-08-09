@@ -6,6 +6,7 @@ export default makeStyles({
     justifyContent: 'flex-end',
   },
   icon: {
+    width: 20,
     marginRight: 20,
   },
 });
