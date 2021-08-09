@@ -1,8 +1,10 @@
+import { Button, Paper } from '@material-ui/core';
 import React, { useState } from 'react';
 import InputTextField from '../../components/InputTextField';
 import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
-import useStyles from './LoginPage.styles'
+import useStyles from './LoginPage.styles';
+import { LogoBPR } from '../../assets/index';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -35,25 +37,40 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    const classes = 
-    <form onSubmit={handleSubmit}>
-      <InputTextField
-        label="E-mail"
-        type="text"
-        testID="e-mail"
-        changeHandler={handleEmailChange}
-      />
-      <InputTextField
-        label="Senha"
-        type="password"
-        testID="password"
-        changeHandler={handlePasswordChange}
-      />
-      <button data-testid="submit-button" type="submit">
-        Logar
-      </button>
-      <span data-testid="login-errormessage">{errorMessage}</span>
-    </form>
+    <div className={classes.root}>
+      <Paper className={classes.loginPaper}>
+        <img
+          src={LogoBPR}
+          alt="Logo do projeto Bota pra rodar"
+          className={classes.logoSize}
+        />
+        <form onSubmit={handleSubmit} className={classes.loginForm}>
+          <span className={classes.fontStyle}> Entrar no Bota pra Rodar </span>
+          <InputTextField
+            label="E-mail"
+            type="text"
+            testID="e-mail"
+            changeHandler={handleEmailChange}
+            className={classes.fieldsLogin}
+          />
+          <InputTextField
+            label="Senha"
+            type="password"
+            testID="password"
+            className={classes.fieldsLogin}
+            changeHandler={handlePasswordChange}
+          />
+          <Button
+            data-testid="submit-button"
+            type="submit"
+            className={classes.buttonStyle}
+          >
+            Entrar
+          </Button>
+          <span data-testid="login-errormessage">{errorMessage}</span>
+        </form>
+      </Paper>
+    </div>
   );
 };
 
