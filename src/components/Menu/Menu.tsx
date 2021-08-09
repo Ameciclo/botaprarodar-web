@@ -26,6 +26,10 @@ const Menu: React.FC = ({ children }) => {
     path: '/comunidades'
   },
   {
+    name: 'Dashboard',
+    path: '/'
+  },
+  {
     name: 'Usuários',
     path: '/usuarios'
   }
