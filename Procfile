@@ -1,1 +1,1 @@
-web: yarn heroku
+yarn heroku
