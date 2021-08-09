@@ -9,4 +9,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
 }

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Bikes from '../../models/Bikes/Bikes';
 import Community from '../../models/Community/Community';
 import DashboardInfo from '../../models/DashboardInfo/DashboardInfo';
@@ -25,7 +24,6 @@ const DashboardService = {
         const data: Community[] = Object.keys(snapshot.val()).map(id => {
           return { id, ...snapshot.val()[id] };
         });
-        console.log(data);
         return data;
       })
       .catch(err => err);
@@ -34,7 +32,6 @@ const DashboardService = {
       const data: Bikes[] = Object.keys(snapshot.val()).map(id => {
         return { id, ...snapshot.val()[id] };
       });
-      console.log(data);
       return data;
     });
 
@@ -45,8 +42,6 @@ const DashboardService = {
         let quantity = 0;
 
         if (community.bicycles) {
-          console.log('community', community);
-          console.log('bicycles', community.bicycles);
           quantity = Object.entries(community.bicycles).length;
         }
         return {
@@ -69,8 +64,6 @@ const DashboardService = {
         };
       })
       .filter(item => item.quantity > 0);
-
-    console.log(dashboardInfo);
 
     return dashboardInfo;
   },
