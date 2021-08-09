@@ -8,7 +8,7 @@ export default makeStyles({
     boxShadow:
       '0px 0px 0px rgb(63 63 68 / 5%), 0px 1px 2px rgb(63 63 68 / 15%)',
     borderRadius: '4px',
-    margin: '24px',
+    margin: '24px 24px 24px 0',
   },
   avatar: {
     width: '64px !important',

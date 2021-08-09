@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Typography } from '@material-ui/core';
 import User from '../../models/Users/User';
 import UserService from '../../services/UserService/UserService';
 import UserCard from './components/UserCard/UserCard';
@@ -19,7 +20,10 @@ const UserPage: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={classes.root}>
+      <Typography variant="h1" component="h1" className={classes.heading}>
+        Usuários
+      </Typography>
       <ul data-testid="userList" className={classes.userList}>
         {users?.map(user => (
           <UserCard user={user} />
