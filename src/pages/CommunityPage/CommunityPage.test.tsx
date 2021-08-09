@@ -12,10 +12,4 @@ describe('CommunityPage', () => {
     const communitiesList = screen.getByTestId('communities-list');
     expect(communitiesList).toBeInTheDocument;
   });
-
-  it('renders a list with two communities', () => {
-    render(<CommunityPage />);
-    const communitiesList = screen.getByTestId('communities-list').childNodes;
-    expect(communitiesList).toHaveLength(0);
-  });
 });
