@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
   root: {
-    margin: '30px 40px',
+    margin: '0px 15px',
   },
   heading: {
     fontFamily: 'Roboto',
