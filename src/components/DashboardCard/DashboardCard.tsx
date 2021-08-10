@@ -1,5 +1,11 @@
-import { Avatar, Card, CardContent, Grid, Typography } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
+import {
+  Avatar,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  useTheme,
+} from '@material-ui/core';
 import React, { FC } from 'react';
 
 interface DashboardCardProps {
@@ -14,6 +20,7 @@ const DashboardCard: FC<DashboardCardProps> = ({
   icon: Icon,
   iconColor,
 }) => {
+  const theme = useTheme();
   return (
     <Card style={{ height: '100%' }}>
       <CardContent>
@@ -30,7 +37,7 @@ const DashboardCard: FC<DashboardCardProps> = ({
             <Grid item>
               <Avatar
                 style={{
-                  backgroundColor: iconColor || red[600],
+                  backgroundColor: iconColor || theme.palette.primary.main,
                   height: 56,
                   width: 56,
                 }}

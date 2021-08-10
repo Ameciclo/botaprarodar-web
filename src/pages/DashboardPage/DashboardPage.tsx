@@ -6,7 +6,6 @@ import DashboardCard from '../../components/DashboardCard/DashboardCard';
 import PieChart from '../../components/PieChart/PieChart';
 import DashboardInfo from '../../models/DashboardInfo/DashboardInfo';
 import DashboardService from '../../services/DashboardService/DashboardService';
-import Colors from '../../styles/colors';
 
 const DashboardPage: FC = () => {
   const [dashboardData, setDashboardData] = useState<DashboardInfo>();
@@ -24,7 +23,6 @@ const DashboardPage: FC = () => {
           title="Quantidade de Bicicletas"
           text={dashboardData?.bikesQuantity}
           icon={DirectionsBikeIcon}
-          iconColor={Colors.Teal[500]}
         />
       </Grid>
       <Grid item lg={6} sm={6} xl={6} xs={12}>
@@ -32,7 +30,6 @@ const DashboardPage: FC = () => {
           title="Quantidade de Comunidades"
           text={dashboardData?.communitiesQuantity}
           icon={CommunitiesIcon}
-          iconColor={Colors.Teal[500]}
         />
       </Grid>
 

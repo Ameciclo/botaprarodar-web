@@ -1,8 +1,8 @@
 import { Paper, useTheme } from '@material-ui/core';
 import React, { FC, useCallback, useMemo } from 'react';
 import { Pie } from 'react-chartjs-2';
-import PieChartProps from '../../models/PieChart/PieChartProps';
 import './PieChart.css';
+import PieChartProps from './PieChartProps';
 
 const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
   const theme = useTheme();
@@ -31,8 +31,6 @@ const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
     const labels = data?.map(item => item.label);
     const quantities = data?.map(item => item.quantity);
     const colors = getColorArray(data?.length || 0);
-    // eslint-disable-next-line no-console
-    console.log('colors', colors);
     return {
       labels,
       datasets: [
