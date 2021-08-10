@@ -18,9 +18,6 @@ import { Document } from '../../assets/icons';
 const Menu: React.FC = ({ children }) => {
   const classes = useStyles();
   const location = useLocation();
-
-  // eslint-disable-next-line no-console
-  console.log(location.pathname === '/usuarios');
   const items = [{
     name: 'Comunidades',
     path: '/comunidades'
@@ -54,7 +51,7 @@ const Menu: React.FC = ({ children }) => {
         <div className={classes.drawerContainer}>
           <List>
             {items.map((item) => (
-              <div className={location.pathname === item.path ? classes.activeItem : classes.item}>
+              <div key={item.path} className={location.pathname === item.path ? classes.activeItem : classes.item}>
                 <Link to={item.path} className={location.pathname === item.path ? classes.activeLink : classes.link}>
                   <ListItem button key={item.name}>
                     <ListItemIcon><img src={Document} alt="menu icon" /> </ListItemIcon>

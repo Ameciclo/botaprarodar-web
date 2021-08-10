@@ -36,7 +36,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "heroku": "serve -s build",
     "heroku-prebuild": "npm install -g serve"
@@ -57,6 +57,11 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/(components|pages|services|utils)/**/*.(ts|tsx)"
     ]
   },
   "devDependencies": {
