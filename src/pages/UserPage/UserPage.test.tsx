@@ -1,7 +1,7 @@
 // Qual o foco? Listar os usuários
 // O que eu preciso saber? Listar os usuários
 // O que eu espero? Uma tabela com a lista de usuários contento seu nome, e-mail, comunidade, status e ações
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import UserService from '../../services/UserService/UserService';
 import UserPage from './UserPage';
 
@@ -37,9 +37,12 @@ describe('UserPage', () => {
   });
 
   it('should list users', async () => {
-    await render(<UserPage />);
-    const userList = await screen.getByTestId('userList');
-    expect(userList).toBeInTheDocument();
+    await act(async () => {
+      await render(<UserPage />);
+      const userList = await screen.getByTestId('userList');
+      expect(userList).toBeInTheDocument();
+    });
+
     expect(await screen.findByText('Antoni'));
     // expect(await screen.findByText('123456'));
   });

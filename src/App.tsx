@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createTheme } from '@material-ui/core';
 import { ptBR } from '@material-ui/core/locale';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { AuthProvider } from './context/AuthContext';
 import Routes from './routes';
 import './styles/global.css';
 import Menu from './components/Menu/Menu';
@@ -24,9 +25,11 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={Theme}>
-        <Menu>
-          <Routes />
-        </Menu>
+        <AuthProvider>
+          <Menu>
+            <Routes />
+          </Menu>
+        </AuthProvider>
       </ThemeProvider>
     </Router>
   );

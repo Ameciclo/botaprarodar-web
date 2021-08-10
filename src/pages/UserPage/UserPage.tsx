@@ -26,7 +26,7 @@ const UserPage: React.FC = () => {
       </Typography>
       <ul data-testid="userList" className={classes.userList}>
         {users?.map(user => (
-          <UserCard user={user} />
+          <UserCard user={user} key={user.id} />
         ))}
       </ul>
     </div>

@@ -17,11 +17,11 @@ interface UserCardProps {
   };
 }
 
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} {...rest}>
       <UserMenu />
       <CardContent>
         <li key={user.id}>
