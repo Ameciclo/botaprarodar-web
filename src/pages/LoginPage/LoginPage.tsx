@@ -48,6 +48,7 @@ const LoginPage: React.FC = () => {
           <TextField
             label="E-mail"
             type="text"
+            variant="outlined"
             inputProps={{ 'data-testid': 'e-mail' }}
             className={classes.fieldsLogin}
             onChange={handleEmailChange}
@@ -55,6 +56,7 @@ const LoginPage: React.FC = () => {
           <TextField
             label="Senha"
             type="password"
+            variant="outlined"
             inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handlePasswordChange}
