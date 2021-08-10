@@ -1,4 +1,4 @@
-import { Button, Paper } from '@material-ui/core';
+import { Button, Paper, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
 import InputTextField from '../../components/InputTextField';
 import { useHandleAuth } from '../../context/AuthContext';
@@ -46,19 +46,19 @@ const LoginPage: React.FC = () => {
         />
         <form onSubmit={handleSubmit} className={classes.loginForm}>
           <span className={classes.fontStyle}> Entrar no Bota pra Rodar </span>
-          <InputTextField
+          <TextField
             label="E-mail"
             type="text"
-            testID="e-mail"
-            changeHandler={handleEmailChange}
+            inputProps={{ 'data-testid': 'e-mail' }}
+            onChange={handleEmailChange}
             className={classes.fieldsLogin}
           />
-          <InputTextField
+          <TextField
             label="Senha"
             type="password"
-            testID="password"
+            inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
-            changeHandler={handlePasswordChange}
+            onChange={handlePasswordChange}
           />
           <Button
             data-testid="submit-button"

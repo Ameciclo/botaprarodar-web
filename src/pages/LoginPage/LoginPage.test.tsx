@@ -28,8 +28,8 @@ describe('Login Page', () => {
 
   it('should have e-mail and password fields', () => {
     render(<LoginPage />);
-    const emailField = screen.getByText('E-mail');
-    const passwordField = screen.getByText('Senha');
+    const emailField = screen.getByTestId('e-mail');
+    const passwordField = screen.getByTestId('password');
     expect(emailField).toBeInTheDocument();
     expect(passwordField).toBeInTheDocument();
   });
