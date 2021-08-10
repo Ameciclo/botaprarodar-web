@@ -26,10 +26,9 @@ const LoginPage: React.FC = () => {
     if (email && password) {
       LoginService.requestLogin(email, password)
         .then(user => {
-          console.log(user);
           onChange(user);
         })
-        .catch(err => console.log('err', err));
+        .catch(err => err);
     } else {
       setErrorMessage('Todos os campos são obrigatórios');
     }
