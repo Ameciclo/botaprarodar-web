@@ -1,6 +1,5 @@
 import { Button, Paper, TextField } from '@material-ui/core';
 import React, { useState } from 'react';
-import InputTextField from '../../components/InputTextField';
 import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
 import useStyles from './LoginPage.styles';
@@ -50,8 +49,8 @@ const LoginPage: React.FC = () => {
             label="E-mail"
             type="text"
             inputProps={{ 'data-testid': 'e-mail' }}
-            onChange={handleEmailChange}
             className={classes.fieldsLogin}
+            onChange={handleEmailChange}
           />
           <TextField
             label="Senha"

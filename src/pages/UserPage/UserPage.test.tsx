@@ -1,24 +1,49 @@
 // Qual o foco? Listar os usuários
 // O que eu preciso saber? Listar os usuários
 // O que eu espero? Uma tabela com a lista de usuários contento seu nome, e-mail, comunidade, status e ações
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
+import UserService from '../../services/UserService/UserService';
 import UserPage from './UserPage';
 
 describe('UserPage', () => {
-  it('should list users', () => {
-    render(<UserPage />);
-    const userTable = screen.findByTestId('user-table');
-    const tableName = screen.findByText('NOME');
-    const tableEmail = screen.findByText('E-MAIL');
-    const tableComunity = screen.findByText('COMUNIDADE');
-    const tableStatus = screen.findByText('STATUS');
-    const tableActions = screen.findByText('AÇÕES');
+  beforeEach(() => {
+    jest.spyOn(UserService, 'getAllUsers').mockResolvedValue([
+      {
+        name: 'Antoni',
+        communityId: '-MLDOXs3p35DEHg0gdUU',
+        telephone: '+55 51 3626-2001',
+        status: true,
+      },
+    ]);
+    // jest.mock('firebase/app', () => {
+    //   const data = [
+    //     {
+    //       name: 'Antoni',
+    //       communityId: '-MLDOXs3p35DEHg0gdUU',
+    //       telephone: '+55 51 3626-2001',
+    //       status: true,
+    //     },
+    //   ];
+    //   const snapshot = { val: () => data };
+    //   return {
+    //     initializeApp: jest.fn().mockReturnValue({
+    //       database: jest.fn().mockReturnValue({
+    //         ref: jest.fn().mockReturnThis(),
+    //         once: jest.fn(() => Promise.resolve(snapshot)),
+    //       }),
+    //     }),
+    //   };
+    // });
+  });
 
-    expect(userTable).toBeInTheDocument();
-    expect(tableName).toBeInTheDocument();
-    expect(tableEmail).toBeInTheDocument();
-    expect(tableComunity).toBeInTheDocument();
-    expect(tableStatus).toBeInTheDocument();
-    expect(tableActions).toBeInTheDocument();
+  it('should list users', async () => {
+    await act(async () => {
+      await render(<UserPage />);
+      const userList = await screen.getByTestId('userList');
+      expect(userList).toBeInTheDocument();
+    });
+
+    expect(await screen.findByText('Antoni'));
+    // expect(await screen.findByText('123456'));
   });
 });
