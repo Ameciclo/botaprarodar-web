@@ -61,4 +61,7 @@ export default makeStyles({
     fontSize: 14,
     letterSpacing: '1.25px',
   },
+  errorMessageStyle: {
+    fontSize: 'small',
+  },
 });

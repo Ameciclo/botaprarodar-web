@@ -50,13 +50,4 @@ describe('Login Page', () => {
       '1234',
     );
   });
-
-  it('should show error message when one of the fields is empty', async () => {
-    render(<LoginPage />);
-
-    await fillAndSubmitLoginForm('', '123');
-
-    const errorMessage = screen.getByTestId('login-errormessage');
-    expect(errorMessage.textContent).toBe('Todos os campos são obrigatórios');
-  });
 });

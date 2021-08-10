@@ -1,4 +1,5 @@
 import { Button, Paper, TextField } from '@material-ui/core';
+import ErrorIcon from '@material-ui/icons/Error';
 import React, { useState } from 'react';
 import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
@@ -6,8 +7,8 @@ import useStyles from './LoginPage.styles';
 import { LogoBPR } from '../../assets/index';
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>(' ');
+  const [password, setPassword] = useState<string>(' ');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const { onChange } = useHandleAuth();
   const classes = useStyles();
@@ -51,6 +52,17 @@ const LoginPage: React.FC = () => {
             inputProps={{ 'data-testid': 'e-mail' }}
             className={classes.fieldsLogin}
             onChange={handleEmailChange}
+            error={email === ''}
+            helperText={
+              email === '' ? (
+                <>
+                  <ErrorIcon fontSize="small" />{' '}
+                  <span> Digite seu e-mail </span>
+                </>
+              ) : (
+                ' '
+              )
+            }
           />
           <TextField
             label="Senha"
@@ -59,6 +71,8 @@ const LoginPage: React.FC = () => {
             inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handlePasswordChange}
+            error={password === ''}
+            helperText={password === '' ? 'Digite sua senha' : ' '}
           />
           <Button
             data-testid="submit-button"
