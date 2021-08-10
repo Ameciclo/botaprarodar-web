@@ -1,7 +1,6 @@
 import { Paper, useTheme } from '@material-ui/core';
 import React, { FC, useCallback, useMemo } from 'react';
 import { Pie } from 'react-chartjs-2';
-import './PieChart.css';
 import PieChartProps from './PieChartProps';
 
 const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
