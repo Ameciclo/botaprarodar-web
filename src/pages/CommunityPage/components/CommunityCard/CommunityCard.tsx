@@ -10,7 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-import useStyles from './CommunityCard.style';
+import useStyles from './CommunityCard.styles';
 
 const CommunityCard: React.FC<any> = ({ community }) => {
   const classes = useStyles();

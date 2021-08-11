@@ -4,4 +4,7 @@ export default makeStyles({
   pageTitle: {
     marginBottom: 40,
   },
+  card: {
+    width: '100%',
+  },
 });

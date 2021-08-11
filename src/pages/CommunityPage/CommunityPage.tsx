@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Community from '../../models/Community/Community';
 import CommunityService from '../../services/CommunityService/CommunityService';
-import useStyles from './CommunityPage.style';
+import useStyles from './CommunityPage.styles';
 import CommunityCard from './components/CommunityCard/CommunityCard';
 
 const CommunityPage: React.FC = () => {
@@ -28,7 +28,14 @@ const CommunityPage: React.FC = () => {
       </Typography>
       <Grid container spacing={4}>
         {communities?.map(community => (
-          <Grid item lg={3}>
+          <Grid
+            key={community.id}
+            item
+            lg={3}
+            md={6}
+            sm={12}
+            className={classes.card}
+          >
             <CommunityCard key={community.id} community={community} />
           </Grid>
         ))}
