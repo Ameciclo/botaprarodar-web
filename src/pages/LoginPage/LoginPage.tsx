@@ -49,16 +49,18 @@ const LoginPage: React.FC = () => {
             label="E-mail"
             type="text"
             variant="outlined"
-            inputProps={{ 'data-testid': 'e-mail' }}
+            inputProps={{
+              'data-testid': 'e-mail',
+            }}
             className={classes.fieldsLogin}
             onChange={handleEmailChange}
             error={email === ''}
             helperText={
               email === '' ? (
-                <>
-                  <ErrorIcon fontSize="small" />{' '}
-                  <span> Digite seu e-mail </span>
-                </>
+                <div className={classes.errorMessageStyle}>
+                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+                  <span>&nbsp;Digite seu e-mail</span>
+                </div>
               ) : (
                 ' '
               )
@@ -72,7 +74,16 @@ const LoginPage: React.FC = () => {
             className={classes.fieldsLogin}
             onChange={handlePasswordChange}
             error={password === ''}
-            helperText={password === '' ? 'Digite sua senha' : ' '}
+            helperText={
+              password === '' ? (
+                <div className={classes.errorMessageStyle}>
+                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+                  <span>&nbsp;Digite sua senha</span>
+                </div>
+              ) : (
+                ' '
+              )
+            }
           />
           <Button
             data-testid="submit-button"
