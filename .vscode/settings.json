@@ -9,4 +9,16 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
 }

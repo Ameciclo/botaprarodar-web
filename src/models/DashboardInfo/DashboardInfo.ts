@@ -1,4 +1,4 @@
-import PieChartDataProps from '../PieChart/PieChartDataProps';
+import PieChartDataProps from '../../components/PieChart/PieChartDataProps';
 
 export default interface DashboardInfo {
   communitiesQuantity: number;
