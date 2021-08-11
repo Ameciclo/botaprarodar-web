@@ -26,17 +26,23 @@ export default makeStyles(theme => ({
     background: 'rgba(1, 135, 134, 0.3)',
     borderRadius: 4,
     margin: '0 18px',
+    '& svg': {
+      color: '#018786',
+    },
+    '& a': {
+      color: '#018786',
+      textDecoration: 'none',
+    },
+    '& span': {
+      fontWeight: 500,
+    },
   },
   item: {
     margin: '0 18px',
-  },
-  link: {
-    color: '#000',
-    textDecoration: 'none',
-  },
-  activeLink: {
-    color: '#018786',
-    textDecoration: 'none',
+    '& a': {
+      color: '#000',
+      textDecoration: 'none',
+    },
   },
   drawerHeader: {
     display: 'flex',

@@ -15,7 +15,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React, { FC, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Document } from '../../assets/icons';
+import {
+  GroupOutlined,
+  DashboardOutlined,
+  DirectionsBikeOutlined,
+} from '@material-ui/icons';
 import useStyles from './Menu.styles';
 
 const Menu: React.FC = ({ children }) => {
@@ -31,16 +35,19 @@ const Menu: React.FC = ({ children }) => {
 
   const items = [
     {
-      name: 'Comunidades',
-      path: '/comunidades',
-    },
-    {
       name: 'Dashboard',
       path: '/',
+      icon: DashboardOutlined,
+    },
+    {
+      name: 'Comunidades',
+      path: '/comunidades',
+      icon: GroupOutlined,
     },
     {
       name: 'Usuários',
       path: '/usuarios',
+      icon: DirectionsBikeOutlined,
     },
   ];
 
@@ -104,17 +111,10 @@ const Menu: React.FC = ({ children }) => {
                 }
                 key={item.name}
               >
-                <Link
-                  to={item.path}
-                  className={
-                    location.pathname === item.path
-                      ? classes.activeLink
-                      : classes.link
-                  }
-                >
+                <Link to={item.path}>
                   <ListItem button key={item.name}>
                     <ListItemIcon>
-                      <img src={Document} alt="menu icon" />{' '}
+                      <item.icon />
                     </ListItemIcon>
                     <ListItemText
                       primary={item.name}
