@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export default makeStyles({
+export default makeStyles(() => ({
   root: {
     margin: '0px 15px',
     height: '88vh',
@@ -17,5 +17,10 @@ export default makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     listStyleType: 'none',
+    minHeight: 400,
   },
-});
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}));
