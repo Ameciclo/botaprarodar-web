@@ -29,17 +29,16 @@ const LoginPage: React.FC = () => {
   };
 
   async function handleAuthentication() {
+    let user;
     try {
-      const user = await LoginService.requestLogin(email, password);
-      // eslint-disable-next-line no-console
-      console.log(user);
-      if (user.authenticated) {
-        onChange(user);
-        setEmptyFieldsStatus(false);
-        setAuthenticationError(false);
-      }
+      user = await LoginService.requestLogin(email, password);
     } catch (error) {
       setAuthenticationError(true);
+    }
+    if (user?.authenticated) {
+      onChange(user);
+      setEmptyFieldsStatus(false);
+      setAuthenticationError(false);
     }
   }
 
