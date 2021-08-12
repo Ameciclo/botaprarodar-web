@@ -7,9 +7,9 @@ import useStyles from './LoginPage.styles';
 import { LogoBPR } from '../../assets/index';
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState<string>(' ');
-  const [password, setPassword] = useState<string>(' ');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorStatus, setErrorStatus] = useState<boolean>(false);
   const { onChange } = useHandleAuth();
   const classes = useStyles();
 
@@ -30,8 +30,9 @@ const LoginPage: React.FC = () => {
           onChange(user);
         })
         .catch(err => err);
+      setErrorStatus(false);
     } else {
-      setErrorMessage('Todos os campos são obrigatórios');
+      setErrorStatus(true);
     }
   };
 
@@ -54,9 +55,9 @@ const LoginPage: React.FC = () => {
             }}
             className={classes.fieldsLogin}
             onChange={handleEmailChange}
-            error={email === ''}
+            error={email === '' && errorStatus}
             helperText={
-              email === '' ? (
+              email === '' && errorStatus ? (
                 <div className={classes.errorMessageStyle}>
                   <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
                   <span>&nbsp;Digite seu e-mail</span>
@@ -73,9 +74,9 @@ const LoginPage: React.FC = () => {
             inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handlePasswordChange}
-            error={password === ''}
+            error={password === '' && errorStatus}
             helperText={
-              password === '' ? (
+              password === '' && errorStatus ? (
                 <div className={classes.errorMessageStyle}>
                   <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
                   <span>&nbsp;Digite sua senha</span>
@@ -92,7 +93,6 @@ const LoginPage: React.FC = () => {
           >
             Entrar
           </Button>
-          <span data-testid="login-errormessage">{errorMessage}</span>
         </form>
       </Paper>
     </div>
