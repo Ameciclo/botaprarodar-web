@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@material-ui/core';
-import clsx from 'clsx';
 import User from '../../models/Users/User';
 import UserService from '../../services/UserService/UserService';
 import UserCard from './components/UserCard/UserCard';
@@ -31,18 +30,13 @@ const UserPage: React.FC = () => {
       <Typography variant="h1" component="h1" className={classes.heading}>
         Usuários
       </Typography>
-      {users.length ? (
-        <ul
-          data-testid="userList"
-          className={clsx(classes.userList, {
-            [classes.loadingContainer]: loading,
-          })}
-        >
-          {loading ? (
-            <Loading />
-          ) : (
-            users?.map(user => <UserCard user={user} key={user.id} />)
-          )}
+      {loading ? (
+        <Loading />
+      ) : users.length ? (
+        <ul data-testid="userList" className={classes.userList}>
+          {users?.map(user => (
+            <UserCard user={user} key={user.id} />
+          ))}
         </ul>
       ) : (
         <UserEmptyState />
