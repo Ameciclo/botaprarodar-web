@@ -5,7 +5,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { AuthProvider } from './context/AuthContext';
 import Routes from './routes';
 import './styles/global.css';
-import Menu from './components/Menu/Menu';
 
 const Theme = createTheme(
   {
@@ -26,9 +25,7 @@ function App() {
     <Router>
       <ThemeProvider theme={Theme}>
         <AuthProvider>
-          <Menu>
-            <Routes />
-          </Menu>
+          <Routes />
         </AuthProvider>
       </ThemeProvider>
     </Router>
