@@ -7,9 +7,9 @@ import useStyles from './LoginPage.styles';
 import { LogoBPR } from '../../assets/index';
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState<string>(' ');
-  const [password, setPassword] = useState<string>(' ');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorStatus, setErrorStatus] = useState<boolean>(false);
   const { onChange } = useHandleAuth();
   const classes = useStyles();
 
@@ -30,8 +30,9 @@ const LoginPage: React.FC = () => {
           onChange(user);
         })
         .catch(err => err);
+      setErrorStatus(false);
     } else {
-      setErrorMessage('Todos os campos são obrigatórios');
+      setErrorStatus(true);
     }
   };
 
@@ -49,16 +50,18 @@ const LoginPage: React.FC = () => {
             label="E-mail"
             type="text"
             variant="outlined"
-            inputProps={{ 'data-testid': 'e-mail' }}
+            inputProps={{
+              'data-testid': 'e-mail',
+            }}
             className={classes.fieldsLogin}
             onChange={handleEmailChange}
-            error={email === ''}
+            error={email === '' && errorStatus}
             helperText={
-              email === '' ? (
-                <>
-                  <ErrorIcon fontSize="small" />{' '}
-                  <span> Digite seu e-mail </span>
-                </>
+              email === '' && errorStatus ? (
+                <div className={classes.errorMessageStyle}>
+                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+                  <span>&nbsp;Digite seu e-mail</span>
+                </div>
               ) : (
                 ' '
               )
@@ -71,8 +74,17 @@ const LoginPage: React.FC = () => {
             inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handlePasswordChange}
-            error={password === ''}
-            helperText={password === '' ? 'Digite sua senha' : ' '}
+            error={password === '' && errorStatus}
+            helperText={
+              password === '' && errorStatus ? (
+                <div className={classes.errorMessageStyle}>
+                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+                  <span>&nbsp;Digite sua senha</span>
+                </div>
+              ) : (
+                ' '
+              )
+            }
           />
           <Button
             data-testid="submit-button"
@@ -81,7 +93,6 @@ const LoginPage: React.FC = () => {
           >
             Entrar
           </Button>
-          <span data-testid="login-errormessage">{errorMessage}</span>
         </form>
       </Paper>
     </div>
