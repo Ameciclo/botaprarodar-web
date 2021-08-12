@@ -8,7 +8,11 @@ import {
 } from '../../../../assets/icons';
 import useStyles from './UserMenu.styles';
 
-const UserMenu: React.FC = () => {
+interface UserMenuProps {
+  isBlocked: boolean;
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ isBlocked }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [userBlocked] = useState(false);
   const classes = useStyles();
@@ -40,7 +44,7 @@ const UserMenu: React.FC = () => {
         <MenuItem onClick={handleClose}>
           <img className={classes.icon} src={Document} alt="unblock" /> Editar
         </MenuItem>
-        {userBlocked ? (
+        {isBlocked ? (
           <MenuItem onClick={handleClose}>
             {' '}
             <img className={classes.icon} src={UnLock} alt="unblock" />{' '}

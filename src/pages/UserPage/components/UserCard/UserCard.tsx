@@ -22,7 +22,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
 
   return (
     <Card className={classes.card} {...rest}>
-      <UserMenu />
+      <UserMenu isBlocked={false} />
       <CardContent>
         <li key={user.id}>
           <Avatar
