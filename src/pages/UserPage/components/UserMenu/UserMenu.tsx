@@ -14,7 +14,6 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ isBlocked }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [userBlocked] = useState(false);
   const classes = useStyles();
 
   const handleClick = (event: any) => {
