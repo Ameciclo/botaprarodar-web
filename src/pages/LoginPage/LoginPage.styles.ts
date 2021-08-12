@@ -68,5 +68,8 @@ export default makeStyles({
     display: 'flex',
     alignItems: 'center',
     fontSize: 14,
+    color: 'red',
+    fontStyle: 'normal',
+    fontFamily: 'Roboto',
   },
 });
