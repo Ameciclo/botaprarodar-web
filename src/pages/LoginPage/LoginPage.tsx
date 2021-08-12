@@ -1,6 +1,6 @@
 import { Button, Paper, TextField } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
 import useStyles from './LoginPage.styles';
@@ -9,9 +9,16 @@ import { LogoBPR } from '../../assets/index';
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errorStatus, setErrorStatus] = useState<boolean>(false);
+  const [emptyFieldsStatus, setEmptyFieldsStatus] = useState<boolean>(false);
+  const [authenticationError, setAuthenticationError] =
+    useState<boolean>(false);
   const { onChange } = useHandleAuth();
   const classes = useStyles();
+
+  useEffect(() => {
+    setAuthenticationError(false);
+    setEmptyFieldsStatus(false);
+  }, [password, email]);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -21,18 +28,28 @@ const LoginPage: React.FC = () => {
     setPassword(e.target.value);
   };
 
+  async function handleAuthentication() {
+    try {
+      const user = await LoginService.requestLogin(email, password);
+      // eslint-disable-next-line no-console
+      console.log(user);
+      if (user.authenticated) {
+        onChange(user);
+        setEmptyFieldsStatus(false);
+        setAuthenticationError(false);
+      }
+    } catch (error) {
+      setAuthenticationError(true);
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (email && password) {
-      LoginService.requestLogin(email, password)
-        .then(user => {
-          onChange(user);
-        })
-        .catch(err => err);
-      setErrorStatus(false);
+      await handleAuthentication();
     } else {
-      setErrorStatus(true);
+      setEmptyFieldsStatus(true);
     }
   };
 
@@ -55,9 +72,9 @@ const LoginPage: React.FC = () => {
             }}
             className={classes.fieldsLogin}
             onChange={handleEmailChange}
-            error={email === '' && errorStatus}
+            error={email === '' && emptyFieldsStatus}
             helperText={
-              email === '' && errorStatus ? (
+              email === '' && emptyFieldsStatus ? (
                 <div className={classes.errorMessageStyle}>
                   <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
                   <span>&nbsp;Digite seu e-mail</span>
@@ -74,9 +91,9 @@ const LoginPage: React.FC = () => {
             inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handlePasswordChange}
-            error={password === '' && errorStatus}
+            error={password === '' && emptyFieldsStatus}
             helperText={
-              password === '' && errorStatus ? (
+              password === '' && emptyFieldsStatus ? (
                 <div className={classes.errorMessageStyle}>
                   <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
                   <span>&nbsp;Digite sua senha</span>
@@ -86,6 +103,11 @@ const LoginPage: React.FC = () => {
               )
             }
           />
+          {authenticationError && (
+            <span className={classes.errorMessageStyle}>
+              E-mail ou senha incorretos.
+            </span>
+          )}
           <Button
             data-testid="submit-button"
             type="submit"
