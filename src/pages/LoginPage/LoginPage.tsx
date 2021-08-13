@@ -7,15 +7,14 @@ import useStyles from './LoginPage.styles';
 import { LogoBPR } from '../../assets/index';
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('email@example.com');
+  const [password, setPassword] = useState<string>(' ');
   const [validEmail, setValidEmail] = useState<boolean>(true);
   const [validPassword, setValidPassword] = useState<boolean>(true);
   const [authenticationError, setAuthenticationError] =
     useState<boolean>(false);
   const { onChange } = useHandleAuth();
   const classes = useStyles();
-  const emailValidation = /\S+@\S+\.\S+/;
 
   useEffect(() => {
     setAuthenticationError(false);
@@ -35,24 +34,25 @@ const LoginPage: React.FC = () => {
     try {
       user = await LoginService.requestLogin(email, password);
     } catch (error) {
-      setAuthenticationError(true);
+      await setAuthenticationError(true);
     }
     if (user?.authenticated) {
       onChange(user);
-      setAuthenticationError(false);
+      await setAuthenticationError(false);
     }
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validateFields()) {
+    if (validPassword && validEmail) {
       await handleAuthentication();
     }
   };
 
   const validateFields = () => {
-    setValidEmail(emailValidation.test(email) && email !== ' ');
+    const emailValidation = /\S+@\S+\.\S+/;
 
+    setValidEmail(emailValidation.test(email) && email !== '');
     setValidPassword(password !== '');
     return validEmail && validPassword;
   };
