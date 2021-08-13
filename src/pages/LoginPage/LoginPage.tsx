@@ -9,15 +9,17 @@ import { LogoBPR } from '../../assets/index';
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [emptyFieldsStatus, setEmptyFieldsStatus] = useState<boolean>(false);
+  const [validEmail, setValidEmail] = useState<boolean>(true);
+  const [validPassword, setValidPassword] = useState<boolean>(true);
   const [authenticationError, setAuthenticationError] =
     useState<boolean>(false);
   const { onChange } = useHandleAuth();
   const classes = useStyles();
+  const emailValidation = /\S+@\S+\.\S+/;
 
   useEffect(() => {
     setAuthenticationError(false);
-    setEmptyFieldsStatus(false);
+    validateFields();
   }, [password, email]);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,19 +39,22 @@ const LoginPage: React.FC = () => {
     }
     if (user?.authenticated) {
       onChange(user);
-      setEmptyFieldsStatus(false);
       setAuthenticationError(false);
     }
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const emailValidation = /\S+@\S+\.\S+/;
-    if (email && password && emailValidation.test(email)) {
+    if (validateFields()) {
       await handleAuthentication();
-    } else {
-      setEmptyFieldsStatus(true);
     }
+  };
+
+  const validateFields = () => {
+    setValidEmail(emailValidation.test(email) && email !== ' ');
+
+    setValidPassword(password !== '');
+    return validEmail && validPassword;
   };
 
   return (
@@ -73,9 +78,9 @@ const LoginPage: React.FC = () => {
             }}
             className={classes.fieldsLogin}
             onChange={handleEmailChange}
-            error={email === '' && emptyFieldsStatus}
+            error={!validEmail}
             helperText={
-              emptyFieldsStatus ? (
+              !validEmail ? (
                 <div className={classes.errorMessageStyle}>
                   <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>{' '}
                   {email === '' ? (
@@ -96,9 +101,9 @@ const LoginPage: React.FC = () => {
             inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handlePasswordChange}
-            error={password === '' && emptyFieldsStatus}
+            error={!validPassword}
             helperText={
-              password === '' && emptyFieldsStatus ? (
+              !validPassword ? (
                 <div className={classes.errorMessageStyle}>
                   <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
                   <span>&nbsp;Digite sua senha</span>
