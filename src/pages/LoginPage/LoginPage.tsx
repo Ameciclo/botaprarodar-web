@@ -44,8 +44,8 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (email && password) {
+    const emailValidation = /\S+@\S+\.\S+/;
+    if (email && password && emailValidation.test(email)) {
       await handleAuthentication();
     } else {
       setEmptyFieldsStatus(true);
@@ -65,6 +65,8 @@ const LoginPage: React.FC = () => {
           <TextField
             label="E-mail"
             type="text"
+            id="email"
+            onError={err => console.log(err)}
             variant="outlined"
             inputProps={{
               'data-testid': 'e-mail',
@@ -73,10 +75,14 @@ const LoginPage: React.FC = () => {
             onChange={handleEmailChange}
             error={email === '' && emptyFieldsStatus}
             helperText={
-              email === '' && emptyFieldsStatus ? (
+              emptyFieldsStatus ? (
                 <div className={classes.errorMessageStyle}>
-                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
-                  <span>&nbsp;Digite seu e-mail</span>
+                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>{' '}
+                  {email === '' ? (
+                    <span>&nbsp;Digite seu e-mail</span>
+                  ) : (
+                    <span>&nbsp;E-mail inválido</span>
+                  )}
                 </div>
               ) : (
                 ' '
