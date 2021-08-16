@@ -60,16 +60,30 @@ export default makeStyles({
     fontWeight: 500,
     fontSize: 14,
     letterSpacing: '1.25px',
+    '&.$Mui-disabled': {
+      backgroundColor: '#D8D8D8',
+    },
   },
   errorIconStyle: {
     fontSize: 14,
   },
-  errorMessageStyle: {
+  errorMessageFields: {
+    display: 'flex',
+    alignItems: 'center',
+    alignContent: 'flex-start',
+    fontSize: 14,
+    fontStyle: 'normal',
+    fontFamily: 'Roboto',
+    color: 'red',
+    alignSelf: 'flex-start',
+    paddingLeft: '40px',
+  },
+  errorMessageLogin: {
     display: 'flex',
     alignItems: 'center',
     fontSize: 14,
-    color: 'red',
     fontStyle: 'normal',
     fontFamily: 'Roboto',
+    color: 'red',
   },
 });

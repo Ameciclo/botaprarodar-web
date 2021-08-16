@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const initialFormValues = {
   email: '',
@@ -14,8 +14,7 @@ export const useFormControls = () => {
 
     if ('password' in fieldValues) {
       currentErrors.password =
-        values.password.length !== 0 ? '' : 'Digite sua senha';
-      console.log(values.password);
+        fieldValues.password.length !== 0 ? '' : 'Digite sua senha';
     }
 
     if ('email' in fieldValues) {

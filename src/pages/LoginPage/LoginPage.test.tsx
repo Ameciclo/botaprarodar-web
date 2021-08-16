@@ -62,8 +62,9 @@ describe('Login Page', () => {
 
   it('Should show error messages when e-mail field is empty', async () => {
     render(<LoginPage />);
+    const emailField = screen.getByTestId('e-mail');
 
-    await fillAndSubmitLoginForm('', '1234');
+    fireEvent.blur(emailField);
 
     expect(screen.getByText('Digite seu e-mail')).toBeInTheDocument();
   });

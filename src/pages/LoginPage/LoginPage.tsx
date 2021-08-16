@@ -1,6 +1,6 @@
-import { Button, Paper, TextField } from '@material-ui/core';
+import { Button, FormHelperText, Paper, TextField } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
 import useStyles from './LoginPage.styles';
@@ -17,7 +17,7 @@ const LoginPage: React.FC = () => {
 
   useEffect(() => {
     setAuthenticationError(false);
-  }, []);
+  }, [values]);
 
   async function handleAuthentication() {
     let user;
@@ -49,53 +49,49 @@ const LoginPage: React.FC = () => {
         />
         <form onSubmit={handleSubmit} className={classes.loginForm}>
           <span className={classes.fontStyle}> Entrar no Bota pra Rodar </span>
-          <TextField
-            label="E-mail"
-            type="text"
-            name="email"
-            onError={err => console.log(err)}
-            variant="outlined"
-            inputProps={{
-              'data-testid': 'e-mail',
-            }}
-            className={classes.fieldsLogin}
-            onChange={handleInputChange}
-            onBlur={handleInputChange}
-            error={!!errors.email}
-            helperText={
-              errors.email ? (
-                <div className={classes.errorMessageStyle}>
-                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>{' '}
-                  {errors.email}
-                </div>
-              ) : (
-                ' '
-              )
-            }
-          />
-          <TextField
-            label="Senha"
-            type="password"
-            name="password"
-            variant="outlined"
-            inputProps={{ 'data-testid': 'password' }}
-            className={classes.fieldsLogin}
-            onChange={handleInputChange}
-            onBlur={handleInputChange}
-            error={!!errors.password}
-            helperText={
-              errors.password ? (
-                <div className={classes.errorMessageStyle}>
-                  <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
-                  <span>{errors.password}</span>
-                </div>
-              ) : (
-                ' '
-              )
-            }
-          />
+          <div>
+            <TextField
+              label="E-mail"
+              type="text"
+              name="email"
+              onError={err => err}
+              variant="outlined"
+              inputProps={{
+                'data-testid': 'e-mail',
+              }}
+              className={classes.fieldsLogin}
+              onChange={handleInputChange}
+              onBlur={handleInputChange}
+              error={!!errors.email}
+            />
+            {errors.email && (
+              <FormHelperText error className={classes.errorMessageFields}>
+                <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+                &nbsp;{errors.email}
+              </FormHelperText>
+            )}
+          </div>
+          <div>
+            <TextField
+              label="Senha"
+              type="password"
+              name="password"
+              variant="outlined"
+              inputProps={{ 'data-testid': 'password' }}
+              className={classes.fieldsLogin}
+              onChange={handleInputChange}
+              onBlur={handleInputChange}
+              error={!!errors.password}
+            />
+            {errors.password && (
+              <FormHelperText error className={classes.errorMessageFields}>
+                <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+                &nbsp;{errors.password}
+              </FormHelperText>
+            )}
+          </div>
           {authenticationError && (
-            <span className={classes.errorMessageStyle}>
+            <span className={classes.errorMessageLogin}>
               E-mail ou senha incorretos.
             </span>
           )}
