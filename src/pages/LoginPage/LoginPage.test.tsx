@@ -21,14 +21,18 @@ async function fillAndSubmitLoginForm(email: string, password: string) {
   await userEvent.click(screen.getByTestId('submit-button'));
 }
 
+let container: HTMLElement;
+
 describe('Login Page', () => {
-  it('Should render login page', async () => {
-    const { container } = render(<LoginPage />);
+  beforeEach(() => {
+    container = render(<LoginPage />).container;
+  });
+
+  it('should render login page', async () => {
     expect(container).toBeInTheDocument();
   });
 
   it('should have e-mail and password fields', () => {
-    render(<LoginPage />);
     const emailField = screen.getByTestId('e-mail');
     const passwordField = screen.getByTestId('password');
     expect(emailField).toBeInTheDocument();
@@ -36,16 +40,12 @@ describe('Login Page', () => {
   });
 
   it('should have submit button', () => {
-    render(<LoginPage />);
-
     const submitButton = screen.getByTestId('submit-button');
 
     expect(submitButton).toBeInTheDocument();
   });
 
-  it('Should submit login form', async () => {
-    render(<LoginPage />);
-
+  it('should submit login form', async () => {
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
 
     expect(LoginService.requestLogin).toHaveBeenCalledWith(
@@ -54,18 +54,33 @@ describe('Login Page', () => {
     );
   });
 
-  it('Should throw error when login fails', () => {
+  it('should throw error when login fails', () => {
     mockedLoginService.requestLogin.mockRejectedValue(new Error());
 
     expect(LoginService.requestLogin('', '')).rejects.toThrow(Error);
   });
 
-  it('Should show error messages when e-mail field is empty', async () => {
-    render(<LoginPage />);
+  it('should show error messages when e-mail field is empty', async () => {
     const emailField = screen.getByTestId('e-mail');
 
     fireEvent.blur(emailField);
 
     expect(screen.getByText('Digite seu e-mail')).toBeInTheDocument();
+  });
+
+  it('should show error messages when password field is empty', async () => {
+    const passwordField = screen.getByTestId('password');
+
+    fireEvent.blur(passwordField);
+
+    expect(screen.getByText('Digite sua senha')).toBeInTheDocument();
+  });
+
+  it('should not call login api when there are errors', async () => {
+    const loginButton = screen.getByTestId('submit-button');
+
+    fireEvent.click(loginButton);
+
+    expect(mockedLoginService.requestLogin).not.toHaveBeenCalled();
   });
 });
