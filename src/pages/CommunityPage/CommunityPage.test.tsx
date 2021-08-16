@@ -7,9 +7,9 @@ describe('CommunityPage', () => {
     expect(container).toBeInTheDocument();
   });
 
-  it('renders a list to show the communities', () => {
+  it('renders a grid to show the communities', () => {
     render(<CommunityPage />);
-    const communitiesList = screen.getByTestId('communities-list');
-    expect(communitiesList).toBeInTheDocument;
+    const communitiesList = screen.getByTestId('communities-grid');
+    expect(communitiesList).toBeInTheDocument();
   });
 });

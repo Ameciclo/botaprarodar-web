@@ -26,7 +26,7 @@ const CommunityPage: React.FC = () => {
       <Typography variant="h5" gutterBottom className={classes.pageTitle}>
         Comunidades
       </Typography>
-      <Grid container spacing={4}>
+      <Grid container spacing={4} data-testid="communities-grid">
         {communities?.map(community => (
           <Grid
             key={community.id}
