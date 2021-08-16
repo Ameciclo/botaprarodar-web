@@ -7,7 +7,6 @@ export default makeStyles({
     position: 'relative',
     top: 10,
     '& button': {
-      height: 20,
       '&:hover': {
         background: '#fff',
       },

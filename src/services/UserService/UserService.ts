@@ -14,6 +14,15 @@ const UserService = {
       })
       .catch(err => err);
   },
+  async getUserById(id: string) {
+    const usersRef = database.ref(`users/${id}`);
+    return usersRef
+      .once('value')
+      .then(snapshot => {
+        return snapshot.val();
+      })
+      .catch(err => err);
+  },
 };
 
 export default UserService;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { Document, MapPin } from '../../../../assets/icons';
 import useStyles from './UserCard.styles';
 import UserMenu from '../UserMenu/UserMenu';
@@ -24,22 +25,24 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
     <Card className={classes.card} {...rest}>
       <UserMenu isBlocked={false} />
       <CardContent>
-        <li key={user.id}>
-          <Avatar
-            className={classes.avatar}
-            src={user.profilePicture}
-            alt="profile"
-          />
-          <Typography className={classes.name}>{user.name}</Typography>
-          <div className={classes.description}>
-            <img src={MapPin} alt="map pin" className={classes.icon} />
-            <Typography className={classes.text}>{user.address}</Typography>
-          </div>
-          <div className={classes.description}>
-            <img src={Document} alt="document" className={classes.icon} />
-            <Typography className={classes.text}>{user.docNumber}</Typography>
-          </div>
-        </li>
+        <Link to={`/usuarios/${user.id}`}>
+          <li key={user.id}>
+            <Avatar
+              className={classes.avatar}
+              src={user.profilePicture}
+              alt="profile"
+            />
+            <Typography className={classes.name}>{user.name}</Typography>
+            <div className={classes.description}>
+              <img src={MapPin} alt="map pin" className={classes.icon} />
+              <Typography className={classes.text}>{user.address}</Typography>
+            </div>
+            <div className={classes.description}>
+              <img src={Document} alt="document" className={classes.icon} />
+              <Typography className={classes.text}>{user.docNumber}</Typography>
+            </div>
+          </li>
+        </Link>
       </CardContent>
     </Card>
   );

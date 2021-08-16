@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { Button, MenuItem, Menu } from '@material-ui/core';
-import {
-  MoreHoriz,
-  LockOpenOutlined,
-  LockOutlined,
-  DescriptionOutlined,
-  EditOutlined,
-} from '@material-ui/icons';
-import useStyles from './UserMenu.styles';
+import { MoreVert, LockOpenOutlined, LockOutlined } from '@material-ui/icons';
+import useStyles from './UserDetailMenu.styles';
 
 interface UserMenuProps {
   isBlocked: boolean;
@@ -32,7 +26,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ isBlocked }) => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MoreHoriz />
+        <MoreVert />
       </Button>
       <Menu
         id="simple-menu"
@@ -42,13 +36,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ isBlocked }) => {
         onClose={handleClose}
         className={classes.menu}
       >
-        <MenuItem onClick={handleClose}>
-          <EditOutlined /> Editar
-        </MenuItem>
         {isBlocked ? (
           <MenuItem onClick={handleClose}>
             {' '}
-            <LockOpenOutlined /> Desbloquear
+            <LockOpenOutlined />
+            Desbloquear
           </MenuItem>
         ) : (
           <MenuItem onClick={handleClose}>
@@ -56,10 +48,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ isBlocked }) => {
             <LockOutlined /> Bloquear
           </MenuItem>
         )}
-        <MenuItem onClick={handleClose}>
-          <DescriptionOutlined />
-          Documentos
-        </MenuItem>
       </Menu>
     </div>
   );

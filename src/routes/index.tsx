@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
+import UserDetailPage from 'pages/UserDetailPage/UserDetailPage';
 import CommunityPage from '../pages/CommunityPage/CommunityPage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
@@ -13,6 +14,7 @@ const Routes: React.FC = () => (
     <Menu>
       <Route path="/" exact component={DashboardPage} />
       <Route path="/usuarios" exact component={UserPage} />
+      <Route path="/usuarios/:id" component={UserDetailPage} />
       <Route path="/comunidades" component={CommunityPage} />
     </Menu>
   </Switch>
