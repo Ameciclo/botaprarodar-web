@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import UserDetailPage from 'pages/UserDetailPage/UserDetailPage';
 import CommunityPage from '../pages/CommunityPage/CommunityPage';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
 import LoginPage from '../pages/LoginPage/LoginPage';

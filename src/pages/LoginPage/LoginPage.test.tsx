@@ -4,6 +4,7 @@ import LoginService from '../../services/LoginService/LoginService';
 import LoginPage from './LoginPage';
 
 jest.mock('../../services/LoginService/LoginService');
+const mockedLoginService = LoginService as jest.Mocked<typeof LoginService>;
 
 async function fillAndSubmitLoginForm(email: string, password: string) {
   const emailField = screen.getByTestId('e-mail');
@@ -36,8 +37,10 @@ describe('Login Page', () => {
 
   it('should have submit button', () => {
     render(<LoginPage />);
+
     const submitButton = screen.getByTestId('submit-button');
-    expect(submitButton).toBeInTheDocument;
+
+    expect(submitButton).toBeInTheDocument();
   });
 
   it('Should submit login form', async () => {
@@ -49,5 +52,19 @@ describe('Login Page', () => {
       'newEmail@example.com',
       '1234',
     );
+  });
+
+  it('Should throw error when login fails', () => {
+    mockedLoginService.requestLogin.mockRejectedValue(new Error());
+
+    expect(LoginService.requestLogin('', '')).rejects.toThrow(Error);
+  });
+
+  it('Should show error messages when e-mail field is empty', async () => {
+    render(<LoginPage />);
+
+    await fillAndSubmitLoginForm('', '1234');
+
+    expect(screen.getByText('Digite seu e-mail')).toBeInTheDocument();
   });
 });
