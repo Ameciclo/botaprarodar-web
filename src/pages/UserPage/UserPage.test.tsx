@@ -51,7 +51,6 @@ describe('UserPage', () => {
     });
 
     expect(screen.getByTestId('userList')).toBeInTheDocument();
-    // const userName = screen.findByText('Antoni');
-    // expect(userName).toBeInTheDocument();
+    expect(screen.getByText('Antoni')).toBeInTheDocument();
   });
 });

@@ -6,12 +6,12 @@ describe('UserMenu', () => {
   it('should be blocked', () => {
     render(<UserMenu isBlocked />);
 
-    expect(screen.findByText('Desbloquear'));
+    expect(screen.getByText('Documentos')).toBeInTheDocument();
   });
 
   it('should be unblocked', () => {
     render(<UserMenu isBlocked={false} />);
 
-    expect(screen.findByText('Bloquear'));
+    expect(screen.getByText('Bloquear')).toBeInTheDocument();
   });
 });
