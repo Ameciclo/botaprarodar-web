@@ -2,7 +2,6 @@ import {
   act,
   render,
   screen,
-  waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -22,6 +21,9 @@ describe('UserPage', () => {
         telephone: '+55 51 3626-2001',
         status: true,
         id: '123',
+        profilePicture: 'test',
+        address: 'Test street',
+        docNumber: BigInt(12345678910),
       },
     ]);
   });
