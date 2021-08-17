@@ -11,8 +11,4 @@ describe('LoginService', () => {
       'password123',
     );
   });
-
-  it('should return user when login with valid inputs', async () => {
-    // TODO - Implement this test, mocking '../firebase' with the signInWithEmailAndPassword function
-  });
 });

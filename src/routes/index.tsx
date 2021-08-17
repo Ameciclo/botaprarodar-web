@@ -10,12 +10,12 @@ import Menu from '../components/Menu/Menu';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/login" component={LoginPage} />
+    <Route path="/login" comp={LoginPage} />
     <Menu>
-      <Route path="/" exact component={DashboardPage} />
-      <Route path="/usuarios" exact component={UserPage} />
-      <Route path="/usuarios/:id" component={UserDetailPage} />
-      <Route path="/comunidades" component={CommunityPage} />
+      <Route path="/" exact comp={DashboardPage} />
+      <Route path="/usuarios" exact comp={UserPage} />
+      <Route path="/usuarios/:id" comp={UserDetailPage} />
+      <Route path="/comunidades" comp={CommunityPage} />
     </Menu>
   </Switch>
 );

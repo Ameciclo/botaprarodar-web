@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Route as ReactDOMRoute,
   RouteProps as ReactRouteProps,
@@ -7,11 +7,15 @@ import {
 
 interface RouteProps extends ReactRouteProps {
   isPrivate?: boolean;
-  component: React.ComponentType;
+  comp: React.ComponentType;
 }
 
-const Route: React.FC<RouteProps> = ({ isPrivate = false, ...rest }) => {
-  const user = false;
+const Route: React.FC<RouteProps> = ({
+  isPrivate = false,
+  comp: Component,
+  ...rest
+}) => {
+  const user = true;
   return (
     <ReactDOMRoute
       {...rest}

@@ -6,7 +6,7 @@ const LoginService = {
       email,
       password,
     );
-    const userDetails = loginResponse.user;
+    const userDetails = loginResponse?.user;
 
     return {
       displayName: userDetails?.displayName || '',
