@@ -1,9 +1,9 @@
-import React from 'react';
 import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Document, MapPin } from '../../../../assets/icons';
-import useStyles from './UserCard.styles';
 import UserMenu from '../UserMenu/UserMenu';
+import useStyles from './UserCard.styles';
 
 interface UserCardProps {
   user: {
@@ -39,7 +39,9 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
             </div>
             <div className={classes.description}>
               <img src={Document} alt="document" className={classes.icon} />
-              <Typography className={classes.text}>{user.docNumber}</Typography>
+              <Typography className={classes.text}>
+                {user.docNumber.toString()}
+              </Typography>
             </div>
           </li>
         </Link>
