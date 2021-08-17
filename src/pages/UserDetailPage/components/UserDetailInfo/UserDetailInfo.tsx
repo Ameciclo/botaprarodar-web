@@ -14,6 +14,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
       direction="row"
       justifyContent="space-between"
       alignItems="flex-end"
+      spacing={3}
       {...rest}
     >
       <Grid item xs={12} md={4}>
@@ -25,7 +26,6 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
       <Grid item xs={12} md={4}>
         <Card>
           <PinDrop />
-
           <Typography>{user?.address}</Typography>
         </Card>
       </Grid>
