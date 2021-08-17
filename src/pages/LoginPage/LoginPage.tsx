@@ -98,7 +98,7 @@ const LoginPage: React.FC = () => {
           <Button
             data-testid="submit-button"
             type="submit"
-            className={classes.buttonStyle}
+            className={`${classes.buttonStyle} ${classes.disabled}`}
             disabled={!formIsValid()}
           >
             Entrar

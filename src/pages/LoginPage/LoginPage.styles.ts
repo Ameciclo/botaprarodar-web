@@ -8,6 +8,11 @@ export default makeStyles({
     width: '100vw',
     height: '100vh',
   },
+  disabled: {
+    '&.Mui-disabled': {
+      backgroundColor: '#D8D8D8',
+    },
+  },
   logoSize: {
     height: '90px',
     width: '117px',
@@ -60,9 +65,6 @@ export default makeStyles({
     fontWeight: 500,
     fontSize: 14,
     letterSpacing: '1.25px',
-    '&.$Mui-disabled': {
-      backgroundColor: '#D8D8D8',
-    },
   },
   errorIconStyle: {
     fontSize: 14,
