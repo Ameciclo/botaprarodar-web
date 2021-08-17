@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import UserCard from './UserCard';
+import { BrowserRouter } from 'react-router-dom';
 
 test('renders User Card', () => {
   const user = {
@@ -14,6 +15,10 @@ test('renders User Card', () => {
     docNumber: BigInt(12345678910),
   };
 
-  const { container } = render(<UserCard user={user} />);
+  const { container } = render(
+    <BrowserRouter>
+      <UserCard user={user} />
+    </BrowserRouter>,
+  );
   expect(container).toBeInTheDocument();
 });
