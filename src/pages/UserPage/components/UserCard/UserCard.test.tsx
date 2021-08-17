@@ -1,7 +1,7 @@
-import React from 'react';
 import { render } from '@testing-library/react';
-import UserCard from './UserCard';
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import UserCard from './UserCard';
 
 test('renders User Card', () => {
   const user = {
