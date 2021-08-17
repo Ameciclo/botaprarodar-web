@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import User from 'models/Users/User';
 import UserService from 'services/UserService/UserService';
 import useStyles from './UserDetailPage.styles';
-import UserDetailHeading from './components/UserDetailHeading/UserDetailHeading';
+import { UserDetailHeading, UserDetailInfo } from './components';
 
 const UserDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -39,6 +39,7 @@ const UserDetailPage: React.FC = () => {
       ) : (
         <div>
           <UserDetailHeading user={user} />
+          <UserDetailInfo user={user} />
         </div>
       )}
     </div>
