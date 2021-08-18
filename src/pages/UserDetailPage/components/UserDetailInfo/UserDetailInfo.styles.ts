@@ -1,21 +1,32 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
-  container: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    position: 'relative',
-    top: 10,
-    '& button': {
-      '&:hover': {
-        background: '#fff',
-      },
+  root: {
+    marginTop: 25,
+  },
+  card: {
+    '& hr': {
+      marginLeft: -20,
+      marginRight: -20,
+      border: '1px solid #eeeeee',
     },
   },
-  menu: {
+  cardHeader: {
+    '& span': {
+      fontFamily: 'Roboto',
+      fontWeight: 500,
+      fontSize: 16,
+      color: '#263238',
+    },
+  },
+  cardContent: {
+    display: 'flex',
+    color: '#515151',
+    '&:last-child': {
+      paddingBottom: 16,
+    },
     '& svg': {
-      width: 20,
-      marginRight: 20,
+      marginRight: 10,
     },
   },
 });

@@ -7,4 +7,5 @@ export default interface User {
   id: string;
   address: string;
   docNumber: bigint;
+  residenceProofPicture: string;
 }
