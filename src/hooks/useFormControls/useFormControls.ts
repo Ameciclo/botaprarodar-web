@@ -57,3 +57,5 @@ export const useFormControls = () => {
     formIsValid,
   };
 };
+
+export default useFormControls;

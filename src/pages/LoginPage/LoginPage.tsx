@@ -1,11 +1,11 @@
 import { Button, FormHelperText, Paper, TextField } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error';
 import React, { useEffect, useState } from 'react';
+import { useFormControls } from 'hooks/useFormControls/index';
 import { useHandleAuth } from '../../context/AuthContext';
 import LoginService from '../../services/LoginService/LoginService';
 import useStyles from './LoginPage.styles';
 import { LogoBPR } from '../../assets/index';
-import { useFormControls } from '../../components/ValidateForm';
 
 const LoginPage: React.FC = () => {
   const [authenticationError, setAuthenticationError] =
