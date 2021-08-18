@@ -13,9 +13,9 @@ const Routes: React.FC = () => (
     <Route path="/login" comp={LoginPage} />
     <Menu>
       <Route path="/" exact comp={DashboardPage} />
-      <Route path="/usuarios" exact comp={UserPage} />
-      <Route path="/usuarios/:id" comp={UserDetailPage} />
-      <Route path="/comunidades" comp={CommunityPage} />
+      <Route path="/usuarios" isPrivate exact comp={UserPage} />
+      <Route path="/usuarios/:id" isPrivate comp={UserDetailPage} />
+      <Route path="/comunidades" isPrivate comp={CommunityPage} />
     </Menu>
   </Switch>
 );

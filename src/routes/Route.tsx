@@ -1,3 +1,4 @@
+import { useGetAuth } from 'context/AuthContext';
 import React from 'react';
 import {
   Route as ReactDOMRoute,
@@ -15,20 +16,21 @@ const Route: React.FC<RouteProps> = ({
   comp: Component,
   ...rest
 }) => {
-  const user = true;
+  const { value } = useGetAuth();
+
   return (
     <ReactDOMRoute
       {...rest}
       render={({ location }) =>
-        user ? (
-          <Component />
-        ) : (
+        isPrivate && !value?.authenticated ? (
           <Redirect
             to={{
-              pathname: isPrivate ? '/' : '/dashboard',
+              pathname: '/login',
               state: { from: location },
             }}
           />
+        ) : (
+          <Component />
         )
       }
     />

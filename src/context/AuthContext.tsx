@@ -72,18 +72,8 @@ const useClearAuth = () => {
   return { clearAuth };
 };
 const AuthProvider: FC = ({ children }) => {
-  const [auth, setAuth] = useState<AuthInterface>({
-    authenticated: false,
-    email: '',
-    displayName: '',
-  });
-
-  useEffect(() => {
-    const authStorage = localStorage.getItem('authStorage');
-    if (authStorage) {
-      setAuth(JSON.parse(authStorage));
-    }
-  }, []);
+  const authStorage = JSON.parse(String(localStorage.getItem('authStorage')));
+  const [auth, setAuth] = useState<AuthInterface>(authStorage);
 
   useEffect(() => {
     localStorage.setItem('authStorage', JSON.stringify(auth));

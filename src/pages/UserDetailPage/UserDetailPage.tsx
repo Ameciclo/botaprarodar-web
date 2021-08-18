@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Loading } from 'components';
-import { Typography, Avatar } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import { ArrowBackIos } from '@material-ui/icons';
 import { Link, useParams } from 'react-router-dom';
 import User from 'models/Users/User';
 import UserService from 'services/UserService/UserService';
 import useStyles from './UserDetailPage.styles';
-import UserDetailMenu from './components/UserDetailMenu/UserDetailMenu';
+import { UserDetailHeading, UserDetailInfo } from './components';
 
 const UserDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -29,23 +30,16 @@ const UserDetailPage: React.FC = () => {
   return (
     <div className={classes.root}>
       <Typography variant="h1" component="h1" className={classes.heading}>
-        <Link to="/usuarios"> {'< Perfil do usuário'}</Link>
+        <Link to="/usuarios" style={{ display: 'flex' }}>
+          <ArrowBackIos /> Perfil do usuário
+        </Link>
       </Typography>
       {loading ? (
         <Loading />
       ) : (
         <div>
-          <div className={classes.userContainer}>
-            <Avatar
-              className={classes.avatar}
-              src={user?.profilePicture}
-              alt="profile"
-            />
-            <Typography variant="h4" className={classes.username}>
-              {user?.name}
-            </Typography>
-            <UserDetailMenu isBlocked={false} />
-          </div>
+          <UserDetailHeading user={user} />
+          <UserDetailInfo user={user} />
         </div>
       )}
     </div>
