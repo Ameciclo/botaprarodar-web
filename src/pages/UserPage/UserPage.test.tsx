@@ -8,7 +8,6 @@ import { BrowserRouter } from 'react-router-dom';
 import UserService from '../../services/UserService/UserService';
 import UserPage from './UserPage';
 
-let promise: any;
 jest.mock('../../services/UserService/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
