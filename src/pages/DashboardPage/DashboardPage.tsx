@@ -1,8 +1,7 @@
 import { Grid } from '@material-ui/core';
+import { PieChart } from 'components';
 import CustomCard from 'components/CustomCard/CustomCard';
 import React, { FC, useEffect, useState } from 'react';
-import { PieChart } from 'components';
-import CommunitiesIcon from '../../assets/icons/CommunitiesIcon';
 import DashboardCard from '../../components/DashboardCard/DashboardCard';
 import DashboardInfo from '../../models/DashboardInfo/DashboardInfo';
 import DashboardService from '../../services/DashboardService/DashboardService';

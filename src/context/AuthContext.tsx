@@ -15,7 +15,7 @@ type AuthContextType = [
 ];
 
 const AuthContext = createContext<AuthContextType>([
-  { authenticated: false, email: '', displayName: '' },
+  { token: '', authenticated: false, email: '', displayName: '' },
   () => {
     return '';
   },
@@ -26,6 +26,7 @@ const useAuth = () => {
 
   const handleAuth = (value: AuthInterface) => {
     const authValue: AuthInterface = {
+      token: value.token,
       authenticated: true,
       email: value.email,
       displayName: value.displayName,
@@ -47,6 +48,7 @@ const useHandleAuth = () => {
 
   const handleAuth = (value: AuthInterface) => {
     const authValue: AuthInterface = {
+      token: value.token,
       authenticated: true,
       email: value.email,
       displayName: value.displayName,
@@ -62,6 +64,7 @@ const useClearAuth = () => {
 
   const clearAuth = () => {
     const authValue: AuthInterface = {
+      token: '',
       authenticated: false,
       email: '',
       displayName: '',

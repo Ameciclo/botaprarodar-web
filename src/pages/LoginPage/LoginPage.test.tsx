@@ -95,6 +95,7 @@ describe('Login Page', () => {
     expect(history.location.pathname).toBe('/login');
 
     mockedLoginService.requestLogin.mockResolvedValue({
+      token: 'string',
       displayName: 'string',
       email: 'string',
       authenticated: true,
