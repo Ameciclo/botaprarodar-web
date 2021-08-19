@@ -43,7 +43,7 @@
     "heroku": "serve -s build",
     "heroku-prebuild": "npm install -g serve",
     "prepare": "husky install",
-    "cm": "git-cz"
+    "commit": "git-cz"
   },
   "eslintConfig": {
     "extends": [
