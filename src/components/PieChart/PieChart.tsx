@@ -1,4 +1,5 @@
 import { Paper, useTheme } from '@material-ui/core';
+import { ChartOptions } from 'chart.js';
 import React, { FC, useCallback, useMemo } from 'react';
 import { Pie } from 'react-chartjs-2';
 import PieChartProps from './PieChartProps';
@@ -34,7 +35,6 @@ const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
       labels,
       datasets: [
         {
-          label: 'Teste',
           data: quantities,
           backgroundColor: colors,
           borderWidth: 1,
@@ -43,7 +43,8 @@ const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
     };
   }, [data, getColorArray]);
 
-  const options = {
+  const options: ChartOptions = {
+    aspectRatio: 1.3,
     plugins: {
       title: {
         display: true,
@@ -53,16 +54,16 @@ const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
         display: true,
         position: 'bottom',
       },
-      tooltips: {
+      tooltip: {
         backgroundColor: theme.palette.background.paper,
-        bodyFontColor: theme.palette.text.secondary,
-        borderColor: theme.palette.divider,
+        bodyColor: theme.palette.text.primary,
+        borderColor: theme.palette.text.hint,
         borderWidth: 1,
         enabled: true,
-        footerFontColor: theme.palette.text.secondary,
-        intersect: false,
+        // footerFontColor: theme.palette.text.secondary,
+        intersect: true,
         mode: 'index',
-        titleFontColor: theme.palette.text.primary,
+        // titleFontColor: theme.palette.text.primary,
       },
     },
   };
