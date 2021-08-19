@@ -13,11 +13,11 @@ describe('route redirections based on authentication', () => {
     const { container } = render(
       <Router history={history}>
         <Route path="/comunidades" isPrivate comp={CommunityPage} />
-        <Route path="/login" comp={() => <div>/login</div>} />
+        <Route path="/login" comp={() => <div>login</div>} />
       </Router>,
     );
     await waitFor(() =>
-      expect(container.innerHTML).toEqual(expect.stringContaining('/login')),
+      expect(container.innerHTML).toEqual(expect.stringContaining('login')),
     );
   });
 
