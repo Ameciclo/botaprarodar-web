@@ -1,5 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 import LoginService from '../../services/LoginService/LoginService';
 import LoginPage from './LoginPage';
 
@@ -22,10 +24,15 @@ async function fillAndSubmitLoginForm(email: string, password: string) {
 }
 
 let container: HTMLElement;
+const history = createMemoryHistory({ initialEntries: ['/login'] });
 
 describe('Login Page', () => {
   beforeEach(() => {
-    container = render(<LoginPage />).container;
+    container = render(
+      <Router history={history}>
+        <LoginPage />
+      </Router>,
+    ).container;
   });
 
   it('should render login page', async () => {
@@ -82,5 +89,19 @@ describe('Login Page', () => {
     fireEvent.click(loginButton);
 
     expect(mockedLoginService.requestLogin).not.toHaveBeenCalled();
+  });
+
+  it('should redirect to home page after login', async () => {
+    expect(history.location.pathname).toBe('/login');
+
+    mockedLoginService.requestLogin.mockResolvedValue({
+      displayName: 'string',
+      email: 'string',
+      authenticated: true,
+    });
+
+    await fillAndSubmitLoginForm('newEmail@example.com', '1234');
+
+    await waitFor(() => expect(history.location.pathname).toBe('/'));
   });
 });
