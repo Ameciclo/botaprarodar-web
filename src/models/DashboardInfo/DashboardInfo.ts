@@ -5,4 +5,7 @@ export default interface DashboardInfo {
   bikesQuantity: number;
   bikesPerCommunities: PieChartDataProps[];
   withdrawalsPerCommunities: PieChartDataProps[];
+  travelsDone: number;
+  incidentsHappened: number;
+  withdrawalsReason: string[];
 }

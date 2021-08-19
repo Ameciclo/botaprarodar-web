@@ -1,9 +1,22 @@
+import User from 'models/Users/User';
+
 export default interface Bikes {
   id: string;
   available: boolean;
   communityId: string;
   createdDate: string;
-  devolutions: Record<string, unknown>;
+  devolutions: {
+    date: string;
+    id: string;
+    quiz: {
+      destination: string;
+      giveRide: 'Não' | 'Sim';
+      problemsDuringRiding: 'Não' | 'Sim';
+      reason: string;
+    };
+    user: User;
+    withdrawId: string;
+  }[];
   inUse: boolean;
   name: string;
   orderNumber: number;
@@ -12,5 +25,5 @@ export default interface Bikes {
   photoThumbnailPath: string;
   serialNumber: string;
   withdrawToUser: string;
-  withdraws: Record<string, unknown>;
+  withdraws: { date: string; id: string; user: User }[];
 }
