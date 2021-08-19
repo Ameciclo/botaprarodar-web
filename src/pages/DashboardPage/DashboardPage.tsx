@@ -18,26 +18,26 @@ const DashboardPage: FC = () => {
     <Grid container spacing={1}>
       <Grid item lg={3} sm={6} xl={3} xs={12}>
         <DashboardCard
-          title="Quantidade de Bicicletas"
+          title="Total de Bicicletas"
           text={dashboardData?.bikesQuantity}
         />
       </Grid>
       <Grid item lg={3} sm={6} xl={3} xs={12}>
         <DashboardCard
-          title="Quantidade de Comunidades"
-          text={dashboardData?.communitiesQuantity}
+          title="Bicicletas em Manutenção"
+          text={`${dashboardData?.bikesQuantity || 0} em manutenção`}
         />
       </Grid>
       <Grid item lg={3} sm={6} xl={3} xs={12}>
         <DashboardCard
-          title="Quantidade de Bicicletas"
+          title="Comunidades Ameciclo"
+          text={`${dashboardData?.communitiesQuantity || 0} comunidades`}
+        />
+      </Grid>
+      <Grid item lg={3} sm={6} xl={3} xs={12}>
+        <DashboardCard
+          title="Bicicletas em desuso"
           text={dashboardData?.bikesQuantity}
-        />
-      </Grid>
-      <Grid item lg={3} sm={6} xl={3} xs={12}>
-        <DashboardCard
-          title="Quantidade de Comunidades"
-          text={dashboardData?.communitiesQuantity}
         />
       </Grid>
       <Grid item lg={6} sm={12} xl={6} xs={12}>
