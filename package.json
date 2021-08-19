@@ -40,7 +40,8 @@
     "test": "react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "heroku": "serve -s build",
-    "heroku-prebuild": "npm install -g serve"
+    "heroku-prebuild": "npm install -g serve",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +69,7 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5"
+    "@typescript-eslint/parser": "^4.28.5",
+    "husky": "^7.0.0"
   }
 }
