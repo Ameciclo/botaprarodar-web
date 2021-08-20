@@ -20,6 +20,7 @@ describe('route redirections based on authentication', () => {
 
   xit('should not redirect to login page when user is logged', async () => {
     const mockedUser: AuthInterface = {
+      token: 'token',
       authenticated: true,
       email: 'email@example.com',
       displayName: 'John Smith',
