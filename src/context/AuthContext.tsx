@@ -14,8 +14,15 @@ type AuthContextType = [
   setAuth: Dispatch<SetStateAction<AuthInterface>>,
 ];
 
+const INITIAL_AUTH: AuthInterface = {
+  token: '',
+  authenticated: false,
+  email: '',
+  displayName: '',
+};
+
 const AuthContext = createContext<AuthContextType>([
-  { token: '', authenticated: false, email: '', displayName: '' },
+  INITIAL_AUTH,
   () => {
     return '';
   },
@@ -25,12 +32,7 @@ const useAuth = () => {
   const [auth, setAuth] = useContext<AuthContextType>(AuthContext);
 
   const handleAuth = (value: AuthInterface) => {
-    const authValue: AuthInterface = {
-      token: value.token,
-      authenticated: true,
-      email: value.email,
-      displayName: value.displayName,
-    };
+    const authValue: AuthInterface = mapAuthValue(value);
 
     setAuth(authValue);
   };
@@ -47,12 +49,7 @@ const useHandleAuth = () => {
   const [, setAuth] = useContext<AuthContextType>(AuthContext);
 
   const handleAuth = (value: AuthInterface) => {
-    const authValue: AuthInterface = {
-      token: value.token,
-      authenticated: true,
-      email: value.email,
-      displayName: value.displayName,
-    };
+    const authValue: AuthInterface = mapAuthValue(value);
 
     setAuth(authValue);
   };
@@ -63,12 +60,7 @@ const useClearAuth = () => {
   const [, setAuth] = useContext<AuthContextType>(AuthContext);
 
   const clearAuth = () => {
-    const authValue: AuthInterface = {
-      token: '',
-      authenticated: false,
-      email: '',
-      displayName: '',
-    };
+    const authValue: AuthInterface = mapAuthValue(INITIAL_AUTH);
 
     setAuth(authValue);
   };
@@ -76,7 +68,7 @@ const useClearAuth = () => {
 };
 const AuthProvider: FC = ({ children }) => {
   const authStorage = JSON.parse(String(localStorage.getItem('authStorage')));
-  const [auth, setAuth] = useState<AuthInterface>(authStorage);
+  const [auth, setAuth] = useState<AuthInterface>(authStorage || INITIAL_AUTH);
 
   useEffect(() => {
     localStorage.setItem('authStorage', JSON.stringify(auth));
@@ -88,5 +80,17 @@ const AuthProvider: FC = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+const mapAuthValue = ({
+  token,
+  authenticated,
+  email,
+  displayName,
+}: AuthInterface) => ({
+  token,
+  authenticated,
+  email,
+  displayName,
+});
 
 export { AuthProvider, useAuth, useGetAuth, useHandleAuth, useClearAuth };

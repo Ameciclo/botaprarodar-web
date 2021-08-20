@@ -1,18 +1,14 @@
-import Community from '../../models/Community/Community';
-import { database } from '../firebase';
+import Community from 'models/Community/Community';
+import api from 'services/api';
 
 const CommunityService = {
   async getAllCommunities() {
-    const communitiesRef = database.ref('communities');
-    return communitiesRef
-      .once('value')
-      .then(snapshot => {
-        const data: Community[] = Object.keys(snapshot.val()).map(id => {
-          return { id, ...snapshot.val()[id] };
-        });
-        return data;
-      })
-      .catch(err => err);
+    const { data } = await api.get('/communities.json');
+
+    const communities: Community[] = Object.keys(data).map(id => {
+      return { id, ...data[id] };
+    });
+    return communities;
   },
 };
 

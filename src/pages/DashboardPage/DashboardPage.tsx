@@ -11,8 +11,6 @@ const DashboardPage: FC = () => {
 
   useEffect(() => {
     DashboardService.dashboardInfo().then(data => {
-      // eslint-disable-next-line no-console
-      console.log(data);
       setDashboardData(data);
     });
   }, []);

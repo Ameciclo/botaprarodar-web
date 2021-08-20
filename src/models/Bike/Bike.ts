@@ -1,6 +1,6 @@
 import User from 'models/Users/User';
 
-export default interface Bikes {
+export default interface Bike {
   id: string;
   available: boolean;
   communityId: string;
