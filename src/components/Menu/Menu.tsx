@@ -63,18 +63,18 @@ const Menu: React.FC = ({ children }) => {
       action: () => history.push('/usuarios'),
     },
     {
-      name: `Perfil de ${getAuth.value.displayName.split(' ')[0]}`,
+      name: `Perfil de ${getAuth.value?.displayName.split(' ')[0]}`,
       path: '',
       icon: SupervisedUserCircle,
       disabled: true,
-      hide: !getAuth.value.authenticated,
+      hide: !getAuth.value?.authenticated,
     },
     {
       name: 'Sair',
       path: '/login',
       icon: ArrowBack,
       action: handleLogout,
-      hide: !getAuth.value.authenticated,
+      hide: !getAuth.value?.authenticated,
     },
   ];
 
