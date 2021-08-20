@@ -6,16 +6,30 @@ import Route from './Route';
 import { AuthProvider, useHandleAuth } from '../context/AuthContext';
 import AuthInterface from '../models/Auth/AuthInterface';
 
-const history = createMemoryHistory({ initialEntries: ['/dashboard'] });
-
 describe('route redirections based on authentication', () => {
   it('should render public page', async () => {
+    const history = createMemoryHistory({ initialEntries: ['/dashboard'] });
     const { getByText } = render(
       <Router history={history}>
         <Route path="/dashboard" comp={() => <div>DashboardPage</div>} />
       </Router>,
     );
     await waitFor(() => expect(getByText('DashboardPage')).toBeInTheDocument());
+  });
+
+  it('should redirect to login page', async () => {
+    const history = createMemoryHistory({ initialEntries: ['/comunidades'] });
+    render(
+      <Router history={history}>
+        <Route
+          path="/comunidades"
+          isPrivate
+          comp={() => <div>CommunityPage</div>}
+        />
+      </Router>,
+    );
+
+    expect(history.location.pathname).toEqual('/login');
   });
 
   xit('should not redirect to login page when user is logged', async () => {
