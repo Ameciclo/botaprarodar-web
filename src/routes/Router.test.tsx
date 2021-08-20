@@ -1,5 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { waitFor } from '@testing-library/react';
 import Route from './Route';
 import AuthInterface from '../models/Auth/AuthInterface';
 import { renderWithRouterAndAuth } from '../setupTests';
