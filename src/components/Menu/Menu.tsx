@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Divider,
   Drawer,
   IconButton,
   List,
@@ -20,7 +21,7 @@ import {
   DashboardOutlined,
   DirectionsBikeOutlined,
   ArrowBack,
-  SupervisedUserCircle,
+  SupervisedUserCircleOutlined,
 } from '@material-ui/icons';
 import { useClearAuth, useGetAuth } from '../../context/AuthContext';
 import useStyles from './Menu.styles';
@@ -63,9 +64,9 @@ const Menu: React.FC = ({ children }) => {
       action: () => history.push('/usuarios'),
     },
     {
-      name: `Perfil de ${getAuth.value?.displayName.split(' ')[0]}`,
+      name: 'Perfil',
       path: '',
-      icon: SupervisedUserCircle,
+      icon: SupervisedUserCircleOutlined,
       disabled: true,
       hide: !getAuth.value?.authenticated,
     },
@@ -130,7 +131,7 @@ const Menu: React.FC = ({ children }) => {
         <div className={classes.drawerContainer}>
           <List>
             {items.map(
-              item =>
+              (item, index) =>
                 !item.hide && (
                   <div
                     className={
@@ -154,6 +155,7 @@ const Menu: React.FC = ({ children }) => {
                         style={{ fontWeight: 500 }}
                       />
                     </ListItem>
+                    {index === 2 && <Divider className={classes.separator} />}
                   </div>
                 ),
             )}

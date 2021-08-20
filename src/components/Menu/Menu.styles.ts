@@ -65,4 +65,8 @@ export default makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
+  separator: {
+    backgroundColor: '#D8D8D8',
+    width: '272',
+  },
 }));
