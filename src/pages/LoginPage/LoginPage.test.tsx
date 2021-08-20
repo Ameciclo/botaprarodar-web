@@ -1,9 +1,8 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
 import LoginService from '../../services/LoginService/LoginService';
 import LoginPage from './LoginPage';
+import { renderWithRouterAndAuth } from '../../setupTests';
 
 jest.mock('../../services/LoginService/LoginService');
 const mockedLoginService = LoginService as jest.Mocked<typeof LoginService>;
@@ -23,20 +22,17 @@ async function fillAndSubmitLoginForm(email: string, password: string) {
   await userEvent.click(screen.getByTestId('submit-button'));
 }
 
-let container: HTMLElement;
-const history = createMemoryHistory({ initialEntries: ['/login'] });
+let wrapper: any;
 
 describe('Login Page', () => {
   beforeEach(() => {
-    container = render(
-      <Router history={history}>
-        <LoginPage />
-      </Router>,
-    ).container;
+    wrapper = renderWithRouterAndAuth(<LoginPage />, {
+      route: '/login',
+    });
   });
 
   it('should render login page', async () => {
-    expect(container).toBeInTheDocument();
+    expect(wrapper.container).toBeInTheDocument();
   });
 
   it('should have e-mail and password fields', () => {
@@ -92,6 +88,7 @@ describe('Login Page', () => {
   });
 
   it('should redirect to home page after login', async () => {
+    const { history } = wrapper;
     expect(history.location.pathname).toBe('/login');
 
     mockedLoginService.requestLogin.mockResolvedValue({
@@ -103,6 +100,6 @@ describe('Login Page', () => {
 
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
 
-    await waitFor(() => expect(history.location.pathname).toBe('/'));
+    await waitFor(() => expect(wrapper.history.location.pathname).toBe('/'));
   });
 });
