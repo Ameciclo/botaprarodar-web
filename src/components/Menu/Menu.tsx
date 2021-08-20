@@ -14,18 +14,23 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React, { FC, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   GroupOutlined,
   DashboardOutlined,
   DirectionsBikeOutlined,
+  ArrowBack,
+  SupervisedUserCircle,
 } from '@material-ui/icons';
+import { useClearAuth, useGetAuth } from '../../context/AuthContext';
 import useStyles from './Menu.styles';
 
 const Menu: React.FC = ({ children }) => {
   const classes = useStyles();
-  const location = useLocation();
   const mobile = useMediaQuery('(max-width:1024px)');
+  const clearAuth = useClearAuth();
+  const getAuth = useGetAuth();
+  const history = useHistory();
 
   const [open, setOpen] = useState(false);
 
@@ -33,21 +38,43 @@ const Menu: React.FC = ({ children }) => {
     setOpen(state => !state);
   };
 
+  const handleLogout = () => {
+    clearAuth.clearAuth();
+    history.push('/login');
+  };
+
   const items = [
     {
       name: 'Dashboard',
       path: '/',
       icon: DashboardOutlined,
+      action: () => history.push('/'),
     },
     {
       name: 'Comunidades',
       path: '/comunidades',
       icon: GroupOutlined,
+      action: () => history.push('/comunidades'),
     },
     {
       name: 'Usuários',
       path: '/usuarios',
       icon: DirectionsBikeOutlined,
+      action: () => history.push('/usuarios'),
+    },
+    {
+      name: `Perfil de ${getAuth.value.displayName.split(' ')[0]}`,
+      path: '',
+      icon: SupervisedUserCircle,
+      disabled: true,
+      hide: !getAuth.value.authenticated,
+    },
+    {
+      name: 'Sair',
+      path: '/login',
+      icon: ArrowBack,
+      action: handleLogout,
+      hide: !getAuth.value.authenticated,
     },
   ];
 
@@ -102,28 +129,34 @@ const Menu: React.FC = ({ children }) => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {items.map(item => (
-              <div
-                className={
-                  location.pathname === item.path
-                    ? classes.activeItem
-                    : classes.item
-                }
-                key={item.name}
-              >
-                <Link to={item.path}>
-                  <ListItem button key={item.name}>
-                    <ListItemIcon>
-                      <item.icon />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={item.name}
-                      style={{ fontWeight: 500 }}
-                    />
-                  </ListItem>
-                </Link>
-              </div>
-            ))}
+            {items.map(
+              item =>
+                !item.hide && (
+                  <div
+                    className={
+                      history.location.pathname === item.path
+                        ? classes.activeItem
+                        : classes.item
+                    }
+                    key={item.name}
+                  >
+                    <ListItem
+                      button
+                      key={item.name}
+                      onClick={item.action}
+                      disabled={item.disabled}
+                    >
+                      <ListItemIcon>
+                        <item.icon />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={item.name}
+                        style={{ fontWeight: 500 }}
+                      />
+                    </ListItem>
+                  </div>
+                ),
+            )}
           </List>
         </div>
       </MenuDrawer>
