@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { auth } from './firebase';
+import AuthInterface from 'models/Auth/AuthInterface';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_DATABASE_URL,
@@ -8,11 +8,13 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(async config => {
-  const authenticated = auth.currentUser?.emailVerified;
+  const authStorage = <AuthInterface>(
+    JSON.parse(String(localStorage.getItem('authStorage')))
+  );
+
+  const { authenticated, token } = authStorage;
 
   if (authenticated) {
-    const token = await auth.currentUser?.getIdToken().then(idToken => idToken);
-
     let param = config.params;
     param = {
       ...config.params,
