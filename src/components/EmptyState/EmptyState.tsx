@@ -1,21 +1,32 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
-import { UserEmptyStateImage } from '../../../../assets/images';
-import useStyles from './UserEmptyState.style';
+import useStyles from './EmptyState.style';
 
-export default function UserEmptyState() {
+type EmptyStateProps = {
+  imgSrc: string;
+  heading: string;
+  subheading: string;
+};
+
+const EmptyState: React.FC<EmptyStateProps> = ({
+  imgSrc,
+  heading,
+  subheading,
+}) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <img src={UserEmptyStateImage} alt="Biker" className={classes.image} />
+      <img src={imgSrc} alt="Biker" className={classes.image} />
       <Typography variant="h3" component="h3" className={classes.heading}>
         {' '}
-        Nenhum usuário cadastrado
+        {heading}
       </Typography>
       <Typography variant="h4" component="h4" className={classes.subheading}>
-        Cadastre um novo usuário em nosso aplicaticativo!
+        {subheading}
       </Typography>
     </div>
   );
-}
+};
+
+export default EmptyState;

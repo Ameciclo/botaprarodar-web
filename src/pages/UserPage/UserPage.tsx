@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@material-ui/core';
+import EmptyState from 'components/EmptyState/EmptyState';
+import { UserEmptyStateImage } from 'assets/images';
 import User from '../../models/Users/User';
 import UserService from '../../services/UserService/UserService';
 import UserCard from './components/UserCard/UserCard';
 import useStyles from './UserPage.styles';
-import UserEmptyState from './components/UserEmptyState/UserEmptyState';
 import Loading from '../../components/Loading/Loading';
 
 const UserPage: React.FC = () => {
@@ -39,7 +40,11 @@ const UserPage: React.FC = () => {
           ))}
         </ul>
       ) : (
-        <UserEmptyState />
+        <EmptyState
+          imgSrc={UserEmptyStateImage}
+          heading="Nenhum usuário cadastrado"
+          subheading="Cadastre um novo usuário em nosso aplicaticativo!"
+        />
       )}
     </div>
   );
