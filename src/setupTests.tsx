@@ -19,7 +19,7 @@ beforeEach(() => {
     token: '',
     authenticated: false,
     email: '',
-    displayName: '',
+    displayName: ' ',
   };
   localStorage.setItem('authStorage', JSON.stringify(INITIAL_AUTH));
 });

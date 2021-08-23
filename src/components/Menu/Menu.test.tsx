@@ -11,18 +11,20 @@ describe('Menu', () => {
     expect(container).toBeInTheDocument();
   });
 
-  it('renders logout button when user is logged', () => {
+  it('renders only logout button when user is logged', () => {
     setUserAuthentication();
 
-    const { getByText } = renderWithRouterAndAuth(<Menu />);
+    const { queryByText } = renderWithRouterAndAuth(<Menu />);
 
-    expect(getByText('Sair')).toBeInTheDocument();
+    expect(queryByText('Sair')).toBeInTheDocument();
+    expect(queryByText('Login')).not.toBeInTheDocument();
   });
 
-  it('does not render logout button when user is not logged', () => {
+  it('renders only login button when user is not logged', () => {
     const { queryByText } = renderWithRouterAndAuth(<Menu />);
 
     expect(queryByText('Sair')).not.toBeInTheDocument();
+    expect(queryByText('Login')).toBeInTheDocument();
   });
 
   it('should redirect to given page when click in menu item', () => {
