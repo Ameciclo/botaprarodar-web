@@ -16,15 +16,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React, { FC, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import {
-  GroupOutlined,
-  DashboardOutlined,
-  DirectionsBikeOutlined,
-  ArrowBack,
-  SupervisedUserCircleOutlined,
-} from '@material-ui/icons';
 import { useClearAuth, useGetAuth } from '../../context/AuthContext';
 import useStyles from './Menu.styles';
+import menuItems from './MenuItems';
 
 const Menu: React.FC = ({ children }) => {
   const classes = useStyles();
@@ -41,43 +35,8 @@ const Menu: React.FC = ({ children }) => {
 
   const handleLogout = () => {
     clearAuth.clearAuth();
-    history.push('/login');
+    history.push('/');
   };
-
-  const items = [
-    {
-      name: 'Dashboard',
-      path: '/',
-      icon: DashboardOutlined,
-      action: () => history.push('/'),
-    },
-    {
-      name: 'Comunidades',
-      path: '/comunidades',
-      icon: GroupOutlined,
-      action: () => history.push('/comunidades'),
-    },
-    {
-      name: 'Usuários',
-      path: '/usuarios',
-      icon: DirectionsBikeOutlined,
-      action: () => history.push('/usuarios'),
-    },
-    {
-      name: 'Perfil',
-      path: '',
-      icon: SupervisedUserCircleOutlined,
-      disabled: true,
-      hide: !getAuth.value?.authenticated,
-    },
-    {
-      name: 'Sair',
-      path: '/login',
-      icon: ArrowBack,
-      action: handleLogout,
-      hide: !getAuth.value?.authenticated,
-    },
-  ];
 
   const PermanentDrawer: FC = ({ children: drawerChildren }) => (
     <Drawer
@@ -130,8 +89,8 @@ const Menu: React.FC = ({ children }) => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {items.map(
-              (item, index) =>
+            {menuItems(history, getAuth.value, handleLogout).map(
+              item =>
                 !item.hide && (
                   <div
                     className={
@@ -155,7 +114,9 @@ const Menu: React.FC = ({ children }) => {
                         style={{ fontWeight: 500 }}
                       />
                     </ListItem>
-                    {index === 2 && <Divider className={classes.separator} />}
+                    {item.name === 'Usuários' && (
+                      <Divider className={classes.separator} />
+                    )}
                   </div>
                 ),
             )}

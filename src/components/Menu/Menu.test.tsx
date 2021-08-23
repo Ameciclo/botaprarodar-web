@@ -1,3 +1,4 @@
+import { fireEvent } from '@testing-library/react';
 import Menu from './Menu';
 import {
   renderWithRouterAndAuth,
@@ -22,5 +23,14 @@ describe('Menu', () => {
     const { queryByText } = renderWithRouterAndAuth(<Menu />);
 
     expect(queryByText('Sair')).not.toBeInTheDocument();
+  });
+
+  it('should redirect to given page when click in menu item', () => {
+    setUserAuthentication();
+    const { getByText, history } = renderWithRouterAndAuth(<Menu />);
+
+    fireEvent.click(getByText('Comunidades'));
+
+    expect(history.location.pathname).toBe('/comunidades');
   });
 });
