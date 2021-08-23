@@ -19,13 +19,13 @@ const mockedCommunityService = CommunityService as jest.Mocked<
 describe('CommunityPage', () => {
   beforeEach(() => {
     const mockedCommunity: Community = {
-      id: 'string',
-      address: 'string',
+      id: 'test',
+      address: 'street test',
       created_date: Date.prototype,
-      description: 'string',
-      name: 'string',
-      org_email: 'string',
-      org_name: 'string',
+      description: 'test',
+      name: 'Community XYZ',
+      org_email: 'test@example.com',
+      org_name: 'Organization ABC',
       bicycles: [],
       withdrawals: [],
     };
