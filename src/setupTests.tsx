@@ -15,7 +15,13 @@ jest.mock('react-chartjs-2', () => ({
 }));
 
 beforeEach(() => {
-  localStorage.removeItem('authStorage');
+  const INITIAL_AUTH: AuthInterface = {
+    token: '',
+    authenticated: false,
+    email: '',
+    displayName: '',
+  };
+  localStorage.setItem('authStorage', JSON.stringify(INITIAL_AUTH));
 });
 
 export function setUserAuthentication() {

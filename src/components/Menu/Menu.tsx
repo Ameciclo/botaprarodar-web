@@ -89,7 +89,7 @@ const Menu: React.FC = ({ children }) => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {menuItems(history, getAuth, handleLogout).map(
+            {menuItems(history, getAuth.value, handleLogout).map(
               item =>
                 !item.hide && (
                   <div

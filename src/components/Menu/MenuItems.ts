@@ -5,47 +5,53 @@ import {
   ArrowBack,
   SupervisedUserCircleOutlined,
 } from '@material-ui/icons';
+import { History } from 'history';
+import AuthInterface from '../../models/Auth/AuthInterface';
 
-export default (history: any, getAuth: any, handleLogout: any) => [
+export default (
+  history: History,
+  auth: AuthInterface,
+  handleLogout: () => void,
+) => [
   {
     name: 'Login',
     path: '/login',
     icon: SupervisedUserCircleOutlined,
     action: () => history.push('/login'),
-    hide: getAuth.value?.authenticated,
+    hide: auth.authenticated,
   },
   {
     name: 'Dados',
     path: '/',
     icon: DashboardOutlined,
     action: () => history.push('/'),
-    hide: !getAuth.value?.authenticated,
+    hide: !auth?.authenticated,
   },
   {
     name: 'Comunidades',
     path: '/comunidades',
     icon: GroupOutlined,
     action: () => history.push('/comunidades'),
-    hide: !getAuth.value?.authenticated,
+    hide: !auth?.authenticated,
   },
   {
     name: 'Usuários',
     path: '/usuarios',
     icon: DirectionsBikeOutlined,
     action: () => history.push('/usuarios'),
-    hide: !getAuth.value?.authenticated,
+    hide: !auth?.authenticated,
   },
   {
     name: 'Perfil',
     path: '',
     icon: SupervisedUserCircleOutlined,
     disabled: true,
-    hide: !getAuth.value?.authenticated,
+    hide: !auth?.authenticated,
   },
   {
     name: 'Sair',
     icon: ArrowBack,
     action: handleLogout,
-    hide: !getAuth.value?.authenticated,
+    hide: !auth?.authenticated,
   },
 ];
