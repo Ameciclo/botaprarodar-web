@@ -8,6 +8,7 @@ const LoginService = {
       password,
     );
     const userDetails = loginResponse?.user;
+    console.log(userDetails);
     const getToken = await userDetails?.getIdToken(true);
     const token = getToken || '';
 

@@ -7,11 +7,26 @@ import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import AuthInterface from './models/Auth/AuthInterface';
 
 jest.mock('react-chartjs-2', () => ({
   Bar: () => null,
   Pie: () => null,
 }));
+
+beforeEach(() => {
+  localStorage.removeItem('authStorage');
+});
+
+export function setUserAuthentication() {
+  const mockedUser: AuthInterface = {
+    token: 'token',
+    authenticated: true,
+    email: 'email@example.com',
+    displayName: 'John Smith',
+  };
+  localStorage.setItem('authStorage', JSON.stringify(mockedUser));
+}
 
 export function renderWithRouterAndAuth(
   uiComponent: React.ReactElement,

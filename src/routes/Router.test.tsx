@@ -1,7 +1,6 @@
 import { waitFor } from '@testing-library/react';
 import Route from './Route';
-import AuthInterface from '../models/Auth/AuthInterface';
-import { renderWithRouterAndAuth } from '../setupTests';
+import { renderWithRouterAndAuth, setUserAuthentication } from '../setupTests';
 
 describe('route redirections based on authentication', () => {
   it('should render public page', async () => {
@@ -27,13 +26,7 @@ describe('route redirections based on authentication', () => {
   });
 
   it('should render private page page when user is logged', async () => {
-    const mockedUser: AuthInterface = {
-      token: 'token',
-      authenticated: true,
-      email: 'email@example.com',
-      displayName: 'John Smith',
-    };
-    localStorage.setItem('authStorage', JSON.stringify(mockedUser));
+    setUserAuthentication();
 
     const { getByText } = renderWithRouterAndAuth(
       <Route
