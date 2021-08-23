@@ -1,6 +1,11 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles(theme => ({
+  root: {
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: 50,
+    },
+  },
   avatar: {
     width: '118px',
     height: '118px',
@@ -20,6 +25,9 @@ export default makeStyles(theme => ({
     fontSize: 20,
     color: '#263238',
     marginLeft: 40,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
   },
   userContainer: {
     display: 'flex',

@@ -21,20 +21,30 @@ export default makeStyles({
   },
   cardContent: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     color: '#515151',
+    padding: '0 16px',
+    height: 76,
     '&:last-child': {
-      paddingBottom: 16,
+      paddingBottom: 0,
     },
-    '& svg': {
-      marginRight: 10,
+    '& div': {
+      display: 'flex',
+      alignItems: 'center',
+      '& svg': {
+        marginRight: 10,
+      },
     },
   },
   imageButton: {
-    width: 100,
+    width: 90,
     height: 60,
+    border: 0,
     '& img': {
       width: '100%',
       height: '100%',
+      borderRadius: 10,
     },
   },
 });

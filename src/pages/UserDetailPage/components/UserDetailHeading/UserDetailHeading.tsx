@@ -17,10 +17,11 @@ const UserDetailHeading: React.FC<UserHeadingProps> = ({ user, ...rest }) => {
       direction="row"
       justifyContent="space-between"
       alignItems="flex-end"
+      className={classes.root}
       {...rest}
     >
       <Grid item xs={12} className={classes.userBackground} />
-      <Grid item xs={6} className={classes.userContainer}>
+      <Grid item xs={10} md={6} className={classes.userContainer}>
         <Avatar
           className={classes.avatar}
           src={user?.profilePicture}
@@ -30,7 +31,7 @@ const UserDetailHeading: React.FC<UserHeadingProps> = ({ user, ...rest }) => {
           {user?.name}
         </Typography>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={2} md={6}>
         <UserDetailMenu isBlocked={false} />
       </Grid>
     </Grid>

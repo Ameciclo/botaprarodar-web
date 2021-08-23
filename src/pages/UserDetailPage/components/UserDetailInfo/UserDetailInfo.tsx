@@ -38,8 +38,10 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
           <CardHeader className={classes.cardHeader} title="Endereço" />
           <hr />
           <CardContent className={classes.cardContent}>
-            <RoomOutlined />
-            <Typography>{user?.address}</Typography>
+            <div>
+              <RoomOutlined />
+              <Typography>{user?.address}</Typography>
+            </div>
           </CardContent>
         </Card>
       </Grid>
@@ -48,8 +50,10 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
           <CardHeader className={classes.cardHeader} title="Documento" />
           <hr />
           <CardContent className={classes.cardContent}>
-            <ContactMailOutlined />
-            <Typography>{user?.docNumber}</Typography>
+            <div>
+              <ContactMailOutlined />
+              <Typography>{user?.docNumber}</Typography>
+            </div>
             <button
               type="button"
               className={classes.imageButton}
@@ -84,10 +88,31 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
           />
           <hr />
           <CardContent className={classes.cardContent}>
-            <HomeOutlined />
-            <Typography>
-              {user?.residenceProofPicture ? 'Possui' : 'Não foi cadastrado'}
-            </Typography>
+            <div>
+              <HomeOutlined />
+              <Typography>
+                {user?.residenceProofPicture ? 'Possui' : 'Não foi cadastrado'}
+              </Typography>
+            </div>
+            <button
+              type="button"
+              className={classes.imageButton}
+              onClick={() => setVisibleDoc(true)}
+            >
+              <img src={user?.residenceProofPicture} alt="document" />
+            </button>
+            <Viewer
+              visible={visibleDoc}
+              onClose={() => {
+                setVisibleDoc(false);
+              }}
+              images={[
+                {
+                  src: user?.residenceProofPicture || '',
+                  alt: 'residence document',
+                },
+              ]}
+            />
           </CardContent>
         </Card>
       </Grid>
