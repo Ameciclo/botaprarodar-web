@@ -29,4 +29,12 @@ export default makeStyles({
       marginRight: 10,
     },
   },
+  imageButton: {
+    width: 100,
+    height: 60,
+    '& img': {
+      width: '100%',
+      height: '100%',
+    },
+  },
 });

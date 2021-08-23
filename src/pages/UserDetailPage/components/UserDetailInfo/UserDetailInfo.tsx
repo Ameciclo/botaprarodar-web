@@ -11,7 +11,8 @@ import {
   HomeOutlined,
   RoomOutlined,
 } from '@material-ui/icons';
-import React from 'react';
+import React, { useState } from 'react';
+import Viewer from 'react-viewer';
 import useStyles from './UserDetailInfo.styles';
 
 interface UserInfoProps {
@@ -20,6 +21,7 @@ interface UserInfoProps {
 
 const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
   const classes = useStyles();
+  const [visibleDoc, setVisibleDoc] = useState(false);
 
   return (
     <Grid
@@ -48,6 +50,29 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
           <CardContent className={classes.cardContent}>
             <ContactMailOutlined />
             <Typography>{user?.docNumber}</Typography>
+            <button
+              type="button"
+              className={classes.imageButton}
+              onClick={() => setVisibleDoc(true)}
+            >
+              <img src={user?.docPicture} alt="document" />
+            </button>
+            <Viewer
+              visible={visibleDoc}
+              onClose={() => {
+                setVisibleDoc(false);
+              }}
+              images={[
+                {
+                  src: user?.docPicture || '',
+                  alt: 'document',
+                },
+                {
+                  src: user?.docPictureBack || '',
+                  alt: 'document back',
+                },
+              ]}
+            />
           </CardContent>
         </Card>
       </Grid>
