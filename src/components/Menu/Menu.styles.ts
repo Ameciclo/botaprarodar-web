@@ -5,7 +5,7 @@ export default makeStyles(theme => ({
     display: 'flex',
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: 101 + 1,
   },
   drawer: {
     width: 240,
@@ -13,6 +13,7 @@ export default makeStyles(theme => ({
   },
   drawerPaper: {
     width: 240,
+    zIndex: 100,
   },
   drawerContainer: {
     overflow: 'auto',

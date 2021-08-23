@@ -22,6 +22,7 @@ interface UserInfoProps {
 const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
   const classes = useStyles();
   const [visibleDoc, setVisibleDoc] = useState(false);
+  const [visibleResidence, setVisibleResidence] = useState(false);
 
   return (
     <Grid
@@ -69,11 +70,11 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
               images={[
                 {
                   src: user?.docPicture || '',
-                  alt: 'document',
+                  alt: 'Frente do documento',
                 },
                 {
                   src: user?.docPictureBack || '',
-                  alt: 'document back',
+                  alt: 'Verso do documento',
                 },
               ]}
             />
@@ -97,19 +98,19 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
             <button
               type="button"
               className={classes.imageButton}
-              onClick={() => setVisibleDoc(true)}
+              onClick={() => setVisibleResidence(true)}
             >
               <img src={user?.residenceProofPicture} alt="document" />
             </button>
             <Viewer
-              visible={visibleDoc}
+              visible={visibleResidence}
               onClose={() => {
-                setVisibleDoc(false);
+                setVisibleResidence(false);
               }}
               images={[
                 {
                   src: user?.residenceProofPicture || '',
-                  alt: 'residence document',
+                  alt: 'Comprovante de residência',
                 },
               ]}
             />
