@@ -40,7 +40,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
             <div className={classes.description}>
               <img src={Document} alt="document" className={classes.icon} />
               <Typography className={classes.text}>
-                {user?.docNumber && user.docNumber.toString()}
+                {user?.docNumber?.toString()}
               </Typography>
             </div>
           </li>

@@ -35,9 +35,9 @@ const UserPage: React.FC = () => {
         <Loading />
       ) : users.length ? (
         <ul data-testid="userList" className={classes.userList}>
-          {users?.map(user => (
-            <UserCard user={user} key={user.id} />
-          ))}
+          {users?.map(user => {
+            return user.id && <UserCard user={user} key={user.id} />;
+          })}
         </ul>
       ) : (
         <EmptyState
