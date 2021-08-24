@@ -9,6 +9,11 @@ const CommunityService = {
       return { id, ...data[id] };
     });
   },
+  async getCommunityById(id: string) {
+    const { data } = await api.get(`/communuties/${id}.json`);
+
+    return data;
+  },
 };
 
 export default CommunityService;
