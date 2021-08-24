@@ -21,4 +21,7 @@
   "[json]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
+  "cSpell.words": [
+    "conventionalcommits"
+  ],
 }
