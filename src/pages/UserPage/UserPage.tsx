@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@material-ui/core';
 import EmptyState from 'components/EmptyState/EmptyState';
-import { UserEmptyStateImage } from 'assets/images';
+import { EmptyStateImage } from 'assets/images';
 import User from '../../models/Users/User';
 import UserService from '../../services/UserService/UserService';
 import UserCard from './components/UserCard/UserCard';
@@ -29,7 +29,7 @@ const UserPage: React.FC = () => {
   return (
     <div className={classes.root}>
       <Typography variant="h1" component="h1" className={classes.heading}>
-        Usuários
+        Usuárias do Bota pra Rodar
       </Typography>
       {loading ? (
         <Loading />
@@ -41,9 +41,9 @@ const UserPage: React.FC = () => {
         </ul>
       ) : (
         <EmptyState
-          imgSrc={UserEmptyStateImage}
-          heading="Nenhum usuário cadastrado"
-          subheading="Cadastre um novo usuário em nosso aplicaticativo!"
+          imgSrc={EmptyStateImage}
+          heading="Nenhuma usuária cadastrada!"
+          subheading="Cadastre uma nova usuária em nosso aplicaticativo."
         />
       )}
     </div>

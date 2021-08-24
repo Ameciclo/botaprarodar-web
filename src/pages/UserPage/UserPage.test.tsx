@@ -7,30 +7,13 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import UserService from '../../services/UserService/UserService';
 import UserPage from './UserPage';
-import User from '../../models/Users/User';
 
 jest.mock('../../services/UserService/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
 describe('UserPage', () => {
-  const mockedUser: User = {
-    name: 'Antoni',
-    communityId: '-MLDOXs3p35DEHg0gdUU',
-    telephone: '+55 51 3626-2001',
-    status: true,
-    profilePicture: 'string',
-    id: '123',
-    address: 'Street test',
-    docNumber: BigInt(12345678910),
-    docPicture: 'test',
-    docPictureBack: 'test',
-    residenceProofPicture: 'test',
-  };
-  beforeEach(() => {
-    mockedUserService.getAllUsers.mockResolvedValue([mockedUser]);
-  });
-
   it('should render loading component', async () => {
+    mockedUserService.getAllUsers.mockResolvedValue([]);
     act(() => {
       render(
         <BrowserRouter>
@@ -46,6 +29,22 @@ describe('UserPage', () => {
   });
 
   it('should render list of users', async () => {
+    mockedUserService.getAllUsers.mockResolvedValue([
+      {
+        name: 'Antoni',
+        communityId: '-MLDOXs3p35DEHg0gdUU',
+        telephone: '+55 51 3626-2001',
+        status: true,
+        id: '123',
+        profilePicture: 'test',
+        address: 'Test street',
+        docNumber: BigInt(12345678910),
+        docPictureBack: 'test-back-picture',
+        docPicture: 'test-picture',
+        residenceProofPicture: 'residence-picture',
+      },
+    ]);
+
     await act(async () => {
       render(
         <BrowserRouter>
@@ -56,5 +55,18 @@ describe('UserPage', () => {
 
     expect(screen.getByTestId('userList')).toBeInTheDocument();
     expect(screen.getByText('Antoni')).toBeInTheDocument();
+  });
+
+  it('should render no users and an empty state message', async () => {
+    mockedUserService.getAllUsers.mockResolvedValue([]);
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <UserPage />
+        </BrowserRouter>,
+      );
+    });
+
+    expect(screen.getByText('Nenhuma usuária cadastrada!')).toBeInTheDocument();
   });
 });

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { Loading } from 'components';
+import EmptyState from 'components/EmptyState/EmptyState';
+import { EmptyStateImage } from 'assets/images';
 import Community from '../../models/Community/Community';
 import CommunityService from '../../services/CommunityService/CommunityService';
 import useStyles from './CommunityPage.styles';
 import CommunityCard from './components/CommunityCard/CommunityCard';
-import Loading from '../../components/Loading/Loading';
 
 const CommunityPage: React.FC = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
   const classes = useStyles();
 
   useEffect(() => {
@@ -29,11 +30,11 @@ const CommunityPage: React.FC = () => {
   return (
     <div>
       <Typography variant="h5" gutterBottom className={classes.pageTitle}>
-        Comunidades
+        Comunidades do Bota pra Rodar
       </Typography>
       {loading ? (
         <Loading />
-      ) : (
+      ) : communities.length ? (
         <Grid container spacing={4} data-testid="communities-grid">
           {communities?.map(community => (
             <Grid
@@ -48,6 +49,14 @@ const CommunityPage: React.FC = () => {
             </Grid>
           ))}
         </Grid>
+      ) : (
+        <div className={classes.emptyStateContainer}>
+          <EmptyState
+            imgSrc={EmptyStateImage}
+            heading="Nenhuma comunidade cadastrada!"
+            subheading="Cadastre uma nova comunidade em nosso aplicaticativo."
+          />
+        </div>
       )}
     </div>
   );

@@ -17,7 +17,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
 
   return (
     <div className={classes.root}>
-      <img src={imgSrc} alt="Biker" className={classes.image} />
+      <img src={imgSrc} alt="ciclistas" className={classes.image} />
       <Typography variant="h3" component="h3" className={classes.heading}>
         {' '}
         {heading}
