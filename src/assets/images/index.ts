@@ -1,1 +1,1 @@
-export { default as UserEmptyStateImage } from './user.png';
+export { default as EmptyStateImage } from './emptyState.png';

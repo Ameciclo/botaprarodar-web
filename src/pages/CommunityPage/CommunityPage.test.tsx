@@ -1,15 +1,12 @@
 import {
   act,
   render,
-  RenderResult,
   screen,
-  waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import CommunityService from 'services/CommunityService/CommunityService';
 import CommunityPage from './CommunityPage';
-import CommunityService from '../../services/CommunityService/CommunityService';
-import Community from '../../models/Community/Community';
 
 jest.mock('../../services/CommunityService/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
@@ -17,24 +14,8 @@ const mockedCommunityService = CommunityService as jest.Mocked<
 >;
 
 describe('CommunityPage', () => {
-  beforeEach(() => {
-    const mockedCommunity: Community = {
-      id: 'test',
-      address: 'street test',
-      created_date: Date.prototype,
-      description: 'test',
-      name: 'Community XYZ',
-      org_email: 'test@example.com',
-      org_name: 'Organization ABC',
-      bicycles: [],
-      withdrawals: [],
-    };
-    mockedCommunityService.getAllCommunities.mockResolvedValue([
-      mockedCommunity,
-    ]);
-  });
-
   it('should render loading component', async () => {
+    mockedCommunityService.getAllCommunities.mockResolvedValue([]);
     act(() => {
       render(
         <BrowserRouter>
@@ -50,6 +31,20 @@ describe('CommunityPage', () => {
   });
 
   it('renders a grid to show the communities', async () => {
+    const date = new Date();
+    mockedCommunityService.getAllCommunities.mockResolvedValue([
+      {
+        id: '1',
+        address: 'Rua teste',
+        created_date: date,
+        description: 'Descrição comunidade teste',
+        name: 'Comunidade teste',
+        org_email: 'comunidade@teste.com',
+        org_name: 'nome',
+        bicycles: [],
+        withdrawals: [],
+      },
+    ]);
     await act(async () => {
       render(
         <BrowserRouter>
@@ -60,5 +55,20 @@ describe('CommunityPage', () => {
 
     const communitiesList = screen.getByTestId('communities-grid');
     expect(communitiesList).toBeInTheDocument();
+  });
+
+  it('renders no communities and an empty state message', async () => {
+    mockedCommunityService.getAllCommunities.mockResolvedValue([]);
+
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <CommunityPage />
+        </BrowserRouter>,
+      );
+    });
+
+    const emptyStateText = 'Nenhuma comunidade cadastrada!';
+    expect(screen.getByText(emptyStateText)).toBeInTheDocument();
   });
 });

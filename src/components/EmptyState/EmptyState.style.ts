@@ -9,24 +9,30 @@ export default makeStyles(theme => ({
     height: '90%',
   },
   image: {
-    width: 923,
+    width: 654,
     [theme.breakpoints.down('sm')]: {
-      width: '100vw',
+      width: '90vw',
     },
   },
   heading: {
     fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    fontSize: 20,
+    fontStyle: 'light',
+    fontWeight: 300,
+    fontSize: 38,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 23,
+    },
     color: '#263238',
     marginBottom: 10,
   },
   subheading: {
     fontFamily: 'Roboto',
     fontStyle: 'normal',
-    fontWeight: 'normal',
-    fontSize: 16,
+    fontWeight: 700,
+    fontSize: 18,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 13,
+    },
     color: '#263238',
     textAlign: 'center',
   },
