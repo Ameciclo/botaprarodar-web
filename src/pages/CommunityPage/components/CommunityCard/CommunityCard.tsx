@@ -8,9 +8,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
 import useStyles from './CommunityCard.styles';
+import CommunityMenu from '../CommunityMenu/CommunityMenu';
 
 const CommunityCard: React.FC<any> = ({ community }) => {
   const classes = useStyles();
@@ -23,7 +22,7 @@ const CommunityCard: React.FC<any> = ({ community }) => {
             <Typography variant="h6" component="h2" className={classes.title}>
               {community.name}
             </Typography>
-            <MoreHorizIcon className={classes.icon} />
+            <CommunityMenu communityId={community.id} />
           </div>
           <Typography
             variant="body2"

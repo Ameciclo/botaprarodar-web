@@ -25,22 +25,22 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
     <Card className={classes.card} {...rest}>
       <UserMenu isBlocked={false} />
       <CardContent>
-        <Link to={`/usuarios/${user.id}`}>
-          <li key={user.id}>
+        <Link to={`/usuarios/${user?.id}`}>
+          <li key={user?.id}>
             <Avatar
               className={classes.avatar}
-              src={user.profilePicture}
+              src={user?.profilePicture}
               alt="profile"
             />
-            <Typography className={classes.name}>{user.name}</Typography>
+            <Typography className={classes.name}>{user?.name}</Typography>
             <div className={classes.description}>
               <img src={MapPin} alt="map pin" className={classes.icon} />
-              <Typography className={classes.text}>{user.address}</Typography>
+              <Typography className={classes.text}>{user?.address}</Typography>
             </div>
             <div className={classes.description}>
               <img src={Document} alt="document" className={classes.icon} />
               <Typography className={classes.text}>
-                {user.docNumber.toString()}
+                {user?.docNumber?.toString()}
               </Typography>
             </div>
           </li>
