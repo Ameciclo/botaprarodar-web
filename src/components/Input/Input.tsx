@@ -10,6 +10,7 @@ interface InputProps {
   type: string;
   dataTestId: string;
   className: string;
+  defaultValue?: string;
   rules: Record<string, unknown>;
 }
 
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   label,
   dataTestId,
   rules,
+  defaultValue,
   ...props
 }) => {
   const classes = useStyles();
@@ -27,7 +29,7 @@ const Input: React.FC<InputProps> = ({
     <Controller
       name={name}
       control={control}
-      defaultValue=""
+      defaultValue={defaultValue}
       rules={rules}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <>
@@ -37,6 +39,7 @@ const Input: React.FC<InputProps> = ({
             value={value}
             onChange={onChange}
             variant="outlined"
+            defaultValue={defaultValue}
             inputProps={{ 'data-testid': { dataTestId } }}
             error={!!error}
             helperText={

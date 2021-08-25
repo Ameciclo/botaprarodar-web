@@ -10,8 +10,12 @@ const CommunityService = {
     });
   },
   async getCommunityById(id: string) {
-    const { data } = await api.get(`/communuties/${id}.json`);
+    const { data } = await api.get(`/communities/${id}.json`);
+    return data;
+  },
 
+  async editCommunityById(id: string, body: any) {
+    const { data } = await api.put(`/communities/${id}.json`, body);
     return data;
   },
 };

@@ -1,21 +1,46 @@
-import React from 'react';
-import { Button, Card, CardHeader, CardContent, Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardContent,
+  Grid,
+  CircularProgress,
+} from '@material-ui/core';
 import Community from 'models/Community/Community';
 import { useForm } from 'react-hook-form';
 import { Input } from 'components';
+import CommunityService from 'services/CommunityService/CommunityService';
+import { useHistory } from 'react-router-dom';
 import useStyles from './EditCommunityForm.styles';
 
 interface EditCommunitiProps {
   community?: Community;
 }
 
-const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
+const EditCommunityForm: React.FC<EditCommunitiProps> = ({ community }) => {
   const classes = useStyles();
+  const history = useHistory();
   const { handleSubmit, control } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (data: any) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    if (community?.id) {
+      setLoading(true);
+      CommunityService.editCommunityById(community.id, {
+        ...community,
+        ...data,
+      })
+        .then(() => {
+          history.push('/comunidades');
+        })
+        .catch(err => {
+          console.error(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   return (
@@ -30,12 +55,13 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
           <Grid container direction="row" spacing={3}>
             <Grid item xs={12}>
               <Input
-                label="Node da comunidade"
+                label="Nome da comunidade"
                 type="text"
                 name="name"
                 className={classes.input}
                 control={control}
                 dataTestId="name"
+                defaultValue={community?.name}
                 rules={{ required: 'Nome da comunidade é obrigatório' }}
               />
             </Grid>
@@ -47,6 +73,7 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
                 className={classes.input}
                 control={control}
                 dataTestId="description"
+                defaultValue={community?.description}
                 rules={{ required: 'Descrição da comunidade é obrigatória' }}
               />
             </Grid>
@@ -58,6 +85,7 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
                 className={classes.input}
                 control={control}
                 dataTestId="org_name"
+                defaultValue={community?.org_name}
                 rules={{ required: 'Nome do gestor é obrigatório' }}
               />
             </Grid>
@@ -69,6 +97,7 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
                 className={classes.input}
                 control={control}
                 dataTestId="org_email"
+                defaultValue={community?.org_email}
                 rules={{
                   required: 'E-mail do gestor é obrigatório',
                 }}
@@ -77,11 +106,27 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
           </Grid>
           <hr className={classes.buttonSeparator} />
           <Button
+            data-testid="cancel-button"
+            type="button"
+            className={`${classes.buttonCancel}`}
+            onClick={() => history.push('/comunidades')}
+          >
+            CANCELAR
+          </Button>
+          <Button
             data-testid="submit-button"
             type="submit"
             className={`${classes.buttonStyle}`}
+            disabled={loading}
+            startIcon={
+              loading ? (
+                <CircularProgress style={{ width: 23, height: 23 }} />
+              ) : (
+                ''
+              )
+            }
           >
-            SALVAR ALTERAÇÕES
+            {loading ? 'ENVIANDO INFORMAÇÕES' : 'SALVAR ALTERAÇÕES'}
           </Button>
         </form>
       </CardContent>

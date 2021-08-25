@@ -1,10 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 
-export default makeStyles(() => ({
+export default makeStyles(theme => ({
   root: {
     margin: '20px 0',
     '& hr': {
-      border: '1px solid #EEEEEE',
+      border: '1px solid #CCC',
+    },
+    '& button': {
+      [theme.breakpoints.down('sm')]: {
+        width: '100%',
+      },
     },
   },
   header: {
@@ -24,10 +29,22 @@ export default makeStyles(() => ({
     fontWeight: 500,
     fontSize: 14,
     letterSpacing: '1.25px',
+    width: 200,
+    height: 45,
     marginTop: 20,
     '&:disabled': {
       backgroundColor: '#D8D8D8',
     },
+    '&:hover': {
+      backgroundColor: '#019b9a',
+    },
+  },
+  buttonCancel: {
+    width: 200,
+    height: 45,
+    margin: '20px 20px 0 0',
+    backgroundColor: '#FFF',
+    border: '1px solid #EEEEEE',
   },
   errorIconStyle: {
     fontSize: 14,
