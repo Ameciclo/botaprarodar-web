@@ -10,4 +10,5 @@ export default interface User {
   docPicture: string;
   docPictureBack: string;
   residenceProofPicture: string;
+  isBlocked: boolean;
 }

@@ -46,4 +46,16 @@ export default makeStyles({
     lineHeight: '20px',
     textAlign: 'center',
   },
+  blocked: {
+    color: '#FFFFFF',
+    borderRadius: '50%',
+    alignSelf: 'center',
+    backgroundColor: '#E53535',
+  },
+  notBlocked: {
+    color: '#FFFFFF',
+    borderRadius: '50%',
+    alignSelf: 'center',
+    backgroundColor: '#05A660',
+  },
 });

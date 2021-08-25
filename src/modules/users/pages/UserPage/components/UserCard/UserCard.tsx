@@ -1,4 +1,11 @@
-import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
+import {
+  Avatar,
+  Card,
+  CardContent,
+  Typography,
+  Badge,
+} from '@material-ui/core';
+import { Lock, LockOpen } from '@material-ui/icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Document, MapPin } from '../../../../../../shared/assets/icons';
@@ -15,6 +22,7 @@ interface UserCardProps {
     id: string;
     address: string;
     docNumber: bigint;
+    isBlocked: boolean;
   };
 }
 
@@ -27,11 +35,26 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
       <CardContent>
         <Link to={`/usuarios/${user?.id}`}>
           <li key={user?.id}>
-            <Avatar
-              className={classes.avatar}
-              src={user?.profilePicture}
-              alt="profile"
-            />
+            <Badge
+              overlap="circle"
+              badgeContent={
+                user.isBlocked ? (
+                  <Lock className={classes.blocked} />
+                ) : (
+                  <LockOpen className={classes.notBlocked} />
+                )
+              }
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+            >
+              <Avatar
+                className={classes.avatar}
+                src={user?.profilePicture}
+                alt="profile"
+              />
+            </Badge>
             <Typography className={classes.name}>{user?.name}</Typography>
             <div className={classes.description}>
               <img src={MapPin} alt="map pin" className={classes.icon} />
