@@ -1,4 +1,4 @@
-import { useGetAuth } from 'context/AuthContext';
+import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import React from 'react';
 import {
   Route as ReactDOMRoute,

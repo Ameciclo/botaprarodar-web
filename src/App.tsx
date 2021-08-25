@@ -2,9 +2,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createTheme } from '@material-ui/core';
 import { ptBR } from '@material-ui/core/locale';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from 'modules/authentication/contexts/AuthContext';
 import Routes from './routes';
-import './styles/global.css';
+import 'shared/styles/global.css';
 
 const Theme = createTheme(
   {

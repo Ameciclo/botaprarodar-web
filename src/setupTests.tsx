@@ -6,8 +6,8 @@ import '@testing-library/jest-dom';
 import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import AuthInterface from './models/Auth/AuthInterface';
+import { AuthProvider } from './modules/authentication/contexts/AuthContext';
+import AuthInterface from './modules/authentication/models/AuthInterface';
 
 jest.mock('react-chartjs-2', () => ({
   Bar: () => null,

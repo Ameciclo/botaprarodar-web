@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import UserDetailPage from 'pages/UserDetailPage/UserDetailPage';
-import EditCommunityPage from 'pages/EditCommunityPage/EditCommunityPage';
-import CommunityPage from '../pages/CommunityPage/CommunityPage';
-import DashboardPage from '../pages/DashboardPage/DashboardPage';
-import LoginPage from '../pages/LoginPage/LoginPage';
-import UserPage from '../pages/UserPage/UserPage';
+import UserDetailPage from 'modules/users/pages/UserDetailPage/UserDetailPage';
+import EditCommunityPage from 'modules/communities/pages/EditCommunityPage/EditCommunityPage';
+import CommunityPage from '../modules/communities/pages/CommunityPage/CommunityPage';
+import DashboardPage from '../modules/dashboard/pages/DashboardPage/DashboardPage';
+import LoginPage from '../modules/authentication/pages/LoginPage/LoginPage';
+import UserPage from '../modules/users/pages/UserPage/UserPage';
 import Route from './Route';
-import Menu from '../components/Menu/Menu';
+import Menu from '../shared/components/Menu/Menu';
 
 const Routes: React.FC = () => (
   <Switch>
