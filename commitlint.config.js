@@ -9,11 +9,11 @@ module.exports = {
 		'subject-case': [
 			2,
 			'never',
-			['sentence-case', 'start-case', 'pascal-case', 'upper-case'],
+			['upper-case', 'camel-case', 'kebab-case', 'snake-case'],
 		],
 		'subject-empty': [2, 'never'],
 		'subject-full-stop': [2, 'never', '.'],
-		'type-case': [2, 'always', 'lower-case'],
+		'type-case': [2, 'always', ['lower-case', 'upper-case']],
 		'type-empty': [2, 'never'],
 		'type-enum': [
 			2,
@@ -98,6 +98,16 @@ module.exports = {
 						description: 'Reverts a previous commit',
 						title: 'Reverts',
 						emoji: '🗑',
+					},
+          merge: {
+						description: 'Merging changes',
+						title: 'merge',
+						emoji: '🤝',
+					},
+          WIP: {
+						description: 'Work in progress',
+						title: 'WIP',
+						emoji: '🔨',
 					},
 				},
 			},
