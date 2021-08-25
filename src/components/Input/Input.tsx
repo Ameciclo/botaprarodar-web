@@ -1,5 +1,7 @@
 import { TextField } from '@material-ui/core';
 import { Controller } from 'react-hook-form';
+import { ErrorOutline } from '@material-ui/icons';
+import useStyles from './Input.styles';
 
 interface InputProps {
   control: any;
@@ -19,6 +21,8 @@ const Input: React.FC<InputProps> = ({
   rules,
   ...props
 }) => {
+  const classes = useStyles();
+
   return (
     <Controller
       name={name}
@@ -26,17 +30,26 @@ const Input: React.FC<InputProps> = ({
       defaultValue=""
       rules={rules}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <TextField
-          label={label}
-          name={name}
-          value={value}
-          onChange={onChange}
-          variant="outlined"
-          inputProps={{ 'data-testid': { dataTestId } }}
-          error={!!error}
-          helperText={error ? error.message : null}
-          {...props}
-        />
+        <>
+          <TextField
+            label={label}
+            name={name}
+            value={value}
+            onChange={onChange}
+            variant="outlined"
+            inputProps={{ 'data-testid': { dataTestId } }}
+            error={!!error}
+            helperText={
+              error ? (
+                <span className={classes.errorContainer}>
+                  <ErrorOutline />
+                  {error.message}
+                </span>
+              ) : null
+            }
+            {...props}
+          />
+        </>
       )}
     />
   );

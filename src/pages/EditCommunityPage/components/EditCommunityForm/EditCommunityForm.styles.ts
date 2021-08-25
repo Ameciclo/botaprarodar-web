@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core';
 export default makeStyles(() => ({
   root: {
     margin: '20px 0',
+    '& hr': {
+      border: '1px solid #EEEEEE',
+    },
   },
   header: {
     '& span': {
@@ -47,5 +50,8 @@ export default makeStyles(() => ({
     fontStyle: 'normal',
     fontFamily: 'Roboto',
     color: 'red',
+  },
+  buttonSeparator: {
+    margin: '20px -20px 0 -20px',
   },
 }));

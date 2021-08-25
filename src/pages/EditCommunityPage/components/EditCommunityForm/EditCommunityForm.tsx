@@ -47,7 +47,7 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
                 className={classes.input}
                 control={control}
                 dataTestId="description"
-                rules={{ required: 'Nome da comunidade é obrigatório' }}
+                rules={{ required: 'Descrição da comunidade é obrigatória' }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -58,21 +58,24 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = () => {
                 className={classes.input}
                 control={control}
                 dataTestId="org_name"
-                rules={{ required: 'Nome da comunidade é obrigatório' }}
+                rules={{ required: 'Nome do gestor é obrigatório' }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Input
                 label="E-mail do Gestor"
-                type="text"
+                type="email"
                 name="org_email"
                 className={classes.input}
                 control={control}
                 dataTestId="org_email"
-                rules={{ required: 'Nome da comunidade é obrigatório' }}
+                rules={{
+                  required: 'E-mail do gestor é obrigatório',
+                }}
               />
             </Grid>
           </Grid>
+          <hr className={classes.buttonSeparator} />
           <Button
             data-testid="submit-button"
             type="submit"
