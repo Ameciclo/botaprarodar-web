@@ -31,7 +31,7 @@ module.exports = {
 
   allowTicketNumber: false,
   isTicketNumberRequired: false,
-  subjectSeparator: ' ',
+  subjectSeparator: ': ',
   allowCustomScopes: true,
   allowBreakingChanges: ['feat', 'fix'],
   skipQuestions: ['body', 'footer'],
