@@ -10,7 +10,7 @@ export const StyledBadge = withStyles(() => ({
 
 export default makeStyles({
   card: {
-    height: '237px',
+    height: '169px',
     width: '366px',
     background: '#ffffff',
     boxShadow:
@@ -20,6 +20,11 @@ export default makeStyles({
     '& a': {
       textDecoration: 'none',
     },
+  },
+  cardContent: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
   avatar: {
     width: '73.82px !important',
