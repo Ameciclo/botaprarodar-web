@@ -2,12 +2,14 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles(() => ({
   container: {
-    display: 'flex',
-    alignItems: 'center',
     width: 400,
-    '& svg': {
+    '&:first-child div': {
+      minHeight: 0,
+    },
+    '& .icon': {
       fontSize: 20,
       marginRight: 20,
+      marginBottom: -3,
     },
   },
 }));

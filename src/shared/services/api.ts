@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-globals */
 import axios from 'axios';
 import AuthInterface from 'modules/authentication/models/AuthInterface';
-import { toast } from 'react-toastify';
+import { toast } from 'shared/components';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_DATABASE_URL,
