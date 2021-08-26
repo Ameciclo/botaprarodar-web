@@ -3,7 +3,7 @@ import { Badge, makeStyles, withStyles } from '@material-ui/core';
 export const StyledBadge = withStyles(() => ({
   badge: {
     right: '50%',
-    top: '75%',
+    top: '80%',
     color: '#FFFFFF',
   },
 }))(Badge);
@@ -57,10 +57,6 @@ export default makeStyles({
   blocked: {
     backgroundColor: '#E53535',
     border: '3px solid #E53535',
-  },
-  notBlocked: {
-    backgroundColor: '#05A660',
-    border: '3px solid #05A660',
   },
   badge: {
     width: '24px',

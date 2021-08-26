@@ -11,7 +11,7 @@ import { UserDetailHeading, UserDetailInfo } from './components';
 const UserDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const classes = useStyles();
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User>({} as User);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {

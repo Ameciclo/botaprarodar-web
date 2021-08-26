@@ -11,7 +11,6 @@ export default makeStyles(theme => ({
     height: '118px',
     marginBottom: '16px',
     position: 'relative',
-    top: 30,
     border: '3px solid #fff',
     [theme.breakpoints.down('sm')]: {
       width: 50,
@@ -41,5 +40,14 @@ export default makeStyles(theme => ({
     right: 0,
     top: 55,
     zIndex: -1,
+  },
+  blocked: {
+    backgroundColor: '#E53535',
+    border: '3px solid #E53535',
+  },
+  badge: {
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
   },
 }));

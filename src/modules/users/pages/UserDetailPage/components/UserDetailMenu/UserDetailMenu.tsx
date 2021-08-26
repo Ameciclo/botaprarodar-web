@@ -5,9 +5,10 @@ import useStyles from './UserDetailMenu.styles';
 
 interface UserMenuProps {
   isBlocked: boolean;
+  onToggleBlock(): void;
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({ isBlocked }) => {
+const UserMenu: React.FC<UserMenuProps> = ({ isBlocked, onToggleBlock }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
 
@@ -37,13 +38,13 @@ const UserMenu: React.FC<UserMenuProps> = ({ isBlocked }) => {
         className={classes.menu}
       >
         {isBlocked ? (
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={onToggleBlock}>
             {' '}
             <LockOpenOutlined />
             Desbloquear
           </MenuItem>
         ) : (
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={onToggleBlock}>
             {' '}
             <LockOutlined /> Bloquear
           </MenuItem>
