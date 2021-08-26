@@ -40,9 +40,11 @@ const CommunityPage: React.FC = () => {
             <Grid
               key={community.id}
               item
-              lg={3}
+              xl={3}
+              lg={4}
               md={6}
               sm={12}
+              spacing={3}
               className={classes.card}
             >
               <CommunityCard key={community.id} community={community} />
