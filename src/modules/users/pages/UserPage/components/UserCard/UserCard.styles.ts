@@ -28,12 +28,6 @@ export default makeStyles({
     margin: 'auto',
     marginBottom: '16px',
   },
-  avatarNotBlocked: {
-    border: '8.09px solid #05A660',
-  },
-  avatarBlocked: {
-    border: '8.09px solid #E53535',
-  },
   name: {
     color: '#515151',
     fontFamily: 'Roboto',

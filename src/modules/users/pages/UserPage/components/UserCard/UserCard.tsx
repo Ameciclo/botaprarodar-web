@@ -1,10 +1,11 @@
 import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
-import { LockOpenOutlined, LockOutlined } from '@material-ui/icons';
-import React from 'react';
+import { LockOutlined } from '@material-ui/icons';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Document, MapPin } from '../../../../../../shared/assets/icons';
 import UserMenu from '../UserMenu/UserMenu';
 import useStyles, { StyledBadge } from './UserCard.styles';
+import UserService from '../../../../services/UserService';
 
 interface UserCardProps {
   user: {
@@ -22,34 +23,31 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
   const classes = useStyles();
+  const [isBlocked, setIsBlocked] = useState(user.isBlocked);
+
+  const handleToggleBlock = async () => {
+    const data = await UserService.toggleUserBlock(user.id, !isBlocked);
+    setIsBlocked(data.isBlocked);
+  };
 
   return (
     <Card className={classes.card} {...rest}>
-      <UserMenu isBlocked={false} />
+      <UserMenu isBlocked={isBlocked} onToggleBlock={handleToggleBlock} />
       <CardContent>
         <Link to={`/usuarios/${user?.id}`}>
           <li key={user?.id}>
             <StyledBadge
-              overlap="circle"
+              overlap="circular"
               badgeContent={
-                user.isBlocked ? (
+                isBlocked && (
                   <LockOutlined
-                    fontSize="small"
                     className={`${classes.blocked} ${classes.badge}`}
-                  />
-                ) : (
-                  <LockOpenOutlined
-                    className={`${classes.notBlocked} ${classes.badge}`}
                   />
                 )
               }
             >
               <Avatar
-                className={`${classes.avatar} ${
-                  user.isBlocked
-                    ? classes.avatarBlocked
-                    : classes.avatarNotBlocked
-                }`}
+                className={classes.avatar}
                 src={user?.profilePicture}
                 alt="profile"
               />
