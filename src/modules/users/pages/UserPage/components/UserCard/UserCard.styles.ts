@@ -1,4 +1,12 @@
-import { makeStyles } from '@material-ui/core';
+import { Badge, makeStyles, withStyles } from '@material-ui/core';
+
+export const StyledBadge = withStyles(() => ({
+  badge: {
+    right: '50%',
+    top: '75%',
+    color: '#FFFFFF',
+  },
+}))(Badge);
 
 export default makeStyles({
   card: {
@@ -14,11 +22,17 @@ export default makeStyles({
     },
   },
   avatar: {
-    width: '64px !important',
-    height: '64px !important',
+    width: '73.82px !important',
+    height: '73.82px !important',
     display: 'block',
     margin: 'auto',
     marginBottom: '16px',
+  },
+  avatarNotBlocked: {
+    border: '8.09px solid #05A660',
+  },
+  avatarBlocked: {
+    border: '8.09px solid #E53535',
   },
   name: {
     color: '#515151',
@@ -47,15 +61,16 @@ export default makeStyles({
     textAlign: 'center',
   },
   blocked: {
-    color: '#FFFFFF',
-    borderRadius: '50%',
-    alignSelf: 'center',
     backgroundColor: '#E53535',
+    border: '3px solid #E53535',
   },
   notBlocked: {
-    color: '#FFFFFF',
-    borderRadius: '50%',
-    alignSelf: 'center',
     backgroundColor: '#05A660',
+    border: '3px solid #05A660',
+  },
+  badge: {
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
   },
 });

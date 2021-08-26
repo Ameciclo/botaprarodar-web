@@ -1,16 +1,10 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  Typography,
-  Badge,
-} from '@material-ui/core';
-import { Lock, LockOpen } from '@material-ui/icons';
+import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
+import { LockOpenOutlined, LockOutlined } from '@material-ui/icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Document, MapPin } from '../../../../../../shared/assets/icons';
 import UserMenu from '../UserMenu/UserMenu';
-import useStyles from './UserCard.styles';
+import useStyles, { StyledBadge } from './UserCard.styles';
 
 interface UserCardProps {
   user: {
@@ -35,26 +29,31 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
       <CardContent>
         <Link to={`/usuarios/${user?.id}`}>
           <li key={user?.id}>
-            <Badge
+            <StyledBadge
               overlap="circle"
               badgeContent={
                 user.isBlocked ? (
-                  <Lock className={classes.blocked} />
+                  <LockOutlined
+                    fontSize="small"
+                    className={`${classes.blocked} ${classes.badge}`}
+                  />
                 ) : (
-                  <LockOpen className={classes.notBlocked} />
+                  <LockOpenOutlined
+                    className={`${classes.notBlocked} ${classes.badge}`}
+                  />
                 )
               }
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
             >
               <Avatar
-                className={classes.avatar}
+                className={`${classes.avatar} ${
+                  user.isBlocked
+                    ? classes.avatarBlocked
+                    : classes.avatarNotBlocked
+                }`}
                 src={user?.profilePicture}
                 alt="profile"
               />
-            </Badge>
+            </StyledBadge>
             <Typography className={classes.name}>{user?.name}</Typography>
             <div className={classes.description}>
               <img src={MapPin} alt="map pin" className={classes.icon} />
