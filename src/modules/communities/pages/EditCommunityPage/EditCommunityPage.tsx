@@ -1,10 +1,9 @@
 import Community from 'modules/communities/models/Community';
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CommunityService from 'modules/communities/services/CommunityService';
-import { Typography } from '@material-ui/core';
-import { ArrowBackIos } from '@material-ui/icons';
 import { Loading } from 'shared/components';
+import FormHeader from 'shared/components/FormHeader/FormHeader';
 import useStyles from './EditCommunityPage.styles';
 import EditCommunityForm from './components/EditCommunityForm/EditCommunityForm';
 
@@ -29,11 +28,12 @@ const EditCommunityPage: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h1" component="h1" className={classes.heading}>
-        <Link to="/comunidades" style={{ display: 'flex' }}>
-          <ArrowBackIos /> Editar
-        </Link>
-      </Typography>
+      <FormHeader
+        link="/comunidades"
+        title={
+          community?.name ? `Editar ${community.name}` : 'Editar comunidade'
+        }
+      />
       {loading ? <Loading /> : <EditCommunityForm community={community} />}
     </div>
   );

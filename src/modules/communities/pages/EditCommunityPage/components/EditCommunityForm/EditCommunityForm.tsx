@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import Community from 'modules/communities/models/Community';
 import { useForm } from 'react-hook-form';
-import { Input } from 'shared/components';
+import { Input, toast } from 'shared/components';
 import CommunityService from 'modules/communities/services/CommunityService';
 import { useHistory } from 'react-router-dom';
 import useStyles from './EditCommunityForm.styles';
@@ -33,6 +33,7 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = ({ community }) => {
       })
         .then(() => {
           history.push('/comunidades');
+          toast.success('Comunidade editada com sucesso.');
         })
         .catch(err => {
           console.error(err);
@@ -63,18 +64,6 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = ({ community }) => {
                 dataTestId="name"
                 defaultValue={community?.name}
                 rules={{ required: 'Nome da comunidade é obrigatório' }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Input
-                label="Descrição"
-                type="text"
-                name="description"
-                className={classes.input}
-                control={control}
-                dataTestId="description"
-                defaultValue={community?.description}
-                rules={{ required: 'Descrição da comunidade é obrigatória' }}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -126,7 +115,7 @@ const EditCommunityForm: React.FC<EditCommunitiProps> = ({ community }) => {
               )
             }
           >
-            {loading ? 'ENVIANDO INFORMAÇÕES' : 'SALVAR ALTERAÇÕES'}
+            {loading ? 'CARREGANDO' : 'SALVAR ALTERAÇÕES'}
           </Button>
         </form>
       </CardContent>

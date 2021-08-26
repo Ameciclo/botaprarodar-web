@@ -2,6 +2,7 @@
 /* eslint-disable no-restricted-globals */
 import axios from 'axios';
 import AuthInterface from 'modules/authentication/models/AuthInterface';
+import { toast } from 'react-toastify';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_DATABASE_URL,
@@ -34,10 +35,15 @@ api.interceptors.response.use(
   },
   error => {
     if (error.response.status === 401) {
-      alert(
+      toast.error(
         'Sua sessão expirou. Você será redirecionado para a tela de login.',
+        {
+          autoClose: 2000,
+          onClose: () => {
+            window.location.href = '/login';
+          },
+        },
       );
-      window.location.href = '/login';
     }
     return Promise.reject(error);
   },

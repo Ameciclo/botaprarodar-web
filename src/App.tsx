@@ -3,7 +3,9 @@ import { createTheme } from '@material-ui/core';
 import { ptBR } from '@material-ui/core/locale';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { AuthProvider } from 'modules/authentication/contexts/AuthContext';
+import { ToastContainer } from 'shared/components';
 import Routes from './routes';
+import 'react-toastify/dist/ReactToastify.css';
 import 'shared/styles/global.css';
 
 const Theme = createTheme(
@@ -25,6 +27,7 @@ function App() {
     <Router>
       <ThemeProvider theme={Theme}>
         <AuthProvider>
+          <ToastContainer />
           <Routes />
         </AuthProvider>
       </ThemeProvider>
