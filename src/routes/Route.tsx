@@ -1,9 +1,9 @@
 import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import React from 'react';
 import {
+  Redirect,
   Route as ReactDOMRoute,
   RouteProps as ReactRouteProps,
-  Redirect,
 } from 'react-router-dom';
 
 interface RouteProps extends ReactRouteProps {

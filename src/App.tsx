@@ -1,12 +1,12 @@
-import { BrowserRouter as Router } from 'react-router-dom';
 import { createTheme } from '@material-ui/core';
 import { ptBR } from '@material-ui/core/locale';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { AuthProvider } from 'modules/authentication/contexts/AuthContext';
-import { ToastContainer } from 'shared/components';
-import Routes from './routes';
+import { BrowserRouter as Router } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'shared/components';
 import 'shared/styles/global.css';
+import Routes from './routes';
 
 const Theme = createTheme(
   {
