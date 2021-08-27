@@ -6,6 +6,9 @@ export default makeStyles(theme => ({
     alignItems: 'flex-start',
   },
   card: {
+    width: 558,
+    height: 295,
+    overflow: 'auto',
     '& hr': {
       marginLeft: -20,
       marginRight: -20,
@@ -26,6 +29,7 @@ export default makeStyles(theme => ({
     justifyContent: 'space-between',
     color: '#515151',
     padding: '0 16px',
+    overflow: 'auto',
     '&:last-child': {
       paddingBottom: 0,
     },
@@ -85,8 +89,8 @@ export default makeStyles(theme => ({
   imageButton: {
     border: 0,
     '& img': {
-      width: '100%',
-      height: '100%',
+      width: '50%',
+      height: '50%',
       borderRadius: 10,
       margin: 20,
     },
