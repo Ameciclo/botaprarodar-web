@@ -49,9 +49,9 @@ export default makeStyles({
     alignItems: 'center',
     margin: '20px 0',
   },
-  icon: { marginRight: '12px' },
+  icon: { marginRight: '12px', color: '#515151' },
   text: {
-    color: '#828282',
+    color: '#515151',
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'normal',

@@ -1,8 +1,11 @@
 import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
-import { LockOutlined } from '@material-ui/icons';
+import {
+  AssignmentOutlined,
+  LockOutlined,
+  RoomOutlined,
+} from '@material-ui/icons';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Document, MapPin } from '../../../../../../shared/assets/icons';
 import UserMenu from '../UserMenu/UserMenu';
 import useStyles, { StyledBadge } from './UserCard.styles';
 import UserService from '../../../../services/UserService';
@@ -56,13 +59,13 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
               <div>
                 <Typography className={classes.name}>{user?.name}</Typography>
                 <div className={classes.description}>
-                  <img src={Document} alt="document" className={classes.icon} />
+                  <AssignmentOutlined className={classes.icon} />
                   <Typography className={classes.text}>
                     {user?.docNumber?.toString()}
                   </Typography>
                 </div>
                 <div className={classes.description}>
-                  <img src={MapPin} alt="map pin" className={classes.icon} />
+                  <RoomOutlined className={classes.icon} />
                   <Typography className={classes.text}>
                     {user?.address}
                   </Typography>

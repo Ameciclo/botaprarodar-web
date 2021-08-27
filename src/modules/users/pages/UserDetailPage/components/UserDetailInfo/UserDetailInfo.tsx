@@ -8,10 +8,11 @@ import {
   Avatar,
 } from '@material-ui/core';
 import {
-  ContactMailOutlined,
   HomeOutlined,
   LockOutlined,
   RoomOutlined,
+  AssignmentOutlined,
+  PhoneOutlined,
 } from '@material-ui/icons';
 import React, { useState } from 'react';
 import Viewer from 'react-viewer';
@@ -45,7 +46,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
       className={classes.root}
       {...rest}
     >
-      <Grid item xs={4} className={classes.userContainer}>
+      <Grid item xs={5} className={classes.userContainer}>
         <StyledBadge
           overlap="circular"
           badgeContent={
@@ -67,8 +68,16 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
                 {user?.name}
               </Typography>
             </div>
-            <div className={classes.flexRowContainer}>
-              <RoomOutlined />
+            <div className={classes.userInfoElements}>
+              <PhoneOutlined className={classes.icon} />
+              <Typography>{user?.telephone}</Typography>
+            </div>
+            <div className={classes.userInfoElements}>
+              <AssignmentOutlined className={classes.icon} />
+              <Typography>{user?.docNumber?.toString()}</Typography>
+            </div>
+            <div className={classes.userInfoElements}>
+              <RoomOutlined className={classes.icon} />
               <Typography>{user?.address}</Typography>
             </div>
           </div>
@@ -80,7 +89,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
           />
         </Grid>
       </Grid>
-      <Grid item xs={6} lg={4} className={classes.flexRowContainer}>
+      <Grid item xs={6} lg={4}>
         <Grid container spacing={2} direction="column">
           <Grid item>
             <Card className={classes.card}>
@@ -88,7 +97,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
               <hr />
               <CardContent className={classes.cardContent}>
                 <div>
-                  <ContactMailOutlined />
+                  <AssignmentOutlined className={classes.icon} />
                   <Typography>{user?.docNumber}</Typography>
                 </div>
                 <button

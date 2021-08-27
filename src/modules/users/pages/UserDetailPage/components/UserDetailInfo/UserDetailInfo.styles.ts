@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles(theme => ({
   root: {
-    marginTop: 25,
+    marginTop: 60,
+    alignItems: 'flex-start',
   },
   card: {
     '& hr': {
@@ -46,17 +47,27 @@ export default makeStyles(theme => ({
     alignItems: 'space-around',
     marginLeft: 40,
   },
+  userInfoElements: {
+    display: 'flex',
+    alignItems: 'space-evenly',
+    marginLeft: 40,
+    color: '#515151',
+    marginBottom: 10,
+  },
   userInfoContainer: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'space-between',
+    justifyContent: 'center',
   },
   username: {
     fontFamily: 'Roboto',
     fontStyle: 'normal',
-    fontWeight: 500,
     fontSize: 36,
+    fontWeight: 300,
     color: '#000000',
     marginLeft: 40,
+    marginBottom: 20,
     [theme.breakpoints.down('sm')]: {
       fontSize: 14,
     },
@@ -91,4 +102,5 @@ export default makeStyles(theme => ({
     height: '64px',
     borderRadius: '50%',
   },
+  icon: { marginRight: '12px' },
 }));

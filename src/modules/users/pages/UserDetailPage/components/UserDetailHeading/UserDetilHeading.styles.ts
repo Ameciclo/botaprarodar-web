@@ -10,7 +10,7 @@ export default makeStyles(theme => ({
   userBackground: {
     background: 'rgba(1, 135, 134, 0.5)',
     width: '100%',
-    height: 150,
+    height: 80,
     position: 'absolute',
     right: 0,
     top: 55,
