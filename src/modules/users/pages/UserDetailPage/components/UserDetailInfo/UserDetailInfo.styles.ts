@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export default makeStyles({
+export default makeStyles(theme => ({
   root: {
     marginTop: 25,
   },
@@ -37,6 +37,41 @@ export default makeStyles({
       },
     },
   },
+  userContainer: {
+    display: 'flex',
+    alignItems: 'flex-start',
+  },
+  flexRowContainer: {
+    display: 'flex',
+    alignItems: 'space-around',
+    marginLeft: 40,
+  },
+  userInfoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  username: {
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: 36,
+    color: '#000000',
+    marginLeft: 40,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
+  },
+  avatar: {
+    width: '180px',
+    height: '180px',
+    marginBottom: '16px',
+    position: 'relative',
+    border: '3px solid #fff',
+    [theme.breakpoints.down('sm')]: {
+      width: 50,
+      height: 50,
+    },
+  },
   imageButton: {
     width: 90,
     height: 60,
@@ -47,4 +82,13 @@ export default makeStyles({
       borderRadius: 10,
     },
   },
-});
+  blocked: {
+    backgroundColor: '#E53535',
+    border: '3px solid #E53535',
+  },
+  badge: {
+    width: '64px',
+    height: '64px',
+    borderRadius: '50%',
+  },
+}));

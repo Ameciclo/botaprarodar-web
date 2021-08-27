@@ -3,7 +3,7 @@ import { Badge, makeStyles, withStyles } from '@material-ui/core';
 export const StyledBadge = withStyles(() => ({
   badge: {
     right: '50%',
-    top: '80%',
+    top: '87%',
     color: '#FFFFFF',
   },
 }))(Badge);

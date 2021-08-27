@@ -31,14 +31,14 @@ const UserDetailPage: React.FC = () => {
     <div className={classes.root}>
       <Typography variant="h1" component="h1" className={classes.heading}>
         <Link to="/usuarios" style={{ display: 'flex' }}>
-          <ArrowBackIos /> Perfil do usuário
+          <ArrowBackIos /> Perfil de {user.name}
         </Link>
       </Typography>
       {loading ? (
         <Loading />
       ) : (
         <div>
-          <UserDetailHeading user={user} />
+          <UserDetailHeading />
           <UserDetailInfo user={user} />
         </div>
       )}

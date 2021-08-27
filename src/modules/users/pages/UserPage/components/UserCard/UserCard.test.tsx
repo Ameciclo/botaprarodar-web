@@ -13,6 +13,7 @@ test('renders User Card', () => {
     id: '1',
     address: 'Test street',
     docNumber: BigInt(12345678910),
+    isBlocked: false,
   };
 
   const { container } = render(
