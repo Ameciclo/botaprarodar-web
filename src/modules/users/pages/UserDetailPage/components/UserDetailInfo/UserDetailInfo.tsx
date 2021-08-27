@@ -19,6 +19,7 @@ import useStyles from './UserDetailInfo.styles';
 import { StyledBadge } from '../../../UserPage/components/UserCard/UserCard.styles';
 import UserService from '../../../../services/UserService';
 import UserDetailMenu from '../UserDetailMenu/UserDetailMenu';
+import { toast } from '../../../../../../shared/components';
 
 interface UserInfoProps {
   user: User;
@@ -31,8 +32,18 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
   const [isBlocked, setIsBlocked] = useState(user.isBlocked);
 
   const handleToggleBlock = async () => {
-    const data = await UserService.toggleUserBlock(user.id, !isBlocked);
-    setIsBlocked(data.isBlocked);
+    try {
+      const data = await UserService.toggleUserBlock(user.id, !isBlocked);
+      setIsBlocked(data.isBlocked);
+      const blockMsg = data.isBlocked ? 'bloqueado(a)' : 'desbloqueado(a)';
+      toast.success(`${user.name} ${blockMsg}`, {
+        autoClose: 3000,
+      });
+    } catch (error) {
+      toast.error('Desculpe isso não foi possível.', {
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
