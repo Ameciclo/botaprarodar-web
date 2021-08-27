@@ -12,6 +12,9 @@ export default makeStyles({
 
     color: '#263238',
   },
+  cardHeaderBox: {
+    borderBottom: '2px solid #F6F6F6',
+  },
   cardContent: {
     fontFamily: 'Roboto',
     fontStyle: 'normal',

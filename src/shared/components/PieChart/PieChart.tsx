@@ -27,7 +27,7 @@ const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
     return array;
   }, []);
 
-  const datachart = useMemo(() => {
+  const dataChart = useMemo(() => {
     const labels = data?.map(item => item.label);
     const quantities = data?.map(item => item.quantity);
     const colors = getColorArray(data?.length || 0);
@@ -45,6 +45,7 @@ const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
 
   const options: ChartOptions = {
     aspectRatio: 1.3,
+    maintainAspectRatio: true,
     plugins: {
       title: {
         display: true,
@@ -58,19 +59,18 @@ const PieChart: FC<PieChartProps> = ({ data, chartLabel }) => {
         backgroundColor: theme.palette.background.paper,
         bodyColor: theme.palette.text.primary,
         borderColor: theme.palette.text.hint,
+        titleColor: theme.palette.text.primary,
         borderWidth: 1,
         enabled: true,
-        // footerFontColor: theme.palette.text.secondary,
         intersect: true,
         mode: 'index',
-        // titleFontColor: theme.palette.text.primary,
       },
     },
   };
 
   return (
     <Paper>
-      <Pie data={datachart} options={options} />
+      <Pie data={dataChart} options={options} />
     </Paper>
   );
 };

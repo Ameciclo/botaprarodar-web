@@ -1,10 +1,8 @@
-import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import DashboardService from 'modules/dashboard/services/DashboardService';
 import React, { FC, useEffect, useState } from 'react';
 import { Loading } from 'shared/components';
 import DashboardInfo from '../../models/DashboardInfo';
-import AdminDashboard from './fragments/AdminDashboard/AdminDashboard';
-import PublicDashboard from './fragments/PublicDashboard/PublicDashboard';
+import Dashboard from './fragments/Dashboard/Dashboard';
 
 const INITIAL_DASHBOARD: DashboardInfo = {
   bikesPerCommunities: [{ label: '', quantity: 0 }],
@@ -13,14 +11,14 @@ const INITIAL_DASHBOARD: DashboardInfo = {
   incidentsHappened: 0,
   travelsDone: 0,
   withdrawalsPerCommunities: [{ label: '', quantity: 0 }],
-  withdrawalsReason: [''],
+  withdrawalsReason: [{ label: '', quantity: 0 }],
+  bikersCommunities: [{ label: '', quantity: 0 }],
 };
 
 const DashboardPage: FC = () => {
   const [dashboardData, setDashboardData] =
     useState<DashboardInfo>(INITIAL_DASHBOARD);
   const [loading, setLoading] = useState<boolean>(true);
-  const { value: auth } = useGetAuth();
 
   useEffect(() => {
     DashboardService.dashboardInfo()
@@ -36,15 +34,7 @@ const DashboardPage: FC = () => {
   }, []);
 
   return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : auth.authenticated ? (
-        <AdminDashboard dashboardData={dashboardData} auth={auth} />
-      ) : (
-        <PublicDashboard dashboardData={dashboardData} />
-      )}
-    </>
+    <>{loading ? <Loading /> : <Dashboard dashboardData={dashboardData} />}</>
   );
 };
 

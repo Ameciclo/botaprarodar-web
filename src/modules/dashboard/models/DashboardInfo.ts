@@ -1,11 +1,12 @@
-import PieChartDataProps from '../../../shared/components/PieChart/PieChartDataProps';
+import ChartDataProps from '../../../shared/models/ChartDataProps';
 
 export default interface DashboardInfo {
   communitiesQuantity: number;
   bikesQuantity: number;
-  bikesPerCommunities: PieChartDataProps[];
-  withdrawalsPerCommunities: PieChartDataProps[];
+  bikesPerCommunities: ChartDataProps[];
+  withdrawalsPerCommunities: ChartDataProps[];
   travelsDone: number;
   incidentsHappened: number;
-  withdrawalsReason: string[];
+  withdrawalsReason: ChartDataProps[];
+  bikersCommunities: ChartDataProps[];
 }

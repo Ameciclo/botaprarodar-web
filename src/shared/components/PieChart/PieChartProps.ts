@@ -1,7 +1,7 @@
-import PieChartDataProps from './PieChartDataProps';
+import ChartDataProps from '../../models/ChartDataProps';
 
 export default interface PieChartProps {
-  data: PieChartDataProps[] | undefined;
+  data: ChartDataProps[] | undefined;
   chartWidth?: number;
   chartHeight?: number;
   chartLabel?: string;
