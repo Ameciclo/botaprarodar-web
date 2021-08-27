@@ -1,4 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import UserService from 'modules/users/services/UserService';
@@ -9,22 +15,22 @@ const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
 let container: HTMLElement;
 
-beforeEach(() => {
-  const user = {
-    name: 'Test',
-    communityId: '123',
-    telephone: '32423',
-    status: true,
-    profilePicture: 'test',
-    id: '1',
-    address: 'Test street',
-    docNumber: BigInt(12345678910),
-    isBlocked: false,
-  };
+const mockUser = {
+  name: 'Test',
+  communityId: '123',
+  telephone: '32423',
+  status: true,
+  profilePicture: 'test',
+  id: '1',
+  address: 'Test street',
+  docNumber: BigInt(12345678910),
+  isBlocked: false,
+};
 
+beforeEach(() => {
   container = render(
     <BrowserRouter>
-      <UserCard user={user} />
+      <UserCard user={mockUser} />
     </BrowserRouter>,
   ).container;
 });
@@ -33,8 +39,19 @@ it('renders User Card', () => {
   expect(container).toBeInTheDocument();
 });
 
-xit('should block user successfully', async () => {
+it('should block user successfully', async () => {
+  expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
   mockedUserService.toggleUserBlock.mockResolvedValue({ isBlocked: true });
 
-  fireEvent.click(screen.getByText('user-menu-test'));
+  act(() => {
+    fireEvent.click(screen.getByText('Bloquear'));
+  });
+
+  await waitFor(() => {
+    expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
+      mockUser.id,
+      !mockUser.isBlocked,
+    );
+    expect(screen.getByTestId('lock-icon')).toBeInTheDocument();
+  });
 });

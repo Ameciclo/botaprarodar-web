@@ -8,7 +8,6 @@ import {
   Avatar,
 } from '@material-ui/core';
 import {
-  HomeOutlined,
   LockOutlined,
   RoomOutlined,
   AssignmentOutlined,
@@ -93,19 +92,21 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
         <Grid container spacing={2} direction="column">
           <Grid item>
             <Card className={classes.card}>
-              <CardHeader className={classes.cardHeader} title="Documento" />
+              <CardHeader
+                className={classes.cardHeader}
+                title="Fotos do Documento"
+              />
               <hr />
               <CardContent className={classes.cardContent}>
-                <div>
-                  <AssignmentOutlined className={classes.icon} />
-                  <Typography>{user?.docNumber}</Typography>
-                </div>
                 <button
                   type="button"
                   className={classes.imageButton}
                   onClick={() => setVisibleDoc(true)}
                 >
-                  <img src={user?.docPicture} alt="document" />
+                  <div className={classes.flexRowContainer}>
+                    <img src={user?.docPicture} alt="document" />
+                    <img src={user?.docPictureBack} alt="document" />
+                  </div>
                 </button>
                 <Viewer
                   visible={visibleDoc}
@@ -130,18 +131,10 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
             <Card className={classes.card}>
               <CardHeader
                 className={classes.cardHeader}
-                title="Comprovante de residência"
+                title="Comprovante de Residência"
               />
               <hr />
               <CardContent className={classes.cardContent}>
-                <div>
-                  <HomeOutlined />
-                  <Typography>
-                    {user?.residenceProofPicture
-                      ? 'Possui'
-                      : 'Não foi cadastrado'}
-                  </Typography>
-                </div>
                 <button
                   type="button"
                   className={classes.imageButton}

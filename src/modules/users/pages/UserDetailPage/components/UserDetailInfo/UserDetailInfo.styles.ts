@@ -15,9 +15,9 @@ export default makeStyles(theme => ({
   cardHeader: {
     '& span': {
       fontFamily: 'Roboto',
-      fontWeight: 500,
+      fontWeight: 400,
       fontSize: 16,
-      color: '#263238',
+      color: '#515151',
     },
   },
   cardContent: {
@@ -26,7 +26,6 @@ export default makeStyles(theme => ({
     justifyContent: 'space-between',
     color: '#515151',
     padding: '0 16px',
-    height: 76,
     '&:last-child': {
       paddingBottom: 0,
     },
@@ -45,7 +44,7 @@ export default makeStyles(theme => ({
   flexRowContainer: {
     display: 'flex',
     alignItems: 'space-around',
-    marginLeft: 40,
+    marginLeft: 0,
   },
   userInfoElements: {
     display: 'flex',
@@ -84,13 +83,12 @@ export default makeStyles(theme => ({
     },
   },
   imageButton: {
-    width: 90,
-    height: 60,
     border: 0,
     '& img': {
       width: '100%',
       height: '100%',
       borderRadius: 10,
+      margin: 20,
     },
   },
   blocked: {

@@ -47,11 +47,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
   return (
     <Card className={classes.card} {...rest}>
       <CardContent>
-        <UserMenu
-          data-testid="user-menu-test"
-          isBlocked={isBlocked}
-          onToggleBlock={handleToggleBlock}
-        />
+        <UserMenu isBlocked={isBlocked} onToggleBlock={handleToggleBlock} />
         <Link to={`/usuarios/${user?.id}`}>
           <li key={user?.id}>
             <div className={classes.cardContent}>
@@ -60,6 +56,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
                 badgeContent={
                   isBlocked && (
                     <LockOutlined
+                      data-testid="lock-icon"
                       className={`${classes.blocked} ${classes.badge}`}
                     />
                   )
