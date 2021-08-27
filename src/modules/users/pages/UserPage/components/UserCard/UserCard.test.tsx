@@ -9,7 +9,6 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import UserService from 'modules/users/services/UserService';
 import UserCard from './UserCard';
-import { exists } from 'fs';
 
 jest.mock('modules/users/services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
@@ -36,24 +35,48 @@ beforeEach(() => {
   ).container;
 });
 
-it('renders User Card', () => {
-  expect(container).toBeInTheDocument();
-});
-
-it('should block user successfully', async () => {
-  expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
-  mockedUserService.toggleUserBlock.mockResolvedValue({ isBlocked: true });
-
-  act(() => {
-    fireEvent.click(screen.getByText('Bloquear'));
+describe('User Card', () => {
+  it('renders User Card', () => {
+    expect(container).toBeInTheDocument();
   });
 
-  await waitFor(() => {
-    expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
-      mockUser.id,
-      !mockUser.isBlocked,
+  it('should block user successfully', async () => {
+    expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
+    mockedUserService.toggleUserBlock.mockResolvedValue({ isBlocked: true });
+
+    act(() => {
+      fireEvent.click(screen.getByText('Bloquear'));
+    });
+
+    await waitFor(() => {
+      expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
+        mockUser.id,
+        !mockUser.isBlocked,
+      );
+      expect(screen.getByTestId('lock-icon')).toBeInTheDocument();
+    });
+  });
+
+  it('should unblock user successfully', async () => {
+    mockUser.isBlocked = true;
+    render(
+      <BrowserRouter>
+        <UserCard user={mockUser} />
+      </BrowserRouter>,
     );
-    expect(screen.getByTestId('lock-icon')).toBeInTheDocument();
-    expect(screen.queryByText(`${mockUser.name} bloqueado(a)`));
+    expect(screen.queryByTestId('lock-icon')).toBeInTheDocument();
+    mockedUserService.toggleUserBlock.mockResolvedValue({ isBlocked: false });
+
+    act(() => {
+      fireEvent.click(screen.getByText('Desbloquear'));
+    });
+
+    await waitFor(() => {
+      expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
+        mockUser.id,
+        !mockUser.isBlocked,
+      );
+      expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
+    });
   });
 });
