@@ -9,6 +9,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import UserService from 'modules/users/services/UserService';
 import UserCard from './UserCard';
+import { exists } from 'fs';
 
 jest.mock('modules/users/services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
@@ -53,5 +54,6 @@ it('should block user successfully', async () => {
       !mockUser.isBlocked,
     );
     expect(screen.getByTestId('lock-icon')).toBeInTheDocument();
+    expect(screen.queryByText(`${mockUser.name} bloqueado(a)`));
   });
 });
