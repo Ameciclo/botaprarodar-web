@@ -3,7 +3,7 @@ import React, { FC, ReactElement } from 'react';
 import CustomCardStyles from './CustomCard.styles';
 
 interface CustomCardProps {
-  headerTitle: string | ReactElement;
+  headerTitle?: string | ReactElement;
   content?: string | ReactElement;
 }
 
