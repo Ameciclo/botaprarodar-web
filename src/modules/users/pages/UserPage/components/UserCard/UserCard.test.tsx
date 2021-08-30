@@ -57,6 +57,23 @@ describe('User Card', () => {
     });
   });
 
+  it('should not show lock when block request was not successful', async () => {
+    expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
+    mockedUserService.toggleUserBlock.mockRejectedValue({ isBlocked: false });
+
+    act(() => {
+      fireEvent.click(screen.getByText('Bloquear'));
+    });
+
+    await waitFor(() => {
+      expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
+        mockUser.id,
+        !mockUser.isBlocked,
+      );
+      expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
+    });
+  });
+
   it('should unblock user successfully', async () => {
     mockUser.isBlocked = true;
     render(
