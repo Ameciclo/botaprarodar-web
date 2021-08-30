@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import {
   LockOutlined,
-  RoomOutlined,
+  PlaceOutlined,
   AssignmentOutlined,
   PhoneOutlined,
 } from '@material-ui/icons';
@@ -86,7 +86,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
             <Typography>{user?.docNumber?.toString()}</Typography>
           </div>
           <div className={classes.userInfoElements}>
-            <RoomOutlined className={classes.icon} />
+            <PlaceOutlined className={classes.icon} />
             <Typography>{user?.address}</Typography>
           </div>
         </div>

@@ -22,7 +22,7 @@ export default makeStyles({
   },
   title: {
     fontSize: 20,
-    color: '#515151',
+    color: '#1C1C28',
     marginRight: 15,
     width: 270,
     overflow: 'hidden',
@@ -44,6 +44,6 @@ export default makeStyles({
   },
   listItemText: {
     fontSize: '14px',
-    color: '#828282',
+    color: '#515151',
   },
 });

@@ -35,7 +35,7 @@ export default (
     hide: !auth?.authenticated,
   },
   {
-    name: 'Usuários',
+    name: 'Usuárias',
     path: '/usuarios',
     icon: DirectionsBikeOutlined,
     action: () => history.push('/usuarios'),

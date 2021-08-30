@@ -9,7 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import {
   AccountCircleOutlined,
   MailOutlineOutlined,
-  RoomOutlined,
+  PlaceOutlined,
 } from '@material-ui/icons';
 import useStyles from './CommunityCard.styles';
 import CommunityMenu from '../CommunityMenu/CommunityMenu';
@@ -48,7 +48,7 @@ const CommunityCard: React.FC<any> = ({ community }) => {
             </ListItem>
             <ListItem className={classes.listItem}>
               <ListItemIcon className={classes.listItemIcon}>
-                <RoomOutlined />
+                <PlaceOutlined />
               </ListItemIcon>
               <ListItemText
                 secondary={community.address}

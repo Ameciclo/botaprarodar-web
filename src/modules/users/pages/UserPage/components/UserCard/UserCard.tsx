@@ -2,7 +2,7 @@ import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
 import {
   AssignmentOutlined,
   LockOutlined,
-  RoomOutlined,
+  PlaceOutlined,
 } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -77,7 +77,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
                   </Typography>
                 </div>
                 <div className={classes.description}>
-                  <RoomOutlined className={classes.icon} />
+                  <PlaceOutlined className={classes.icon} />
                   <Typography className={classes.text}>
                     {user?.address}
                   </Typography>

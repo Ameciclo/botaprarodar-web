@@ -10,7 +10,7 @@ export default makeStyles(() => ({
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 24,
-    color: '#515151',
+    color: '#1C1C28',
     letterSpacing: '0.18px',
   },
   userList: {
