@@ -18,6 +18,11 @@ const CommunityService = {
     const { data } = await api.put(`/communities/${id}.json`, body);
     return data;
   },
+
+  async deleteCommunityById(id: string) {
+    const { data } = await api.put(`/communities/${id}.json`, {});
+    return data;
+  },
 };
 
 export default CommunityService;

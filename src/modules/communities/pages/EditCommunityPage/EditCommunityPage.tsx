@@ -6,6 +6,7 @@ import { Loading } from 'shared/components';
 import FormHeader from 'shared/components/FormHeader/FormHeader';
 import useStyles from './EditCommunityPage.styles';
 import EditCommunityForm from './components/EditCommunityForm/EditCommunityForm';
+import DeleteCommunityButton from './components/DeleteCommunityButton/DeleteCommunityButton';
 
 const EditCommunityPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +35,14 @@ const EditCommunityPage: React.FC = () => {
           community?.name ? `Editar ${community.name}` : 'Editar comunidade'
         }
       />
-      {loading ? <Loading /> : <EditCommunityForm community={community} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <EditCommunityForm community={community} />
+          <DeleteCommunityButton communityId={community?.id || ''} />
+        </>
+      )}
     </div>
   );
 };
