@@ -6,11 +6,17 @@ interface CustomCardProps {
   headerTitle: string | ReactElement;
   content?: string | ReactElement;
 }
+
 const CustomCard: FC<CustomCardProps> = ({
   headerTitle,
   children,
   content,
 }) => {
+  CustomCard.defaultProps = {
+    headerTitle: '',
+    content: '',
+  };
+
   const classes = CustomCardStyles();
   return (
     <Card>

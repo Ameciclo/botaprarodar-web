@@ -14,15 +14,29 @@ import CommunityService from 'modules/communities/services/CommunityService';
 import { useHistory } from 'react-router-dom';
 import useStyles from './EditCommunityForm.styles';
 
-interface EditCommunitiProps {
+interface EditCommunityProps {
   community?: Community;
 }
 
-const EditCommunityForm: React.FC<EditCommunitiProps> = ({ community }) => {
+const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
   const classes = useStyles();
   const history = useHistory();
   const { handleSubmit, control } = useForm();
   const [loading, setLoading] = useState(false);
+
+  EditCommunityForm.defaultProps = {
+    community: {
+      id: '',
+      address: '',
+      created_date: new Date(),
+      description: '',
+      name: '',
+      org_email: '',
+      org_name: '',
+      bicycles: [],
+      withdrawals: [],
+    },
+  };
 
   const onSubmit = (data: any) => {
     if (community?.id) {

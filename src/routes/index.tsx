@@ -11,9 +11,9 @@ import Menu from '../shared/components/Menu/Menu';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/login" comp={LoginPage} />
+    <Route path="/login" isPrivate={false} comp={LoginPage} />
     <Menu>
-      <Route path="/" exact comp={DashboardPage} />
+      <Route path="/" isPrivate exact comp={DashboardPage} />
       <Route path="/usuarios" exact isPrivate comp={UserPage} />
       <Route path="/usuarios/:id" isPrivate comp={UserDetailPage} />
       <Route path="/comunidades" exact isPrivate comp={CommunityPage} />

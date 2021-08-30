@@ -7,12 +7,12 @@ import {
 } from 'react-router-dom';
 
 interface RouteProps extends ReactRouteProps {
-  isPrivate?: boolean;
+  isPrivate: boolean;
   comp: React.ComponentType;
 }
 
 const Route: React.FC<RouteProps> = ({
-  isPrivate = false,
+  isPrivate,
   comp: Component,
   ...rest
 }) => {
