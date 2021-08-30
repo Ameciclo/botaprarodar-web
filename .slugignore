@@ -1,7 +1,0 @@
-*.test.tsx
-*.test.ts
-*.md
-/.vscode
-/.idea
-/.husky
-/coverage
