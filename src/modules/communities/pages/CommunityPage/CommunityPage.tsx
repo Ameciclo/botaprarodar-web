@@ -44,7 +44,6 @@ const CommunityPage: React.FC = () => {
               lg={4}
               md={6}
               sm={12}
-              spacing={3}
               className={classes.card}
             >
               <CommunityCard key={community.id} community={community} />
