@@ -25,16 +25,28 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
       )}
       <>
-        <Grid item xl={6} lg={6} sm={6} xs={12}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Total de Bicicletas"
             text={dashboardData?.bikesQuantity}
           />
         </Grid>
-        <Grid item xl={6} lg={6} sm={6} xs={12}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Comunidades Ameciclo"
             text={`${dashboardData?.communitiesQuantity || 0} comunidades`}
+          />
+        </Grid>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
+          <DashboardCard
+            title="Viagens e empréstimo"
+            text={`${dashboardData?.travelsDone || 0} viagens`}
+          />
+        </Grid>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
+          <DashboardCard
+            title="Viagens e empréstimo"
+            text={`${dashboardData?.travelsDone || 0} viagens`}
           />
         </Grid>
       </>
@@ -71,7 +83,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
           <CustomCard headerTitle="Bairros Onde os Ciclistas Residem">
             <VerticalBarChart
               data={dashboardData.withdrawalsReason}
-              label="Ciclistas das Comunidades da Ameciclo"
+              // label="Ciclistas das Comunidades da Ameciclo"
             />
           </CustomCard>
         </Grid>

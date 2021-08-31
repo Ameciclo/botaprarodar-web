@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import BikeService from 'modules/bicycles/services/BikeService';
 import CommunityService from 'modules/communities/services/CommunityService';
 import User from 'modules/users/models/User';
@@ -5,6 +6,7 @@ import UserService from 'modules/users/services/UserService';
 import ChartDataProps from 'shared/models/ChartDataProps';
 import Bike from '../../bicycles/models/Bike';
 import Community from '../../communities/models/Community';
+import { BikesPerCommunities } from '../models/BikesPerCommunities';
 import DashboardInfo from '../models/DashboardInfo';
 
 const DashboardInfoInitialValues: DashboardInfo = {
@@ -38,62 +40,31 @@ const mapResultToData = (
 ): DashboardInfo => {
   const dashboardInfo: DashboardInfo = DashboardInfoInitialValues;
 
-  // eslint-disable-next-line no-console
-  console.log(
-    '%cMyProject%cline:35%ccommunitiesData',
-    'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-    'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-    'color:#fff;background:rgb(254, 67, 101);padding:3px;border-radius:2px',
-    communitiesData,
-  );
-
-  // eslint-disable-next-line no-console
-  console.log(
-    '%cMyProject%cline:44%cbikesData',
-    'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-    'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-    'color:#fff;background:rgb(3, 101, 100);padding:3px;border-radius:2px',
-    bikesData,
-  );
-
-  // eslint-disable-next-line no-console
-  console.log(
-    '%cMyProject%cline:44%cusersData',
-    'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-    'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-    'color:#fff;background:rgb(3, 101, 100);padding:3px;border-radius:2px',
-    usersData,
-  );
-
   dashboardInfo.communitiesQuantity = communitiesData.length;
   dashboardInfo.bikesQuantity = bikesData.length;
   dashboardInfo.bikesPerCommunities = communitiesData
     .map(community => {
       let quantity = 0;
+      const bikes: Bike[] = [];
 
-      if (community.bicycles) {
-        quantity = Object.entries(community.bicycles).length;
-      }
+      bikesData.forEach(bike => {
+        if (bike.communityId === community.id) {
+          bikes.push(bike);
+          quantity += 1;
+        }
+      });
+
       return {
-        label: community.description,
+        label: community.name,
         quantity,
+        bikes,
       };
     })
     .filter(item => item.quantity > 0);
 
-  dashboardInfo.withdrawalsPerCommunities = communitiesData
-    .map(community => {
-      let quantity = 0;
-
-      if (community.withdrawals) {
-        quantity = Object.entries(community.withdrawals).length;
-      }
-      return {
-        label: community.description,
-        quantity,
-      };
-    })
-    .filter(item => item.quantity > 0);
+  dashboardInfo.withdrawalsPerCommunities = setWithdrawalsPerCommunities(
+    dashboardInfo.bikesPerCommunities,
+  );
 
   const withdrawalsReason: string[] = [];
   bikesData.forEach(bike => {
@@ -108,6 +79,8 @@ const mapResultToData = (
   });
 
   dashboardInfo.withdrawalsReason = setWithdrawalsReason(withdrawalsReason);
+
+  console.log(usersData);
 
   return dashboardInfo;
 };
@@ -131,6 +104,27 @@ const setWithdrawalsReason = (
       quantity: quantities[index],
     };
   });
+};
+
+const setWithdrawalsPerCommunities = (
+  bikesPerCommunities: BikesPerCommunities[],
+): ChartDataProps[] => {
+  let array: ChartDataProps[] = [];
+  array = bikesPerCommunities.map(item => {
+    let quantity = 0;
+
+    item.bikes.forEach(bike => {
+      if (bike.withdraws) {
+        quantity += bike.withdraws.length;
+      }
+    });
+
+    return {
+      label: item.label,
+      quantity,
+    };
+  });
+  return array.filter(item => item.quantity > 0);
 };
 
 export default DashboardService;
