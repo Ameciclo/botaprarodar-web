@@ -98,12 +98,14 @@ const setWithdrawalsReason = (
       ? quantities[unique.indexOf(item)] + 1
       : 1;
   });
-  return unique.map((item, index) => {
-    return {
-      label: item,
-      quantity: quantities[index],
-    };
-  });
+  return unique
+    .map((item, index) => {
+      return {
+        label: item,
+        quantity: quantities[index],
+      };
+    })
+    .sort((a, b) => b.quantity - a.quantity);
 };
 
 const setWithdrawalsPerCommunities = (

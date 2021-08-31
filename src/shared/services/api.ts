@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 import axios from 'axios';
+import { INITIAL_AUTH } from 'modules/authentication/contexts/AuthContext';
 import AuthInterface from 'modules/authentication/models/AuthInterface';
 import { toast } from 'shared/components';
 
@@ -40,6 +41,7 @@ api.interceptors.response.use(
         {
           autoClose: 2000,
           onClose: () => {
+            localStorage.setItem('authStorage', JSON.stringify(INITIAL_AUTH));
             window.location.href = '/login';
           },
         },

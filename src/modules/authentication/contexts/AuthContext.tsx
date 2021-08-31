@@ -14,7 +14,7 @@ type AuthContextType = [
   setAuth: Dispatch<SetStateAction<AuthInterface>>,
 ];
 
-const INITIAL_AUTH: AuthInterface = {
+export const INITIAL_AUTH: AuthInterface = {
   token: '',
   authenticated: false,
   email: '',
