@@ -44,7 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false --coverage",
+    "test": "react-scripts test --coverage",
     "test-husky": "react-scripts test --watchAll=false --bail",
     "eject": "react-scripts eject",
     "heroku": "serve -s build",
@@ -72,7 +72,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/(components|pages|services|utils)/**/*.(ts|tsx)"
+      "src/(modules|shared)/**/*.(ts|tsx)"
     ]
   },
   "devDependencies": {

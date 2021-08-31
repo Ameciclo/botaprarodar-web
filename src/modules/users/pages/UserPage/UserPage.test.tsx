@@ -42,6 +42,7 @@ describe('UserPage', () => {
         docPictureBack: 'test-back-picture',
         docPicture: 'test-picture',
         residenceProofPicture: 'residence-picture',
+        isBlocked: false,
       },
     ]);
 
