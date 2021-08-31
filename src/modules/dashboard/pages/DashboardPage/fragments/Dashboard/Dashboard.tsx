@@ -28,13 +28,13 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Total de Bicicletas"
-            text={dashboardData?.bikesQuantity}
+            text={`${dashboardData?.bikesQuantity || 0} Bicicletas`}
           />
         </Grid>
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
-            title="Comunidades Ameciclo"
-            text={`${dashboardData?.communitiesQuantity || 0} comunidades`}
+            title="Ciclistas cadastradas"
+            text={`${dashboardData?.usersQuantity || 0} Ciclistas`}
           />
         </Grid>
         <Grid item xl={3} lg={3} sm={6} xs={12}>

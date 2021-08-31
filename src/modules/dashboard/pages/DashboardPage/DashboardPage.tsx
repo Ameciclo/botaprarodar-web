@@ -5,6 +5,7 @@ import DashboardInfo from '../../models/DashboardInfo';
 import Dashboard from './fragments/Dashboard/Dashboard';
 
 const INITIAL_DASHBOARD: DashboardInfo = {
+  usersQuantity: 0,
   bikesPerCommunities: [{ label: '', quantity: 0, bikes: [] }],
   bikesQuantity: 0,
   communitiesQuantity: 0,

@@ -10,6 +10,7 @@ import { BikesPerCommunities } from '../models/BikesPerCommunities';
 import DashboardInfo from '../models/DashboardInfo';
 
 const DashboardInfoInitialValues: DashboardInfo = {
+  usersQuantity: 0,
   communitiesQuantity: 0,
   bikesQuantity: 0,
   bikesPerCommunities: [],
@@ -40,6 +41,7 @@ const mapResultToData = (
 ): DashboardInfo => {
   const dashboardInfo: DashboardInfo = DashboardInfoInitialValues;
 
+  dashboardInfo.usersQuantity = usersData.length;
   dashboardInfo.communitiesQuantity = communitiesData.length;
   dashboardInfo.bikesQuantity = bikesData.length;
   dashboardInfo.bikesPerCommunities = communitiesData
