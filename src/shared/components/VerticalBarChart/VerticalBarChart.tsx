@@ -12,20 +12,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ data }) => {
   const classes = VerticalBarChartStyles();
 
   const dataChart = useMemo(() => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    return [
-      { quantity: 110, label: 'Comunidade 1' },
-      { quantity: 90, label: 'Comunidade 2' },
-      { quantity: 80, label: 'Comunidade 3' },
-      { quantity: 70, label: 'Comunidade 4' },
-      { quantity: 60, label: 'Comunidade 5' },
-      { quantity: 50, label: 'Comunidade 6' },
-      { quantity: 40, label: 'Comunidade 7' },
-      { quantity: 30, label: 'Comunidade 8' },
-      { quantity: 20, label: 'Comunidade 9' },
-      { quantity: 10, label: 'Comunidade 10' },
-    ];
+    return data;
   }, [data]);
 
   const colors = ['#036867', '#018786', '#17A8A7'];
@@ -44,6 +31,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ data }) => {
             const colorIndex = (index + 1 + 3) % 3;
             return (
               <div
+                key={item.label}
                 style={{
                   width: '-webkit-fill-available',
                   alignSelf: 'flex-end',
@@ -85,6 +73,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ data }) => {
                 if (index < 5) {
                   return (
                     <div
+                      key={item.label}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -115,6 +104,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ data }) => {
                 if (index > 4) {
                   return (
                     <div
+                      key={item.label}
                       style={{
                         display: 'flex',
                         alignItems: 'center',

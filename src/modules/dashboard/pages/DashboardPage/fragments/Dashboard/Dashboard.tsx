@@ -80,9 +80,9 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
           </CustomCard>
         </Grid>
         <Grid item xl={6} lg={6} sm={12} xs={12}>
-          <CustomCard headerTitle="Bairros Onde os Ciclistas Residem">
+          <CustomCard headerTitle="Destinos das viagens">
             <VerticalBarChart
-              data={dashboardData.withdrawalsReason}
+              data={dashboardData.destination}
               // label="Ciclistas das Comunidades da Ameciclo"
             />
           </CustomCard>

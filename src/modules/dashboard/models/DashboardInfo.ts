@@ -11,4 +11,5 @@ export default interface DashboardInfo {
   incidentsHappened: number;
   withdrawalsReason: ChartDataProps[];
   bikersCommunities: ChartDataProps[];
+  destination: ChartDataProps[];
 }

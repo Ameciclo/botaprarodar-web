@@ -19,6 +19,7 @@ const DashboardInfoInitialValues: DashboardInfo = {
   incidentsHappened: 0,
   withdrawalsReason: [],
   bikersCommunities: [],
+  destination: [],
 };
 
 const DashboardService = {
@@ -68,6 +69,8 @@ const mapResultToData = (
     dashboardInfo.bikesPerCommunities,
   );
 
+  dashboardInfo.destination = setDestinations(bikesData);
+
   const withdrawalsReason: string[] = [];
   bikesData.forEach(bike => {
     if (bike.devolutions && bike.devolutions.length > 0) {
@@ -81,8 +84,6 @@ const mapResultToData = (
   });
 
   dashboardInfo.withdrawalsReason = setWithdrawalsReason(withdrawalsReason);
-
-  console.log(usersData);
 
   return dashboardInfo;
 };
@@ -108,6 +109,37 @@ const setWithdrawalsReason = (
       };
     })
     .sort((a, b) => b.quantity - a.quantity);
+};
+
+const setDestinations = (bikeArray: Bike[]): ChartDataProps[] => {
+  const allDestinations: string[] = [];
+  bikeArray.forEach(bike => {
+    bike.devolutions?.forEach(devolution => {
+      allDestinations.push(devolution.quiz.destination);
+    });
+  });
+  return groupBy(allDestinations);
+};
+
+// TODO - refactor this function
+const groupBy = (allItems: string[]): ChartDataProps[] => {
+  const mapGrouped = new Map();
+  const chartDataProps: ChartDataProps[] = [];
+  allItems.forEach(item => {
+    const collection = mapGrouped.get(item);
+    if (!collection) {
+      mapGrouped.set(item, [1]);
+    } else {
+      collection.push(1);
+    }
+  });
+  mapGrouped.forEach((value, key) => {
+    chartDataProps.push({
+      label: key,
+      quantity: value.length,
+    });
+  });
+  return chartDataProps;
 };
 
 const setWithdrawalsPerCommunities = (
