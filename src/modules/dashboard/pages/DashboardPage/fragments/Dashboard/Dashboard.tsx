@@ -76,7 +76,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             partial={dashboardData.womenUsers}
             total={dashboardData.usersQuantity}
             labelPartial="mulheres"
-            labelTotal="outros"
+            labelTotal="total"
           />
         </Grid>
         <Grid item xl={3} lg={3} sm={6} xs={9}>
@@ -85,7 +85,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             partial={dashboardData.newUsers}
             total={dashboardData.usersQuantity}
             labelPartial="novas"
-            labelTotal="já utilizavam"
+            labelTotal="total"
           />
         </Grid>
       </>
