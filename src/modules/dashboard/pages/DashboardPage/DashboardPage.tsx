@@ -6,12 +6,15 @@ import Dashboard from './fragments/Dashboard/Dashboard';
 
 const INITIAL_DASHBOARD: DashboardInfo = {
   usersQuantity: 0,
+  newUsers: 0,
+  womenUsers: 0,
   bikesPerCommunities: [{ label: '', quantity: 0, bikes: [] }],
   bikesQuantity: 0,
   bikesInUse: 0,
   communitiesQuantity: 0,
   incidentsHappened: 0,
   travelsDone: 0,
+  travelsWithRideGiven: 0,
   withdrawalsPerCommunities: [{ label: '', quantity: 0 }],
   withdrawalsReason: [{ label: '', quantity: 0 }],
   bikersCommunities: [{ label: '', quantity: 0 }],

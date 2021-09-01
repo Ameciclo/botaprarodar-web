@@ -1,8 +1,11 @@
+import { GenderTypes } from './GenderTypes';
+
 export default interface User {
   name: string;
   communityId: string;
   telephone: string;
   status: boolean;
+  gender: GenderTypes;
   profilePicture: string;
   id: string;
   address: string;
@@ -11,4 +14,7 @@ export default interface User {
   docPictureBack: string;
   residenceProofPicture: string;
   isBlocked: boolean;
+  userQuiz: {
+    alreadyUseBPR: boolean;
+  };
 }

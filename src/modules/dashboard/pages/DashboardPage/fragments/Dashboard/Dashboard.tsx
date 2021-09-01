@@ -8,6 +8,7 @@ import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
 import DashboardStyles from './Dashboard.styles';
+import DonutPercentageCard from '../../components/DonutPercentageCard';
 
 interface DashboardProps {
   dashboardData: DashboardInfo;
@@ -25,25 +26,25 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
       )}
       <>
-        <Grid item xl={3} lg={3} sm={6} xs={12}>
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
           <DashboardCard
             title="Total de Bicicletas"
             text={`${dashboardData?.bikesQuantity || 0} Bicicletas`}
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={12}>
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
           <DashboardCard
             title="Ciclistas cadastradas"
             text={`${dashboardData?.usersQuantity || 0} Ciclistas`}
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={12}>
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
           <DashboardCard
             title="Bicicletas em uso"
             text={`${dashboardData?.bikesInUse || 0} Emprestadas`}
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={12}>
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
           <DashboardCard
             title="Viagens e empréstimo"
             text={`${dashboardData?.travelsDone || 0} Viagens`}
@@ -51,22 +52,40 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
       </>
       <>
-        <Grid item xl={4} lg={4} sm={6} xs={12}>
-          <CustomCard
-            headerTitle="Taxa de incidentes com ciclistas"
-            content={`Foram ${dashboardData?.incidentsHappened} incidentes em ${dashboardData?.travelsDone} viagens`}
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
+          <DonutPercentageCard
+            title="Taxa de incidentes com ciclistas"
+            partial={dashboardData.incidentsHappened}
+            total={dashboardData.travelsDone}
+            labelPartial="incidentes"
+            labelTotal="viagens"
           />
         </Grid>
-        <Grid item xl={4} lg={4} sm={6} xs={12}>
-          <CustomCard
-            headerTitle="Taxa de incidentes com ciclistas"
-            content={`Foram ${dashboardData?.incidentsHappened} incidentes em ${dashboardData?.travelsDone} viagens`}
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
+          <DonutPercentageCard
+            title="Viagens com carona"
+            partial={dashboardData.travelsWithRideGiven}
+            total={dashboardData.travelsDone}
+            labelPartial="com carona"
+            labelTotal="viagens"
           />
         </Grid>
-        <Grid item xl={4} lg={4} sm={6} xs={12}>
-          <CustomCard
-            headerTitle="Taxa de incidentes com ciclistas"
-            content={`Foram ${dashboardData?.incidentsHappened} incidentes em ${dashboardData?.travelsDone} viagens`}
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
+          <DonutPercentageCard
+            title="Mulheres ciclistas"
+            partial={dashboardData.womenUsers}
+            total={dashboardData.usersQuantity}
+            labelPartial="mulheres"
+            labelTotal="outros"
+          />
+        </Grid>
+        <Grid item xl={3} lg={3} sm={6} xs={9}>
+          <DonutPercentageCard
+            title="Novas pessoas usuárias de bicicleta"
+            partial={dashboardData.newUsers}
+            total={dashboardData.usersQuantity}
+            labelPartial="novas"
+            labelTotal="já utilizavam"
           />
         </Grid>
       </>

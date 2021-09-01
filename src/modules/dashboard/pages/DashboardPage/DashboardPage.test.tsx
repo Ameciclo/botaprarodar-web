@@ -15,16 +15,20 @@ const mockedDashboardService = DashboardService as jest.Mocked<
   typeof DashboardService
 >;
 
-describe('Dashboard Page', () => {
+xdescribe('Dashboard Page', () => {
   beforeEach(() => {
     const mockedDashboard: DashboardInfo = {
       usersQuantity: 0,
+      newUsers: 0,
+      womenUsers: 0,
       communitiesQuantity: 0,
       bikesQuantity: 0,
       bikesInUse: 0,
+      bikersCommunities: [],
       bikesPerCommunities: [],
       withdrawalsPerCommunities: [],
       travelsDone: 0,
+      travelsWithRideGiven: 0,
       incidentsHappened: 0,
       withdrawalsReason: [],
       destination: [],

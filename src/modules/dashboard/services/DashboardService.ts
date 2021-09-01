@@ -8,15 +8,19 @@ import Bike from '../../bicycles/models/Bike';
 import Community from '../../communities/models/Community';
 import { BikesPerCommunities } from '../models/BikesPerCommunities';
 import DashboardInfo from '../models/DashboardInfo';
+import { GenderTypes } from '../../users/models/GenderTypes';
 
 const DashboardInfoInitialValues: DashboardInfo = {
   usersQuantity: 0,
+  newUsers: 0,
+  womenUsers: 0,
   communitiesQuantity: 0,
   bikesQuantity: 0,
   bikesInUse: 0,
   bikesPerCommunities: [],
   withdrawalsPerCommunities: [],
   travelsDone: 0,
+  travelsWithRideGiven: 0,
   incidentsHappened: 0,
   withdrawalsReason: [],
   bikersCommunities: [],
@@ -73,6 +77,12 @@ const mapResultToData = (
   dashboardInfo.destination = getDestinations(bikesData);
 
   dashboardInfo.bikesInUse = getBikesInUseQuantity(bikesData);
+
+  dashboardInfo.newUsers = getNewUsers(usersData);
+
+  dashboardInfo.womenUsers = getWomenUsers(usersData);
+
+  dashboardInfo.travelsWithRideGiven = getTravelsWithRideGiven(bikesData);
 
   const withdrawalsReason: string[] = [];
   bikesData.forEach(bike => {
@@ -168,6 +178,20 @@ const setWithdrawalsPerCommunities = (
 
 const getBikesInUseQuantity = (bikeArray: Bike[]): number => {
   return bikeArray.filter(bike => bike.inUse).length;
+};
+
+const getNewUsers = (users: User[]): number => {
+  return users.filter(user => user.userQuiz?.alreadyUseBPR).length;
+};
+
+const getWomenUsers = (users: User[]): number => {
+  return users.filter(user => user.gender === GenderTypes.female).length;
+};
+
+const getTravelsWithRideGiven = (bikes: Bike[]): number => {
+  return bikes.filter(bike =>
+    bike.devolutions?.filter(devolution => devolution.quiz?.giveRide),
+  ).length;
 };
 
 export default DashboardService;

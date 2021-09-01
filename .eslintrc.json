@@ -25,6 +25,8 @@
     "prettier"
   ],
   "rules": {
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "react/jsx-filename-extension": [
       1,
       {

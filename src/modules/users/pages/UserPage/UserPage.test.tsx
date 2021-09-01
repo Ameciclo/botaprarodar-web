@@ -7,6 +7,7 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import UserService from '../../services/UserService';
 import UserPage from './UserPage';
+import { GenderTypes } from '../../models/GenderTypes';
 
 jest.mock('../../services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
@@ -34,6 +35,7 @@ describe('UserPage', () => {
         name: 'Antoni',
         communityId: '-MLDOXs3p35DEHg0gdUU',
         telephone: '+55 51 3626-2001',
+        gender: GenderTypes.male,
         status: true,
         id: '123',
         profilePicture: 'test',
@@ -43,6 +45,9 @@ describe('UserPage', () => {
         docPicture: 'test-picture',
         residenceProofPicture: 'residence-picture',
         isBlocked: false,
+        userQuiz: {
+          alreadyUseBPR: false,
+        },
       },
     ]);
 
