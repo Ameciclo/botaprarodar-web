@@ -8,6 +8,7 @@ const INITIAL_DASHBOARD: DashboardInfo = {
   usersQuantity: 0,
   bikesPerCommunities: [{ label: '', quantity: 0, bikes: [] }],
   bikesQuantity: 0,
+  bikesInUse: 0,
   communitiesQuantity: 0,
   incidentsHappened: 0,
   travelsDone: 0,

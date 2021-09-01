@@ -39,14 +39,14 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
-            title="Viagens e empréstimo"
-            text={`${dashboardData?.travelsDone || 0} viagens`}
+            title="Bicicletas em uso"
+            text={`${dashboardData?.bikesInUse || 0} Emprestadas`}
           />
         </Grid>
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Viagens e empréstimo"
-            text={`${dashboardData?.travelsDone || 0} viagens`}
+            text={`${dashboardData?.travelsDone || 0} Viagens`}
           />
         </Grid>
       </>
@@ -80,7 +80,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
           </CustomCard>
         </Grid>
         <Grid item xl={6} lg={6} sm={12} xs={12}>
-          <CustomCard headerTitle="Destinos das viagens">
+          <CustomCard headerTitle="Destinos dos ciclistas">
             <VerticalBarChart
               data={dashboardData.destination}
               // label="Ciclistas das Comunidades da Ameciclo"

@@ -5,6 +5,7 @@ export default interface DashboardInfo {
   usersQuantity: number;
   communitiesQuantity: number;
   bikesQuantity: number;
+  bikesInUse: number;
   bikesPerCommunities: BikesPerCommunities[];
   withdrawalsPerCommunities: ChartDataProps[];
   travelsDone: number;

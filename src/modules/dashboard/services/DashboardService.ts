@@ -13,6 +13,7 @@ const DashboardInfoInitialValues: DashboardInfo = {
   usersQuantity: 0,
   communitiesQuantity: 0,
   bikesQuantity: 0,
+  bikesInUse: 0,
   bikesPerCommunities: [],
   withdrawalsPerCommunities: [],
   travelsDone: 0,
@@ -69,7 +70,9 @@ const mapResultToData = (
     dashboardInfo.bikesPerCommunities,
   );
 
-  dashboardInfo.destination = setDestinations(bikesData);
+  dashboardInfo.destination = getDestinations(bikesData);
+
+  dashboardInfo.bikesInUse = getBikesInUseQuantity(bikesData);
 
   const withdrawalsReason: string[] = [];
   bikesData.forEach(bike => {
@@ -111,7 +114,7 @@ const setWithdrawalsReason = (
     .sort((a, b) => b.quantity - a.quantity);
 };
 
-const setDestinations = (bikeArray: Bike[]): ChartDataProps[] => {
+const getDestinations = (bikeArray: Bike[]): ChartDataProps[] => {
   const allDestinations: string[] = [];
   bikeArray.forEach(bike => {
     bike.devolutions?.forEach(devolution => {
@@ -161,6 +164,10 @@ const setWithdrawalsPerCommunities = (
     };
   });
   return array.filter(item => item.quantity > 0);
+};
+
+const getBikesInUseQuantity = (bikeArray: Bike[]): number => {
+  return bikeArray.filter(bike => bike.inUse).length;
 };
 
 export default DashboardService;

@@ -21,6 +21,7 @@ describe('Dashboard Page', () => {
       usersQuantity: 0,
       communitiesQuantity: 0,
       bikesQuantity: 0,
+      bikesInUse: 0,
       bikesPerCommunities: [],
       withdrawalsPerCommunities: [],
       travelsDone: 0,

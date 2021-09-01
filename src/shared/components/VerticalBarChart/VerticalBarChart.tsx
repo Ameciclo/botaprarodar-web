@@ -64,7 +64,7 @@ const VerticalBarChart: FC<VerticalBarChartProps> = ({ data }) => {
               classes.margin,
             ])}
           >
-            Bairros dos Ciclistas
+            Destinos dos Ciclistas
           </Typography>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
