@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import { StopRounded } from '@material-ui/icons';
 import Chart from 'react-apexcharts';
@@ -40,7 +40,10 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
             show: false,
           },
           value: {
-            fontSize: '25px',
+            fontSize: '28px',
+            fontFamily: 'Roboto',
+            fontStyle: 'normal',
+            fontWeight: 'bold',
             show: true,
             offsetY: 8,
           },
@@ -61,17 +64,23 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
               series={initialStateOptions.series}
             />
           </Grid>
-          <Grid item xs={4} className={classes.label}>
-            <div>
+          <Grid item xs={4}>
+            <div className={classes.label}>
               <div className={classes.partialValue}>
-                <StopRounded fontSize="large" />
+                <StopRounded
+                  fontSize="large"
+                  className={classes.squareIconLabel}
+                />
                 {partial}
               </div>
               <span className={classes.partialValueLabel}>{labelPartial}</span>
             </div>
-            <div>
+            <div className={classes.label}>
               <div className={classes.totalValue}>
-                <StopRounded fontSize="large" />
+                <StopRounded
+                  fontSize="large"
+                  className={classes.squareIconLabel}
+                />
                 {total}
               </div>
               <span className={classes.totalValueLabel}>{labelTotal}</span>

@@ -5,19 +5,19 @@ export default makeStyles({
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'normal',
-    fontSize: 24,
-    lineHeight: '24px',
+    fontSize: 26,
     letterSpacing: 0.18,
-    margin: '0px 10px 10px',
+    margin: '0px 0px 10px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'flex-end',
-    alignSelf: 'flex-end',
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start',
   },
   partialValueLabel: {
     fontSize: 12,
     color: '#1C1C28',
+    alignSelf: 'flex-start',
   },
   partialValue: {
     fontSize: 26,
@@ -34,5 +34,8 @@ export default makeStyles({
   totalValueLabel: {
     fontSize: 12,
     color: '#1C1C28',
+  },
+  squareIconLabel: {
+    marginLeft: '-8px',
   },
 });
