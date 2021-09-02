@@ -26,25 +26,25 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
       )}
       <>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Total de Bicicletas"
             text={`${dashboardData?.bikesQuantity || 0} Bicicletas`}
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Ciclistas cadastradas"
             text={`${dashboardData?.usersQuantity || 0} Ciclistas`}
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Bicicletas em uso"
             text={`${dashboardData?.bikesInUse || 0} Emprestadas`}
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Viagens e empréstimo"
             text={`${dashboardData?.travelsDone || 0} Viagens`}
@@ -52,7 +52,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
       </>
       <>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DonutPercentageCard
             title="Taxa de incidentes com ciclistas"
             partial={dashboardData.incidentsHappened}
@@ -61,7 +61,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             labelTotal="viagens"
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DonutPercentageCard
             title="Viagens com carona"
             partial={dashboardData.travelsWithRideGiven}
@@ -70,7 +70,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             labelTotal="viagens"
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DonutPercentageCard
             title="Mulheres ciclistas"
             partial={dashboardData.womenUsers}
@@ -79,7 +79,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             labelTotal="total"
           />
         </Grid>
-        <Grid item xl={3} lg={3} sm={6} xs={9}>
+        <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DonutPercentageCard
             title="Novas pessoas usuárias de bicicleta"
             partial={dashboardData.newUsers}
