@@ -25,12 +25,13 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
     series: [Math.trunc((partial / total) * 100)],
     colors: ['#1C1C28'],
     chart: {
-      height: 400,
+      height: 500,
     },
     plotOptions: {
       radialBar: {
         hollow: {
-          size: '60%',
+          size: '50px',
+          margin: -10,
         },
         track: {
           background: '#828282',
@@ -57,14 +58,15 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
       headerTitle={title}
       content={
         <Grid container alignItems="center">
-          <Grid item xs={7}>
+          <Grid item xl={8} lg={8} sm={6} xs={12}>
             <Chart
+              className={classes.percentageRadialBar}
               type="radialBar"
               options={{ ...initialStateOptions, stroke: { lineCap: 'round' } }}
               series={initialStateOptions.series}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xl={4} lg={4} sm={6} xs={12}>
             <div className={classes.label}>
               <div className={classes.partialValue}>
                 <StopRounded

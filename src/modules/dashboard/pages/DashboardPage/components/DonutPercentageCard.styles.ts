@@ -38,4 +38,7 @@ export default makeStyles({
   squareIconLabel: {
     marginLeft: '-8px',
   },
+  percentageRadialBar: {
+    marginLeft: '-10px',
+  },
 });
