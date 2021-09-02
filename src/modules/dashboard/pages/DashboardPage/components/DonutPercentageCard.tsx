@@ -30,7 +30,7 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
     plotOptions: {
       radialBar: {
         hollow: {
-          size: '50%',
+          size: '60%',
         },
         track: {
           background: '#828282',
@@ -42,14 +42,12 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
           value: {
             fontSize: '25px',
             show: true,
-            offsetTop: '50px',
+            offsetY: 8,
           },
         },
       },
     },
   };
-
-  const [state] = useState(initialStateOptions);
 
   return (
     <CustomCard
@@ -59,8 +57,8 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
           <Grid item xs={8}>
             <Chart
               type="radialBar"
-              options={initialStateOptions}
-              series={state.series}
+              options={{ ...initialStateOptions, stroke: { lineCap: 'round' } }}
+              series={initialStateOptions.series}
             />
           </Grid>
           <Grid item xs={4}>
