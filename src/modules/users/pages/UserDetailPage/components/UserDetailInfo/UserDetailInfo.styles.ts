@@ -44,6 +44,7 @@ export default makeStyles(theme => ({
   userContainer: {
     display: 'flex',
     alignItems: 'flex-start',
+    width: '100%',
   },
   flexRowContainer: {
     display: 'flex',
@@ -60,8 +61,8 @@ export default makeStyles(theme => ({
   userInfoContainer: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'space-between',
     justifyContent: 'center',
+    width: '100%',
   },
   username: {
     fontFamily: 'Roboto',
@@ -76,14 +77,14 @@ export default makeStyles(theme => ({
     },
   },
   avatar: {
-    width: '180px',
-    height: '180px',
+    width: '150px',
+    height: '150px',
     marginBottom: '16px',
     position: 'relative',
     border: '3px solid #fff',
     [theme.breakpoints.down('sm')]: {
-      width: 50,
-      height: 50,
+      width: 100,
+      height: 100,
     },
   },
   imageButton: {
@@ -100,8 +101,8 @@ export default makeStyles(theme => ({
     border: '3px solid #E53535',
   },
   badge: {
-    width: '64px',
-    height: '64px',
+    width: '30px',
+    height: '30px',
     borderRadius: '50%',
   },
   icon: { marginRight: '12px' },

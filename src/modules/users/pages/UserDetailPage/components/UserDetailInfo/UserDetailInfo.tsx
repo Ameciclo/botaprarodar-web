@@ -56,9 +56,10 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
       className={classes.root}
       {...rest}
     >
-      <Grid item xs={4} className={classes.userContainer}>
+      <Grid item xs={12} lg={6} className={classes.userContainer}>
         <StyledBadge
           overlap="circular"
+          style={{ top: '85%' }}
           badgeContent={
             isBlocked && (
               <LockOutlined className={`${classes.badge} ${classes.blocked}`} />
@@ -79,15 +80,19 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
           </div>
           <div className={classes.userInfoElements}>
             <PhoneOutlined className={classes.icon} />
-            <Typography>{user?.telephone}</Typography>
+            <Typography>
+              {user?.telephone || 'Telefone não informado'}
+            </Typography>
           </div>
           <div className={classes.userInfoElements}>
             <AssignmentOutlined className={classes.icon} />
-            <Typography>{user?.docNumber?.toString()}</Typography>
+            <Typography>
+              {user?.docNumber?.toString() || 'Documento não informado'}
+            </Typography>
           </div>
           <div className={classes.userInfoElements}>
             <PlaceOutlined className={classes.icon} />
-            <Typography>{user?.address}</Typography>
+            <Typography>{user?.address || 'Endereço não informado'}</Typography>
           </div>
         </div>
         <Grid item xs={1} md={6}>
@@ -97,7 +102,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
           />
         </Grid>
       </Grid>
-      <Grid item xs={6} lg={5}>
+      <Grid item xs={12} lg={6}>
         <Grid container spacing={2} direction="column">
           <Grid item>
             <Card className={classes.card}>
