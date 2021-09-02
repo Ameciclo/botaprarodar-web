@@ -2,7 +2,6 @@ import { Grid, Typography } from '@material-ui/core';
 import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import DashboardInfo from 'modules/dashboard/models/DashboardInfo';
 import React, { FC } from 'react';
-import { PieChart } from 'shared/components';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
 import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
@@ -100,25 +99,8 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
         <Grid item xl={6} lg={6} sm={12} xs={12}>
           <CustomCard headerTitle="Destinos dos ciclistas">
-            <VerticalBarChart
-              data={dashboardData.destination}
-              // label="Ciclistas das Comunidades da Ameciclo"
-            />
+            <VerticalBarChart data={dashboardData.destination} />
           </CustomCard>
-        </Grid>
-      </>
-      <>
-        <Grid item xl={6} lg={6} sm={12} xs={12}>
-          <PieChart
-            data={dashboardData?.bikesPerCommunities}
-            chartLabel="Bicicletas por comunidades"
-          />
-        </Grid>
-        <Grid item xl={6} lg={6} sm={12} xs={12}>
-          <PieChart
-            data={dashboardData?.withdrawalsPerCommunities}
-            chartLabel="Movimentações por comunidades"
-          />
         </Grid>
       </>
     </Grid>
