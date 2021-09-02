@@ -31,7 +31,7 @@ export default makeStyles({
   avatarContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   avatar: {
     width: '73.82px !important',

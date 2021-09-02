@@ -46,7 +46,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
 
   return (
     <Card className={classes.card} key={user?.id} {...rest}>
-      <CardContent style={{ padding: 20, paddingBottom: 20 }}>
+      <CardContent style={{ padding: '20px 0px 20px 30px', paddingBottom: 20 }}>
         <div className={classes.menuContainer}>
           <UserMenu isBlocked={isBlocked} onToggleBlock={handleToggleBlock} />
         </div>
