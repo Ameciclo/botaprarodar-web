@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
-  labels: {
+  label: {
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -12,6 +12,8 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
   },
   partialValueLabel: {
     fontSize: 12,

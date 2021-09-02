@@ -54,22 +54,22 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
       headerTitle={title}
       content={
         <Grid container alignItems="center">
-          <Grid item xs={8}>
+          <Grid item xs={7}>
             <Chart
               type="radialBar"
               options={{ ...initialStateOptions, stroke: { lineCap: 'round' } }}
               series={initialStateOptions.series}
             />
           </Grid>
-          <Grid item xs={4}>
-            <div className={classes.labels}>
+          <Grid item xs={4} className={classes.label}>
+            <div>
               <div className={classes.partialValue}>
                 <StopRounded fontSize="large" />
                 {partial}
               </div>
               <span className={classes.partialValueLabel}>{labelPartial}</span>
             </div>
-            <div className={classes.labels}>
+            <div>
               <div className={classes.totalValue}>
                 <StopRounded fontSize="large" />
                 {total}

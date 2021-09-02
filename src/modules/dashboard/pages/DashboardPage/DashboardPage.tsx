@@ -29,14 +29,6 @@ const DashboardPage: FC = () => {
   useEffect(() => {
     DashboardService.dashboardInfo()
       .then(data => {
-        // eslint-disable-next-line no-console
-        console.log(
-          '%cMyProject%cline:26%cdata',
-          'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-          'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-          'color:#fff;background:rgb(153, 80, 84);padding:3px;border-radius:2px',
-          data,
-        );
         setDashboardData(data);
       })
       .catch(err => {
