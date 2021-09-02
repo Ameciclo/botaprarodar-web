@@ -49,7 +49,7 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
     },
   };
 
-  const [state, setState] = useState(initialStateOptions);
+  const [state] = useState(initialStateOptions);
 
   return (
     <CustomCard

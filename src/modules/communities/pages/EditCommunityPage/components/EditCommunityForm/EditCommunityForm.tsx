@@ -55,6 +55,22 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
         .finally(() => {
           setLoading(false);
         });
+    } else {
+      setLoading(true);
+      CommunityService.createCommunity({
+        ...community,
+        ...data,
+      })
+        .then(() => {
+          history.push('/comunidades');
+          toast.success('Comunidade criada com sucesso.');
+        })
+        .catch(err => {
+          console.error(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
 

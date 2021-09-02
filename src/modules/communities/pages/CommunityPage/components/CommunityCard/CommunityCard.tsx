@@ -33,7 +33,7 @@ const CommunityCard: React.FC<any> = ({ community }) => {
                 <AccountCircleOutlined />
               </ListItemIcon>
               <ListItemText
-                secondary={community.org_name}
+                secondary={community.org_name || 'Nome do gestor não informado'}
                 className={classes.listItemText}
               />
             </ListItem>
@@ -42,7 +42,7 @@ const CommunityCard: React.FC<any> = ({ community }) => {
                 <MailOutlineOutlined />
               </ListItemIcon>
               <ListItemText
-                secondary={community.org_email}
+                secondary={community.org_email || 'E-mail não informado'}
                 className={classes.listItemText}
               />
             </ListItem>
@@ -51,7 +51,7 @@ const CommunityCard: React.FC<any> = ({ community }) => {
                 <PlaceOutlined />
               </ListItemIcon>
               <ListItemText
-                secondary={community.address}
+                secondary={community.address || 'Endereço não informado'}
                 className={classes.listItemText}
               />
             </ListItem>

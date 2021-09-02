@@ -14,6 +14,11 @@ const CommunityService = {
     return data;
   },
 
+  async createCommunity(body: any) {
+    const { data } = await api.post(`/communities.json`, body);
+    return data;
+  },
+
   async editCommunityById(id: string, body: any) {
     const { data } = await api.put(`/communities/${id}.json`, body);
     return data;

@@ -8,6 +8,7 @@ import Community from '../../models/Community';
 import CommunityService from '../../services/CommunityService';
 import useStyles from './CommunityPage.styles';
 import CommunityCard from './components/CommunityCard/CommunityCard';
+import CreateCommunityButton from './components/CreateCommunityButton/CreateCommunityButton';
 
 const CommunityPage: React.FC = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
@@ -29,9 +30,28 @@ const CommunityPage: React.FC = () => {
 
   return (
     <div>
-      <Typography variant="h5" gutterBottom className={classes.pageTitle}>
-        Comunidades do Bota pra Rodar
-      </Typography>
+      <Grid
+        container
+        data-testid="communities-header-grid"
+        direction="row"
+        justifyContent="space-between"
+      >
+        <Grid item md={8} xs={12}>
+          <Typography variant="h5" gutterBottom className={classes.pageTitle}>
+            Comunidades do Bota pra Rodar
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          md={4}
+          xs={12}
+          justifyContent="flex-end"
+          style={{ display: 'flex' }}
+        >
+          <CreateCommunityButton />
+        </Grid>
+      </Grid>
+
       {loading ? (
         <Loading />
       ) : communities.length ? (

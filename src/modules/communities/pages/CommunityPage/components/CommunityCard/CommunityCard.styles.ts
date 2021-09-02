@@ -19,6 +19,9 @@ export default makeStyles({
     flexDirection: 'column',
     height: '100%',
     padding: 18,
+    '&:last-child': {
+      paddingBottom: 10,
+    },
   },
   title: {
     fontSize: 20,
@@ -38,6 +41,9 @@ export default makeStyles({
     padding: 0,
     marginBottom: 10,
     width: '80%',
+    '&:last-child': {
+      marginBottom: 0,
+    },
   },
   listItemIcon: {
     minWidth: 35,

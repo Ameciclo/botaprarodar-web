@@ -9,21 +9,55 @@ import UserPage from '../modules/users/pages/UserPage/UserPage';
 import Menu from '../shared/components/Menu/Menu';
 import Route from './Route';
 
-const Routes: React.FC = () => (
-  <Switch>
-    <Route path="/login" isPrivate={false} comp={LoginPage} />
-    <Menu>
-      <Route path="/" isPrivate={false} exact comp={DashboardPage} />
-      <Route path="/usuarios" exact isPrivate comp={UserPage} />
-      <Route path="/usuarios/:id" isPrivate comp={UserDetailPage} />
-      <Route path="/comunidades" exact isPrivate comp={CommunityPage} />
-      <Route
-        path="/comunidades/editar/:id"
-        isPrivate
-        comp={EditCommunityPage}
-      />
-    </Menu>
-  </Switch>
-);
+const Routes: React.FC = () => {
+  const routes = [
+    {
+      path: '/',
+      comp: DashboardPage,
+      private: false,
+    },
+    {
+      path: '/usuarios',
+      comp: UserPage,
+      private: true,
+    },
+    {
+      path: '/usuarios/:id',
+      comp: UserDetailPage,
+      private: true,
+    },
+    {
+      path: '/comunidades',
+      comp: CommunityPage,
+      private: true,
+    },
+    {
+      path: '/comunidades/editar/:id',
+      comp: EditCommunityPage,
+      private: true,
+    },
+    {
+      path: '/comunidades/criar',
+      comp: EditCommunityPage,
+      private: true,
+    },
+  ];
+
+  return (
+    <Switch>
+      <Route path="/login" isPrivate={false} comp={LoginPage} />
+      <Menu>
+        {routes.map(route => (
+          <Route
+            path={route.path}
+            isPrivate={route.private}
+            exact
+            comp={route.comp}
+          />
+        ))}
+      </Menu>
+    </Switch>
+  );
+};
 
 export default Routes;

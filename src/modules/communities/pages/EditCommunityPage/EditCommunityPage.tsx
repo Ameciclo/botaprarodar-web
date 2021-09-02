@@ -12,19 +12,22 @@ const EditCommunityPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const classes = useStyles();
   const [community, setCommunity] = useState<Community>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    CommunityService.getCommunityById(id)
-      .then(res => {
-        setCommunity(res);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (id) {
+      setLoading(true);
+      CommunityService.getCommunityById(id)
+        .then(res => {
+          setCommunity(res);
+        })
+        .catch(err => {
+          console.error(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, [id]);
 
   return (
@@ -32,7 +35,7 @@ const EditCommunityPage: React.FC = () => {
       <FormHeader
         link="/comunidades"
         title={
-          community?.name ? `Editar ${community.name}` : 'Editar comunidade'
+          community?.name ? `Editar ${community.name}` : 'Criar comunidade'
         }
       />
       {loading ? (
@@ -40,7 +43,7 @@ const EditCommunityPage: React.FC = () => {
       ) : (
         <>
           <EditCommunityForm community={community} />
-          <DeleteCommunityButton communityId={community?.id || ''} />
+          {id && <DeleteCommunityButton communityId={community?.id || ''} />}
         </>
       )}
     </div>

@@ -5,7 +5,8 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'flex-end',
     position: 'relative',
-    top: 10,
+    top: 0,
+    left: 15,
     '& button': {
       height: 20,
       '&:hover': {
