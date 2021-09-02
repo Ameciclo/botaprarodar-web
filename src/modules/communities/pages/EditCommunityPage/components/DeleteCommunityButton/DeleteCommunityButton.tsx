@@ -28,14 +28,16 @@ const DeleteCommunityButton: React.FC<{ communityId: string }> = ({
   };
 
   const handleDelete = () => {
-    CommunityService.deleteCommunityById(communityId)
-      .then(() => {
-        history.push('/comunidades');
-        toast.success('Comunidade deletada com sucesso.');
-      })
-      .catch(() => {
-        toast.error('Erro ao deletar comunidade.');
-      });
+    if (communityId) {
+      CommunityService.deleteCommunityById(communityId)
+        .then(() => {
+          history.push('/comunidades');
+          toast.success('Comunidade deletada com sucesso.');
+        })
+        .catch(() => {
+          toast.error('Erro ao deletar comunidade.');
+        });
+    }
   };
   return (
     <>

@@ -60,6 +60,7 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
       CommunityService.createCommunity({
         ...community,
         ...data,
+        id: null,
       })
         .then(() => {
           history.push('/comunidades');

@@ -43,7 +43,7 @@ const EditCommunityPage: React.FC = () => {
       ) : (
         <>
           <EditCommunityForm community={community} />
-          {id && <DeleteCommunityButton communityId={community?.id || ''} />}
+          {id && <DeleteCommunityButton communityId={id} />}
         </>
       )}
     </div>
