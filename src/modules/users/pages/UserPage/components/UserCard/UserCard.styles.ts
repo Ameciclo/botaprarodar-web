@@ -3,20 +3,18 @@ import { Badge, makeStyles, withStyles } from '@material-ui/core';
 export const StyledBadge = withStyles(() => ({
   badge: {
     right: '50%',
-    top: '87%',
+    top: '100%',
     color: '#FFFFFF',
   },
 }))(Badge);
 
 export default makeStyles({
   card: {
-    height: '169px',
-    width: '366px',
+    width: '100%',
     background: '#ffffff',
     boxShadow:
       '0px 0px 0px rgb(63 63 68 / 5%), 0px 1px 2px rgb(63 63 68 / 15%)',
     borderRadius: '4px',
-    margin: '24px 24px 24px 0',
     '& a': {
       textDecoration: 'none',
     },
@@ -26,12 +24,20 @@ export default makeStyles({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
+  menuContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  avatarContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   avatar: {
     width: '73.82px !important',
     height: '73.82px !important',
     display: 'block',
     margin: 'auto',
-    marginBottom: '16px',
   },
   name: {
     color: '#515151',
@@ -39,15 +45,15 @@ export default makeStyles({
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: '16px',
-    lineHeight: '20px',
-    textAlign: 'center',
-    marginBottom: '16px !important',
+    lineHeight: '10px',
+    textAlign: 'left',
+    margin: '10px 0 16px 0',
   },
   description: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    margin: '20px 0',
+    margin: '10px 0',
   },
   icon: { marginRight: '12px', color: '#515151' },
   text: {
@@ -64,8 +70,10 @@ export default makeStyles({
     border: '3px solid #E53535',
   },
   badge: {
-    width: '24px',
-    height: '24px',
-    borderRadius: '50%',
+    '& svg': {
+      width: '24px',
+      height: '24px',
+      borderRadius: '50%',
+    },
   },
 });

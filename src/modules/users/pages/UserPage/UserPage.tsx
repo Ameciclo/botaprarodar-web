@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
 import User from '../../models/User';
@@ -34,11 +34,24 @@ const UserPage: React.FC = () => {
       {loading ? (
         <Loading />
       ) : users.length ? (
-        <ul data-testid="userList" className={classes.userList}>
+        <Grid
+          container
+          data-testid="userList"
+          className={classes.userList}
+          direction="row"
+          justifyContent="space-between"
+          spacing={3}
+        >
           {users?.map(user => {
-            return user.id && <UserCard user={user} key={user.id} />;
+            return (
+              user.id && (
+                <Grid item xl={3} lg={4} md={6} xs={12}>
+                  <UserCard user={user} key={user.id} />
+                </Grid>
+              )
+            );
           })}
-        </ul>
+        </Grid>
       ) : (
         <EmptyState
           imgSrc={EmptyStateImage}

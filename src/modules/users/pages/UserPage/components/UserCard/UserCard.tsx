@@ -1,4 +1,4 @@
-import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
+import { Avatar, Card, CardContent, Typography, Grid } from '@material-ui/core';
 import {
   AssignmentOutlined,
   LockOutlined,
@@ -45,19 +45,22 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
   };
 
   return (
-    <Card className={classes.card} {...rest}>
-      <CardContent>
-        <UserMenu isBlocked={isBlocked} onToggleBlock={handleToggleBlock} />
+    <Card className={classes.card} key={user?.id} {...rest}>
+      <CardContent style={{ padding: 20, paddingBottom: 20 }}>
+        <div className={classes.menuContainer}>
+          <UserMenu isBlocked={isBlocked} onToggleBlock={handleToggleBlock} />
+        </div>
         <Link to={`/usuarios/${user?.id}`}>
-          <li key={user?.id}>
-            <div className={classes.cardContent}>
+          <Grid container className={classes.cardContent}>
+            <Grid item xs={4} className={classes.avatarContainer}>
               <StyledBadge
                 overlap="circular"
+                className={classes.badge}
                 badgeContent={
                   isBlocked && (
                     <LockOutlined
                       data-testid="lock-icon"
-                      className={`${classes.blocked} ${classes.badge}`}
+                      className={`${classes.blocked} `}
                     />
                   )
                 }
@@ -68,24 +71,23 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
                   alt="profile"
                 />
               </StyledBadge>
-              <div>
-                <Typography className={classes.name}>{user?.name}</Typography>
-                <div className={classes.description}>
-                  <AssignmentOutlined className={classes.icon} />
-                  <Typography className={classes.text}>
-                    {user?.docNumber?.toString()}
-                  </Typography>
-                </div>
-                <div className={classes.description}>
-                  <PlaceOutlined className={classes.icon} />
-                  <Typography className={classes.text}>
-                    {user?.address}
-                  </Typography>
-                </div>
+            </Grid>
+            <Grid item xs={8}>
+              <Typography className={classes.name}>{user?.name}</Typography>
+              <div className={classes.description}>
+                <AssignmentOutlined className={classes.icon} />
+                <Typography className={classes.text}>
+                  {user?.docNumber?.toString()}
+                </Typography>
               </div>
-              <div />
-            </div>
-          </li>
+              <div className={classes.description}>
+                <PlaceOutlined className={classes.icon} />
+                <Typography className={classes.text}>
+                  {user?.address}
+                </Typography>
+              </div>
+            </Grid>
+          </Grid>
         </Link>
       </CardContent>
     </Card>

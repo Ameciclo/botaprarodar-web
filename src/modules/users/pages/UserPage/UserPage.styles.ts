@@ -12,11 +12,9 @@ export default makeStyles(() => ({
     fontSize: 24,
     color: '#1C1C28',
     letterSpacing: '0.18px',
+    marginBottom: 20,
   },
   userList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    listStyleType: 'none',
     minHeight: 400,
   },
   loadingContainer: {
