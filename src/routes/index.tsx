@@ -49,6 +49,7 @@ const Routes: React.FC = () => {
       <Menu>
         {routes.map(route => (
           <Route
+            key={route.path}
             path={route.path}
             isPrivate={route.private}
             exact

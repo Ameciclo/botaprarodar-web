@@ -15,7 +15,7 @@ const mockedDashboardService = DashboardService as jest.Mocked<
   typeof DashboardService
 >;
 
-xdescribe('Dashboard Page', () => {
+describe('Dashboard Page', () => {
   beforeEach(() => {
     const mockedDashboard: DashboardInfo = {
       usersQuantity: 0,
@@ -34,6 +34,34 @@ xdescribe('Dashboard Page', () => {
       destination: [],
     };
     mockedDashboardService.dashboardInfo.mockResolvedValue(mockedDashboard);
+
+    Object.defineProperty(global.SVGElement.prototype, 'getBBox', {
+      writable: true,
+      value: jest.fn().mockReturnValue({
+        x: 0,
+        y: 0,
+      }),
+    });
+    Object.defineProperty(global.SVGElement.prototype, 'getScreenCTM', {
+      writable: true,
+      value: jest.fn().mockReturnValue({
+        x: 0,
+        y: 0,
+      }),
+    });
+    Object.defineProperty(global.SVGElement.prototype, 'createSVGMatrix', {
+      writable: true,
+      value: jest.fn().mockReturnValue({
+        x: 10,
+        y: 10,
+        inverse: () => {
+          return 0;
+        },
+        multiply: () => {
+          return 0;
+        },
+      }),
+    });
   });
 
   it('Should render Dashboard page', async () => {
