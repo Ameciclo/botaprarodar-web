@@ -1,22 +1,12 @@
 import User from 'modules/users/models/User';
+import Devolution from './Devolution';
 
 export default interface Bike {
   id: string;
   available: boolean;
   communityId: string;
   createdDate: string;
-  devolutions: {
-    date: string;
-    id: string;
-    quiz: {
-      destination: string;
-      giveRide: 'Não' | 'Sim';
-      problemsDuringRiding: 'Não' | 'Sim';
-      reason: string;
-    };
-    user: User;
-    withdrawId: string;
-  }[];
+  devolutions: Devolution[];
   inUse: boolean;
   name: string;
   orderNumber: number;

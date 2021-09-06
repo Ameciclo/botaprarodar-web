@@ -7,14 +7,14 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import UserService from '../../services/UserService';
 import UserPage from './UserPage';
-import { MockedUser } from '../../mocks/MockedUser';
+import { MockedMaleUser } from '../../mocks/MockedMaleUser';
 
 jest.mock('../../services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
 describe('UserPage', () => {
   it('should render loading component', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([MockedUser]);
+    mockedUserService.getAllUsers.mockResolvedValue([MockedMaleUser]);
     act(() => {
       render(
         <BrowserRouter>
@@ -30,7 +30,7 @@ describe('UserPage', () => {
   });
 
   it('should render list of users', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([MockedUser]);
+    mockedUserService.getAllUsers.mockResolvedValue([MockedMaleUser]);
 
     await act(async () => {
       render(

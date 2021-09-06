@@ -45,8 +45,8 @@ const UserPage: React.FC = () => {
           {users?.map(user => {
             return (
               user.id && (
-                <Grid item xl={3} lg={4} md={6} xs={12}>
-                  <UserCard user={user} key={user.id} />
+                <Grid item xl={3} lg={4} md={6} xs={12} key={user.id}>
+                  <UserCard user={user} />
                 </Grid>
               )
             );
