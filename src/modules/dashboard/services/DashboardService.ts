@@ -5,7 +5,6 @@ import UserService from 'modules/users/services/UserService';
 import ChartDataProps from 'shared/models/ChartDataProps';
 import Bike from '../../bicycles/models/Bike';
 import Community from '../../communities/models/Community';
-import { BikesPerCommunities } from '../models/BikesPerCommunities';
 import DashboardInfo from '../models/DashboardInfo';
 import { GenderTypes } from '../../users/models/GenderTypes';
 
@@ -48,60 +47,52 @@ const DashboardService = {
     dashboardInfo.usersQuantity = usersData.length;
     dashboardInfo.communitiesQuantity = communitiesData.length;
     dashboardInfo.bikesQuantity = bikesData.length;
-    dashboardInfo.bikesPerCommunities = communitiesData
-      .map(community => {
-        let quantity = 0;
-        const bikes: Bike[] = [];
-
-        bikesData.forEach(bike => {
-          if (bike.communityId === community.id) {
-            bikes.push(bike);
-            quantity += 1;
-          }
-        });
-
-        return {
-          label: community.name,
-          quantity,
-          bikes,
-        };
-      })
-      .filter(item => item.quantity > 0);
-
-    dashboardInfo.withdrawalsPerCommunities = this.setWithdrawalsPerCommunities(
-      dashboardInfo.bikesPerCommunities,
-    );
 
     dashboardInfo.destination = this.getDestinations(bikesData);
-
     dashboardInfo.bikesInUse = this.getBikesInUseQuantity(bikesData);
-
     dashboardInfo.newUsers = this.getNewUsers(usersData);
-
     dashboardInfo.womenUsers = this.getWomenUsers(usersData);
 
     dashboardInfo.travelsWithRideGiven =
       this.getTravelsWithRideGiven(bikesData);
 
-    const withdrawalsReason: string[] = [];
-    bikesData.forEach(bike => {
-      if (bike.devolutions && bike.devolutions.length > 0) {
-        dashboardInfo.travelsDone += bike.devolutions.length;
-        bike.devolutions.forEach(devolution => {
-          dashboardInfo.incidentsHappened +=
-            devolution.quiz.problemsDuringRiding === 'Sim' ? 1 : 0;
-          withdrawalsReason.push(devolution.quiz.reason);
-        });
-      }
-    });
+    dashboardInfo.incidentsHappened = this.getIncidentsHappened(bikesData);
+    dashboardInfo.travelsDone = this.getTravelsDone(bikesData);
 
-    dashboardInfo.withdrawalsReason =
-      this.setWithdrawalsReason(withdrawalsReason);
+    dashboardInfo.withdrawalsReason = this.getWithdrawalsReason(bikesData);
 
     return dashboardInfo;
   },
 
-  setWithdrawalsReason(withdrawalsReason: string[]): ChartDataProps[] {
+  getTravelsDone(bikesData: Bike[]): number {
+    let travelsDone = 0;
+    bikesData.forEach(bike => {
+      if (bike.devolutions?.length > 0) {
+        travelsDone += bike.devolutions?.length;
+      }
+    });
+    return travelsDone;
+  },
+
+  getIncidentsHappened(bikesData: Bike[]): number {
+    let incidents = 0;
+    bikesData.forEach(bike => {
+      if (bike.devolutions && bike.devolutions.length > 0) {
+        bike.devolutions.forEach(devolution => {
+          incidents += devolution.quiz.problemsDuringRiding === 'Sim' ? 1 : 0;
+        });
+      }
+    });
+    return incidents;
+  },
+
+  getWithdrawalsReason(bikesData: Bike[]): ChartDataProps[] {
+    const withdrawalsReason: string[] = [];
+    bikesData.forEach(bike =>
+      bike.devolutions?.forEach(devolution =>
+        withdrawalsReason.push(devolution.quiz.reason),
+      ),
+    );
     const unique: string[] = withdrawalsReason.filter(
       (value, index, array) => array.indexOf(value) === index,
     );
@@ -151,27 +142,6 @@ const DashboardService = {
       });
     });
     return chartDataProps;
-  },
-
-  setWithdrawalsPerCommunities(
-    bikesPerCommunities: BikesPerCommunities[],
-  ): ChartDataProps[] {
-    let array: ChartDataProps[] = [];
-    array = bikesPerCommunities.map(item => {
-      let quantity = 0;
-
-      item.bikes.forEach(bike => {
-        if (bike.withdraws) {
-          quantity += bike.withdraws.length;
-        }
-      });
-
-      return {
-        label: item.label,
-        quantity,
-      };
-    });
-    return array.filter(item => item.quantity > 0);
   },
 
   getBikesInUseQuantity(bikeArray: Bike[]): number {
