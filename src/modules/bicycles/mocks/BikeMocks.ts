@@ -18,6 +18,31 @@ export const MockedBike: Bike = {
       user: MockedFemaleUser,
       withdrawId: '-zmqNlsziZxeFvZQrtfBm',
     },
+    {
+      date: '01/09/2021 12:08:18',
+      id: '-WPSD2ZVXgcGT6Z16rcuw',
+      quiz: {
+        destination: 'Hogwarts',
+        giveRide: 'Sim',
+        problemsDuringRiding: 'Não',
+        reason: 'Seu local de estudo',
+      },
+      user: MockedFemaleUser,
+      withdrawId: '-zmqNlsziZxeFvZQrtfBm',
+    },
+
+    {
+      date: '01/09/2021 12:08:18',
+      id: '-WPSD2ZVXgcGT6Z16rcuw',
+      quiz: {
+        destination: 'Hogwarts',
+        giveRide: 'Sim',
+        problemsDuringRiding: 'Não',
+        reason: 'Seu local de estudo',
+      },
+      user: MockedFemaleUser,
+      withdrawId: '-zmqNlsziZxeFvZQrtfBm',
+    },
   ],
   id: '-MgfYTcrUFsX_NXhhvL2',
   inUse: false,

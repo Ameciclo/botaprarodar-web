@@ -52,13 +52,10 @@ const DashboardService = {
     dashboardInfo.bikesInUse = this.getBikesInUseQuantity(bikesData);
     dashboardInfo.newUsers = this.getNewUsers(usersData);
     dashboardInfo.womenUsers = this.getWomenUsers(usersData);
-
     dashboardInfo.travelsWithRideGiven =
       this.getTravelsWithRideGiven(bikesData);
-
     dashboardInfo.incidentsHappened = this.getIncidentsHappened(bikesData);
     dashboardInfo.travelsDone = this.getTravelsDone(bikesData);
-
     dashboardInfo.withdrawalsReason = this.getWithdrawalsReason(bikesData);
 
     return dashboardInfo;
@@ -93,24 +90,9 @@ const DashboardService = {
         withdrawalsReason.push(devolution.quiz.reason),
       ),
     );
-    const unique: string[] = withdrawalsReason.filter(
-      (value, index, array) => array.indexOf(value) === index,
+    return this.groupArrayToChartDataProps(withdrawalsReason).sort(
+      (a, b) => b.quantity - a.quantity,
     );
-    const quantities: number[] = [];
-
-    withdrawalsReason.forEach(item => {
-      quantities[unique.indexOf(item)] = quantities[unique.indexOf(item)]
-        ? quantities[unique.indexOf(item)] + 1
-        : 1;
-    });
-    return unique
-      .map((item, index) => {
-        return {
-          label: item,
-          quantity: quantities[index],
-        };
-      })
-      .sort((a, b) => b.quantity - a.quantity);
   },
 
   getDestinations(bikeArray: Bike[]): ChartDataProps[] {
@@ -120,11 +102,12 @@ const DashboardService = {
         allDestinations.push(devolution.quiz.destination);
       });
     });
-    return this.groupBy(allDestinations);
+    return this.groupArrayToChartDataProps(allDestinations).sort(
+      (a, b) => b.quantity - a.quantity,
+    );
   },
 
-  // TODO - refactor this function
-  groupBy(allItems: string[]): ChartDataProps[] {
+  groupArrayToChartDataProps(allItems: string[]): ChartDataProps[] {
     const mapGrouped = new Map();
     const chartDataProps: ChartDataProps[] = [];
     allItems.forEach(item => {
