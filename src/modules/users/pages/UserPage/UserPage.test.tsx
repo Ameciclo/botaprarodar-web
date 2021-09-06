@@ -7,14 +7,14 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import UserService from '../../services/UserService';
 import UserPage from './UserPage';
-import { GenderTypes } from '../../models/GenderTypes';
+import { MockedUser } from '../../mocks/MockedUser';
 
 jest.mock('../../services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
 describe('UserPage', () => {
   it('should render loading component', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([]);
+    mockedUserService.getAllUsers.mockResolvedValue([MockedUser]);
     act(() => {
       render(
         <BrowserRouter>
@@ -30,26 +30,7 @@ describe('UserPage', () => {
   });
 
   it('should render list of users', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([
-      {
-        name: 'Antoni',
-        communityId: '-MLDOXs3p35DEHg0gdUU',
-        telephone: '+55 51 3626-2001',
-        gender: GenderTypes.male,
-        status: true,
-        id: '123',
-        profilePicture: 'test',
-        address: 'Test street',
-        docNumber: BigInt(12345678910),
-        docPictureBack: 'test-back-picture',
-        docPicture: 'test-picture',
-        residenceProofPicture: 'residence-picture',
-        isBlocked: false,
-        userQuiz: {
-          alreadyUseBPR: false,
-        },
-      },
-    ]);
+    mockedUserService.getAllUsers.mockResolvedValue([MockedUser]);
 
     await act(async () => {
       render(

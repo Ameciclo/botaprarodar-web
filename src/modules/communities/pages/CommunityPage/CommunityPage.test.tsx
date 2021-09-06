@@ -7,6 +7,7 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import CommunityService from 'modules/communities/services/CommunityService';
 import CommunityPage from './CommunityPage';
+import { MockedCommunity } from '../../mocks/MockedCommunity';
 
 jest.mock('../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
@@ -31,19 +32,8 @@ describe('CommunityPage', () => {
   });
 
   it('renders a grid to show the communities', async () => {
-    const date = new Date();
     mockedCommunityService.getAllCommunities.mockResolvedValue([
-      {
-        id: '1',
-        address: 'Rua teste',
-        created_date: date,
-        description: 'Descrição comunidade teste',
-        name: 'Comunidade teste',
-        org_email: 'comunidade@teste.com',
-        org_name: 'nome',
-        bicycles: [],
-        withdrawals: [],
-      },
+      MockedCommunity,
     ]);
     await act(async () => {
       render(

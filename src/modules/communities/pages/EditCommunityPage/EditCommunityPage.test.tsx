@@ -32,7 +32,7 @@ describe('Edit community', () => {
     jest
       .spyOn(CommunityService, 'getCommunityById')
       .mockRejectedValue(new Error('Error'));
-    renderElement();
+    await renderElement();
     expect(await screen.findByText('Criar comunidade')).toBeInTheDocument();
   });
 });

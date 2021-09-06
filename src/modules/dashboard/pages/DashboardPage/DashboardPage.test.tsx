@@ -6,8 +6,8 @@ import {
   act,
 } from '@testing-library/react';
 import DashboardService from 'modules/dashboard/services/DashboardService';
-import DashboardInfo from 'modules/dashboard/models/DashboardInfo';
 import DashboardPage from './DashboardPage';
+import { MockedDashboardInfo } from '../../mocks/DashboardMocks';
 
 jest.mock('../../services/DashboardService');
 
@@ -17,23 +17,7 @@ const mockedDashboardService = DashboardService as jest.Mocked<
 
 describe('Dashboard Page', () => {
   beforeEach(() => {
-    const mockedDashboard: DashboardInfo = {
-      usersQuantity: 0,
-      newUsers: 0,
-      womenUsers: 0,
-      communitiesQuantity: 0,
-      bikesQuantity: 0,
-      bikesInUse: 0,
-      bikersCommunities: [],
-      bikesPerCommunities: [],
-      withdrawalsPerCommunities: [],
-      travelsDone: 0,
-      travelsWithRideGiven: 0,
-      incidentsHappened: 0,
-      withdrawalsReason: [],
-      destination: [],
-    };
-    mockedDashboardService.dashboardInfo.mockResolvedValue(mockedDashboard);
+    mockedDashboardService.dashboardInfo.mockResolvedValue(MockedDashboardInfo);
 
     Object.defineProperty(global.SVGElement.prototype, 'getBBox', {
       writable: true,

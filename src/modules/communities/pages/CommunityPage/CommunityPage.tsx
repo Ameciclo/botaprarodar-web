@@ -41,13 +41,7 @@ const CommunityPage: React.FC = () => {
             Comunidades do Bota pra Rodar
           </Typography>
         </Grid>
-        <Grid
-          item
-          md={4}
-          xs={12}
-          justifyContent="flex-end"
-          style={{ display: 'flex' }}
-        >
+        <Grid item md={4} xs={12} style={{ display: 'flex' }}>
           <CreateCommunityButton />
         </Grid>
       </Grid>

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import BikeService from 'modules/bicycles/services/BikeService';
 import CommunityService from 'modules/communities/services/CommunityService';
 import User from 'modules/users/models/User';
