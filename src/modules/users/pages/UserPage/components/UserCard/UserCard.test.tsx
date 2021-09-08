@@ -42,14 +42,14 @@ describe('User Card', () => {
 
   it('should block user successfully', async () => {
     expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
-    mockedUserService.toggleUserBlock.mockResolvedValue({ isBlocked: true });
+    mockedUserService.setUserBlock.mockResolvedValue({ isBlocked: true });
 
     act(() => {
       fireEvent.click(screen.getByText('Bloquear'));
     });
 
     await waitFor(() => {
-      expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
+      expect(mockedUserService.setUserBlock).toHaveBeenCalledWith(
         mockUser.id,
         !mockUser.isBlocked,
       );
@@ -59,14 +59,14 @@ describe('User Card', () => {
 
   it('should not show lock when block request was not successful', async () => {
     expect(screen.queryByTestId('lock-icon')).not.toBeInTheDocument();
-    mockedUserService.toggleUserBlock.mockRejectedValue({ isBlocked: false });
+    mockedUserService.setUserBlock.mockRejectedValue({ isBlocked: false });
 
     act(() => {
       fireEvent.click(screen.getByText('Bloquear'));
     });
 
     await waitFor(() => {
-      expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
+      expect(mockedUserService.setUserBlock).toHaveBeenCalledWith(
         mockUser.id,
         !mockUser.isBlocked,
       );
@@ -82,14 +82,14 @@ describe('User Card', () => {
       </BrowserRouter>,
     );
     expect(screen.queryByTestId('lock-icon')).toBeInTheDocument();
-    mockedUserService.toggleUserBlock.mockResolvedValue({ isBlocked: false });
+    mockedUserService.setUserBlock.mockResolvedValue({ isBlocked: false });
 
     act(() => {
       fireEvent.click(screen.getByText('Desbloquear'));
     });
 
     await waitFor(() => {
-      expect(mockedUserService.toggleUserBlock).toHaveBeenCalledWith(
+      expect(mockedUserService.setUserBlock).toHaveBeenCalledWith(
         mockUser.id,
         !mockUser.isBlocked,
       );

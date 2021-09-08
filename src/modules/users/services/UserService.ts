@@ -18,7 +18,7 @@ const UserService = {
     return data;
   },
 
-  async toggleUserBlock(id: string, isBlocked: boolean) {
+  async setUserBlock(id: string, isBlocked: boolean) {
     const { data } = await api.patch(`/users/${id}.json`, { isBlocked });
 
     return data;

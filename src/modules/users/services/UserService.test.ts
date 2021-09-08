@@ -47,4 +47,18 @@ describe('User Service', () => {
       }),
     );
   });
+
+  it('should toggle user block', async () => {
+    mockedApi.patch.mockResolvedValue({
+      data: { isBlocked: true },
+    });
+
+    await act(async () => {
+      await UserService.setUserBlock('123', true);
+    });
+
+    expect(mockedApi.patch).toHaveBeenCalledWith('/users/123.json', {
+      isBlocked: true,
+    });
+  });
 });

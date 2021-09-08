@@ -31,7 +31,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
 
   const handleToggleBlock = async () => {
     try {
-      const data = await UserService.toggleUserBlock(user.id, !isBlocked);
+      const data = await UserService.setUserBlock(user.id, !isBlocked);
       setIsBlocked(data.isBlocked);
       const blockMsg = data.isBlocked ? 'bloqueado(a)' : 'desbloqueado(a)';
       toast.success(`${user.name} ${blockMsg}`, {
