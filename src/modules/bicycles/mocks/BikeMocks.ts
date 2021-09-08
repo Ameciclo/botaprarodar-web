@@ -1,5 +1,5 @@
 import Bike from '../models/Bike';
-import { MockedFemaleUser } from '../../users/mocks/MockedMaleUser';
+import { MockedFirstUser } from '../../users/mocks/MockedUser';
 
 export const MockedBike: Bike = {
   available: true,
@@ -15,7 +15,7 @@ export const MockedBike: Bike = {
         problemsDuringRiding: 'Não',
         reason: 'Seu local de estudo',
       },
-      user: MockedFemaleUser,
+      user: MockedFirstUser,
       withdrawId: '-zmqNlsziZxeFvZQrtfBm',
     },
     {
@@ -27,7 +27,7 @@ export const MockedBike: Bike = {
         problemsDuringRiding: 'Não',
         reason: 'Seu local de estudo',
       },
-      user: MockedFemaleUser,
+      user: MockedFirstUser,
       withdrawId: '-zmqNlsziZxeFvZQrtfBm',
     },
 
@@ -40,7 +40,7 @@ export const MockedBike: Bike = {
         problemsDuringRiding: 'Não',
         reason: 'Seu local de estudo',
       },
-      user: MockedFemaleUser,
+      user: MockedFirstUser,
       withdrawId: '-zmqNlsziZxeFvZQrtfBm',
     },
   ],

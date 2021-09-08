@@ -1,8 +1,8 @@
 import DashboardService from './DashboardService';
 import {
-  MockedFemaleUser,
-  MockedMaleUser,
-} from '../../users/mocks/MockedMaleUser';
+  MockedFirstUser,
+  MockedSecondUser,
+} from '../../users/mocks/MockedUser';
 import { MockedBike } from '../../bicycles/mocks/BikeMocks';
 import ChartDataProps from '../../../shared/models/ChartDataProps';
 
@@ -72,25 +72,25 @@ describe('DashboardService', () => {
   });
 
   it('should return number of new users', () => {
-    MockedMaleUser.userQuiz.alreadyUseBPR = false;
-    MockedFemaleUser.userQuiz.alreadyUseBPR = true;
+    MockedFirstUser.userQuiz.alreadyUseBPR = false;
+    MockedFirstUser.userQuiz.alreadyUseBPR = true;
     const mockedUsers = [
-      MockedMaleUser,
-      MockedFemaleUser,
-      MockedMaleUser,
-      MockedFemaleUser,
-      MockedFemaleUser,
+      MockedSecondUser,
+      MockedFirstUser,
+      MockedSecondUser,
+      MockedFirstUser,
+      MockedFirstUser,
     ];
     expect(DashboardService.getNewUsers(mockedUsers)).toBe(3);
   });
 
   it('should return number of women users', () => {
     const mockedUsers = [
-      MockedMaleUser,
-      MockedFemaleUser,
-      MockedMaleUser,
-      MockedFemaleUser,
-      MockedFemaleUser,
+      MockedSecondUser,
+      MockedFirstUser,
+      MockedSecondUser,
+      MockedSecondUser,
+      MockedFirstUser,
     ];
     expect(DashboardService.getWomenUsers(mockedUsers)).toBe(3);
   });
