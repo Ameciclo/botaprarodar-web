@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { Input, toast } from 'shared/components';
 import CommunityService from 'modules/communities/services/CommunityService';
 import { useHistory } from 'react-router-dom';
-import useStyles from './EditCommunityForm.styles';
+import useStyles from './CommunityForm.styles';
 
 interface EditCommunityProps {
   community?: Community;

@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import CommunityService from 'modules/communities/services/CommunityService';
 import { Loading } from 'shared/components';
 import FormHeader from 'shared/components/FormHeader/FormHeader';
-import useStyles from './EditCommunityPage.styles';
-import EditCommunityForm from './components/EditCommunityForm/EditCommunityForm';
+import useStyles from './CreateAndEditCommunity.styles';
+import EditCommunityForm from './components/CommunityForm/CommunityForm';
 import DeleteCommunityButton from './components/DeleteCommunityButton/DeleteCommunityButton';
 
 const EditCommunityPage: React.FC = () => {

@@ -1,4 +1,4 @@
-import EditCommunityPage from 'modules/communities/pages/EditCommunityPage/EditCommunityPage';
+import CreateAndEditCommunityPage from 'modules/communities/pages/CreateAndEditCommunity/CreateAndEditCommunity';
 import UserDetailPage from 'modules/users/pages/UserDetailPage/UserDetailPage';
 import React from 'react';
 import { Switch } from 'react-router-dom';
@@ -14,7 +14,7 @@ const Routes: React.FC = () => {
     {
       path: '/',
       comp: DashboardPage,
-      private: true,
+      private: false,
     },
     {
       path: '/usuarios',
@@ -33,12 +33,12 @@ const Routes: React.FC = () => {
     },
     {
       path: '/comunidades/editar/:id',
-      comp: EditCommunityPage,
+      comp: CreateAndEditCommunityPage,
       private: true,
     },
     {
       path: '/comunidades/criar',
-      comp: EditCommunityPage,
+      comp: CreateAndEditCommunityPage,
       private: true,
     },
   ];
