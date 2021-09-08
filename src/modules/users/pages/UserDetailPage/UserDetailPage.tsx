@@ -26,7 +26,6 @@ const UserDetailPage: React.FC = () => {
         setLoading(false);
       });
   }, [id]);
-
   return (
     <div className={classes.root}>
       <Typography variant="h1" component="h1" className={classes.heading}>

@@ -6,9 +6,7 @@ export default makeStyles(theme => ({
     alignItems: 'flex-start',
   },
   card: {
-    width: 558,
-    height: 295,
-    overflow: 'auto',
+    width: '100%',
     '& hr': {
       marginLeft: -20,
       marginRight: -20,
@@ -73,7 +71,7 @@ export default makeStyles(theme => ({
     marginLeft: 40,
     marginBottom: 20,
     [theme.breakpoints.down('sm')]: {
-      fontSize: 14,
+      fontSize: 20,
     },
   },
   avatar: {
@@ -88,12 +86,18 @@ export default makeStyles(theme => ({
     },
   },
   imageButton: {
+    cursor: 'pointer',
     border: 0,
+    backgroundColor: '#fff',
     '& img': {
-      width: '50%',
-      height: '50%',
+      width: '47%',
       borderRadius: 10,
-      margin: 20,
+      margin: 10,
+    },
+    [theme.breakpoints.down('sm')]: {
+      '& img': {
+        width: '40%',
+      },
     },
   },
   blocked: {
