@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { Button, MenuItem, Menu } from '@material-ui/core';
-import {
-  MoreHoriz,
-  LockOpenOutlined,
-  LockOutlined,
-  DescriptionOutlined,
-  EditOutlined,
-} from '@material-ui/icons';
+import { MoreHoriz, LockOpenOutlined, LockOutlined } from '@material-ui/icons';
 import useStyles from './UserMenu.styles';
 
 interface UserMenuProps {
@@ -43,9 +37,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ isBlocked, onToggleBlock }) => {
         onClose={handleClose}
         className={classes.menu}
       >
-        <MenuItem onClick={handleClose}>
-          <EditOutlined /> Editar
-        </MenuItem>
         {isBlocked ? (
           <MenuItem onClick={onToggleBlock}>
             {' '}
@@ -57,10 +48,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ isBlocked, onToggleBlock }) => {
             <LockOutlined /> Bloquear
           </MenuItem>
         )}
-        <MenuItem onClick={handleClose}>
-          <DescriptionOutlined />
-          Documentos
-        </MenuItem>
       </Menu>
     </div>
   );

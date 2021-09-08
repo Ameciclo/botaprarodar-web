@@ -1,6 +1,6 @@
 import { Badge, makeStyles, withStyles } from '@material-ui/core';
 
-export const StyledBadge = withStyles(() => ({
+export const StyledBadgeUserCard = withStyles(() => ({
   badge: {
     right: '50%',
     top: '100%',

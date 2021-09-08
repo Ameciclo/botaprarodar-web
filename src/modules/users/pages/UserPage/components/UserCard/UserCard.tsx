@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'shared/components';
 import UserMenu from '../UserMenu/UserMenu';
-import useStyles, { StyledBadge } from './UserCard.styles';
+import useStyles, { StyledBadgeUserCard } from './UserCard.styles';
 import UserService from '../../../../services/UserService';
 
 interface UserCardProps {
@@ -53,7 +53,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
         <Link to={`/usuarios/${user?.id}`}>
           <Grid container className={classes.cardContent}>
             <Grid item xs={4} className={classes.avatarContainer}>
-              <StyledBadge
+              <StyledBadgeUserCard
                 overlap="circular"
                 className={classes.badge}
                 badgeContent={
@@ -70,7 +70,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
                   src={user?.profilePicture}
                   alt="profile"
                 />
-              </StyledBadge>
+              </StyledBadgeUserCard>
             </Grid>
             <Grid item xs={8}>
               <Typography className={classes.name}>{user?.name}</Typography>

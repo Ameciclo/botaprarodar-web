@@ -15,8 +15,7 @@ import {
 } from '@material-ui/icons';
 import React, { useState } from 'react';
 import Viewer from 'react-viewer';
-import useStyles from './UserDetailInfo.styles';
-import { StyledBadge } from '../../../UserPage/components/UserCard/UserCard.styles';
+import useStyles, { StyledBadgeUserDetail } from './UserDetailInfo.styles';
 import UserService from '../../../../services/UserService';
 import UserDetailMenu from '../UserDetailMenu/UserDetailMenu';
 import { toast } from '../../../../../../shared/components';
@@ -57,7 +56,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
       {...rest}
     >
       <Grid item xs={12} lg={6} className={classes.userContainer}>
-        <StyledBadge
+        <StyledBadgeUserDetail
           overlap="circular"
           style={{ top: '85%' }}
           badgeContent={
@@ -71,7 +70,7 @@ const UserDetailInfo: React.FC<UserInfoProps> = ({ user, ...rest }) => {
             src={user.profilePicture}
             alt="profile"
           />
-        </StyledBadge>
+        </StyledBadgeUserDetail>
         <div className={classes.userInfoContainer}>
           <div>
             <Typography variant="h4" className={classes.username}>

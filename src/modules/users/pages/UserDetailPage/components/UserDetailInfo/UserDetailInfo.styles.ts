@@ -1,5 +1,12 @@
-import { makeStyles } from '@material-ui/core';
+import { Badge, makeStyles, withStyles } from '@material-ui/core';
 
+export const StyledBadgeUserDetail = withStyles(() => ({
+  badge: {
+    right: '50%',
+    top: '90%',
+    color: '#FFFFFF',
+  },
+}))(Badge);
 export default makeStyles(theme => ({
   root: {
     marginTop: 60,
