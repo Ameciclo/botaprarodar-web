@@ -14,7 +14,7 @@ import {
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   useClearAuth,
@@ -40,6 +40,20 @@ const Menu: React.FC = ({ children }) => {
     clearAuth.clearAuth();
     history.push('/');
   };
+
+  const handleActiveMenu = useCallback(
+    (item: any) => {
+      if (item.path === '/') {
+        return history.location.pathname === '/'
+          ? classes.activeItem
+          : classes.item;
+      }
+      return item.path && history.location.pathname.includes(item.path)
+        ? classes.activeItem
+        : classes.item;
+    },
+    [classes.activeItem, classes.item, history.location.pathname],
+  );
 
   const PermanentDrawer: FC = ({ children: drawerChildren }) => (
     <Drawer
@@ -95,14 +109,7 @@ const Menu: React.FC = ({ children }) => {
             {menuItems(history, getAuth.value, handleLogout).map(
               item =>
                 !item.hide && (
-                  <div
-                    className={
-                      history.location.pathname === item.path
-                        ? classes.activeItem
-                        : classes.item
-                    }
-                    key={item.name}
-                  >
+                  <div className={handleActiveMenu(item)} key={item.name}>
                     <ListItem
                       button
                       key={item.name}
