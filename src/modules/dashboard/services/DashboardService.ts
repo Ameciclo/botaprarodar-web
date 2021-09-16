@@ -104,7 +104,7 @@ const DashboardService = {
     });
     return this.groupArrayToChartDataProps(allDestinations)
       .sort((a, b) => b.quantity - a.quantity)
-      .slice(0, 11);
+      .slice(0, 10);
   },
 
   groupArrayToChartDataProps(allItems: string[]): ChartDataProps[] {
