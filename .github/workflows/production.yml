@@ -1,4 +1,4 @@
-# This is the workflow to push to production
+# This is the workflow to push to production environment at heroku
 
 name: Deploy to heroku - production
 on:
