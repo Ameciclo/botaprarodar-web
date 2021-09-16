@@ -1,6 +1,6 @@
 import { waitFor } from '@testing-library/react';
 import Route from './Route';
-import { renderWithRouterAndAuth, setUserAuthentication } from '../setupTests';
+import { renderWithRouterAndAuth, setUserAuthenticated } from '../setupTests';
 
 describe('route redirections based on authentication', () => {
   it('should render public page', async () => {
@@ -26,7 +26,7 @@ describe('route redirections based on authentication', () => {
   });
 
   it('should render private page page when user is logged', async () => {
-    setUserAuthentication();
+    setUserAuthenticated();
 
     const { getByText } = renderWithRouterAndAuth(
       <Route

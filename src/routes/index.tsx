@@ -14,7 +14,7 @@ const Routes: React.FC = () => {
     {
       path: '/',
       comp: DashboardPage,
-      private: false,
+      private: true,
     },
     {
       path: '/usuarios',

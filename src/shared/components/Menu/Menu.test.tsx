@@ -2,7 +2,7 @@ import { fireEvent } from '@testing-library/react';
 import Menu from './Menu';
 import {
   renderWithRouterAndAuth,
-  setUserAuthentication,
+  setUserAuthenticated,
 } from '../../../setupTests';
 
 describe('Menu', () => {
@@ -12,7 +12,7 @@ describe('Menu', () => {
   });
 
   it('renders only logout button when user is logged', () => {
-    setUserAuthentication();
+    setUserAuthenticated();
 
     const { queryByText } = renderWithRouterAndAuth(<Menu />);
 
@@ -28,11 +28,20 @@ describe('Menu', () => {
   });
 
   it('should redirect to given page when click in menu item', () => {
-    setUserAuthentication();
+    setUserAuthenticated();
     const { getByText, history } = renderWithRouterAndAuth(<Menu />);
 
     fireEvent.click(getByText('Comunidades'));
 
     expect(history.location.pathname).toBe('/comunidades');
+  });
+
+  it('should redirect to login page when click in logout button', () => {
+    setUserAuthenticated();
+    const { getByText, history } = renderWithRouterAndAuth(<Menu />);
+
+    fireEvent.click(getByText('Sair'));
+
+    expect(history.location.pathname).toBe('/login');
   });
 });

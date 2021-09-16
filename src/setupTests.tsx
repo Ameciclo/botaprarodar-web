@@ -24,7 +24,7 @@ beforeEach(() => {
   localStorage.setItem('authStorage', JSON.stringify(INITIAL_AUTH));
 });
 
-export function setUserAuthentication() {
+export function setUserAuthenticated() {
   const mockedUser: AuthInterface = {
     token: 'token',
     authenticated: true,
