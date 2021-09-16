@@ -5,8 +5,8 @@ import UserService from 'modules/users/services/UserService';
 import ChartDataProps from 'shared/models/ChartDataProps';
 import Bike from '../../bicycles/models/Bike';
 import Community from '../../communities/models/Community';
-import DashboardInfo from '../models/DashboardInfo';
 import { GenderTypes } from '../../users/models/GenderTypes';
+import DashboardInfo from '../models/DashboardInfo';
 
 const DashboardInfoInitialValues: DashboardInfo = {
   usersQuantity: 0,
@@ -102,9 +102,9 @@ const DashboardService = {
         allDestinations.push(devolution.quiz.destination);
       });
     });
-    return this.groupArrayToChartDataProps(allDestinations).sort(
-      (a, b) => b.quantity - a.quantity,
-    );
+    return this.groupArrayToChartDataProps(allDestinations)
+      .sort((a, b) => b.quantity - a.quantity)
+      .slice(0, 11);
   },
 
   groupArrayToChartDataProps(allItems: string[]): ChartDataProps[] {
