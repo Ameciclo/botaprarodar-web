@@ -1,0 +1,22 @@
+# This is workflow to deploy to firebase developmente environment
+
+name: Deploy to firebase CI
+on:
+  push:
+    branches: main
+
+jobs:
+  deploy_to_firebase_hosting:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@main
+      
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
