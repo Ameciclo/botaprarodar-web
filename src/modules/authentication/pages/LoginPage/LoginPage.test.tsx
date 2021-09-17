@@ -48,7 +48,7 @@ describe('Login Page', () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  xit('should submit login form', async () => {
+  it('should submit login form', async () => {
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
 
     expect(LoginService.requestLogin).toHaveBeenCalledWith(
@@ -57,7 +57,7 @@ describe('Login Page', () => {
     );
   });
 
-  xit('should throw error when login fails', () => {
+  it('should throw error when login fails', () => {
     mockedLoginService.requestLogin.mockRejectedValue(new Error());
 
     expect(LoginService.requestLogin('', '')).rejects.toThrow(Error);
@@ -79,7 +79,7 @@ describe('Login Page', () => {
     expect(screen.getByText('Digite sua senha')).toBeInTheDocument();
   });
 
-  xit('should not call login api when there are errors', async () => {
+  it('should not call login api when there are errors', async () => {
     const loginButton = screen.getByTestId('submit-button');
 
     fireEvent.click(loginButton);
@@ -87,7 +87,7 @@ describe('Login Page', () => {
     expect(mockedLoginService.requestLogin).not.toHaveBeenCalled();
   });
 
-  xit('should redirect to home page after login', async () => {
+  it('should redirect to home page after login', async () => {
     const { history } = wrapper;
     expect(history.location.pathname).toBe('/login');
 

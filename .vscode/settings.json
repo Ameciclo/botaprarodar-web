@@ -21,10 +21,10 @@
   "[json]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
-  "cSpell.words": [
-    "conventionalcommits"
-  ],
+  "cSpell.words": ["conventionalcommits"],
   "[env]": {
     "editor.defaultFormatter": "IronGeek.vscode-env"
   },
+  "appService.defaultWebAppToDeploy": "/subscriptions/a1620f41-e206-4983-84de-0f6451748b03/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/botaprarodar",
+  "appService.deploySubpath": "."
 }
