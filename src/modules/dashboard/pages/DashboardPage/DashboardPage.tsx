@@ -19,6 +19,7 @@ const INITIAL_DASHBOARD: DashboardInfo = {
   withdrawalsReason: [{ label: '', quantity: 0 }],
   bikersCommunities: [{ label: '', quantity: 0 }],
   destination: [{ label: '', quantity: 0 }],
+  racialInfo: [{ label: '', quantity: 0 }],
 };
 
 const DashboardPage: FC = () => {

@@ -5,9 +5,12 @@ import React, { FC } from 'react';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
 import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
+import PolarAreaChart from 'shared/components/PolarAreaChart/PolarAreaChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
-import DashboardStyles from './Dashboard.styles';
+import ButtonGrid from '../../components/ButtonGrid/ButtonGrid';
+import DashboardButton from '../../components/DashboardButton/DashboardButton';
 import DonutPercentageCard from '../../components/DonutPercentageCard';
+import DashboardStyles from './Dashboard.styles';
 
 interface DashboardProps {
   dashboardData: DashboardInfo;
@@ -100,6 +103,20 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         <Grid item xl={6} lg={6} sm={12} xs={12}>
           <CustomCard headerTitle="Destinos dos ciclistas">
             <VerticalBarChart data={dashboardData.destination} />
+          </CustomCard>
+        </Grid>
+      </>
+      <>
+        <Grid item xl={12} lg={12} sm={12} xs={12}>
+          <CustomCard>
+            <ButtonGrid>
+              <DashboardButton label="Raça" />
+              <DashboardButton label="Raça" />
+              <DashboardButton label="Raça" />
+              <DashboardButton label="Raça" />
+              <DashboardButton label="Raça" />
+            </ButtonGrid>
+            <PolarAreaChart data={dashboardData.racialInfo} />
           </CustomCard>
         </Grid>
       </>

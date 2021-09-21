@@ -3,6 +3,7 @@ import CommunityService from 'modules/communities/services/CommunityService';
 import User from 'modules/users/models/User';
 import UserService from 'modules/users/services/UserService';
 import ChartDataProps from 'shared/models/ChartDataProps';
+import StringUtils from 'shared/utils/StringUtils';
 import Bike from '../../bicycles/models/Bike';
 import Community from '../../communities/models/Community';
 import { GenderTypes } from '../../users/models/GenderTypes';
@@ -23,6 +24,7 @@ const DashboardInfoInitialValues: DashboardInfo = {
   withdrawalsReason: [],
   bikersCommunities: [],
   destination: [],
+  racialInfo: [],
 };
 
 const DashboardService = {
@@ -57,6 +59,7 @@ const DashboardService = {
     dashboardInfo.incidentsHappened = this.getIncidentsHappened(bikesData);
     dashboardInfo.travelsDone = this.getTravelsDone(bikesData);
     dashboardInfo.withdrawalsReason = this.getWithdrawalsReason(bikesData);
+    dashboardInfo.racialInfo = this.getRacialInfo(usersData);
 
     return dashboardInfo;
   },
@@ -143,6 +146,22 @@ const DashboardService = {
     return bikes.filter(bike =>
       bike.devolutions?.filter(devolution => devolution.quiz?.giveRide),
     ).length;
+  },
+
+  getRacialInfo(users: User[]): ChartDataProps[] {
+    const result = [] as string[];
+
+    users.forEach(user => {
+      let racial: string;
+      if (user.racial) {
+        racial = StringUtils.normalizeRacialInfo(user.racial);
+      } else {
+        racial = StringUtils.normalizeRacialInfo('não informado');
+      }
+      result.push(racial);
+    });
+
+    return this.groupArrayToChartDataProps(result);
   },
 };
 export default DashboardService;

@@ -15,4 +15,5 @@ export const MockedDashboardInfo: DashboardInfo = {
   incidentsHappened: 0,
   withdrawalsReason: [],
   destination: [],
+  racialInfo: [],
 };

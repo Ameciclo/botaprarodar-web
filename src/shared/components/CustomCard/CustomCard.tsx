@@ -20,10 +20,12 @@ const CustomCard: FC<CustomCardProps> = ({
   const classes = CustomCardStyles();
   return (
     <Card style={{ height: '100%' }}>
-      <CardHeader
-        title={headerTitle}
-        classes={{ title: classes.cardHeader, root: classes.cardHeaderBox }}
-      />
+      {headerTitle && (
+        <CardHeader
+          title={headerTitle}
+          classes={{ title: classes.cardHeader, root: classes.cardHeaderBox }}
+        />
+      )}
       <CardContent classes={{ root: classes.cardContent }}>
         {content || children}
       </CardContent>

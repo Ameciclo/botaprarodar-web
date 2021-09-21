@@ -15,6 +15,7 @@ export const MockedFirstUser: User = {
   docPicture: 'test-picture',
   residenceProofPicture: 'residence-picture',
   isBlocked: false,
+  racial: 'Parda',
   userQuiz: {
     alreadyUseBPR: false,
   },
@@ -34,6 +35,7 @@ export const MockedSecondUser: User = {
   docPicture: 'test-picture',
   residenceProofPicture: 'residence-picture',
   isBlocked: false,
+  racial: 'Negra',
   userQuiz: {
     alreadyUseBPR: false,
   },
