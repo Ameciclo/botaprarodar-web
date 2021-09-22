@@ -20,6 +20,10 @@ const INITIAL_DASHBOARD: DashboardInfo = {
   bikersCommunities: [{ label: '', quantity: 0 }],
   destination: [{ label: '', quantity: 0 }],
   racialInfo: [{ label: '', quantity: 0 }],
+  gender: [{ label: '', quantity: 0 }],
+  schooling: [{ label: '', quantity: 0 }],
+  income: [{ label: '', quantity: 0 }],
+  age: [{ label: '', quantity: 0 }],
 };
 
 const DashboardPage: FC = () => {

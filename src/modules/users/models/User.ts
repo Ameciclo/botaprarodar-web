@@ -15,6 +15,7 @@ export default interface User {
   residenceProofPicture: string;
   isBlocked: boolean;
   racial: string;
+  schooling: string;
   userQuiz: {
     alreadyUseBPR: boolean;
   };

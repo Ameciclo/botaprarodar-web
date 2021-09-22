@@ -5,12 +5,10 @@ import React, { FC } from 'react';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
 import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
-import PolarAreaChart from 'shared/components/PolarAreaChart/PolarAreaChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
-import ButtonGrid from '../../components/ButtonGrid/ButtonGrid';
-import DashboardButton from '../../components/DashboardButton/DashboardButton';
 import DonutPercentageCard from '../../components/DonutPercentageCard';
 import DashboardStyles from './Dashboard.styles';
+import MultipleCharts from '../MultipleCharts/MultipleCharts';
 
 interface DashboardProps {
   dashboardData: DashboardInfo;
@@ -107,18 +105,14 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
       </>
       <>
-        <Grid item xl={12} lg={12} sm={12} xs={12}>
-          <CustomCard>
-            <ButtonGrid>
-              <DashboardButton label="Raça" />
-              <DashboardButton label="Raça" />
-              <DashboardButton label="Raça" />
-              <DashboardButton label="Raça" />
-              <DashboardButton label="Raça" />
-            </ButtonGrid>
-            <PolarAreaChart data={dashboardData.racialInfo} />
-          </CustomCard>
-        </Grid>
+        <MultipleCharts
+          data={[
+            dashboardData.racialInfo,
+            dashboardData.gender,
+            dashboardData.schooling,
+          ]}
+          labels={['Raça', 'Gênero', 'Escolaridade']}
+        />
       </>
     </Grid>
   );

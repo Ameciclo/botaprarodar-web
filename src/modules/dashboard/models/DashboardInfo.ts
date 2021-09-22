@@ -17,4 +17,8 @@ export default interface DashboardInfo {
   bikersCommunities: ChartDataProps[];
   destination: ChartDataProps[];
   racialInfo: ChartDataProps[];
+  gender: ChartDataProps[];
+  schooling: ChartDataProps[];
+  income: ChartDataProps[];
+  age: ChartDataProps[];
 }

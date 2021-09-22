@@ -5,7 +5,7 @@ export const MockedFirstUser: User = {
   name: 'Antoni',
   communityId: '-MLDOXs3p35DEHg0gdUU',
   telephone: '+55 51 3626-2001',
-  gender: GenderTypes.male,
+  gender: GenderTypes.Masculino,
   status: true,
   id: '123',
   profilePicture: 'test',
@@ -16,6 +16,7 @@ export const MockedFirstUser: User = {
   residenceProofPicture: 'residence-picture',
   isBlocked: false,
   racial: 'Parda',
+  schooling: 'Ensino médio completo',
   userQuiz: {
     alreadyUseBPR: false,
   },
@@ -25,7 +26,7 @@ export const MockedSecondUser: User = {
   name: 'Antonia',
   communityId: '-MLDOXs3p35DEHg0gdUU',
   telephone: '+55 51 3626-2001',
-  gender: GenderTypes.female,
+  gender: GenderTypes.Feminino,
   status: true,
   id: '321',
   profilePicture: 'test',
@@ -36,6 +37,7 @@ export const MockedSecondUser: User = {
   residenceProofPicture: 'residence-picture',
   isBlocked: false,
   racial: 'Negra',
+  schooling: 'Ensino médio completo',
   userQuiz: {
     alreadyUseBPR: false,
   },

@@ -1,6 +1,6 @@
 export enum GenderTypes {
-  male,
-  female,
-  other,
-  notDeclared,
+  'Masculino',
+  'Feminino',
+  'Outros',
+  'Não declarado',
 }

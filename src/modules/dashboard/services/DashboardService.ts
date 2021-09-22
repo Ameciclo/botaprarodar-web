@@ -25,6 +25,10 @@ const DashboardInfoInitialValues: DashboardInfo = {
   bikersCommunities: [],
   destination: [],
   racialInfo: [],
+  gender: [],
+  schooling: [],
+  income: [],
+  age: [],
 };
 
 const DashboardService = {
@@ -60,6 +64,8 @@ const DashboardService = {
     dashboardInfo.travelsDone = this.getTravelsDone(bikesData);
     dashboardInfo.withdrawalsReason = this.getWithdrawalsReason(bikesData);
     dashboardInfo.racialInfo = this.getRacialInfo(usersData);
+    dashboardInfo.gender = this.getGenderInfo(usersData);
+    dashboardInfo.schooling = this.getSchoolingInfo(usersData);
 
     return dashboardInfo;
   },
@@ -139,7 +145,7 @@ const DashboardService = {
   },
 
   getWomenUsers(users: User[]): number {
-    return users.filter(user => user.gender === GenderTypes.female).length;
+    return users.filter(user => user.gender === GenderTypes.Feminino).length;
   },
 
   getTravelsWithRideGiven(bikes: Bike[]): number {
@@ -162,6 +168,20 @@ const DashboardService = {
     });
 
     return this.groupArrayToChartDataProps(result);
+  },
+
+  getGenderInfo(users: User[]): ChartDataProps[] {
+    const genderArray = users.map(user => {
+      return GenderTypes[user.gender];
+    });
+    return this.groupArrayToChartDataProps(genderArray);
+  },
+
+  getSchoolingInfo(users: User[]): ChartDataProps[] {
+    const schoolingArray = users.map(user => {
+      return StringUtils.normalizeSchoolingInfo(user.schooling);
+    });
+    return this.groupArrayToChartDataProps(schoolingArray);
   },
 };
 export default DashboardService;
