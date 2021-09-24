@@ -2,6 +2,8 @@ import { GenderTypes } from './GenderTypes';
 
 export default interface User {
   name: string;
+  age: string;
+  income: string;
   communityId: string;
   telephone: string;
   status: boolean;

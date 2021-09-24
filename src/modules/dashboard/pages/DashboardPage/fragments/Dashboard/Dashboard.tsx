@@ -7,8 +7,8 @@ import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
 import DonutPercentageCard from '../../components/DonutPercentageCard';
-import DashboardStyles from './Dashboard.styles';
 import MultipleCharts from '../MultipleCharts/MultipleCharts';
+import DashboardStyles from './Dashboard.styles';
 
 interface DashboardProps {
   dashboardData: DashboardInfo;
@@ -110,8 +110,16 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             dashboardData.racialInfo,
             dashboardData.gender,
             dashboardData.schooling,
+            dashboardData.age,
+            dashboardData.income,
           ]}
-          labels={['Raça', 'Gênero', 'Escolaridade']}
+          charts={[
+            { label: 'Raça', type: 'polar' },
+            { label: 'Gênero', type: 'polar' },
+            { label: 'Escolaridade', type: 'polar' },
+            { label: 'Idade', type: 'horizontal-bar' },
+            { label: 'Renda', type: 'horizontal-bar' },
+          ]}
         />
       </>
     </Grid>

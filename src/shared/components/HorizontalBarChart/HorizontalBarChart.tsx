@@ -7,9 +7,14 @@ import ChartDataProps from 'shared/models/ChartDataProps';
 interface HorizontalBarChartProps {
   data: ChartDataProps[];
   label: string;
+  aspectRatio?: number;
 }
 
-const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, label }) => {
+const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
+  data,
+  label,
+  aspectRatio = 2,
+}) => {
   const theme = useTheme();
 
   const dataChart = useMemo(() => {
@@ -31,6 +36,7 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({ data, label }) => {
 
   const options: ChartOptions = {
     indexAxis: 'y',
+    aspectRatio,
     elements: {
       bar: {
         borderWidth: 0,

@@ -1,6 +1,16 @@
+import User from 'modules/users/models/User';
+
 const normalizeString = (text: string): string => {
   if (!text) return '';
   return text.trim().toLowerCase();
+};
+
+const capitalizeString = (text: string): string => {
+  if (!text) return '';
+  return (
+    normalizeString(text).charAt(0).toUpperCase() +
+    normalizeString(text).slice(1)
+  );
 };
 
 const normalizeRacialInfo = (racial: string): string => {
@@ -118,10 +128,42 @@ const normalizeSchoolingInfo = (schoolingTextInfo: string): string => {
   return 'Não determinado';
 };
 
+const normalizeAgeInfo = (user: User): string => {
+  const age = Number(user.age);
+
+  if (age > 0 && age <= 10) return 'Entre 0 e 10 anos';
+  if (age > 10 && age <= 20) return 'Entre 11 e 20 anos';
+  if (age > 20 && age <= 30) return 'Entre 21 e 30 anos';
+  if (age > 30 && age <= 40) return 'Entre 31 e 40 anos';
+  if (age > 40 && age <= 50) return 'Entre 41 e 50 anos';
+  if (age > 50 && age <= 20) return 'Entre 51 e 60 anos';
+  if (age > 60 && age <= 20) return 'Entre 61 e 70 anos';
+  if (age > 70 && age <= 20) return 'Entre 71 e 80 anos';
+  if (age > 80 && age <= 20) return 'Entre 81 e 90 anos';
+  if (age > 90) return 'Acima de 90 anos';
+
+  return 'Não especificado';
+};
+
+const normalizeIncomeInfo = (income: string): string => {
+  const incomeNumber = Number(income);
+
+  if (incomeNumber <= 150) return 'Até 150 reais';
+  if (incomeNumber > 150 && incomeNumber <= 350) return 'Entre 150 e 350';
+  if (incomeNumber > 350 && incomeNumber <= 500) return 'Entre 350 e 500';
+  if (incomeNumber > 500 && incomeNumber <= 750) return 'Entre 500 e 750';
+  if (incomeNumber > 750 && incomeNumber <= 1100) return 'Entre 750 e 1100';
+  if (incomeNumber > 1100 && incomeNumber <= 2000) return 'Entre 1100 e 2000';
+  if (incomeNumber > 2000) return 'Mais de 2000';
+  return 'Desejo não informar';
+};
 const StringUtils = {
   normalizeString,
   normalizeRacialInfo,
   normalizeSchoolingInfo,
+  normalizeAgeInfo,
+  normalizeIncomeInfo,
+  capitalizeString,
 };
 
 export default StringUtils;

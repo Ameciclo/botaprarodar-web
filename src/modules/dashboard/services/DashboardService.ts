@@ -66,6 +66,8 @@ const DashboardService = {
     dashboardInfo.racialInfo = this.getRacialInfo(usersData);
     dashboardInfo.gender = this.getGenderInfo(usersData);
     dashboardInfo.schooling = this.getSchoolingInfo(usersData);
+    dashboardInfo.age = this.getAgeInfo(usersData);
+    dashboardInfo.income = this.getIncomeInfo(usersData);
 
     return dashboardInfo;
   },
@@ -99,16 +101,16 @@ const DashboardService = {
         withdrawalsReason.push(devolution.quiz.reason),
       ),
     );
-    return this.groupArrayToChartDataProps(withdrawalsReason).sort(
-      (a, b) => b.quantity - a.quantity,
-    );
+    return this.groupArrayToChartDataProps(withdrawalsReason);
   },
 
   getDestinations(bikeArray: Bike[]): ChartDataProps[] {
     const allDestinations: string[] = [];
     bikeArray.forEach(bike => {
       bike.devolutions?.forEach(devolution => {
-        allDestinations.push(devolution.quiz.destination);
+        allDestinations.push(
+          StringUtils.capitalizeString(devolution.quiz.destination),
+        );
       });
     });
     return this.groupArrayToChartDataProps(allDestinations)
@@ -133,7 +135,7 @@ const DashboardService = {
         quantity: value.length,
       });
     });
-    return chartDataProps;
+    return chartDataProps.sort((a, b) => b.quantity - a.quantity);
   },
 
   getBikesInUseQuantity(bikeArray: Bike[]): number {
@@ -182,6 +184,30 @@ const DashboardService = {
       return StringUtils.normalizeSchoolingInfo(user.schooling);
     });
     return this.groupArrayToChartDataProps(schoolingArray);
+  },
+
+  getAgeInfo(users: User[]): ChartDataProps[] {
+    const result: string[] = [];
+    users.forEach(user => {
+      result.push(StringUtils.normalizeAgeInfo(user));
+    });
+    return this.groupArrayToChartDataProps(result);
+  },
+
+  getIncomeInfo(users: User[]): ChartDataProps[] {
+    const result = users
+      .map(item => item?.income)
+      .map(item => {
+        const array = String(item).split('.');
+        if (array.length >= 2) {
+          if (array[1].length > 2) {
+            return StringUtils.normalizeIncomeInfo(array.join(''));
+          }
+        }
+        return StringUtils.normalizeIncomeInfo(array[0]);
+      });
+
+    return this.groupArrayToChartDataProps(result);
   },
 };
 export default DashboardService;

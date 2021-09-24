@@ -4,6 +4,8 @@ import User from '../models/User';
 export const MockedFirstUser: User = {
   name: 'Antoni',
   communityId: '-MLDOXs3p35DEHg0gdUU',
+  age: '23',
+  income: 'Entre 350 e 500',
   telephone: '+55 51 3626-2001',
   gender: GenderTypes.Masculino,
   status: true,
@@ -27,6 +29,8 @@ export const MockedSecondUser: User = {
   communityId: '-MLDOXs3p35DEHg0gdUU',
   telephone: '+55 51 3626-2001',
   gender: GenderTypes.Feminino,
+  age: '45',
+  income: 'Entre 750 e 1100',
   status: true,
   id: '321',
   profilePicture: 'test',
