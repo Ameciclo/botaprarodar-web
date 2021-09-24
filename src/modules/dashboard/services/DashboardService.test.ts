@@ -99,4 +99,89 @@ describe('DashboardService', () => {
     const mockedBikes = [MockedBike, MockedBike];
     expect(DashboardService.getTravelsWithRideGiven(mockedBikes)).toBe(2);
   });
+
+  it('should return number of black users', () => {
+    const mockedUsers = [MockedFirstUser, MockedFirstUser, MockedSecondUser];
+    const expectedRacialInfo: ChartDataProps[] = [
+      {
+        label: 'Parda',
+        quantity: 2,
+      },
+      {
+        label: 'Preta',
+        quantity: 1,
+      },
+    ];
+    expect(DashboardService.getRacialInfo(mockedUsers)).toStrictEqual(
+      expectedRacialInfo,
+    );
+  });
+
+  it('should return gender of users', () => {
+    const mockedUsers = [MockedFirstUser, MockedFirstUser, MockedSecondUser];
+    const expectedGenderInfo: ChartDataProps[] = [
+      {
+        label: 'Masculino',
+        quantity: 2,
+      },
+      {
+        label: 'Feminino',
+        quantity: 1,
+      },
+    ];
+    expect(DashboardService.getGenderInfo(mockedUsers)).toStrictEqual(
+      expectedGenderInfo,
+    );
+  });
+
+  it('should return schooling of users', () => {
+    const mockedUsers = [MockedFirstUser, MockedFirstUser, MockedSecondUser];
+    const expectedSchoolingInfo: ChartDataProps[] = [
+      {
+        label: 'Ensino médio completo',
+        quantity: 2,
+      },
+      {
+        label: 'Ensino médio incompleto',
+        quantity: 1,
+      },
+    ];
+    expect(DashboardService.getSchoolingInfo(mockedUsers)).toStrictEqual(
+      expectedSchoolingInfo,
+    );
+  });
+
+  it('should return income of users', () => {
+    const mockedUsers = [MockedFirstUser, MockedFirstUser, MockedSecondUser];
+    const expectedIncomeInfo: ChartDataProps[] = [
+      {
+        label: 'Entre 350 e 500',
+        quantity: 2,
+      },
+      {
+        label: 'Entre 750 e 1100',
+        quantity: 1,
+      },
+    ];
+    expect(DashboardService.getIncomeInfo(mockedUsers)).toStrictEqual(
+      expectedIncomeInfo,
+    );
+  });
+
+  it('should return age of users', () => {
+    const mockedUsers = [MockedFirstUser, MockedFirstUser, MockedSecondUser];
+    const expectedAgeInfo: ChartDataProps[] = [
+      {
+        label: 'Entre 0 e 10 anos',
+        quantity: 2,
+      },
+      {
+        label: 'Entre 31 e 40 anos',
+        quantity: 1,
+      },
+    ];
+    expect(DashboardService.getAgeInfo(mockedUsers)).toStrictEqual(
+      expectedAgeInfo,
+    );
+  });
 });

@@ -146,6 +146,12 @@ const normalizeAgeInfo = (user: User): string => {
 };
 
 const normalizeIncomeInfo = (income: string): string => {
+  if (
+    income.includes('Entre') ||
+    income.includes('Até') ||
+    income.includes('Mais de')
+  )
+    return income;
   const incomeNumber = Number(income);
 
   if (incomeNumber <= 150) return 'Até 150 reais';

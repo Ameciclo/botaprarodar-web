@@ -4,7 +4,7 @@ import User from '../models/User';
 export const MockedFirstUser: User = {
   name: 'Antoni',
   communityId: '-MLDOXs3p35DEHg0gdUU',
-  age: '23',
+  age: '5',
   income: 'Entre 350 e 500',
   telephone: '+55 51 3626-2001',
   gender: GenderTypes.Masculino,
@@ -29,7 +29,7 @@ export const MockedSecondUser: User = {
   communityId: '-MLDOXs3p35DEHg0gdUU',
   telephone: '+55 51 3626-2001',
   gender: GenderTypes.Feminino,
-  age: '45',
+  age: '40',
   income: 'Entre 750 e 1100',
   status: true,
   id: '321',
@@ -41,7 +41,7 @@ export const MockedSecondUser: User = {
   residenceProofPicture: 'residence-picture',
   isBlocked: false,
   racial: 'Negra',
-  schooling: 'Ensino médio completo',
+  schooling: 'Ensino médio incompleto',
   userQuiz: {
     alreadyUseBPR: false,
   },
