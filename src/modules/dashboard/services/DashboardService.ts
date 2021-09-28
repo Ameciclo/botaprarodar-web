@@ -29,6 +29,7 @@ const DashboardInfoInitialValues: DashboardInfo = {
   schooling: [],
   income: [],
   age: [],
+  travelTimeInMinutes: [],
 };
 
 const DashboardService = {
@@ -68,6 +69,8 @@ const DashboardService = {
     dashboardInfo.schooling = this.getSchoolingInfo(usersData);
     dashboardInfo.age = this.getAgeInfo(usersData);
     dashboardInfo.income = this.getIncomeInfo(usersData);
+    dashboardInfo.travelTimeInMinutes =
+      this.getTimeInMinutesFromTravel(bikesData);
 
     return dashboardInfo;
   },
@@ -208,6 +211,38 @@ const DashboardService = {
       });
 
     return this.groupArrayToChartDataProps(result);
+  },
+
+  getTimeInMinutesFromTravel(bikes: Bike[]): number[] {
+    interface TravelTime {
+      withdrawTime?: string;
+      devolutionTime: string;
+      interval: number;
+    }
+
+    const allTravelsTime: TravelTime[] = [];
+
+    bikes.forEach(bike => {
+      bike.devolutions?.forEach(devolution => {
+        const withdrawFromDevolution = bike.withdraws?.find(
+          withdraw => withdraw.id === devolution.withdrawId,
+        );
+        if (withdrawFromDevolution) {
+          allTravelsTime.push({
+            withdrawTime: withdrawFromDevolution?.date,
+            devolutionTime: devolution.date,
+            interval: StringUtils.intervalInMinutesBetweenDates(
+              withdrawFromDevolution?.date,
+              devolution.date,
+            ),
+          });
+        }
+      });
+    });
+    return allTravelsTime.map(travelTime => {
+      console.log(travelTime.interval);
+      return travelTime.interval;
+    });
   },
 };
 export default DashboardService;

@@ -6,9 +6,10 @@ import CustomCard from 'shared/components/CustomCard/CustomCard';
 import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
-import DonutPercentageCard from '../../components/DonutPercentageCard';
+import DonutPercentageCard from '../../components/DonutPercentageCard/DonutPercentageCard';
 import MultipleCharts from '../MultipleCharts/MultipleCharts';
 import DashboardStyles from './Dashboard.styles';
+import TravelTimeCard from '../../components/TravelTimeCard/TravelTimeCard';
 
 interface DashboardProps {
   dashboardData: DashboardInfo;
@@ -26,6 +27,12 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
       )}
       <>
+        <>
+          <Grid item xl={6} lg={6} sm={12} xs={12}>
+            <TravelTimeCard travelTime={dashboardData.travelTimeInMinutes} />
+          </Grid>
+          <Grid item xl={6} lg={6} sm={12} xs={12} />
+        </>
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard
             title="Total de Bicicletas"

@@ -8,3 +8,7 @@ dayjs.locale('pt-br');
 dayjs.extend(customParseFormat);
 dayjs.extend(localeData);
 dayjs.extend(advancedFormat);
+
+const Dayjs = dayjs;
+
+export default Dayjs;

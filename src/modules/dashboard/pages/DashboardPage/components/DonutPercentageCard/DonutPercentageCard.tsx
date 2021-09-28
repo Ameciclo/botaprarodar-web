@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { StopRounded } from '@material-ui/icons';
 import Chart from 'react-apexcharts';
-import CustomCard from '../../../../../shared/components/CustomCard/CustomCard';
+import CustomCard from '../../../../../../shared/components/CustomCard/CustomCard';
 import DonutPercentageCardStyles from './DonutPercentageCard.styles';
 
 interface DonutProps {

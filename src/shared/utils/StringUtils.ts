@@ -163,6 +163,30 @@ const normalizeIncomeInfo = (income: string): string => {
   if (incomeNumber > 2000) return 'Mais de 2000';
   return 'Desejo não informar';
 };
+
+const dateStringToDate = (dateString: string): Date => {
+  const dateStringArray = dateString.split('/');
+  const dateStringDay = dateStringArray[0];
+  const dateStringMonth = dateStringArray[1];
+  dateStringArray[0] = dateStringMonth;
+  dateStringArray[1] = dateStringDay;
+  return new Date(dateStringArray.join('/'));
+};
+
+const intervalInMinutesBetweenDates = (
+  startDateString: string,
+  endDateString: string,
+): number => {
+  if (startDateString && endDateString) {
+    const intervalInMiliSeconds =
+      dateStringToDate(endDateString).getTime() -
+      dateStringToDate(startDateString).getTime();
+    const intervalInMinutes = intervalInMiliSeconds / (1000 * 60);
+    return intervalInMinutes;
+  }
+  return 0;
+};
+
 const StringUtils = {
   normalizeString,
   normalizeRacialInfo,
@@ -170,6 +194,8 @@ const StringUtils = {
   normalizeAgeInfo,
   normalizeIncomeInfo,
   capitalizeString,
+  dateStringToDate,
+  intervalInMinutesBetweenDates,
 };
 
 export default StringUtils;

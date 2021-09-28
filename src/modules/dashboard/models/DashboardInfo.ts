@@ -21,4 +21,5 @@ export default interface DashboardInfo {
   schooling: ChartDataProps[];
   income: ChartDataProps[];
   age: ChartDataProps[];
+  travelTimeInMinutes: number[];
 }

@@ -24,6 +24,7 @@ const INITIAL_DASHBOARD: DashboardInfo = {
   schooling: [{ label: '', quantity: 0 }],
   income: [{ label: '', quantity: 0 }],
   age: [{ label: '', quantity: 0 }],
+  travelTimeInMinutes: [],
 };
 
 const DashboardPage: FC = () => {

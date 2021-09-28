@@ -77,4 +77,8 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
   return <Bar data={dataChart} options={options} />;
 };
 
+HorizontalBarChart.defaultProps = {
+  aspectRatio: 2,
+};
+
 export default HorizontalBarChart;

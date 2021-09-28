@@ -20,4 +20,5 @@ export const MockedDashboardInfo: DashboardInfo = {
   schooling: [],
   income: [],
   age: [],
+  travelTimeInMinutes: [],
 };
