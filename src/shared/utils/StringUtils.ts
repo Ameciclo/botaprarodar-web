@@ -1,4 +1,5 @@
 import User from 'modules/users/models/User';
+import dayjs from './Dayjs';
 
 const normalizeString = (text: string): string => {
   if (!text) return '';
@@ -164,25 +165,14 @@ const normalizeIncomeInfo = (income: string): string => {
   return 'Desejo não informar';
 };
 
-const dateStringToDate = (dateString: string): Date => {
-  const dateStringArray = dateString.split('/');
-  const dateStringDay = dateStringArray[0];
-  const dateStringMonth = dateStringArray[1];
-  dateStringArray[0] = dateStringMonth;
-  dateStringArray[1] = dateStringDay;
-  return new Date(dateStringArray.join('/'));
-};
-
 const intervalInMinutesBetweenDates = (
   startDateString: string,
   endDateString: string,
 ): number => {
   if (startDateString && endDateString) {
-    const intervalInMiliSeconds =
-      dateStringToDate(endDateString).getTime() -
-      dateStringToDate(startDateString).getTime();
-    const intervalInMinutes = intervalInMiliSeconds / (1000 * 60);
-    return intervalInMinutes;
+    const startDate = dayjs(startDateString, 'DD/MM/YYYY HH:mm:ss');
+    const endDate = dayjs(endDateString, 'DD/MM/YYYY HH:mm:ss');
+    return endDate.diff(startDate, 'minutes', true);
   }
   return 0;
 };
@@ -194,7 +184,6 @@ const StringUtils = {
   normalizeAgeInfo,
   normalizeIncomeInfo,
   capitalizeString,
-  dateStringToDate,
   intervalInMinutesBetweenDates,
 };
 

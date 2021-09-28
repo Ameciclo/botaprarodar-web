@@ -8,8 +8,8 @@ interface TravelTimeCardProps {
 const TravelTimeCard: React.FC<TravelTimeCardProps> = ({ travelTime }) => {
   const accumulatedTime = travelTime.reduce((acc, current) => {
     return acc + current;
-  });
-  console.log(accumulatedTime);
+  }, 0);
+  console.log('accumulatedTime', accumulatedTime);
   return (
     <CustomCard
       content={
