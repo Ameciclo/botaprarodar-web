@@ -16,6 +16,7 @@
     "axios": "^0.21.1",
     "chart.js": "^3.5.0",
     "clsx": "^1.1.1",
+    "dayjs": "^1.10.7",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "^8.3.0",
