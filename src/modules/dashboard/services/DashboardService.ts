@@ -240,7 +240,6 @@ const DashboardService = {
       });
     });
     return allTravelsTime.map(travelTime => {
-      console.log('travelTime.interval', travelTime.interval);
       return travelTime.interval;
     });
   },

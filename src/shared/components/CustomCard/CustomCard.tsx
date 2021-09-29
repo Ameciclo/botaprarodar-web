@@ -5,21 +5,24 @@ import CustomCardStyles from './CustomCard.styles';
 interface CustomCardProps {
   headerTitle?: string | ReactElement;
   content?: string | ReactElement;
+  customStyle?: React.CSSProperties;
 }
 
 const CustomCard: FC<CustomCardProps> = ({
   headerTitle,
   children,
   content,
+  customStyle,
 }) => {
   CustomCard.defaultProps = {
     headerTitle: '',
     content: '',
+    customStyle: {},
   };
 
   const classes = CustomCardStyles();
   return (
-    <Card style={{ height: '100%' }}>
+    <Card style={{ height: '100%', ...customStyle }}>
       {headerTitle && (
         <CardHeader
           title={headerTitle}

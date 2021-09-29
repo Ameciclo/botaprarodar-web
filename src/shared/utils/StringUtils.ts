@@ -172,7 +172,7 @@ const intervalInMinutesBetweenDates = (
   if (startDateString && endDateString) {
     const startDate = dayjs(startDateString, 'DD/MM/YYYY HH:mm:ss');
     const endDate = dayjs(endDateString, 'DD/MM/YYYY HH:mm:ss');
-    return endDate.diff(startDate, 'minutes', true);
+    return Number(endDate.diff(startDate, 'minutes', true).toFixed(2));
   }
   return 0;
 };
