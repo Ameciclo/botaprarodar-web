@@ -5,9 +5,26 @@ export const MockedBike: Bike = {
   available: true,
   communityId: '-MLDOXs3p35DEHg0gdUU',
   createdDate: '09/08/2021',
+  withdraws: [
+    {
+      date: '01/09/2021 12:08:18',
+      id: '123',
+      user: MockedFirstUser,
+    },
+    {
+      date: '01/09/2021 12:08:18',
+      id: '456',
+      user: MockedFirstUser,
+    },
+    {
+      date: '01/09/2021 12:08:18',
+      id: '789',
+      user: MockedFirstUser,
+    },
+  ],
   devolutions: [
     {
-      date: '01/09/2021 12:08:18',
+      date: '01/09/2021 12:18:18',
       id: '-WPSD2ZVXgcGT6Z16rcuw',
       quiz: {
         destination: 'Hogwarts',
@@ -16,10 +33,10 @@ export const MockedBike: Bike = {
         reason: 'Seu local de estudo',
       },
       user: MockedFirstUser,
-      withdrawId: '-zmqNlsziZxeFvZQrtfBm',
+      withdrawId: '123',
     },
     {
-      date: '01/09/2021 12:08:18',
+      date: '01/09/2021 12:28:18',
       id: '-WPSD2ZVXgcGT6Z16rcuw',
       quiz: {
         destination: 'Hogwarts',
@@ -28,11 +45,10 @@ export const MockedBike: Bike = {
         reason: 'Seu local de estudo',
       },
       user: MockedFirstUser,
-      withdrawId: '-zmqNlsziZxeFvZQrtfBm',
+      withdrawId: '456',
     },
-
     {
-      date: '01/09/2021 12:08:18',
+      date: '01/09/2021 12:40:18',
       id: '-WPSD2ZVXgcGT6Z16rcuw',
       quiz: {
         destination: 'Hogwarts',
@@ -41,7 +57,7 @@ export const MockedBike: Bike = {
         reason: 'Seu local de estudo',
       },
       user: MockedFirstUser,
-      withdrawId: '-zmqNlsziZxeFvZQrtfBm',
+      withdrawId: '789',
     },
   ],
   id: '-MgfYTcrUFsX_NXhhvL2',
@@ -55,5 +71,4 @@ export const MockedBike: Bike = {
     'https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fbike%2F12345%20_thumb_1628523317.jpg?alt=media&token=fa5fa903-6c62-4d61-8378-62e624030a01',
   serialNumber: '12345',
   withdrawToUser: '',
-  withdraws: [],
 };

@@ -1,11 +1,12 @@
-import User from 'modules/users/models/User';
 import Devolution from './Devolution';
+import BikeWithdraw from './BikeWithdraw';
 
 export default interface Bike {
   id: string;
   available: boolean;
   communityId: string;
   createdDate: string;
+  withdraws: BikeWithdraw[];
   devolutions: Devolution[];
   inUse: boolean;
   name: string;
@@ -15,5 +16,4 @@ export default interface Bike {
   photoThumbnailPath: string;
   serialNumber: string;
   withdrawToUser: string;
-  withdraws: { date: string; id: string; user: User }[];
 }

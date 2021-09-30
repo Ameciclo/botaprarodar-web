@@ -184,4 +184,10 @@ describe('DashboardService', () => {
       expectedAgeInfo,
     );
   });
+  it('should return array with time of travels', () => {
+    const mockedBikes = [MockedBike];
+    expect(
+      DashboardService.getTimeInMinutesFromTravel(mockedBikes),
+    ).toStrictEqual([10, 20, 32]);
+  });
 });
