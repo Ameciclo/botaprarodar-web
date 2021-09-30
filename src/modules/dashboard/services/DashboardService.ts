@@ -177,6 +177,9 @@ const DashboardService = {
 
   getGenderInfo(users: User[]): ChartDataProps[] {
     const genderArray = users.map(user => {
+      if (Object.values(GenderTypes).slice(0, 4).includes(user.gender)) {
+        return String(user.gender);
+      }
       return GenderTypes[user.gender];
     });
     return this.groupArrayToChartDataProps(genderArray);

@@ -78,6 +78,18 @@ const normalizeSchoolingInfo = (schoolingTextInfo: string): string => {
   ) {
     return 'Ensino fundamental completo';
   }
+  if (['ensino fundamental 1 incompleto'].includes(schoolingText)) {
+    return 'Ensino fundamental 1 completo';
+  }
+  if (['ensino fundamental 1 completo'].includes(schoolingText)) {
+    return 'Ensino fundamental 1 completo';
+  }
+  if (['ensino fundamental 2 incompleto'].includes(schoolingText)) {
+    return 'Ensino fundamental 2 completo';
+  }
+  if (['ensino fundamental 2 completo'].includes(schoolingText)) {
+    return 'Ensino fundamental 2 completo';
+  }
   if (
     [
       '2 grau incompleto',
@@ -124,7 +136,7 @@ const normalizeSchoolingInfo = (schoolingTextInfo: string): string => {
       'curso superior completo',
     ].includes(schoolingText)
   ) {
-    return 'Ensino superior ðcompleto';
+    return 'Ensino superior completo';
   }
   return 'Não determinado';
 };
