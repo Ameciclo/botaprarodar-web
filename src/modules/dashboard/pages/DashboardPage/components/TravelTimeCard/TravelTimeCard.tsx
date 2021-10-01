@@ -46,6 +46,7 @@ const TravelTimeCard: React.FC<TravelTimeCardProps> = ({ travelTime }) => {
             <FlightTakeoff fontSize="large" />,
           )}
           <CustomCard
+            withoutPaddingBottom
             content={
               <span className={classes.averageTimeLabel}>
                 Em média, são {averageTime} minutos por viagem

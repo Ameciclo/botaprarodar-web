@@ -28,4 +28,7 @@ export default makeStyles({
     textTransform: 'uppercase',
     color: '#515151',
   },
+  cardContentWithoutBottomPadding: {
+    paddingBottom: '16px !important',
+  },
 });

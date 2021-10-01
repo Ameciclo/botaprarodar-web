@@ -34,6 +34,8 @@ const MultipleCharts: FC<MultipleChartsProps> = ({ data, charts }) => {
               <DashboardButton
                 key={`key-${label}`}
                 label={label}
+                selectedData={selectedData}
+                index={index}
                 onClick={() => setSelectedData(index)}
               />
             );

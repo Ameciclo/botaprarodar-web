@@ -13,4 +13,7 @@ export default makeStyles({
     letterSpacing: '0.0025em',
     borderRadius: 8,
   },
+  selected: {
+    border: '2px solid teal',
+  },
 });

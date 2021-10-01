@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from '@material-ui/core';
+import clsx from 'clsx';
 import React, { FC, ReactElement } from 'react';
 import CustomCardStyles from './CustomCard.styles';
 
@@ -6,6 +7,7 @@ interface CustomCardProps {
   headerTitle?: string | ReactElement;
   content?: string | ReactElement;
   customStyle?: React.CSSProperties;
+  withoutPaddingBottom?: boolean;
 }
 
 const CustomCard: FC<CustomCardProps> = ({
@@ -13,11 +15,13 @@ const CustomCard: FC<CustomCardProps> = ({
   children,
   content,
   customStyle,
+  withoutPaddingBottom,
 }) => {
   CustomCard.defaultProps = {
     headerTitle: '',
     content: '',
     customStyle: {},
+    withoutPaddingBottom: false,
   };
 
   const classes = CustomCardStyles();
@@ -29,7 +33,13 @@ const CustomCard: FC<CustomCardProps> = ({
           classes={{ title: classes.cardHeader, root: classes.cardHeaderBox }}
         />
       )}
-      <CardContent classes={{ root: classes.cardContent }}>
+      <CardContent
+        classes={{
+          root: clsx(classes.cardContent, {
+            [classes.cardContentWithoutBottomPadding]: withoutPaddingBottom,
+          }),
+        }}
+      >
         {content || children}
       </CardContent>
     </Card>
