@@ -1,6 +1,6 @@
 # This is the workflow to push to production environment at netlify
 
-name: Deploy to netlify - production
+name: Deploy to netlify - main
 on:
   push:
     branches:
