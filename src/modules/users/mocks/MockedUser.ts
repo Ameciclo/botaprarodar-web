@@ -25,7 +25,7 @@ export const MockedFirstUser: User = {
 };
 
 export const MockedSecondUser: User = {
-  name: 'Antonia',
+  name: 'Antonia Maria da Silva ',
   communityId: '-MLDOXs3p35DEHg0gdUU',
   telephone: '+55 51 3626-2001',
   gender: GenderTypes.Feminino,

@@ -10,7 +10,7 @@ interface TravelTimeCardProps {
 const TravelTimeCard: React.FC<TravelTimeCardProps> = ({ travelTime }) => {
   const classes = TravelTimeCardStyles();
   const accumulatedTime = travelTime.reduce((acc, current) => {
-    return acc + current;
+    return Number((acc + current).toFixed(2));
   }, 0);
   const totalTravels = travelTime.length;
   const averageTime = Number((accumulatedTime / travelTime.length).toFixed(0));

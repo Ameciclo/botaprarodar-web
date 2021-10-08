@@ -43,6 +43,11 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
       });
     }
   };
+  const nameArray = user?.name.split(' ').filter(name => name.length > 0);
+  const firstName = nameArray[0];
+  let lastName = '';
+  if (nameArray.length > 1) lastName = nameArray[nameArray.length - 1];
+  const displayName = `${firstName} ${lastName}`;
 
   return (
     <Card className={classes.card} key={user?.id} {...rest}>
@@ -73,7 +78,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
               </StyledBadgeUserCard>
             </Grid>
             <Grid item xs={8}>
-              <Typography className={classes.name}>{user?.name}</Typography>
+              <Typography className={classes.name}>{displayName}</Typography>
               <div className={classes.description}>
                 <AssignmentOutlined className={classes.icon} />
                 <Typography className={classes.text}>

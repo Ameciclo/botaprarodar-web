@@ -28,10 +28,9 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
       )}
       <>
         <>
-          <Grid item xl={6} lg={6} sm={12} xs={12}>
+          <Grid item xl={12} lg={12} sm={12} xs={12}>
             <TravelTimeCard travelTime={dashboardData.travelTimeInMinutes} />
           </Grid>
-          <Grid item xl={6} lg={6} sm={12} xs={12} />
         </>
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DashboardCard

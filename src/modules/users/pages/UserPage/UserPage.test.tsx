@@ -7,7 +7,7 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import UserService from '../../services/UserService';
 import UserPage from './UserPage';
-import { MockedFirstUser } from '../../mocks/MockedUser';
+import { MockedFirstUser, MockedSecondUser } from '../../mocks/MockedUser';
 
 jest.mock('../../services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
@@ -30,7 +30,10 @@ describe('UserPage', () => {
   });
 
   it('should render list of users', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([MockedFirstUser]);
+    mockedUserService.getAllUsers.mockResolvedValue([
+      MockedFirstUser,
+      MockedSecondUser,
+    ]);
 
     await act(async () => {
       render(
@@ -42,6 +45,7 @@ describe('UserPage', () => {
 
     expect(screen.getByTestId('userList')).toBeInTheDocument();
     expect(screen.getByText('Antoni')).toBeInTheDocument();
+    expect(screen.getByText('Antonia Silva')).toBeInTheDocument();
   });
 
   it('should render no users and an empty state message', async () => {
