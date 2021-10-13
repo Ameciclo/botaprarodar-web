@@ -4,7 +4,11 @@ import LoginService from '../../services/LoginService';
 import LoginPage from './LoginPage';
 import { renderWithRouterAndAuth } from '../../../../setupTests';
 
-jest.mock('../../services/LoginService');
+jest.mock('../../services/LoginService', () => {
+  return {
+    requestLogin: jest.fn().mockImplementation(() => Promise.resolve()),
+  };
+});
 const mockedLoginService = LoginService as jest.Mocked<typeof LoginService>;
 
 async function fillAndSubmitLoginForm(email: string, password: string) {
