@@ -92,7 +92,7 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
                 name="name"
                 className={classes.input}
                 control={control}
-                dataTestId="name"
+                dataTestId="name-test"
                 defaultValue={community?.name}
                 rules={{ required: 'Nome da comunidade é obrigatório' }}
               />

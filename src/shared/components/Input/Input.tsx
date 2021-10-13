@@ -40,7 +40,7 @@ const Input: React.FC<InputProps> = ({
             onChange={onChange}
             variant="outlined"
             defaultValue={defaultValue}
-            inputProps={{ 'data-testid': { dataTestId } }}
+            inputProps={{ 'data-testid': dataTestId }}
             error={!!error}
             helperText={
               error ? (
