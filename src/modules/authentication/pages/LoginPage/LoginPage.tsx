@@ -1,12 +1,12 @@
 import { Button, FormHelperText, Paper, TextField } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error';
-import React, { useEffect, useState } from 'react';
 import { useFormControls } from 'modules/authentication/hooks/index';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { LogoBPR } from '../../../../shared/assets/index';
 import { useHandleAuth } from '../../contexts/AuthContext';
 import LoginService from '../../services/LoginService';
 import useStyles from './LoginPage.styles';
-import { LogoBPR } from '../../../../shared/assets/index';
 
 const LoginPage: React.FC = () => {
   const [authenticationError, setAuthenticationError] =
@@ -41,6 +41,10 @@ const LoginPage: React.FC = () => {
     if (formIsValid()) {
       await handleAuthentication();
     }
+  };
+
+  const handleBack = () => {
+    history.go(-1);
   };
 
   return (
@@ -106,6 +110,14 @@ const LoginPage: React.FC = () => {
             disabled={!formIsValid()}
           >
             Entrar
+          </Button>
+          <Button
+            data-testid="back-button"
+            className={`${classes.backButtonStyle} ${classes.disabled}`}
+            disabled={!formIsValid()}
+            onClick={() => handleBack()}
+          >
+            Voltar
           </Button>
         </form>
       </Paper>

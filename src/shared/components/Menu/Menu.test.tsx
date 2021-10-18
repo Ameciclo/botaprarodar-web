@@ -1,9 +1,9 @@
 import { fireEvent } from '@testing-library/react';
-import Menu from './Menu';
 import {
   renderWithRouterAndAuth,
   setUserAuthenticated,
 } from '../../../setupTests';
+import Menu from './Menu';
 
 describe('Menu', () => {
   it('renders without error', () => {
@@ -42,6 +42,6 @@ describe('Menu', () => {
 
     fireEvent.click(getByText('Sair'));
 
-    expect(history.location.pathname).toBe('/login');
+    expect(history.location.pathname).toBe('/');
   });
 });

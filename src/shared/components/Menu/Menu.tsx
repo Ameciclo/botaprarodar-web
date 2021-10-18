@@ -38,7 +38,7 @@ const Menu: React.FC = ({ children }) => {
 
   const handleLogout = () => {
     clearAuth.clearAuth();
-    history.push('/login');
+    history.push('/');
   };
 
   const handleActiveMenu = useCallback(
