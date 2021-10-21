@@ -29,7 +29,7 @@ const PolarAreaChart: FC<PolarAreaChartProps> = ({ data }) => {
     };
   }, [data]);
 
-  const options: ChartOptions = {
+  const options: ChartOptions<'polarArea'> = {
     maintainAspectRatio: true,
     responsive: true,
     aspectRatio: 2.5,

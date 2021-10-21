@@ -1,6 +1,6 @@
 import { useTheme } from '@material-ui/core';
 import { ChartOptions } from 'chart.js';
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
 import ChartDataProps from 'shared/models/ChartDataProps';
 
@@ -34,7 +34,7 @@ const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
     };
   }, [data, label]);
 
-  const options: ChartOptions = {
+  const options: ChartOptions<'bar'> = {
     indexAxis: 'y',
     aspectRatio,
     elements: {
