@@ -114,7 +114,6 @@ const LoginPage: React.FC = () => {
           <Button
             data-testid="back-button"
             className={`${classes.backButtonStyle} ${classes.disabled}`}
-            disabled={!formIsValid()}
             onClick={() => handleBack()}
           >
             Voltar
