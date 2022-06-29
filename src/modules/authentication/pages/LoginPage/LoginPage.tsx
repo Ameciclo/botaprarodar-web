@@ -52,48 +52,43 @@ const LoginPage: React.FC = () => {
           className={classes.logoSize}
         />
         <form onSubmit={handleSubmit} className={classes.loginForm}>
-          <span className={classes.fontStyle}> Entrar no Bota pra Rodar </span>
-          <div>
-            <TextField
-              label="E-mail"
-              type="text"
-              name="email"
-              onError={err => err}
-              variant="outlined"
-              inputProps={{
-                'data-testid': 'e-mail',
-              }}
-              className={classes.fieldsLogin}
-              onChange={handleInputChange}
-              onBlur={handleInputChange}
-              error={!!errors.email}
-            />
-            {errors.email && (
-              <FormHelperText error className={classes.errorMessageFields}>
-                <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
-                &nbsp;{errors.email}
-              </FormHelperText>
-            )}
-          </div>
-          <div>
-            <TextField
-              label="Senha"
-              type="password"
-              name="password"
-              variant="outlined"
-              inputProps={{ 'data-testid': 'password' }}
-              className={classes.fieldsLogin}
-              onChange={handleInputChange}
-              onBlur={handleInputChange}
-              error={!!errors.password}
-            />
-            {errors.password && (
-              <FormHelperText error className={classes.errorMessageFields}>
-                <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
-                &nbsp;{errors.password}
-              </FormHelperText>
-            )}
-          </div>
+          <TextField
+            label="E-mail"
+            type="text"
+            name="email"
+            onError={err => err}
+            variant="outlined"
+            inputProps={{
+              'data-testid': 'e-mail',
+            }}
+            className={classes.fieldsLogin}
+            onChange={handleInputChange}
+            onBlur={handleInputChange}
+            error={!!errors.email}
+          />
+          {errors.email && (
+            <FormHelperText error className={classes.errorMessageFields}>
+              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              &nbsp;{errors.email}
+            </FormHelperText>
+          )}
+          <TextField
+            label="Senha"
+            type="password"
+            name="password"
+            variant="outlined"
+            inputProps={{ 'data-testid': 'password' }}
+            className={classes.fieldsLogin}
+            onChange={handleInputChange}
+            onBlur={handleInputChange}
+            error={!!errors.password}
+          />
+          {errors.password && (
+            <FormHelperText error className={classes.errorMessageFields}>
+              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              &nbsp;{errors.password}
+            </FormHelperText>
+          )}
           {authenticationError && (
             <span className={classes.errorMessageLogin}>
               E-mail ou senha incorretos.
