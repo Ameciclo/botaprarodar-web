@@ -43,10 +43,6 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  const handleBack = () => {
-    history.go(-1);
-  };
-
   return (
     <div className={classes.root}>
       <Paper className={classes.loginPaper}>
@@ -110,13 +106,6 @@ const LoginPage: React.FC = () => {
             disabled={!formIsValid()}
           >
             Entrar
-          </Button>
-          <Button
-            data-testid="back-button"
-            className={`${classes.backButtonStyle} ${classes.disabled}`}
-            onClick={() => handleBack()}
-          >
-            Voltar
           </Button>
         </form>
       </Paper>

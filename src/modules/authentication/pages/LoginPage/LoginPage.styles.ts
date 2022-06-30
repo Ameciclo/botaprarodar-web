@@ -69,21 +69,6 @@ export default makeStyles({
       backgroundColor: '#0187867F',
     },
   },
-  backButtonStyle: {
-    background: '#B00020',
-    borderRadius: '4px',
-    width: '179px',
-    height: '40px',
-    fontStyle: 'normal',
-    color: '#FFFFFF',
-    fontFamily: 'Roboto',
-    fontWeight: 500,
-    fontSize: 14,
-    letterSpacing: '1.25px',
-    '&:hover': {
-      backgroundColor: '#B000207F',
-    },
-  },
   errorIconStyle: {
     fontSize: 14,
   },
