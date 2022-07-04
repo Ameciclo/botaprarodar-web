@@ -25,7 +25,7 @@ export default makeStyles(theme => ({
     alignSelf: 'center',
     flexDirection: 'column',
     width: '50%',
-    height: '40%',
+    padding: '20px',
     maxWidth: '440px',
     maxHeight: '515px',
     [theme.breakpoints.down('sm')]: {
