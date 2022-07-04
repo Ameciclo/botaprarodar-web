@@ -1,4 +1,13 @@
-import { Button, FormHelperText, Paper, TextField } from '@material-ui/core';
+import {
+  Button,
+  FormHelperText,
+  Paper,
+  TextField,
+  InputAdornment,
+  IconButton,
+} from '@material-ui/core';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ErrorIcon from '@material-ui/icons/Error';
 import { useFormControls } from 'modules/authentication/hooks/index';
 import React, { useEffect, useState } from 'react';
@@ -17,6 +26,9 @@ const LoginPage: React.FC = () => {
   const { values, errors, handleInputChange, formIsValid } = useFormControls();
 
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   useEffect(() => {
     setAuthenticationError(false);
@@ -74,9 +86,22 @@ const LoginPage: React.FC = () => {
           )}
           <TextField
             label="Senha"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="password"
             variant="outlined"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
             inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handleInputChange}

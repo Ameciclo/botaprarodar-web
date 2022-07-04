@@ -14,8 +14,8 @@ export default makeStyles(theme => ({
     },
   },
   logoSize: {
-    height: '90px',
-    width: '117px',
+    height: '135px',
+    width: '240px',
     alignSelf: 'center',
   },
   loginPaper: {
@@ -26,8 +26,8 @@ export default makeStyles(theme => ({
     flexDirection: 'column',
     width: '50%',
     height: '40%',
-    maxWidth: '487px',
-    maxHeight: '494px',
+    maxWidth: '440px',
+    maxHeight: '515px',
     [theme.breakpoints.down('sm')]: {
       width: '90%',
       height: '80%',
