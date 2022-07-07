@@ -1,5 +1,5 @@
 import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Redirect,
   Route as ReactDOMRoute,
@@ -11,11 +11,7 @@ interface RouteProps extends ReactRouteProps {
   comp: React.ComponentType;
 }
 
-const Route: React.FC<RouteProps> = ({
-  isPrivate,
-  comp: Component,
-  ...rest
-}) => {
+const Route = ({ isPrivate, comp: Component, ...rest }: RouteProps) => {
   const { value } = useGetAuth();
 
   return (
