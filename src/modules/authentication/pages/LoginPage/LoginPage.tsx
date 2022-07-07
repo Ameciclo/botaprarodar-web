@@ -11,11 +11,12 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ErrorIcon from '@material-ui/icons/Error';
 import { useFormControls } from 'modules/authentication/hooks/index';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { LogoBPR } from '../../../../shared/assets/index';
 import { useHandleAuth } from '../../contexts/AuthContext';
 import LoginService from '../../services/LoginService';
 import useStyles from './LoginPage.styles';
+import { Toggle } from '../../../../shared';
 
 const LoginPage: React.FC = () => {
   const [authenticationError, setAuthenticationError] =
@@ -44,6 +45,9 @@ const LoginPage: React.FC = () => {
     if (user?.authenticated) {
       onChange(user);
       await setAuthenticationError(false);
+      if (Toggle.enableCommunity) {
+        return history.push('/gerenciador-de-comunidade');
+      }
       history.push('/');
     }
   }
