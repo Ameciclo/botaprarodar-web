@@ -17,7 +17,6 @@ import clsx from 'clsx';
 import React, { FC, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { LogoBPRwhite, ArrowBack } from 'shared/assets';
-import { auth } from 'shared/services/firebase';
 import {
   useClearAuth,
   useGetAuth,
@@ -114,7 +113,7 @@ const Menu: React.FC = ({ children }) => {
               variant="h6"
               noWrap
               onClick={handleLogout}
-              className={classes.sairButtonStyle}
+              className={classes.logoutButtonStyle}
             >
               <img
                 src={ArrowBack}
@@ -130,7 +129,7 @@ const Menu: React.FC = ({ children }) => {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {menuItems(history, getAuth.value, handleLogout).map(
+            {menuItems(history, getAuth.value).map(
               item =>
                 !item.hide && (
                   <div className={handleActiveMenu(item)} key={item.name}>

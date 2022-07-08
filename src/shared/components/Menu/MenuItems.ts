@@ -2,17 +2,12 @@ import {
   GroupOutlined,
   DashboardOutlined,
   DirectionsBikeOutlined,
-  ArrowBack,
   SupervisedUserCircleOutlined,
 } from '@material-ui/icons';
 import { History } from 'history';
 import AuthInterface from '../../../modules/authentication/models/AuthInterface';
 
-export default (
-  history: History,
-  auth: AuthInterface,
-  handleLogout: () => void,
-) => [
+export default (history: History, auth: AuthInterface) => [
   {
     name: 'Login',
     path: '/login',

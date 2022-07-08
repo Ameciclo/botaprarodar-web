@@ -82,9 +82,10 @@ export default makeStyles(theme => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  sairButtonStyle: {
+  logoutButtonStyle: {
     '&:hover': {
       fontSize: '120%',
+      cursor: 'pointer',
     },
   },
 }));
