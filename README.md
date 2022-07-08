@@ -48,3 +48,25 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 - Yarn package mannager
 
 ---
+
+## NPM Important commands
+
+- `npm test` - Runs unit tests
+- `npm run build` - Builds the application
+- `npm start` - Start applications
+
+## Check-in dance
+
+1. Run tests `npm test`
+1. Commit to local
+   1. Add files to git stage `git add <filename> -A` or `git add -p`
+   1. Commit files `git commit -m "Your commit message"`
+1. Check Git Actions
+1. Pull recent changes `git pull --rebase`
+   1. Fix files if there are merge conflicts
+      1. `git add <fixed files>`
+      1. `git rebase --continue`
+   1. Re-run tests if there are new changes `npm test`
+1. Push `git push`
+1. Check Git Action
+   1. RED? Fix immediately or git revert
