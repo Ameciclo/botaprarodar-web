@@ -1,5 +1,5 @@
 import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Redirect,
   Route as ReactDOMRoute,

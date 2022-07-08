@@ -48,10 +48,4 @@ export default (
     disabled: true,
     hide: !auth?.authenticated,
   },
-  {
-    name: 'Sair',
-    icon: ArrowBack,
-    action: handleLogout,
-    hide: !auth?.authenticated,
-  },
 ];

@@ -16,6 +16,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
 import React, { FC, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { LogoBPRwhite, ArrowBack } from 'shared/assets';
+import { auth } from 'shared/services/firebase';
 import {
   useClearAuth,
   useGetAuth,
@@ -82,10 +84,18 @@ const Menu: React.FC = ({ children }) => {
   );
 
   const MenuDrawer = mobile ? ResizableDrawer : PermanentDrawer;
+
+  const showButtonLogout = () => {
+    if (getAuth.value.authenticated) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <>
       <AppBar className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.appBarLayout}>
           {mobile && (
             <IconButton
               color="inherit"
@@ -97,9 +107,23 @@ const Menu: React.FC = ({ children }) => {
               {open ? <ChevronLeftIcon /> : <MenuIcon />}
             </IconButton>
           )}
-          <Typography variant="h6" noWrap>
-            Bota pra rodar
-          </Typography>
+          <img src={LogoBPRwhite} alt="Logo do projeto Bota pra rodar" />
+
+          {showButtonLogout() && (
+            <Typography
+              variant="h6"
+              noWrap
+              onClick={handleLogout}
+              className={classes.sairButtonStyle}
+            >
+              <img
+                src={ArrowBack}
+                alt="Logo do projeto Bota pra rodar"
+                className={classes.arrowStyle}
+              />
+              Sair
+            </Typography>
+          )}
         </Toolbar>
       </AppBar>
       <MenuDrawer>

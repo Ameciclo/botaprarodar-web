@@ -70,4 +70,21 @@ export default makeStyles(theme => ({
     backgroundColor: '#D8D8D8',
     width: '272',
   },
+  logoWhiteSize: {
+    height: '55px',
+    width: '90px',
+  },
+  arrowStyle: {
+    marginRight: '5px',
+  },
+  appBarLayout: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  sairButtonStyle: {
+    '&:hover': {
+      fontSize: '120%',
+    },
+  },
 }));
