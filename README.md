@@ -1,3 +1,7 @@
+[![Deploy - DEV](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/main_netlify.yml/badge.svg?branch=main)](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/main_netlify.yml)
+
+[![Deploy - PROD](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/production_netlify.yml/badge.svg?branch=production)](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/production_netlify.yml)
+
 # Bota pra Rodar - Web
 
 A self-managed bike sharing system like alternative to socio-spatial inequalities.
