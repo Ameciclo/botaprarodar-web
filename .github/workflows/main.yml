@@ -1,18 +1,20 @@
+#Disabling deploy on heroku for now.
+
 # This is the workflow to push to CI (Continuous Integration) environment at heroku
 
-name: Deploy to heroku - CI
-on:
-  push:
-    branches:
-      - main
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'ci-botaprarodar-web' #Must be unique in Heroku
-          heroku_email: 'botaprarodar.web@gmail.com'
-          checkstring: 'ok'
+# name: Deploy to heroku - CI
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+#         with:
+#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#           heroku_app_name: 'ci-botaprarodar-web' #Must be unique in Heroku
+#           heroku_email: 'botaprarodar.web@gmail.com'
+#           checkstring: 'ok'
