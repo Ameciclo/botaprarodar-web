@@ -9,13 +9,6 @@ import AuthInterface from '../../../modules/authentication/models/AuthInterface'
 
 export default (history: History, auth: AuthInterface) => [
   {
-    name: 'Login',
-    path: '/login',
-    icon: SupervisedUserCircleOutlined,
-    action: () => history.push('/login'),
-    hide: auth.authenticated,
-  },
-  {
     name: 'Dados',
     path: '/',
     icon: DashboardOutlined,

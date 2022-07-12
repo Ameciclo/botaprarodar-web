@@ -21,7 +21,7 @@ export const routes = [
   {
     path: '/',
     comp: DashboardPage,
-    private: false,
+    private: true,
   },
   {
     path: '/usuarios',

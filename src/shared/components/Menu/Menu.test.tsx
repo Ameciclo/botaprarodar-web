@@ -20,13 +20,6 @@ describe('Menu', () => {
     expect(queryByText('Login')).not.toBeInTheDocument();
   });
 
-  it('renders only login button when user is not logged', () => {
-    const { queryByText } = renderWithRouterAndAuth(<Menu />);
-
-    expect(queryByText('Sair')).not.toBeInTheDocument();
-    expect(queryByText('Login')).toBeInTheDocument();
-  });
-
   it('should redirect to given page when click in menu item', () => {
     setUserAuthenticated();
     const { getByText, history } = renderWithRouterAndAuth(<Menu />);
