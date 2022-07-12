@@ -6,11 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import {
-  AccountCircleOutlined,
-  MailOutlineOutlined,
-  PlaceOutlined,
-} from '@material-ui/icons';
+import { PlaceOutlined } from '@material-ui/icons';
 import useStyles from './CommunityCard.styles';
 import CommunityMenu from '../CommunityMenu/CommunityMenu';
 
@@ -29,24 +25,12 @@ const CommunityCard: React.FC<any> = ({ community }) => {
           </div>
           <List>
             <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <AccountCircleOutlined />
-              </ListItemIcon>
               <ListItemText
-                secondary={community.org_name || 'Nome do gestor não informado'}
+                secondary={community.description || 'Descrição não informada'}
                 className={classes.listItemText}
               />
             </ListItem>
-            <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <MailOutlineOutlined />
-              </ListItemIcon>
-              <ListItemText
-                secondary={community.org_email || 'E-mail não informado'}
-                className={classes.listItemText}
-              />
-            </ListItem>
-            <ListItem className={classes.listItem}>
+            <ListItem className={classes.listAddressItem}>
               <ListItemIcon className={classes.listItemIcon}>
                 <PlaceOutlined />
               </ListItemIcon>
