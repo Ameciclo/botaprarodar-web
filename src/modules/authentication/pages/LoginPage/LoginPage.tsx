@@ -66,7 +66,7 @@ const LoginPage: React.FC = () => {
         <img
           src={LogoBPR}
           alt="Logo do projeto Bota pra rodar"
-          className={classes.logoSize}
+          className={classes.imageEdit}
         />
         <form onSubmit={handleSubmit} className={classes.loginForm}>
           <TextField

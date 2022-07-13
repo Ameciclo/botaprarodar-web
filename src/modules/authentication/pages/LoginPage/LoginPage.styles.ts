@@ -13,10 +13,15 @@ export default makeStyles(theme => ({
       backgroundColor: '#D8D8D8',
     },
   },
-  logoSize: {
+  imageEdit: {
     height: '135px',
     width: '240px',
     alignSelf: 'center',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+      height: '80%',
+    },
   },
   loginPaper: {
     justifyContent: 'space-evenly',
@@ -28,10 +33,6 @@ export default makeStyles(theme => ({
     padding: '20px',
     maxWidth: '440px',
     maxHeight: '515px',
-    [theme.breakpoints.down('sm')]: {
-      width: '90%',
-      height: '80%',
-    },
     background: '#FFFFFF',
   },
   loginForm: {
