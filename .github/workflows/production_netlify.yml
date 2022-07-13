@@ -2,9 +2,10 @@
 
 name: Deploy to Netlify - PROD
 on:
-  push:
-    branches:
-      - production
+  workflow_run:
+    workflows: ['Run tests - PROD']
+    types:
+      - completed
 jobs:
   deploy:
     runs-on: ubuntu-latest

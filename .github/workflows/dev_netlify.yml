@@ -2,9 +2,10 @@
 
 name: Deploy to Netlify - DEV
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ['Run tests - DEV']
+    types:
+      - completed
 jobs:
   deploy:
     runs-on: ubuntu-latest
