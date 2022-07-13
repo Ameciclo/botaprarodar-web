@@ -65,7 +65,11 @@ const CommunityPage: React.FC = () => {
               sm={12}
               className={classes.card}
             >
-              <CommunityCard key={community.id} community={community} />
+              <CommunityCard
+                key={community.id}
+                community={community}
+                showEditOption
+              />
             </Grid>
           ))}
         </Grid>

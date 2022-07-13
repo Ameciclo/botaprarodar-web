@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
       onChange(user);
       await setAuthenticationError(false);
       if (Toggle.enableCommunity) {
-        history.push('/gerenciador-de-comunidade');
+        history.push('/selecao-de-comunidades');
         return;
       }
       history.push('/');
