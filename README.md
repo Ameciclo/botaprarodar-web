@@ -1,4 +1,4 @@
-[![Deploy - DEV](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/main_netlify.yml/badge.svg?branch=main)](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/main_netlify.yml)
+[![Deploy - DEV](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/dev_netlify.yml/badge.svg?branch=main)](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/dev_netlify.yml)
 
 [![Deploy - PROD](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/production_netlify.yml/badge.svg?branch=production)](https://github.com/Ameciclo/botaprarodar-web/actions/workflows/production_netlify.yml)
 
