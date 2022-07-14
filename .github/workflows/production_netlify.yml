@@ -19,6 +19,9 @@ jobs:
       REACT_APP_APP_ID: ${{secrets.PROD_REACT_APP_APP_ID}}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: production
       # Install NodeJS
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
