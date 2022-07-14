@@ -37,6 +37,10 @@ const Menu: React.FC = ({ children }) => {
     setOpen(state => !state);
   };
 
+  const showMenuBar = () => {
+    return history.location.pathname !== '/selecao-de-comunidades';
+  };
+
   const handleLogout = () => {
     clearAuth.clearAuth();
     history.push('/');
@@ -125,40 +129,42 @@ const Menu: React.FC = ({ children }) => {
           )}
         </Toolbar>
       </AppBar>
-      <MenuDrawer>
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {menuItems(history, getAuth.value).map(
-              item =>
-                !item.hide && (
-                  <div className={handleActiveMenu(item)} key={item.name}>
-                    <ListItem
-                      button
-                      key={item.name}
-                      onClick={item.action}
-                      disabled={item.disabled}
-                    >
-                      <ListItemIcon>
-                        <item.icon />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={item.name}
-                        style={{ fontWeight: 500 }}
-                      />
-                    </ListItem>
-                    {item.name === 'Usuários' && (
-                      <Divider className={classes.separator} />
-                    )}
-                  </div>
-                ),
-            )}
-          </List>
-        </div>
-      </MenuDrawer>
+      {showMenuBar() && (
+        <MenuDrawer>
+          <Toolbar />
+          <div className={classes.drawerContainer}>
+            <List>
+              {menuItems(history, getAuth.value).map(
+                item =>
+                  !item.hide && (
+                    <div className={handleActiveMenu(item)} key={item.name}>
+                      <ListItem
+                        button
+                        key={item.name}
+                        onClick={item.action}
+                        disabled={item.disabled}
+                      >
+                        <ListItemIcon>
+                          <item.icon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={item.name}
+                          style={{ fontWeight: 500 }}
+                        />
+                      </ListItem>
+                      {item.name === 'Usuários' && (
+                        <Divider className={classes.separator} />
+                      )}
+                    </div>
+                  ),
+              )}
+            </List>
+          </div>
+        </MenuDrawer>
+      )}
       <main
         className={clsx(classes.content, {
-          [classes.contentShift]: mobile,
+          [classes.contentShift]: mobile || !showMenuBar(),
         })}
       >
         <Toolbar />
