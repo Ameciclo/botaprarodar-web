@@ -1,0 +1,30 @@
+name: CI for PRs - DEV
+
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  TestingPR:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Get main
+        run: git fetch origin main
+      - name: Install dependencies
+        run: npm install
+      - name: Install Jest globally
+        run: sudo npm install -g jest
+      - name: Run Tests
+        env:
+          REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
+          REACT_APP_AUTH_DOMAIN: ${{secrets.REACT_APP_APP_ID}}
+          REACT_APP_DATABASE_URL: ${{secrets.REACT_APP_AUTH_DOMAIN}}
+          REACT_APP_PROJECT_ID: ${{secrets.REACT_APP_DATABASE_URL}}
+          REACT_APP_MESSAGING_SENDER_ID: ${{secrets.REACT_APP_MESSAGING_SENDER_ID}}
+          REACT_APP_APP_ID: ${{secrets.REACT_APP_PROJECT_ID}}
+          REACT_APP_STORAGE_BUCKET: ${{secrets.REACT_APP_STORAGE_BUCKET}}
+        run: npm run test --silent --watchAll=false
