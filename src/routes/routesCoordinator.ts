@@ -6,12 +6,6 @@ const CreateAndEditCommunityPage = lazy(
       'modules/communities/pages/CreateAndEditCommunity/CreateAndEditCommunity'
     ),
 );
-const CommunitySelectionPage = lazy(
-  () =>
-    import(
-      'modules/communities/pages/CommunitySelectionPage/CommunitySelectionPage'
-    ),
-);
 const UserDetailPage = lazy(
   () => import('modules/users/pages/UserDetailPage/UserDetailPage'),
 );
@@ -56,7 +50,7 @@ export const routes = [
   },
   {
     path: '/selecao-de-comunidades',
-    comp: CommunitySelectionPage,
+    comp: CommunityPage,
     private: true,
   },
 ];

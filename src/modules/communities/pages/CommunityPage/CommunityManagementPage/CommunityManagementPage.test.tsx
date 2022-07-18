@@ -6,10 +6,10 @@ import {
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import CommunityService from 'modules/communities/services/CommunityService';
-import CommunityPage from './CommunityPage';
-import { MockedFirstCommunity } from '../../mocks/MockedCommunity';
+import CommunityPage from './CommunityManagementPage';
+import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
 
-jest.mock('../../services/CommunityService');
+jest.mock('../../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
   typeof CommunityService
 >;

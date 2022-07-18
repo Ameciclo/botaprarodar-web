@@ -4,10 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import { Loading } from 'shared/components';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
-import Community from '../../models/Community';
-import CommunityService from '../../services/CommunityService';
+import Community from '../../../models/Community';
+import CommunityService from '../../../services/CommunityService';
 import useStyles from './CommunitySelection.styles';
-import CommunityCard from '../CommunityPage/components/CommunityCard/CommunityCard';
+import CommunityCard from '../components/CommunityCard/CommunityCard';
 
 const CommunitySelectionPage: React.FC = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
