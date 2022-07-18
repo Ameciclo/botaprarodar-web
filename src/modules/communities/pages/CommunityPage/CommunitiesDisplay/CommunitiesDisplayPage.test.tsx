@@ -6,10 +6,10 @@ import {
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import CommunityService from 'modules/communities/services/CommunityService';
-import CommunityPage from './CommunityPage';
-import { MockedFirstCommunity } from '../../mocks/MockedCommunity';
+import CommunityDisplayPage from './CommunitiesDisplayPage';
+import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
 
-jest.mock('../../services/CommunityService');
+jest.mock('../../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
   typeof CommunityService
 >;
@@ -20,7 +20,7 @@ describe('CommunityPage', () => {
     act(() => {
       render(
         <BrowserRouter>
-          <CommunityPage />
+          <CommunityDisplayPage isSelectingCommunities={false} />
         </BrowserRouter>,
       );
     });
@@ -38,7 +38,7 @@ describe('CommunityPage', () => {
     await act(async () => {
       render(
         <BrowserRouter>
-          <CommunityPage />
+          <CommunityDisplayPage isSelectingCommunities={false} />
         </BrowserRouter>,
       );
     });
@@ -53,7 +53,7 @@ describe('CommunityPage', () => {
     await act(async () => {
       render(
         <BrowserRouter>
-          <CommunityPage />
+          <CommunityDisplayPage isSelectingCommunities={false} />
         </BrowserRouter>,
       );
     });
