@@ -6,10 +6,17 @@ import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
 import Community from '../../../models/Community';
 import CommunityService from '../../../services/CommunityService';
-import useStyles from './CommunitySelection.styles';
+import useStyles from './CommunitiesDisplayPage.styles';
 import CommunityCard from '../components/CommunityCard/CommunityCard';
+import CreateCommunityButton from '../components/CreateCommunityButton/CreateCommunityButton';
 
-const CommunitySelectionPage: React.FC = () => {
+type CommunitiesDisplayType = {
+  isSelectingCommunities: boolean;
+};
+
+const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
+  isSelectingCommunities,
+}) => {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const classes = useStyles();
@@ -40,6 +47,14 @@ const CommunitySelectionPage: React.FC = () => {
             Comunidades do Bota pra Rodar
           </Typography>
         </Grid>
+        <Grid
+          item
+          md={4}
+          xs={12}
+          style={{ display: 'flex', justifyContent: 'flex-end' }}
+        >
+          {!isSelectingCommunities && <CreateCommunityButton />}
+        </Grid>
       </Grid>
 
       {loading ? (
@@ -59,7 +74,7 @@ const CommunitySelectionPage: React.FC = () => {
               <CommunityCard
                 key={community.id}
                 community={community}
-                showEditOption={false}
+                showEditOption={!isSelectingCommunities}
               />
             </Grid>
           ))}
@@ -77,4 +92,4 @@ const CommunitySelectionPage: React.FC = () => {
   );
 };
 
-export default CommunitySelectionPage;
+export default CommunitiesDisplayPage;

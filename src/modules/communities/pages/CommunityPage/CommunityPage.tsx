@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import CommunityManagementPage from './CommunityManagementPage/CommunityManagementPage';
-import CommunitySelectionPage from './CommunitySelectionPage/CommunitySelectionPage';
+import CommunitiesDisplayPage from './CommunitiesDisplay/CommunitiesDisplayPage';
 
 const CommunityPage: React.FC = () => {
   const history = useHistory();
@@ -10,11 +9,9 @@ const CommunityPage: React.FC = () => {
 
   return (
     <>
-      {isSelectingCommunities() ? (
-        <CommunitySelectionPage />
-      ) : (
-        <CommunityManagementPage />
-      )}
+      <CommunitiesDisplayPage
+        isSelectingCommunities={isSelectingCommunities()}
+      />
     </>
   );
 };
