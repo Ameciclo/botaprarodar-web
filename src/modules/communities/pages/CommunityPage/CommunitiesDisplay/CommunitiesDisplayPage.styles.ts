@@ -13,4 +13,15 @@ export default makeStyles(theme => ({
   emptyStateContainer: {
     height: '80vh',
   },
+  subtitle: {
+    fontSize: '16px',
+    fontWeight: 'lighter',
+  },
+  filterCommunity: {
+    width: '780px',
+    height: '48px',
+    background: '#F0F0F0',
+    marginTop: '20px',
+    marginBottom: '30px',
+  },
 }));

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { Loading } from 'shared/components';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
+import { IconButton, InputAdornment, TextField } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import Community from '../../../models/Community';
 import CommunityService from '../../../services/CommunityService';
 import useStyles from './CommunitiesDisplayPage.styles';
@@ -19,7 +22,13 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
 }) => {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [textInput, setTextInput] = useState('');
+  const history = useHistory();
   const classes = useStyles();
+
+  const handleTextInput = e => {
+    setTextInput(e.target.value);
+  };
 
   useEffect(() => {
     CommunityService.getAllCommunities()
@@ -34,6 +43,12 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
       });
   }, []);
 
+  const manageOnClick = community => {
+    if (isSelectingCommunities) {
+      history.push(`comunidades/gerenciador-de-comunidade/${community.id}`);
+    }
+  };
+
   return (
     <div>
       <Grid
@@ -46,6 +61,20 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
           <Typography variant="h5" gutterBottom className={classes.pageTitle}>
             Comunidades do Bota pra Rodar
           </Typography>
+          {isSelectingCommunities && (
+            <Typography variant="h6" gutterBottom className={classes.subtitle}>
+              Selecione a comunidade que deseja administrar
+            </Typography>
+          )}
+          {isSelectingCommunities && (
+            <TextField
+              type="text"
+              placeholder="Que comunidade você está procurando?"
+              onChange={handleTextInput}
+              className={classes.filterCommunity}
+              InputProps={{ disableUnderline: true }}
+            />
+          )}
         </Grid>
         <Grid
           item
@@ -53,7 +82,7 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
           xs={12}
           style={{ display: 'flex', justifyContent: 'flex-end' }}
         >
-          {!isSelectingCommunities && <CreateCommunityButton />}
+          <CreateCommunityButton />
         </Grid>
       </Grid>
 
@@ -75,6 +104,7 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
                 key={community.id}
                 community={community}
                 showEditOption={!isSelectingCommunities}
+                onClick={() => manageOnClick(community)}
               />
             </Grid>
           ))}
