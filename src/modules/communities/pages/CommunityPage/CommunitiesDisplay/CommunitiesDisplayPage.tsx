@@ -72,6 +72,7 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
           )}
           {isSelectingCommunities && (
             <TextField
+              id="busca"
               type="text"
               placeholder="Que comunidade você está procurando?"
               onChange={handleTextInput}
