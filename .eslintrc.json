@@ -35,12 +35,6 @@
         ]
       }
     ],
-    "react/jsx-no-duplicate-props": [
-      1,
-      {
-        "ignoreCase": false
-      }
-    ],
     "import/prefer-default-export": "off",
     "react/prop-types": "off",
     "no-unused-expressions": "off",

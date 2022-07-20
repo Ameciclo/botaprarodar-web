@@ -93,6 +93,7 @@ const LoginPage: React.FC = () => {
             label="Senha"
             type={showPassword ? 'text' : 'password'}
             name="password"
+            id="password"
             variant="outlined"
             InputProps={{
               endAdornment: (
@@ -107,7 +108,6 @@ const LoginPage: React.FC = () => {
                 </InputAdornment>
               ),
             }}
-            inputProps={{ 'data-testid': 'password' }}
             className={classes.fieldsLogin}
             onChange={handleInputChange}
             onBlur={handleInputChange}
