@@ -23,5 +23,6 @@ export default makeStyles(theme => ({
     background: '#F0F0F0',
     marginTop: '20px',
     marginBottom: '30px',
+    paddingTop: '10px',
   },
 }));

@@ -48,6 +48,10 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
       history.push(`comunidades/gerenciador-de-comunidade/${community.id}`);
     }
   };
+  const lowerCased = textInput.toUpperCase();
+  const filteredCommunities = communities.filter(com =>
+    com.name.toUpperCase().includes(lowerCased),
+  );
 
   return (
     <div>
@@ -72,7 +76,16 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
               placeholder="Que comunidade você está procurando?"
               onChange={handleTextInput}
               className={classes.filterCommunity}
-              InputProps={{ disableUnderline: true }}
+              InputProps={{
+                disableUnderline: true,
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <IconButton>
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
           )}
         </Grid>
@@ -90,7 +103,7 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
         <Loading />
       ) : communities.length ? (
         <Grid container spacing={4} data-testid="communities-grid">
-          {communities?.map(community => (
+          {filteredCommunities?.map(community => (
             <Grid
               key={community.id}
               item
