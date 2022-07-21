@@ -8,7 +8,10 @@ import {
 import { BrowserRouter } from 'react-router-dom';
 import CommunityService from 'modules/communities/services/CommunityService';
 import CommunityDisplayPage from './CommunitiesDisplayPage';
-import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
+import {
+  MockedFirstCommunity,
+  MockedSecondCommunity,
+} from '../../../mocks/MockedCommunity';
 
 jest.mock('../../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
@@ -16,9 +19,12 @@ const mockedCommunityService = CommunityService as jest.Mocked<
 >;
 
 describe('CommunityPage', () => {
+  beforeEach(() => {
+    mockedCommunityService.getAllCommunities.mockResolvedValue([]);
+  });
+
   describe(' Render Community Page', () => {
     it('should render loading component', async () => {
-      mockedCommunityService.getAllCommunities.mockResolvedValue([]);
       act(() => {
         render(
           <BrowserRouter>
@@ -32,7 +38,7 @@ describe('CommunityPage', () => {
         screen.getByText('Carregando, por favor aguarde...'),
       );
     });
-    it('renders a grid to show the communities', async () => {
+    it('should render a grid to show the communities', async () => {
       mockedCommunityService.getAllCommunities.mockResolvedValue([
         MockedFirstCommunity,
       ]);
@@ -49,8 +55,6 @@ describe('CommunityPage', () => {
     });
 
     it('renders no communities and an empty state message', async () => {
-      mockedCommunityService.getAllCommunities.mockResolvedValue([]);
-
       await act(async () => {
         render(
           <BrowserRouter>
@@ -64,14 +68,12 @@ describe('CommunityPage', () => {
     });
   });
 
-  describe('Input value', () => {
-    it('updates on change', async () => {
-      mockedCommunityService.getAllCommunities.mockResolvedValue([]);
-
+  describe('Search bar', () => {
+    it('should update page on change', async () => {
       await act(async () => {
         render(
           <BrowserRouter>
-            <CommunityDisplayPage isSelectingCommunities={true} />
+            <CommunityDisplayPage isSelectingCommunities />
           </BrowserRouter>,
         );
       });
@@ -83,6 +85,61 @@ describe('CommunityPage', () => {
       fireEvent.change(searchInput!, { target: { value: 'teste' } });
 
       expect(searchInput.value).toBe('teste');
+    });
+
+    it('should show message when finding no communities', async () => {
+      mockedCommunityService.getAllCommunities.mockResolvedValue([
+        MockedFirstCommunity,
+        MockedSecondCommunity,
+      ]);
+      await act(async () => {
+        render(
+          <BrowserRouter>
+            <CommunityDisplayPage isSelectingCommunities />
+          </BrowserRouter>,
+        );
+      });
+
+      const searchInput = screen.getByPlaceholderText(
+        'Que comunidade você está procurando?',
+      ) as HTMLInputElement;
+
+      fireEvent.change(searchInput!, { target: { value: 'Lorem Ipsum' } });
+
+      expect(
+        screen.getByText(/Não há resultados para essa busca: Lorem Ipsum./i),
+      ).toBeInTheDocument();
+    });
+
+    it('should filter cards  when searching for community', async () => {
+      mockedCommunityService.getAllCommunities.mockResolvedValue([
+        MockedFirstCommunity,
+        MockedSecondCommunity,
+      ]);
+      await act(async () => {
+        render(
+          <BrowserRouter>
+            <CommunityDisplayPage isSelectingCommunities />
+          </BrowserRouter>,
+        );
+      });
+
+      const searchInput = screen.getByPlaceholderText(
+        'Que comunidade você está procurando?',
+      ) as HTMLInputElement;
+
+      let communitiesList = screen.getByTestId('communities-grid');
+      expect(communitiesList.childElementCount).toBe(2);
+      expect(screen.queryByText(/XPTO/i)).toBeInTheDocument();
+      expect(screen.queryByText(/Nome teste/i)).toBeInTheDocument();
+
+      fireEvent.change(searchInput!, { target: { value: 'teste' } });
+
+      communitiesList = screen.getByTestId('communities-grid');
+
+      expect(communitiesList.childElementCount).toBe(1);
+      expect(screen.queryByText(/XPTO/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Nome teste/i)).toBeInTheDocument();
     });
   });
 });
