@@ -25,4 +25,10 @@ export default makeStyles(theme => ({
     marginBottom: '30px',
     paddingTop: '10px',
   },
+  emptySearch: {
+    fontSize: '16px',
+    fontWeight: 'lighter',
+    marginTop: '40px',
+    marginLeft: '40px',
+  },
 }));

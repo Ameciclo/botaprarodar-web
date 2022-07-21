@@ -104,24 +104,30 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
         <Loading />
       ) : communities.length ? (
         <Grid container spacing={4} data-testid="communities-grid">
-          {filteredCommunities?.map(community => (
-            <Grid
-              key={community.id}
-              item
-              xl={3}
-              lg={4}
-              md={6}
-              sm={12}
-              className={classes.card}
-            >
-              <CommunityCard
+          {filteredCommunities.length > 0 ? (
+            filteredCommunities?.map(community => (
+              <Grid
                 key={community.id}
-                community={community}
-                showEditOption={!isSelectingCommunities}
-                onClick={() => manageOnClick(community)}
-              />
-            </Grid>
-          ))}
+                item
+                xl={3}
+                lg={4}
+                md={6}
+                sm={12}
+                className={classes.card}
+              >
+                <CommunityCard
+                  key={community.id}
+                  community={community}
+                  showEditOption={!isSelectingCommunities}
+                  onClick={() => manageOnClick(community)}
+                />
+              </Grid>
+            ))
+          ) : (
+            <Typography className={classes.emptySearch}>
+              Não há resultados para essa busca.
+            </Typography>
+          )}
         </Grid>
       ) : (
         <div className={classes.emptyStateContainer}>
