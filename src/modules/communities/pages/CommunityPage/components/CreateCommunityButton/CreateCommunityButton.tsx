@@ -17,7 +17,7 @@ const DeleteCommunityButton: React.FC = () => {
       className={classes.button}
       onClick={handleClick}
     >
-      Criar comunidade
+      Cadastrar comunidade
     </Button>
   );
 };

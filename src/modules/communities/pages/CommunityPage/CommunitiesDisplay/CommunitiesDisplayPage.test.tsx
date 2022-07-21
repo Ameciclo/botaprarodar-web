@@ -107,7 +107,7 @@ describe('CommunityPage', () => {
       fireEvent.change(searchInput!, { target: { value: 'Lorem Ipsum' } });
 
       expect(
-        screen.getByText(/Não há resultados para essa busca: Lorem Ipsum./i),
+        screen.getByText(/Não há resultados para essa busca: Lorem Ipsum./i)
       ).toBeInTheDocument();
     });
 

@@ -33,6 +33,7 @@ describe('Edit community', () => {
       .spyOn(CommunityService, 'getCommunityById')
       .mockRejectedValue(new Error('Error'));
     await renderElement();
-    expect(await screen.findByText('Criar comunidade')).toBeInTheDocument();
+    screen.debug();
+    expect(await screen.findByText('Cadastrar comunidade')).toBeInTheDocument();
   });
 });

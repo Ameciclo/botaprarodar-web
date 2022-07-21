@@ -35,7 +35,7 @@ const EditCommunityPage: React.FC = () => {
       <FormHeader
         link="/comunidades"
         title={
-          community?.name ? `Editar ${community.name}` : 'Criar comunidade'
+          community?.name ? `Editar ${community.name}` : 'Cadastrar comunidade'
         }
       />
       {loading ? (
