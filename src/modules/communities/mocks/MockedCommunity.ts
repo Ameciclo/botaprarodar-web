@@ -17,7 +17,7 @@ export const MockedFirstCommunity: Community = {
   created_date: new Date(),
   description: 'Comunidade em Recife',
   id: '-MLDOXs3p35DEHg0gdUU',
-  name: 'Comunidade x',
+  name: 'Comunidade XPTO',
   org_email: 'joao@joao.com',
   org_name: 'Joao',
   bicycles: [],

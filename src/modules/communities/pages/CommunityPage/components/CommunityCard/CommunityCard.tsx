@@ -14,17 +14,19 @@ import Community from '../../../../models/Community';
 interface CommunityCardProps {
   community: Community;
   showEditOption: boolean;
+  onClick(): void;
 }
 
 const CommunityCard: React.FC<CommunityCardProps> = ({
   community,
   showEditOption,
+  onClick,
 }) => {
   const classes = useStyles();
 
   return (
     <>
-      <Card className={classes.root}>
+      <Card className={classes.root} onClick={onClick}>
         <CardContent className={classes.cardContent}>
           <div className={classes.cardHeader}>
             <Typography variant="h6" component="h2" className={classes.title}>

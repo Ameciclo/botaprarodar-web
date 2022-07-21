@@ -13,7 +13,7 @@ const mockedLoginService = LoginService as jest.Mocked<typeof LoginService>;
 
 async function fillAndSubmitLoginForm(email: string, password: string) {
   const emailField = screen.getByTestId('e-mail');
-  const passwordField = screen.getByTestId('password');
+  const passwordField = screen.getByLabelText('Senha');
 
   fireEvent.change(emailField, {
     target: { value: email },
@@ -41,7 +41,7 @@ describe('Login Page', () => {
 
   it('should have e-mail and password fields', () => {
     const emailField = screen.getByTestId('e-mail');
-    const passwordField = screen.getByTestId('password');
+    const passwordField = screen.getByLabelText('Senha');
     expect(emailField).toBeInTheDocument();
     expect(passwordField).toBeInTheDocument();
   });
@@ -76,7 +76,7 @@ describe('Login Page', () => {
   });
 
   it('should show error messages when password field is empty', async () => {
-    const passwordField = screen.getByTestId('password');
+    const passwordField = screen.getByLabelText('Senha');
 
     fireEvent.blur(passwordField);
 

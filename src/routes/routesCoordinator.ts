@@ -1,3 +1,4 @@
+import CommunityManagementPage from 'modules/communities/pages/CommunityPage/CommunityManagementPage/CommunityManagementPage';
 import { lazy } from 'react';
 
 const CreateAndEditCommunityPage = lazy(
@@ -51,6 +52,11 @@ export const routes = [
   {
     path: '/selecao-de-comunidades',
     comp: CommunityPage,
+    private: true,
+  },
+  {
+    path: '/comunidades/gerenciador-de-comunidade/:id',
+    comp: CommunityManagementPage,
     private: true,
   },
 ];
