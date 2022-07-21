@@ -125,7 +125,7 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
             ))
           ) : (
             <Typography className={classes.emptySearch}>
-              Não há resultados para essa busca.
+              Não há resultados para essa busca: {textInput}.
             </Typography>
           )}
         </Grid>
