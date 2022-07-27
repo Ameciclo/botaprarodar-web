@@ -45,8 +45,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false --coverage",
+    "test": "react-scripts test --passWithNoTests",
     "test-husky": "react-scripts test --watchAll=false --bail",
+    "test-coverage": "react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "heroku": "serve -s build",
     "heroku-prebuild": "npm install -g serve",
