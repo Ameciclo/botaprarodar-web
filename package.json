@@ -73,9 +73,20 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/(modules|shared)/**/*.(ts|tsx)",
-      "!src/(modules|shared)/**/*.styles.ts"
-    ]
+      "src/**/*.{jsx,ts,tsx}",
+      "!src/**/index.{jsx,ts,tsx}",
+      "!src/**/models/*.{jsx,ts,tsx}",
+      "!src/**/mocks/*.{jsx,ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 35,
+        "functions": 51,
+        "lines": 52,
+        "statements": 50
+      }
+    }
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
