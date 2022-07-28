@@ -1,3 +1,3 @@
 export const Toggle = {
-  enableCommunity: false,
+  enableCommunity: true,
 };
