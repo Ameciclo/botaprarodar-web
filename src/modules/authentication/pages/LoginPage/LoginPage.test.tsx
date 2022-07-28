@@ -104,6 +104,8 @@ describe('Login Page', () => {
 
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
 
-    await waitFor(() => expect(wrapper.history.location.pathname).toBe('/'));
+    await waitFor(() =>
+      expect(wrapper.history.location.pathname).toBe('/selecao-de-comunidades'),
+    );
   });
 });
