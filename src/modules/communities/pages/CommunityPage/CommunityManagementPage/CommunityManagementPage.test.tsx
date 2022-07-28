@@ -1,23 +1,47 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { renderWithRouterAndAuth } from '../../../../../setupTests';
 import CommunityManagementPage from './CommunityManagementPage';
+import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
+import CommunityService from 'modules/communities/services/CommunityService';
+import { BrowserRouter } from 'react-router-dom';
 
-let wrapper: any;
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: () => ({
+    id: MockedFirstCommunity.id,
+  }),
+}));
+jest.mock('../../../services/CommunityService');
+const mockedCommunityService = CommunityService as jest.Mocked<
+  typeof CommunityService
+>;
 
 describe('Community Management Page', () => {
-  beforeEach(() => {
-    wrapper = renderWithRouterAndAuth(<CommunityManagementPage />, {
-      route: '/gerenciador-de-comunidade/:id',
+  describe('render community page with right information', () => {
+    it('should show commmunity name', async () => {
+      mockedCommunityService.getCommunityById.mockResolvedValue(
+        MockedFirstCommunity,
+      );
+      await act(async () => {
+        renderWithRouterAndAuth(
+          <BrowserRouter>
+            <CommunityManagementPage />
+          </BrowserRouter>,
+          {
+            route: `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
+          },
+        );
+      });
+      // const { history } = wrapper;
+      // expect(history.location.pathname).toBe(
+      //   `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
+      // );
+      // expect(mockedCommunityService.getCommunityById).toHaveBeenCalledWith(
+      //   MockedFirstCommunity.id,
+      // );
+      expect(
+        screen.getByRole('heading', { name: MockedFirstCommunity.name }),
+      ).toBeInTheDocument();
     });
   });
-
-  it('should render community management page', async () => {
-    expect(wrapper.container).toBeInTheDocument();
-  });
-
-  // it('should show commmunity name', () => {
-  //   const communityName = screen.getByText('olá, Comunidade Tal');
-
-  //   expect(communityName).toBeInTheDocument();
-  // });
 });
