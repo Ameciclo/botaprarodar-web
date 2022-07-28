@@ -38,7 +38,12 @@ const CommunityManagementPage: React.FC = () => {
     <Loading />
   ) : (
     <div>
-      <Typography variant="h5" gutterBottom className={classes.pageTitle}>
+      <Typography
+        variant="h5"
+        gutterBottom
+        className={classes.pageTitle}
+        data-testId="communityId"
+      >
         {community?.name}
       </Typography>
       <Grid container spacing={2}>
