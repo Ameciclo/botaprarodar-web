@@ -29,8 +29,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false --coverage",
+    "test": "react-scripts test --passWithNoTests",
     "test-husky": "react-scripts test --watchAll=false --bail",
+    "test-coverage": "react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject",
     "heroku": "serve -s build",
     "heroku-prebuild": "npm install -g serve",
@@ -57,9 +58,20 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/(modules|shared)/**/*.(ts|tsx)",
-      "!src/(modules|shared)/**/*.styles.ts"
-    ]
+      "src/**/*.{jsx,ts,tsx}",
+      "!src/**/index.{jsx,ts,tsx}",
+      "!src/**/models/*.{jsx,ts,tsx}",
+      "!src/**/mocks/*.{jsx,ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 35,
+        "functions": 51,
+        "lines": 52,
+        "statements": 50
+      }
+    }
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
