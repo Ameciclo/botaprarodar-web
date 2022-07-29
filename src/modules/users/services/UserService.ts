@@ -18,6 +18,11 @@ const UserService = {
     return data;
   },
 
+  async createUser(body: any) {
+    const { data } = await api.post(`/users.json`, body);
+    return data;
+  },
+
   async setUserBlock(id: string, isBlocked: boolean) {
     const { data } = await api.patch(`/users/${id}.json`, { isBlocked });
 
