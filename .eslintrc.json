@@ -31,36 +31,25 @@
   "rules": {
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".tsx"]
-      }
-    ],
     "import/prefer-default-export": "off",
-    "react/prop-types": "off",
-    "no-unused-expressions": "off",
-    "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-shadow": ["error"],
     "camelcase": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
       { "ts": "never", "tsx": "never" }
     ],
-    "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": [
-          "./**/**/**/**/*.test.ts",
-          "./**/**/**/**/*.test.tsx"
-        ],
-        "allow": ["warn", "error"]
+          "./cypress/**/**/*.cy.ts",
+          "./src/**/**/**/**/*.test.ts",
+          "./src/**/**/**/**/*.test.tsx"
+        ]
       }
     ],
     "import/order": [
@@ -94,7 +83,6 @@
     ],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-nested-ternary": "off",
-    "no-shadow": "off",
     "no-unused-expressions": "off",
     "no-use-before-define": "off",
     "prettier/prettier": "error",
