@@ -6,3 +6,4 @@ export { default as CadastrarBikeIcon } from './cadastrar-bike.svg';
 export { default as DevolverBikeIcon } from './devolver-bike.svg';
 export { default as EmprestarBikeIcon } from './emprestar-bike.svg';
 export { default as CadastrarUsuarioIcon } from './cadastrar-usuario.svg';
+export { default as GearIcon } from './gearIcon.svg';
