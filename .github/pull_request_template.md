@@ -10,3 +10,7 @@
 - [ ] Meu código segue as diretrizes de estilo deste projeto
 - [ ] Adicionei testes que comprovam que minha correção é eficaz ou que meu recurso funciona
 - [ ] Testes de unidade novos e existentes são aprovados localmente com minhas alterações
+
+## Checklist Frontend
+
+- [ ] Inseri na PR captura de tela da feature desenvolvida 
