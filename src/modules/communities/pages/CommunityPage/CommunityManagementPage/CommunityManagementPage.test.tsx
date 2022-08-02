@@ -1,9 +1,10 @@
 import { act, screen } from '@testing-library/react';
 import { renderWithRouterAndAuth } from '../../../../../setupTests';
+import { BrowserRouter } from 'react-router-dom';
 import CommunityManagementPage from './CommunityManagementPage';
 import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
+import { MockedAmountCommunityXPTO } from 'modules/communities/mocks/MockedAmountBikesPerCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
-import { BrowserRouter } from 'react-router-dom';
 import {
   CadastrarBikeIcon,
   EmprestarBikeIcon,
@@ -23,11 +24,30 @@ const mockedCommunityService = CommunityService as jest.Mocked<
 >;
 
 describe('Community Management Page of the Comunidade XPTO', () => {
+  it('should show loading info when page is loading', () => {
+    mockedCommunityService.getCommunityById.mockResolvedValue(
+      MockedFirstCommunity,
+    );
+    renderWithRouterAndAuth(
+      <BrowserRouter>
+        <CommunityManagementPage />
+      </BrowserRouter>,
+      {
+        route: `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
+      },
+    );
+    expect(
+      screen.getByRole('heading', {
+        name: /Carregando, por favor aguarde.../i,
+      }),
+    ).toBeInTheDocument();
+  });
   describe('render community page with right information', () => {
-    it('should show loading info when page is loading', () => {
+    beforeEach(() => {
       mockedCommunityService.getCommunityById.mockResolvedValue(
         MockedFirstCommunity,
       );
+
       renderWithRouterAndAuth(
         <BrowserRouter>
           <CommunityManagementPage />
@@ -36,76 +56,30 @@ describe('Community Management Page of the Comunidade XPTO', () => {
           route: `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
         },
       );
-      expect(
-        screen.getByRole('heading', {
-          name: /Carregando, por favor aguarde.../i,
-        }),
-      ).toBeInTheDocument();
     });
+
     it('should show commmunity name when is sucess', async () => {
-      mockedCommunityService.getCommunityById.mockResolvedValue(
-        MockedFirstCommunity,
-      );
-      await act(async () => {
-        renderWithRouterAndAuth(
-          <BrowserRouter>
-            <CommunityManagementPage />
-          </BrowserRouter>,
-          {
-            route: `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
-          },
-        );
-      });
       expect(
         screen.getByRole('heading', { name: MockedFirstCommunity.name }),
       ).toBeInTheDocument();
     });
 
-    describe('should show commmunity icons when is sucess', () => {
-      beforeEach(() => {
-        mockedCommunityService.getCommunityById.mockResolvedValue(
-          MockedFirstCommunity,
-        );
+    it('should show bike loan icon', () => {
+      const icon = screen.getByAltText(/Ícone para empréstimo de bicicleta/i);
+      expect(icon).toHaveAttribute('src', EmprestarBikeIcon);
+    });
 
-        renderWithRouterAndAuth(
-          <BrowserRouter>
-            <CommunityManagementPage />
-          </BrowserRouter>,
-          {
-            route: `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
-          },
-        );
-      });
+    it('should show bike return icon', () => {
+      const icon = screen.getByAltText(/Ícone para devolução de bicicleta/i);
+      expect(icon).toHaveAttribute('src', DevolverBikeIcon);
+    });
 
-      it('should show bike loan icon', () => {
-        const icon = screen.getByAltText('Ícone para empréstimo de bicicleta');
-        expect(icon).toHaveAttribute('src', EmprestarBikeIcon);
-      });
-      it('should show bike return icon', () => {
-        const icon = screen.getByAltText('Ícone para devolução de bicicleta');
-        expect(icon).toHaveAttribute('src', DevolverBikeIcon);
-      });
-      it('should show bike registration icon', () => {
-        const icon = screen.getByAltText('Ícone para cadastro de bicicleta');
-        expect(icon).toHaveAttribute('src', CadastrarBikeIcon);
-      });
+    it('should show bike registration icon', () => {
+      const icon = screen.getByAltText(/Ícone para cadastro de bicicleta/i);
+      expect(icon).toHaveAttribute('src', CadastrarBikeIcon);
     });
 
     describe('should show community labels when is sucess', () => {
-      beforeEach(() => {
-        mockedCommunityService.getCommunityById.mockResolvedValue(
-          MockedFirstCommunity,
-        );
-
-        renderWithRouterAndAuth(
-          <BrowserRouter>
-            <CommunityManagementPage />
-          </BrowserRouter>,
-          {
-            route: `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
-          },
-        );
-      });
       describe('should show labels name', () => {
         it('should show label name of total number of bikes per community ', () => {
           const labelName = screen.getByText(/Total de bicicletas/i);
@@ -118,6 +92,20 @@ describe('Community Management Page of the Comunidade XPTO', () => {
         it('should show label name of number of borrowed bikes ', () => {
           const labelName = screen.getByText(/Bicicletas emprestadas/i);
           expect(labelName).toBeInTheDocument;
+        });
+      });
+      describe.skip('should show labels numbers', () => {
+        it('should show label amount of total number of bikes per community ', () => {
+          const labelAmount = screen.getByText(/Total de bicicletas/i);
+          expect(labelAmount).toBeInTheDocument;
+        });
+        it('should show label amount of number of avaliable bikes ', () => {
+          const labelAmount = screen.getByText(/Bicicletas disponíveis/i);
+          expect(labelAmount).toBeInTheDocument;
+        });
+        it('should show label amount of number of borrowed bikes ', () => {
+          const labelAmount = screen.getByText(/Bicicletas emprestadas/i);
+          expect(labelAmount).toBeInTheDocument;
         });
       });
     });

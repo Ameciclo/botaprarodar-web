@@ -1,12 +1,23 @@
 import Bike from 'modules/bicycles/models/Bike';
 import api from 'shared/services/api';
+import { database } from 'shared/services/firebase';
+import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 
 const BikeService = {
   async getAllBikes() {
     const { data } = await api.get('/bikes.json');
 
     const bikes: Bike[] = mapBikesData(data);
+
     return bikes;
+  },
+
+  async getAmountFilteredBikesPerCommunity(
+    communityId: string,
+    filterType?: string,
+  ) {
+    const { data } = await api.get('/bikes.json');
+    return data.length;
   },
 };
 
