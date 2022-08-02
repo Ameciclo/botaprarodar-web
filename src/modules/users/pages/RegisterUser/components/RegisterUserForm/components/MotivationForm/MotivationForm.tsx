@@ -40,7 +40,7 @@ const MotivationForm: React.FC<MotivationFormPros> = ({ control }) => {
               <MenuItem value="No">Não</MenuItem>
             </Select>
           </Grid>
-          <Grid item>
+          <Grid item xs={6} sm={3}>
             <Input
               label="Por que você precisa usar esta bicicleta?"
               type="text"
@@ -50,6 +50,7 @@ const MotivationForm: React.FC<MotivationFormPros> = ({ control }) => {
               dataTestId="reason-test"
               defaultValue=""
               rules={{ required: 'A motivação do uso é obrigatória' }}
+              fullWidth
             />
           </Grid>
         </Grid>
