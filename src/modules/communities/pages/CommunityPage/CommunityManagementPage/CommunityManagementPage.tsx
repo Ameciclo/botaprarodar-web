@@ -48,9 +48,11 @@ const CommunityManagementPage: React.FC = () => {
         >
           {community?.name}
         </Typography>
-        <img src={GearIcon} alt="Engrenagem" className={classes.gearIcon} />
+        <div className={classes.gearBox}>
+          <img src={GearIcon} alt="Engrenagem" className={classes.gearIcon} />
+        </div>
       </div>
-      <Grid container spacing={4}>
+      <Grid container spacing={3}>
         <Grid item>
           <div className={classes.card}>
             <img
