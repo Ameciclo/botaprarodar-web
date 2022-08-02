@@ -26,7 +26,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
       <CardContent>
         <Typography variant="h5">Dificuldades e problemas</Typography>
         <Grid container direction="row" spacing={3}>
-          <Grid item>
+          <Grid item xs={6} sm={3}>
             <InputLabel id="demo-simple-select-label">
               Já foi vítima de colisão ou atropelamento?
             </InputLabel>
@@ -40,7 +40,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
               <MenuItem value="No">Não</MenuItem>
             </Select>
           </Grid>
-          <Grid item>
+          <Grid item xs={6} sm={3}>
             <Input
               label="Quais problemas você observa no trajeto?"
               type="text"
@@ -49,10 +49,11 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
               control={control}
               dataTestId="address-test"
               defaultValue=""
-              rules={{ required: 'Endereço do usuário é obrigatório' }}
+              rules={{ required: 'Citar problemas é obrigatório' }}
+              fullWidth
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={6} sm={3}>
             <Input
               label="Quanto tempo você leva no seu trajeto?"
               type="text"
@@ -61,7 +62,8 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
               control={control}
               dataTestId="phone-test"
               defaultValue=""
-              rules={{ required: 'Telefone do usuário é obrigatório' }}
+              rules={{ required: 'informar o tempo é obrigatório' }}
+              fullWidth
             />
           </Grid>
         </Grid>

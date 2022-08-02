@@ -44,7 +44,7 @@ export const routes = [
     private: true,
   },
   {
-    path: '/cadastrar-usuario',
+    path: '/comunidades/cadastrar-usuario',
     comp: RegisterUserPage,
     private: true,
   },

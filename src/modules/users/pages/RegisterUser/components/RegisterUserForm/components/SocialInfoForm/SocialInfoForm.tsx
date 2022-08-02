@@ -55,6 +55,7 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({ control }) => {
             >
               <MenuItem value="male">Masculino</MenuItem>
               <MenuItem value="female">Feminino</MenuItem>
+              <MenuItem value="other">Outro</MenuItem>
               <MenuItem value="not informed">Prefiro não informar</MenuItem>
             </Select>
           </Grid>
@@ -66,11 +67,12 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({ control }) => {
               value={race}
               onChange={handleChangeRace}
             >
-              <MenuItem value="white">Branca</MenuItem>
-              <MenuItem value="black">Preto</MenuItem>
               <MenuItem value="asian">Amarela</MenuItem>
+              <MenuItem value="white">Branca</MenuItem>
+              <MenuItem value="indigenous">Indígena</MenuItem>
               <MenuItem value="brown">Parda</MenuItem>
-              <MenuItem value="not informed">Não informar</MenuItem>
+              <MenuItem value="black">Preta</MenuItem>
+              <MenuItem value="not informed">Prefiro não informar</MenuItem>
             </Select>
           </Grid>
           <Grid item>
@@ -83,10 +85,15 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({ control }) => {
               value={instruction}
               onChange={handleChangeInstruction}
             >
-              <MenuItem value="1">Ensino Fundamental</MenuItem>
-              <MenuItem value="2">Ensino Médio</MenuItem>
-              <MenuItem value="3">Ensino Superior</MenuItem>
-              <MenuItem value="not informed">Não informar</MenuItem>
+              <MenuItem value="1">
+                Sem instrução ou menos de um ano de estudo
+              </MenuItem>
+              <MenuItem value="2">Ensino Fundamental 1</MenuItem>
+              <MenuItem value="3">Ensino Fundamental 2</MenuItem>
+              <MenuItem value="4">Ensino Médio</MenuItem>
+              <MenuItem value="5">Ensino Técnico</MenuItem>
+              <MenuItem value="6">Ensino Superior</MenuItem>
+              <MenuItem value="not informed">Não determinado</MenuItem>
             </Select>
           </Grid>
           <Grid item>
@@ -101,6 +108,7 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({ control }) => {
             >
               <MenuItem value="Yes">Sim</MenuItem>
               <MenuItem value="No">Não</MenuItem>
+              <MenuItem value="in progress">Cursando</MenuItem>
             </Select>
           </Grid>
           <Grid item>
@@ -113,10 +121,13 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({ control }) => {
               value={income}
               onChange={handleChangeIncome}
             >
-              <MenuItem value="1x">Até 1 salario minimo</MenuItem>
-              <MenuItem value="3x">Até 3 salario minimos</MenuItem>
-              <MenuItem value="5x">Até 5 salario minimos</MenuItem>
-              <MenuItem value="+5x">Mais que 5 salarios minimos</MenuItem>
+              <MenuItem value="150">Até 150 reais</MenuItem>
+              <MenuItem value="150-300">Entre 150 e 300 reais</MenuItem>
+              <MenuItem value="500-700">Entre 500 e 700 reais</MenuItem>
+              <MenuItem value="750-1100">Entre 750 e 1100 reais</MenuItem>
+              <MenuItem value="1100-2000">Entre 1100 e 2000 reais</MenuItem>
+              <MenuItem value="+2000">Mais de 2000 reais</MenuItem>
+              <MenuItem value="not informed">Não desejo informar</MenuItem>
             </Select>
           </Grid>
         </Grid>

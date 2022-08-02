@@ -5,7 +5,7 @@ import RegisterUserPage from './RegisterUserPage';
 describe('RegisterUserPage', () => {
   it('should render component', async () => {
     const wrapper = renderWithRouterAndAuth(<RegisterUserPage />, {
-      route: '/cadastrar-usuario',
+      route: '/comunidades/cadastrar-usuario',
     });
     expect(wrapper.container).toBeInTheDocument();
   });
