@@ -37,14 +37,15 @@ export const routes = [
     comp: UserDetailPage,
     private: true,
   },
-  {
-    path: '/cadastrar-usuario',
-    comp: RegisterUserPage,
-    private: true,
-  },
+
   {
     path: '/comunidades',
     comp: CommunityPage,
+    private: true,
+  },
+  {
+    path: '/cadastrar-usuario',
+    comp: RegisterUserPage,
     private: true,
   },
   {
