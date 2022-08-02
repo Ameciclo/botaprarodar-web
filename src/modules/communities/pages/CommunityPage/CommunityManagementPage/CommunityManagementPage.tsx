@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import { PageTitle, Loading } from 'shared/components';
+import { PageTitle, Loading, CustomLabel } from 'shared/components';
 import {
   CadastrarBikeIcon,
   EmprestarBikeIcon,
@@ -90,26 +90,24 @@ const CommunityManagementPage: React.FC = () => {
             <p className={classes.upperCardText}>Cadastrar usuária</p>
           </div>
         </Grid>
+      </Grid>
 
-        <Grid item xs={4} sm={4}>
-          <div className={classes.bottomCard}>
-            <p>Total de bicicletas</p>
-            <p>50</p>
-          </div>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
+            <CustomLabel text="Total de bicicletas" total={50} />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <CustomLabel text="Bicicletas disponíveis" total={25} />
+          </Grid>
         </Grid>
 
-        <Grid item xs={4} sm={4}>
-          <div className={classes.bottomCardBlue}>
-            <p> Bicicletas disponíveis</p>
-            <p>20</p>
-          </div>
-        </Grid>
-
-        <Grid item xs={4} sm={6}>
-          <div className={classes.bottomCard}>
-            <p>Bicicletas emprestadas</p>
-            <p>30</p>
-          </div>
+        <Grid item xs={12} md={6}>
+          <CustomLabel
+            text="Bicicletas emprestadas"
+            total={50}
+            variant="primary"
+          />
         </Grid>
       </Grid>
     </div>

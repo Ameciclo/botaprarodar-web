@@ -94,20 +94,6 @@ describe('Community Management Page of the Comunidade XPTO', () => {
           expect(labelName).toBeInTheDocument;
         });
       });
-      describe.skip('should show labels numbers', () => {
-        it('should show label amount of total number of bikes per community ', () => {
-          const labelAmount = screen.getByText(/Total de bicicletas/i);
-          expect(labelAmount).toBeInTheDocument;
-        });
-        it('should show label amount of number of avaliable bikes ', () => {
-          const labelAmount = screen.getByText(/Bicicletas disponíveis/i);
-          expect(labelAmount).toBeInTheDocument;
-        });
-        it('should show label amount of number of borrowed bikes ', () => {
-          const labelAmount = screen.getByText(/Bicicletas emprestadas/i);
-          expect(labelAmount).toBeInTheDocument;
-        });
-      });
     });
   });
 
