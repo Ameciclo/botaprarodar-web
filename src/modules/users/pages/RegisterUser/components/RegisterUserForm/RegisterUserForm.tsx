@@ -1,3 +1,4 @@
+import { Grid } from '@material-ui/core';
 import UserService from 'modules/users/services/UserService';
 import { useForm } from 'react-hook-form';
 import { toast } from 'shared/components';
@@ -21,10 +22,20 @@ const RegisterUserForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <PersonalInfoForm control={control} />
-      <SocialInfoForm control={control} />
-      <MotivationForm control={control} />
-      <ProblemsForm control={control} />
+      <Grid container spacing={1}>
+        <Grid container item xs={12}>
+          <PersonalInfoForm control={control} />
+        </Grid>
+        <Grid item xs={12}>
+          <SocialInfoForm control={control} />
+        </Grid>
+        <Grid item xs={12}>
+          <MotivationForm control={control} />
+        </Grid>
+        <Grid item xs={12}>
+          <ProblemsForm control={control} />
+        </Grid>
+      </Grid>
     </form>
   );
 };

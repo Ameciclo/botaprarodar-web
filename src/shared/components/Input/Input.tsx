@@ -12,6 +12,7 @@ interface InputProps {
   className: string;
   defaultValue?: string;
   rules: Record<string, unknown>;
+  fullWidth?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -21,6 +22,7 @@ const Input: React.FC<InputProps> = ({
   dataTestId,
   rules,
   defaultValue,
+  fullWidth = false,
   ...props
 }) => {
   const classes = useStyles();
@@ -41,6 +43,7 @@ const Input: React.FC<InputProps> = ({
             variant="outlined"
             defaultValue={defaultValue}
             inputProps={{ 'data-testid': dataTestId }}
+            fullWidth={fullWidth}
             error={!!error}
             helperText={
               error ? (
