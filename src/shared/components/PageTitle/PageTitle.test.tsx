@@ -8,7 +8,6 @@ describe('Component: PageTitle', () => {
     it('when has icon', () => {
       render(<PageTitle id="my-id" text="My Text" iconName="gear" />);
 
-      screen.debug();
       const title = screen.getByRole('heading', { name: /My Text/i });
       const icon = screen.getByText('Icon-component-mock');
 
@@ -21,7 +20,6 @@ describe('Component: PageTitle', () => {
     it('when has not icon', () => {
       render(<PageTitle id="my-id" text="My Text" />);
 
-      screen.debug();
       const title = screen.getByRole('heading', { name: /My Text/i });
       const icon = screen.queryByText('Icon-component-mock');
 
