@@ -1,38 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles(theme => ({
-  titleAndIcon: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  pageTitle: {
-    display: 'flex',
-    flexDirection: 'column',
-    font: 'Roboto',
-    fontSize: '24px',
-    weight: '400',
-    marginTop: '20px',
-    marginBottom: 30,
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: 10,
-    },
-  },
-  gearBox: {
-    border: '1px solid #DCE4E4',
-    width: '38px',
-    height: '38px',
-    marginTop: '17px',
-    marginLeft: '15px',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  gearIcon: {
-    width: '12.44px',
-    height: '12.8px',
-    marginLeft: '12px',
-    marginTop: '11px',
-  },
   card: {
     display: 'flex',
     flexDirection: 'column',
@@ -42,7 +10,7 @@ export default makeStyles(theme => ({
     height: '129px',
     marginTop: '30px',
     marginBottom: '20px',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.palette.common.white,
     textTransform: 'uppercase',
     borderRadius: '4px',
     boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.05)',
