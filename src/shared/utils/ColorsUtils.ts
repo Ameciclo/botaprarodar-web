@@ -11,7 +11,6 @@ const ColorsUtils = {
 
     for (let i = 0; i < length; i += 1) {
       const newColor = this.getPastelColor(0.3);
-      console.log(newColor);
       if (array1.includes(newColor)) {
         i -= 1;
       } else {
@@ -19,6 +18,7 @@ const ColorsUtils = {
         array2.push(newColor.replace('0.3', '1'));
       }
     }
+
     return [array1, array2];
   },
 };

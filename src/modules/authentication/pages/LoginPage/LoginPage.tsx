@@ -16,7 +16,6 @@ import { LogoBPR } from '../../../../shared/assets/index';
 import { useHandleAuth } from '../../contexts/AuthContext';
 import LoginService from '../../services/LoginService';
 import useStyles from './LoginPage.styles';
-import { Toggle } from '../../../../shared';
 
 const LoginPage: React.FC = () => {
   const [authenticationError, setAuthenticationError] =
