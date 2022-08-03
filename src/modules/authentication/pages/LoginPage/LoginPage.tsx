@@ -45,10 +45,6 @@ const LoginPage: React.FC = () => {
     if (user?.authenticated) {
       onChange(user);
       await setAuthenticationError(false);
-      if (Toggle.enableCommunity) {
-        history.push('/selecao-de-comunidades');
-        return;
-      }
       history.push('/');
     }
   }
