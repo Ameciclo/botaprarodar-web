@@ -1,4 +1,4 @@
-import { GenderTypes } from '../models/GenderTypes';
+import { GenderTypes } from '../models/types/GenderTypes';
 import User from '../models/User';
 
 export const MockedFirstUser: User = {

@@ -1,24 +1,31 @@
-import { GenderTypes } from './GenderTypes';
+import { GenderTypes } from './types/GenderTypes';
+import { IncomeTypes } from './types/IncomeTypes';
+import { RacialTypes } from './types/RacialTypes';
+import { SchoolingStatusTypes } from './types/SchoolingStatusTypes';
+import { SchoolingTypes } from './types/SchoolingTypes';
 
 export default interface User {
   name: string;
+  createDate: string;
+  address: string;
+  gender: GenderTypes;
+  profilePicture: string;
   age: string;
-  income: string;
+  racial: RacialTypes;
+  schooling: SchoolingTypes;
+  schoolingStatus: SchoolingStatusTypes;
+  income: IncomeTypes;
   communityId: string;
   telephone: string;
   status: boolean;
-  gender: GenderTypes;
-  profilePicture: string;
   id: string;
-  address: string;
-  docNumber: bigint;
-  docPicture: string;
-  docPictureBack: string;
-  residenceProofPicture: string;
   isBlocked: boolean;
-  racial: string;
-  schooling: string;
   userQuiz: {
     alreadyUseBPR: boolean;
+    alreadyUseBPROpenQuestion: string;
+    motivationOpenQuestion: string;
+    alreadyAccidentVictim: boolean;
+    problemsOnWayOpenQuestion: string;
+    timeOnWayOpenQuestion: string;
   };
 }
