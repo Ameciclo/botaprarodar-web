@@ -122,7 +122,7 @@ describe('Bike Service', () => {
         );
       });
     });
-    describe('should return error when api fails', async () => {
+    describe('should return error when api fails', () => {
       it('should return error', async () => {
         const err = new Error('Error de comunicação com a api');
         mockedApi.get.mockRejectedValueOnce(err);
