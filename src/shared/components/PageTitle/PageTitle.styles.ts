@@ -5,6 +5,8 @@ export default makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: theme.spacing(1),
+    padding: '5px',
+    marginLeft: theme.spacing(2),
+    boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.14)',
   },
 }));
