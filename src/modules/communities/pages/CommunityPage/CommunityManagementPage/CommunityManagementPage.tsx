@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { PageTitle, Loading, CustomLabel } from 'shared/components';
-import {
-  CadastrarBikeIcon,
-  EmprestarBikeIcon,
-  DevolverBikeIcon,
-  CadastrarUsuarioIcon,
-} from 'shared/assets/icons';
+import CustomCardWithIcon from 'shared/components/CustomCardWithIcon/CustomCardWithIcon';
+
 import CommunityService from 'modules/communities/services/CommunityService';
 import Community from 'modules/communities/models/Community';
-import useStyles from './CommunityManagementPage.styles';
 
 const CommunityManagementPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [community, setCommunity] = useState<Community>();
   const [loading, setLoading] = useState<boolean>(false);
-  const classes = useStyles();
 
   useEffect(() => {
     if (id) {
@@ -47,48 +41,36 @@ const CommunityManagementPage: React.FC = () => {
       />
 
       <Grid container spacing={2}>
-        <Grid item>
-          <div className={classes.card}>
-            <img
-              src={EmprestarBikeIcon}
-              alt="Ícone para empréstimo de bicicleta"
-              className={classes.communityManagementIcons}
-            />
-            <p className={classes.upperCardText}>Emprestar bicicleta </p>
-          </div>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="emprestar-bicicleta"
+            iconName="lendBike"
+            text="Emprestar bicicleta"
+          />
         </Grid>
 
-        <Grid item>
-          <div className={classes.card}>
-            <img
-              src={DevolverBikeIcon}
-              alt="Ícone para devolução de bicicleta"
-              className={classes.communityManagementIcons}
-            />
-            <p className={classes.upperCardText}>Devolver bicicleta</p>
-          </div>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="revolver-bicicleta"
+            iconName="giveBackBike"
+            text="Devolver bicicleta"
+          />
         </Grid>
 
-        <Grid item>
-          <div className={classes.card}>
-            <img
-              src={CadastrarBikeIcon}
-              alt="Ícone para cadastro de bicicleta"
-              className={classes.communityManagementIcons}
-            />
-            <p className={classes.upperCardText}>Cadastrar bicicleta</p>
-          </div>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="emprestar-bicicleta"
+            iconName="registerBike"
+            text="Cadastrar bicicleta"
+          />
         </Grid>
 
-        <Grid item>
-          <div className={classes.card}>
-            <img
-              src={CadastrarUsuarioIcon}
-              alt="Ícone para cadastro de usuário"
-              className={classes.communityManagementIcons}
-            />
-            <p className={classes.upperCardText}>Cadastrar usuária</p>
-          </div>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="emprestar-bicicleta"
+            iconName="registerUser"
+            text="Cadastrar usuária"
+          />
         </Grid>
       </Grid>
 

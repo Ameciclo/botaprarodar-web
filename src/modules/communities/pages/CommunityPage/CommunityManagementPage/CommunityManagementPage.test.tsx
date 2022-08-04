@@ -64,21 +64,6 @@ describe('Community Management Page of the Comunidade XPTO', () => {
       ).toBeInTheDocument();
     });
 
-    it('should show bike loan icon', () => {
-      const icon = screen.getByAltText(/Ícone para empréstimo de bicicleta/i);
-      expect(icon).toHaveAttribute('src', EmprestarBikeIcon);
-    });
-
-    it('should show bike return icon', () => {
-      const icon = screen.getByAltText(/Ícone para devolução de bicicleta/i);
-      expect(icon).toHaveAttribute('src', DevolverBikeIcon);
-    });
-
-    it('should show bike registration icon', () => {
-      const icon = screen.getByAltText(/Ícone para cadastro de bicicleta/i);
-      expect(icon).toHaveAttribute('src', CadastrarBikeIcon);
-    });
-
     describe('should show community labels when is sucess', () => {
       describe('should show labels name', () => {
         it('should show label name of total number of bikes per community ', () => {
