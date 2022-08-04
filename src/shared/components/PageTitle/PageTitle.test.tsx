@@ -4,7 +4,7 @@ import PageTitle from './PageTitle';
 jest.mock('../Icon/Icon', () => () => 'Icon-component-mock');
 
 describe('Component: PageTitle', () => {
-  describe('shoud render correctly', () => {
+  describe('should render correctly', () => {
     it('when has icon', () => {
       render(<PageTitle id="my-id" text="My Text" iconName="gear" />);
 
@@ -17,7 +17,7 @@ describe('Component: PageTitle', () => {
       expect(icon).toBeInTheDocument();
     });
 
-    it('when has not icon', () => {
+    it('when has no icon', () => {
       render(<PageTitle id="my-id" text="My Text" />);
 
       const title = screen.getByRole('heading', { name: /My Text/i });
