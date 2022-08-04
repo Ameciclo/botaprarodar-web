@@ -27,12 +27,12 @@ const MotivationForm: React.FC<MotivationFormPros> = ({ control }) => {
         <Typography variant="h5">Motivação</Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item>
-            <InputLabel id="demo-simple-select-label">
+            <InputLabel id="motivation-id">
               Já utilizava bicicleta antes?
             </InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="motivation-label"
+              id="motivation"
               value={useBycicle}
               onChange={handleChangeUseBycicle}
             >

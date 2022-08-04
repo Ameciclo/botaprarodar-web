@@ -1,12 +1,19 @@
 import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
+import User from 'modules/users/models/User';
 import { Input } from 'shared/components';
 import useStyles from './PersonalInfoForm.styles';
 
 interface PersonalInfoFormProps {
   control: any;
+  user?: User;
+  onChange: any;
 }
 
-const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
+const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
+  control,
+  user,
+  onChange,
+}) => {
   const classes = useStyles();
 
   return (
@@ -24,7 +31,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               className="userName"
               control={control}
               dataTestId="name-test"
-              defaultValue=""
+              defaultValue={user?.name}
               rules={{ required: 'Nome do usuário é obrigatório' }}
               fullWidth
             />
@@ -37,7 +44,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               className="address"
               control={control}
               dataTestId="address-test"
-              defaultValue=""
+              defaultValue={user?.address}
               rules={{ required: 'Endereço do usuário é obrigatório' }}
               fullWidth
             />
@@ -51,27 +58,11 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
                 className="input"
                 control={control}
                 dataTestId="phone-test"
-                defaultValue=""
+                defaultValue={user?.telephone}
                 rules={{ required: 'Telefone do usuário é obrigatório' }}
                 fullWidth
               />
               <div className={classes.formatSubtitle}>DDD + Número</div>
-            </div>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <div>
-              <Input
-                label="Data do nascimento"
-                type="text"
-                name="birthday"
-                className="input"
-                control={control}
-                dataTestId="birthday-test"
-                defaultValue=""
-                rules={{ required: 'Data de nascimento é obrigatório' }}
-                fullWidth
-              />
-              <div className={classes.formatSubtitle}>DD/MM/AAAA</div>
             </div>
           </Grid>
           <Grid item xs={6} sm={4}>
@@ -83,7 +74,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
                 className="input"
                 control={control}
                 dataTestId="profilePicture-test"
-                defaultValue=""
+                defaultValue={user?.profilePicture}
                 rules={{ required: 'Foto de perfil é obrigatória' }}
               />
               <Button className={classes.button}>Escolher Arquivo</Button>

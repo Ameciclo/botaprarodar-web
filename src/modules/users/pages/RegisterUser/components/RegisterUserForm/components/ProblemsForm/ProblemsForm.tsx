@@ -27,12 +27,12 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
         <Typography variant="h5">Dificuldades e problemas</Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item xs={6} sm={3}>
-            <InputLabel id="demo-simple-select-label">
+            <InputLabel id="collision-id">
               Já foi vítima de colisão ou atropelamento?
             </InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="collision-label"
+              id="collision-select"
               value={accident}
               onChange={handleChangeAccident}
             >
@@ -44,10 +44,10 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
             <Input
               label="Quais problemas você observa no trajeto?"
               type="text"
-              name="address"
-              className="address"
+              name="problems"
+              className="problems"
               control={control}
-              dataTestId="address-test"
+              dataTestId="problems-test"
               defaultValue=""
               rules={{ required: 'Citar problemas é obrigatório' }}
               fullWidth
@@ -57,10 +57,10 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
             <Input
               label="Quanto tempo você leva no seu trajeto?"
               type="text"
-              name="phone"
+              name="time-to-arrive"
               className="input"
               control={control}
-              dataTestId="phone-test"
+              dataTestId="time-to-arrive-test"
               defaultValue=""
               rules={{ required: 'informar o tempo é obrigatório' }}
               fullWidth
