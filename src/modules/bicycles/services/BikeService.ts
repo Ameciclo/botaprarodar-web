@@ -1,7 +1,6 @@
 import Bike from 'modules/bicycles/models/Bike';
 import api from 'shared/services/api';
-import axios, { AxiosError } from 'axios';
-import { database } from 'shared/services/firebase';
+import { AxiosError } from 'axios';
 import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 
 const BikeService = {
@@ -21,13 +20,12 @@ const BikeService = {
       let available = 0;
       let borrowed = 0;
       const { data } = await api.get('/bikes.json');
-
       if (data) {
-        const bikePerCommunity: Bike[] = data.filter(
-          bike => bike.communityId == communityId,
+        const bikePerCommunity: Bike[] = mapBikesData(data).filter(
+          bike => bike.communityId === communityId,
         );
-
         total = bikePerCommunity.length;
+
         borrowed = bikePerCommunity.filter(bike => !bike.available).length;
 
         available = total - borrowed;
