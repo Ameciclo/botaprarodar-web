@@ -57,7 +57,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
             <Input
               label="Quanto tempo você leva no seu trajeto?"
               type="text"
-              name="time-to-arrive"
+              name="timeToArrive"
               className="input"
               control={control}
               dataTestId="time-to-arrive-test"

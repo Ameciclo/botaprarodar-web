@@ -12,15 +12,15 @@ import { Input } from 'shared/components';
 
 interface MotivationFormPros {
   control: any;
+  onChange: any;
+  values: any;
 }
 
-const MotivationForm: React.FC<MotivationFormPros> = ({ control }) => {
-  const [useBycicle, setUseBycicle] = React.useState('');
-
-  const handleChangeUseBycicle = event => {
-    setUseBycicle(event.target.value);
-  };
-
+const MotivationForm: React.FC<MotivationFormPros> = ({
+  control,
+  onChange,
+  values,
+}) => {
   return (
     <Card>
       <CardContent>
@@ -31,10 +31,11 @@ const MotivationForm: React.FC<MotivationFormPros> = ({ control }) => {
               Já utilizava bicicleta antes?
             </InputLabel>
             <Select
+              name="motivation"
               labelId="motivation-label"
-              id="motivation"
-              value={useBycicle}
-              onChange={handleChangeUseBycicle}
+              data-testid="motivation"
+              value={values.motivation}
+              onChange={onChange}
             >
               <MenuItem value="Yes">Sim</MenuItem>
               <MenuItem value="No">Não</MenuItem>

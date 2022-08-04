@@ -7,53 +7,24 @@ import {
   Select,
   Typography,
 } from '@material-ui/core';
-import { GenderTypes } from 'modules/users/models/types/GenderTypes';
-import { IncomeTypes } from 'modules/users/models/types/IncomeTypes';
+import { GenderEnum } from 'modules/users/models/types/GenderTypes';
+import { IncomeEnum } from 'modules/users/models/types/IncomeTypes';
 import { RacialTypes } from 'modules/users/models/types/RacialTypes';
-import { SchoolingStatusTypes } from 'modules/users/models/types/SchoolingStatusTypes';
 import { SchoolingTypes } from 'modules/users/models/types/SchoolingTypes';
-import User from 'modules/users/models/User';
 import React from 'react';
 
 interface SocialInfoFormProps {
   control: any;
-  user?: User;
+  values: any;
   onChange: any;
 }
 
 const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
   control,
-  user,
+  values,
   onChange,
 }) => {
-  SocialInfoForm.defaultProps = {
-    user: {
-      name: '',
-      createDate: '',
-      communityId: '',
-      telephone: '',
-      gender: GenderTypes['Não declarado'],
-      age: '',
-      income: IncomeTypes['not informed'],
-      status: true,
-      id: '',
-      profilePicture: '',
-      address: '',
-      isBlocked: false,
-      racial: RacialTypes['not informed'],
-      schooling: SchoolingTypes['Não informado'],
-      schoolingStatus: SchoolingStatusTypes.No,
-      userQuiz: {
-        alreadyUseBPR: false,
-        alreadyUseBPROpenQuestion: '',
-        motivationOpenQuestion: '',
-        alreadyAccidentVictim: false,
-        problemsOnWayOpenQuestion: '',
-        timeOnWayOpenQuestion: '',
-      },
-    },
-  };
-
+  console.log({ values });
   return (
     <Card>
       <CardContent>
@@ -63,15 +34,16 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
             <InputLabel id="gender-id">Gênero</InputLabel>
             <Select
               labelId="gender-label"
+              name="gender"
               id="gender-select"
-              value={user?.gender}
+              value={values.gender}
               onChange={onChange}
               defaultValue=""
             >
-              <MenuItem value={GenderTypes.Masculino}>Masculino</MenuItem>
-              <MenuItem value={GenderTypes.Feminino}>Feminino</MenuItem>
-              <MenuItem value={GenderTypes.Outro}>Outro</MenuItem>
-              <MenuItem value={GenderTypes['Não declarado']}>
+              <MenuItem value={GenderEnum.male}>Masculino</MenuItem>
+              <MenuItem value={GenderEnum.female}>Feminino</MenuItem>
+              <MenuItem value={GenderEnum.other}>Outro</MenuItem>
+              <MenuItem value={GenderEnum.notDeclared}>
                 Prefiro não informar
               </MenuItem>
             </Select>
@@ -80,8 +52,9 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
             <InputLabel id="race-id">Raça</InputLabel>
             <Select
               labelId="race-label"
+              name="race"
               id="race-select"
-              value={user?.racial}
+              value={values.race}
               onChange={onChange}
               defaultValue=""
             >
@@ -99,8 +72,9 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
             <InputLabel id="schooling-id">Grau de instrução</InputLabel>
             <Select
               labelId="schooling-label"
+              name="schooling"
               id="schooling-select"
-              value={user?.schooling}
+              value={values.schooling}
               onChange={onChange}
               defaultValue=""
             >
@@ -131,28 +105,29 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
             <InputLabel id="income-id">Qual sua renda?</InputLabel>
             <Select
               labelId="income-label"
+              name="income"
               id="income-select"
-              value={user?.income}
+              value={values.income}
               onChange={onChange}
               defaultValue=""
             >
-              <MenuItem value={IncomeTypes['>150']}>Até 150 reais</MenuItem>
-              <MenuItem value={IncomeTypes['150-300']}>
+              <MenuItem value={IncomeEnum.until150}>Até 150 reais</MenuItem>
+              <MenuItem value={IncomeEnum.from150To300}>
                 Entre 150 e 300 reais
               </MenuItem>
-              <MenuItem value={IncomeTypes['500-700']}>
+              <MenuItem value={IncomeEnum.from500To700}>
                 Entre 500 e 700 reais
               </MenuItem>
-              <MenuItem value={IncomeTypes['750-1100']}>
+              <MenuItem value={IncomeEnum.from750To1100}>
                 Entre 750 e 1100 reais
               </MenuItem>
-              <MenuItem value={IncomeTypes['1100-2000']}>
+              <MenuItem value={IncomeEnum.from1100To2000}>
                 Entre 1100 e 2000 reais
               </MenuItem>
-              <MenuItem value={IncomeTypes['+2000']}>
+              <MenuItem value={IncomeEnum.above2000}>
                 Mais de 2000 reais
               </MenuItem>
-              <MenuItem value={IncomeTypes['not informed']}>
+              <MenuItem value={IncomeEnum.notInformed}>
                 Não desejo informar
               </MenuItem>
             </Select>
