@@ -1,16 +1,9 @@
-import { act, screen } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
 import { renderWithRouterAndAuth } from '../../../../../setupTests';
 import { BrowserRouter } from 'react-router-dom';
 import CommunityManagementPage from './CommunityManagementPage';
 import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
-import { MockedAmountCommunityXPTO } from 'modules/communities/mocks/MockedAmountBikesPerCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
-import {
-  CadastrarBikeIcon,
-  EmprestarBikeIcon,
-  DevolverBikeIcon,
-  CadastrarUsuarioIcon,
-} from 'shared/assets/icons';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -18,6 +11,14 @@ jest.mock('react-router-dom', () => ({
     id: MockedFirstCommunity.id,
   }),
 }));
+jest.mock(
+  '../../../../../shared/components/CustomCardWithIcon/CustomCardWithIcon',
+  () => () => 'CustomCardWithIcon-component-mock',
+);
+jest.mock(
+  '../../../../../shared/components/CustomLabel/CustomLabel',
+  () => () => 'CustomLabel-component-mock',
+);
 jest.mock('../../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
   typeof CommunityService
@@ -42,7 +43,7 @@ describe('Community Management Page of the Comunidade XPTO', () => {
       }),
     ).toBeInTheDocument();
   });
-  describe('render community page with right information', () => {
+  describe('render community page with right information when sucess', () => {
     beforeEach(() => {
       mockedCommunityService.getCommunityById.mockResolvedValue(
         MockedFirstCommunity,
@@ -64,20 +65,20 @@ describe('Community Management Page of the Comunidade XPTO', () => {
       ).toBeInTheDocument();
     });
 
-    describe('should show community labels when is sucess', () => {
-      describe('should show labels name', () => {
-        it('should show label name of total number of bikes per community ', () => {
-          const labelName = screen.getByText(/Total de bicicletas/i);
-          expect(labelName).toBeInTheDocument;
-        });
-        it('should show label name of number of avaliable bikes ', () => {
-          const labelName = screen.getByText(/Bicicletas disponíveis/i);
-          expect(labelName).toBeInTheDocument;
-        });
-        it('should show label name of number of borrowed bikes ', () => {
-          const labelName = screen.getByText(/Bicicletas emprestadas/i);
-          expect(labelName).toBeInTheDocument;
-        });
+    describe('should show custom card with icon', () => {
+      it('should show card name', () => {
+        const cardName = screen.getAllByText(
+          'CustomCardWithIcon-component-mock',
+        );
+        waitFor(() => expect(cardName).toBeInTheDocument());
+      });
+    });
+
+    describe('should show community labels', () => {
+      it('should show labels name', () => {
+        screen.debug;
+        const labelName = screen.getAllByText('CustomLabel-component-mock');
+        waitFor(() => expect(labelName.length).toHaveValue(3));
       });
     });
   });
