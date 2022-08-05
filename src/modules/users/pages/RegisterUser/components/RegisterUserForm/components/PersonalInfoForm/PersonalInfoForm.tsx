@@ -65,7 +65,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
               <div className={classes.formatSubtitle}>DDD + Número</div>
             </div>
           </Grid>
-          <Grid item xs={6} sm={4}>
+          {/* <Grid item xs={6} sm={4}>
             <div className={classes.profilePictureALign}>
               <Input
                 label="Foto de Perfil"
@@ -79,7 +79,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
               />
               <Button className={classes.button}>Escolher Arquivo</Button>
             </div>
-          </Grid>
+          </Grid> */}
         </Grid>
       </CardContent>
     </Card>

@@ -1,5 +1,5 @@
-export enum SchoolingStatusTypes {
-  'Yes',
-  'No',
-  'In Progress',
-}
+export const SchoolingStatusEnum = {
+  Sim: 'Sim',
+  Nao: 'Não',
+  InProgress: 'Em curso',
+};

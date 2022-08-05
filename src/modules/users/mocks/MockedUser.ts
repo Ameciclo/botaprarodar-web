@@ -1,10 +1,5 @@
 import { GenderEnum } from 'modules/users/models/types/GenderTypes';
 import { IncomeEnum } from 'modules/users/models/types/IncomeTypes';
-import { GenderTypes } from '../models/types/GenderTypes';
-import { IncomeTypes } from '../models/types/IncomeTypes';
-import { RacialTypes } from '../models/types/RacialTypes';
-import { SchoolingStatusTypes } from '../models/types/SchoolingStatusTypes';
-import { SchoolingTypes } from '../models/types/SchoolingTypes';
 import User from '../models/User';
 
 export const mockedUser = (): User => ({

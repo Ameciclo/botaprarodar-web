@@ -5,7 +5,7 @@ export type IncomeTypes =
   | '750-1100'
   | '1100-2000'
   | '+2000'
-  | 'not informed';
+  | 'Não informado';
 
 export const IncomeEnum = {
   until150: '>150',
@@ -14,5 +14,5 @@ export const IncomeEnum = {
   from750To1100: '750-1100',
   from1100To2000: '1100-2000',
   above2000: '+2000',
-  notInformed: 'not informed',
+  notInformed: 'Não informado',
 };

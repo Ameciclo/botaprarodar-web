@@ -7,6 +7,8 @@ import SocialInfoForm from './components/SocialInfoForm/SocialInfoForm';
 import useStyles from './RegisterUserForm.styles';
 import ProblemsForm from './components/ProblemsForm/ProblemsForm';
 import MotivationForm from './components/MotivationForm/MotivationForm';
+import UserService from '../../../../services/UserService';
+import { toast } from '../../../../../../shared/components';
 
 const defaultValues = {
   name: '',
@@ -20,6 +22,7 @@ const defaultValues = {
   problems: '',
   profilePicture: '',
   reason: '',
+  collison: '',
   timeToArrive: '',
 };
 
@@ -40,13 +43,13 @@ const RegisterUserForm: React.FC = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
-    // UserService.createUser({})
-    //   .then(() => {
-    //     toast.success('Usuário criado com sucesso.');
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
+    UserService.createUser({})
+      .then(() => {
+        toast.success('Usuário criado com sucesso.');
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   return (
@@ -63,7 +66,11 @@ const RegisterUserForm: React.FC = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <ProblemsForm control={control} />
+          <ProblemsForm
+            control={control}
+            onChange={handleChange}
+            values={values}
+          />
         </Grid>
         <Grid item xs={12}>
           <MotivationForm

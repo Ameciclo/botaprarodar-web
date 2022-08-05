@@ -9,8 +9,11 @@ import {
 } from '@material-ui/core';
 import { GenderEnum } from 'modules/users/models/types/GenderTypes';
 import { IncomeEnum } from 'modules/users/models/types/IncomeTypes';
-import { RacialTypes } from 'modules/users/models/types/RacialTypes';
-import { SchoolingTypes } from 'modules/users/models/types/SchoolingTypes';
+import { RacialEnum } from 'modules/users/models/types/RacialTypes';
+import {
+  SchoolingEnum,
+  SchoolingTypes,
+} from 'modules/users/models/types/SchoolingTypes';
 import React from 'react';
 
 interface SocialInfoFormProps {
@@ -58,12 +61,12 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               onChange={onChange}
               defaultValue=""
             >
-              <MenuItem value={RacialTypes.asian}>Amarela</MenuItem>
-              <MenuItem value={RacialTypes.white}>Branca</MenuItem>
-              <MenuItem value={RacialTypes.indigenous}>Indígena</MenuItem>
-              <MenuItem value={RacialTypes.brown}>Parda</MenuItem>
-              <MenuItem value={RacialTypes.black}>Preta</MenuItem>
-              <MenuItem value={RacialTypes['not informed']}>
+              <MenuItem value={RacialEnum.asian}>Amarela</MenuItem>
+              <MenuItem value={RacialEnum.white}>Branca</MenuItem>
+              <MenuItem value={RacialEnum.indigenous}>Indígena</MenuItem>
+              <MenuItem value={RacialEnum.brown}>Parda</MenuItem>
+              <MenuItem value={RacialEnum.black}>Preta</MenuItem>
+              <MenuItem value={RacialEnum.notInformed}>
                 Prefiro não informar
               </MenuItem>
             </Select>
@@ -78,25 +81,25 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               onChange={onChange}
               defaultValue=""
             >
-              <MenuItem value="1">
+              <MenuItem value={SchoolingEnum.SemOuMenosDeUmAno}>
                 Sem instrução ou menos de um ano de estudo
               </MenuItem>
-              <MenuItem value={SchoolingTypes['Ensino Fundamental 1']}>
+              <MenuItem value={SchoolingEnum.EnsinoFundamental1}>
                 Ensino Fundamental 1
               </MenuItem>
-              <MenuItem value={SchoolingTypes['Ensino Fundamental 2']}>
+              <MenuItem value={SchoolingEnum.EnsinoFundamental2}>
                 Ensino Fundamental 2
               </MenuItem>
-              <MenuItem value={SchoolingTypes['Ensino Médio']}>
+              <MenuItem value={SchoolingEnum.EnsinoMedio}>
                 Ensino Médio
               </MenuItem>
-              <MenuItem value={SchoolingTypes['Ensino Técnico']}>
+              <MenuItem value={SchoolingEnum.EnsinoTecnico}>
                 Ensino Técnico
               </MenuItem>
-              <MenuItem value={SchoolingTypes['Ensino Superior']}>
+              <MenuItem value={SchoolingEnum.EnsinoSuperior}>
                 Ensino Superior
               </MenuItem>
-              <MenuItem value={SchoolingTypes['Não informado']}>
+              <MenuItem value={SchoolingEnum.NotInformed}>
                 Não determinado
               </MenuItem>
             </Select>

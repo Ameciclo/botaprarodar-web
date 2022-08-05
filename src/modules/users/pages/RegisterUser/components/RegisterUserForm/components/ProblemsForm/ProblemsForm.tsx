@@ -8,19 +8,20 @@ import {
   Typography,
 } from '@material-ui/core';
 import React from 'react';
+import User from 'modules/users/models/User';
 import { Input } from 'shared/components';
 
 interface ProblemsFormProps {
   control: any;
+  onChange: any;
+  values: any;
 }
 
-const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
-  const [accident, setAccident] = React.useState('');
-
-  const handleChangeAccident = event => {
-    setAccident(event.target.value);
-  };
-
+const ProblemsForm: React.FC<ProblemsFormProps> = ({
+  control,
+  onChange,
+  values,
+}) => {
   return (
     <Card>
       <CardContent>
@@ -31,10 +32,11 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({ control }) => {
               Já foi vítima de colisão ou atropelamento?
             </InputLabel>
             <Select
+              name="collison"
               labelId="collision-label"
               id="collision-select"
-              value={accident}
-              onChange={handleChangeAccident}
+              value={values.collison}
+              onChange={onChange}
             >
               <MenuItem value="Yes">Sim</MenuItem>
               <MenuItem value="No">Não</MenuItem>

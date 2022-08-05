@@ -1,8 +1,3 @@
-import { GenderTypes } from './types/GenderTypes';
-import { IncomeTypes } from './types/IncomeTypes';
-import { RacialTypes } from './types/RacialTypes';
-import { SchoolingStatusTypes } from './types/SchoolingStatusTypes';
-import { SchoolingTypes } from './types/SchoolingTypes';
 
 export default interface User {
   name: string;
