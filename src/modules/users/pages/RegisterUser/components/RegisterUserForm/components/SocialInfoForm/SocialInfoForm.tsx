@@ -10,24 +10,18 @@ import {
 import { GenderEnum } from 'modules/users/models/types/GenderTypes';
 import { IncomeEnum } from 'modules/users/models/types/IncomeTypes';
 import { RacialEnum } from 'modules/users/models/types/RacialTypes';
-import {
-  SchoolingEnum,
-  SchoolingTypes,
-} from 'modules/users/models/types/SchoolingTypes';
+import { SchoolingEnum } from 'modules/users/models/types/SchoolingTypes';
 import React from 'react';
 
 interface SocialInfoFormProps {
-  control: any;
   values: any;
   onChange: any;
 }
 
 const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
-  control,
   values,
   onChange,
 }) => {
-  console.log({ values });
   return (
     <Card>
       <CardContent>
@@ -41,7 +35,6 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="gender-select"
               value={values.gender}
               onChange={onChange}
-              defaultValue=""
             >
               <MenuItem value={GenderEnum.male}>Masculino</MenuItem>
               <MenuItem value={GenderEnum.female}>Feminino</MenuItem>
@@ -59,7 +52,6 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="race-select"
               value={values.race}
               onChange={onChange}
-              defaultValue=""
             >
               <MenuItem value={RacialEnum.asian}>Amarela</MenuItem>
               <MenuItem value={RacialEnum.white}>Branca</MenuItem>
@@ -79,7 +71,6 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="schooling-select"
               value={values.schooling}
               onChange={onChange}
-              defaultValue=""
             >
               <MenuItem value={SchoolingEnum.SemOuMenosDeUmAno}>
                 Sem instrução ou menos de um ano de estudo
@@ -112,7 +103,6 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="income-select"
               value={values.income}
               onChange={onChange}
-              defaultValue=""
             >
               <MenuItem value={IncomeEnum.until150}>Até 150 reais</MenuItem>
               <MenuItem value={IncomeEnum.from150To300}>

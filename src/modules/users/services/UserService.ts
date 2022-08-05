@@ -1,4 +1,5 @@
 import api from 'shared/services/api';
+import { v4 as uuidv4 } from 'uuid';
 import User from '../models/User';
 
 const UserService = {
@@ -19,7 +20,32 @@ const UserService = {
   },
 
   async createUser(body: any) {
-    const { data } = await api.post(`/users.json`, body);
+    const payload = {
+      name: body.name,
+      createDate: new Date(),
+      address: body.address,
+      gender: body.gender,
+      profilePicture: '',
+      age: body.age,
+      racial: body.racial,
+      schooling: body.schooling,
+      schoolingStatus: body.schoolingStatus,
+      income: body.income,
+      communityId: '',
+      telephone: body.telephone,
+      id: uuidv4(),
+      isBlocked: false,
+      userQuiz: {
+        alreadyUseBPR: body.motivation,
+        alreadyUseBPROpenQuestion: '',
+        motivationOpenQuestion: body.reason,
+        alreadyAccidentVictim: body.collision,
+        problemsOnWayOpenQuestion: body.problems,
+        timeOnWayOpenQuestion: body.timeToArrive,
+      },
+    };
+
+    const { data } = await api.post(`/users.json`, payload);
     return data;
   },
 

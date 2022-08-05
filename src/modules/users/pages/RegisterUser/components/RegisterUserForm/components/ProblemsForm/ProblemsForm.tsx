@@ -8,7 +8,6 @@ import {
   Typography,
 } from '@material-ui/core';
 import React from 'react';
-import User from 'modules/users/models/User';
 import { Input } from 'shared/components';
 
 interface ProblemsFormProps {

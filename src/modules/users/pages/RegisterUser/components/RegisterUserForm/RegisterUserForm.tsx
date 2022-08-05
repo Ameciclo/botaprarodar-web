@@ -10,9 +10,9 @@ import MotivationForm from './components/MotivationForm/MotivationForm';
 import UserService from '../../../../services/UserService';
 import { toast } from '../../../../../../shared/components';
 
-const defaultValues = {
+const defaultFormValues = {
   name: '',
-  adress: '',
+  address: '',
   gender: '',
   race: '',
   schooling: '',
@@ -29,7 +29,7 @@ const defaultValues = {
 const RegisterUserForm: React.FC = () => {
   const classes = useStyles();
   const { handleSubmit, control, setValue, getValues } = useForm({
-    defaultValues,
+    defaultValues: defaultFormValues,
   });
   const history = useHistory();
   const [loading, setLoading] = useState(false);
@@ -38,17 +38,21 @@ const RegisterUserForm: React.FC = () => {
   const handleChange = event => {
     const { name, value } = event.target;
     setValue(name, value);
-    console.log(name, value);
   };
 
   const onSubmit = (data: any) => {
-    console.log(data);
-    UserService.createUser({})
+    setLoading(true);
+    UserService.createUser(data)
       .then(() => {
-        toast.success('Usuário criado com sucesso.');
+        toast.success('Usuário criado com sucesso');
       })
       .catch(err => {
+        toast.error('Serviço indisponível');
         console.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
+        history.push('/');
       });
   };
 
@@ -56,14 +60,10 @@ const RegisterUserForm: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={1}>
         <Grid container item xs={12}>
-          <PersonalInfoForm control={control} onChange={handleChange} />
+          <PersonalInfoForm control={control} />
         </Grid>
         <Grid item xs={12}>
-          <SocialInfoForm
-            control={control}
-            onChange={handleChange}
-            values={values}
-          />
+          <SocialInfoForm onChange={handleChange} values={values} />
         </Grid>
         <Grid item xs={12}>
           <ProblemsForm

@@ -1,19 +1,12 @@
-import { Button, Card, CardContent, Grid, Typography } from '@material-ui/core';
-import User from 'modules/users/models/User';
+import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input } from 'shared/components';
 import useStyles from './PersonalInfoForm.styles';
 
 interface PersonalInfoFormProps {
   control: any;
-  user?: User;
-  onChange: any;
 }
 
-const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
-  control,
-  user,
-  onChange,
-}) => {
+const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
   const classes = useStyles();
 
   return (
@@ -31,7 +24,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
               className="userName"
               control={control}
               dataTestId="name-test"
-              defaultValue={user?.name}
+              defaultValue=""
               rules={{ required: 'Nome do usuário é obrigatório' }}
               fullWidth
             />
@@ -44,7 +37,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
               className="address"
               control={control}
               dataTestId="address-test"
-              defaultValue={user?.address}
+              defaultValue=""
               rules={{ required: 'Endereço do usuário é obrigatório' }}
               fullWidth
             />
@@ -58,7 +51,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                 className="input"
                 control={control}
                 dataTestId="phone-test"
-                defaultValue={user?.telephone}
+                defaultValue=""
                 rules={{ required: 'Telefone do usuário é obrigatório' }}
                 fullWidth
               />
