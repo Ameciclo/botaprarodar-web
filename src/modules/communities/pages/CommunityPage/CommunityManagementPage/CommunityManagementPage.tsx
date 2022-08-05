@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Snackbar from '@material-ui/core/Snackbar';
-
+import { toast } from 'react-toastify';
 import Grid from '@material-ui/core/Grid';
 import { PageTitle, Loading, CustomLabel } from 'shared/components';
 import CustomCardWithIcon from 'shared/components/CustomCardWithIcon/CustomCardWithIcon';
@@ -25,7 +24,7 @@ const CommunityManagementPage: React.FC = () => {
           setCommunity(res);
         })
         .catch(err => {
-          console.error(err);
+          toast.error(err);
         })
         .finally(() => {
           setLoading(false);
