@@ -59,7 +59,7 @@ const RegisterUserForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={1}>
-        <Grid container item xs={12}>
+        <Grid item xs={12}>
           <PersonalInfoForm control={control} />
         </Grid>
         <Grid item xs={12}>

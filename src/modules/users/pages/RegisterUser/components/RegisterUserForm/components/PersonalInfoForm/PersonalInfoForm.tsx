@@ -1,21 +1,16 @@
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input } from 'shared/components';
-import useStyles from './PersonalInfoForm.styles';
 
 interface PersonalInfoFormProps {
   control: any;
 }
 
 const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
-  const classes = useStyles();
-
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5" className={classes.personalInfoTitle}>
-          Informações pessoais
-        </Typography>
-        <Grid container spacing={3}>
+        <Typography variant="h5">Informações pessoais</Typography>
+        <Grid container direction="row" spacing={3}>
           <Grid item xs={6} sm={6} md={6}>
             <Input
               label="Nome do usuário"
@@ -43,20 +38,20 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
             />
           </Grid>
           <Grid item xs={6} sm={3}>
-            <div>
-              <Input
-                label="Nº do celular"
-                type="text"
-                name="phone"
-                className="input"
-                control={control}
-                dataTestId="phone-test"
-                defaultValue=""
-                rules={{ required: 'Telefone do usuário é obrigatório' }}
-                fullWidth
-              />
-              <div className={classes.formatSubtitle}>DDD + Número</div>
-            </div>
+            <Input
+              label="Nº do celular"
+              type="text"
+              name="phone"
+              className="input"
+              control={control}
+              dataTestId="phone-test"
+              defaultValue=""
+              rules={{ required: 'Telefone do usuário é obrigatório' }}
+              fullWidth
+            />
+            <Typography variant="caption" display="block" gutterBottom>
+              DDD + Número
+            </Typography>
           </Grid>
           {/* <Grid item xs={6} sm={4}>
             <div className={classes.profilePictureALign}>
