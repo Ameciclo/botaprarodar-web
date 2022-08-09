@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -7,8 +8,8 @@ import {
   Select,
   Typography,
 } from '@material-ui/core';
-import React from 'react';
 import { Input } from 'shared/components';
+import useStyles from './ProblemsForm.styles';
 
 interface ProblemsFormProps {
   control: any;
@@ -21,10 +22,13 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
   onChange,
   values,
 }) => {
+  const classes = useStyles();
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5">Dificuldades e problemas</Typography>
+        <Typography variant="h5" className={classes.titleStyle}>
+          Dificuldades e problemas
+        </Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item xs={6} sm={3}>
             <InputLabel id="collision-id">
@@ -36,6 +40,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
               id="collision-select"
               value={values.collison}
               onChange={onChange}
+              className={classes.selectStyle}
             >
               <MenuItem value="Yes">Sim</MenuItem>
               <MenuItem value="No">Não</MenuItem>

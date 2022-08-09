@@ -1,15 +1,19 @@
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input } from 'shared/components';
+import useStyles from './PersonalInfoForm.styles';
 
 interface PersonalInfoFormProps {
   control: any;
 }
 
 const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
+  const classes = useStyles();
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5">Informações pessoais</Typography>
+        <Typography variant="h5" className={classes.titleStyle}>
+          Informações pessoais
+        </Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item xs={6} sm={6} md={6}>
             <Input

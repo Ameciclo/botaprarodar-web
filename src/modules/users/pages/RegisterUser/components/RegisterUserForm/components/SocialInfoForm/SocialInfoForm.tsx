@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -11,7 +12,7 @@ import { GenderEnum } from 'modules/users/models/types/GenderTypes';
 import { IncomeEnum } from 'modules/users/models/types/IncomeTypes';
 import { RacialEnum } from 'modules/users/models/types/RacialTypes';
 import { SchoolingEnum } from 'modules/users/models/types/SchoolingTypes';
-import React from 'react';
+import useStyles from './SocialInfoForm.styles';
 
 interface SocialInfoFormProps {
   values: any;
@@ -22,10 +23,13 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
   values,
   onChange,
 }) => {
+  const classes = useStyles();
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5">Dados sociais</Typography>
+        <Typography variant="h5" className={classes.titleStyle}>
+          Dados sociais
+        </Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item>
             <InputLabel id="gender-id">Gênero</InputLabel>
@@ -35,6 +39,7 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="gender-select"
               value={values.gender}
               onChange={onChange}
+              className={classes.selectStyle}
             >
               <MenuItem value={GenderEnum.male}>Masculino</MenuItem>
               <MenuItem value={GenderEnum.female}>Feminino</MenuItem>
@@ -52,6 +57,7 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="race-select"
               value={values.race}
               onChange={onChange}
+              className={classes.selectStyle}
             >
               <MenuItem value={RacialEnum.asian}>Amarela</MenuItem>
               <MenuItem value={RacialEnum.white}>Branca</MenuItem>
@@ -71,6 +77,7 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="schooling-select"
               value={values.schooling}
               onChange={onChange}
+              className={classes.selectStyle}
             >
               <MenuItem value={SchoolingEnum.SemOuMenosDeUmAno}>
                 Sem instrução ou menos de um ano de estudo
@@ -103,6 +110,7 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
               id="income-select"
               value={values.income}
               onChange={onChange}
+              className={classes.selectStyle}
             >
               <MenuItem value={IncomeEnum.until150}>Até 150 reais</MenuItem>
               <MenuItem value={IncomeEnum.from150To300}>

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -7,8 +8,8 @@ import {
   Select,
   Typography,
 } from '@material-ui/core';
-import React from 'react';
 import { Input } from 'shared/components';
+import useStyles from './MotivationForm.styles';
 
 interface MotivationFormPros {
   control: any;
@@ -21,10 +22,13 @@ const MotivationForm: React.FC<MotivationFormPros> = ({
   onChange,
   values,
 }) => {
+  const classes = useStyles();
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5">Motivação</Typography>
+        <Typography variant="h5" className={classes.titleStyle}>
+          Motivação
+        </Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item>
             <InputLabel id="motivation-id">
@@ -36,6 +40,7 @@ const MotivationForm: React.FC<MotivationFormPros> = ({
               data-testid="motivation"
               value={values.motivation}
               onChange={onChange}
+              className={classes.selectStyle}
             >
               <MenuItem value="Yes">Sim</MenuItem>
               <MenuItem value="No">Não</MenuItem>
