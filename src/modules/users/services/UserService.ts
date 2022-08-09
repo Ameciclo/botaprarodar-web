@@ -45,7 +45,7 @@ const UserService = {
       },
     };
 
-    const { data } = await api.post(`/users.json`, payload);
+    const { data } = await api.put(`/users/${payload.id}.json`, payload);
     return data;
   },
 
