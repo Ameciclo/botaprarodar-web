@@ -16,7 +16,6 @@ import { LogoBPR } from '../../../../shared/assets/index';
 import { useHandleAuth } from '../../contexts/AuthContext';
 import LoginService from '../../services/LoginService';
 import useStyles from './LoginPage.styles';
-import { Toggle } from '../../../../shared';
 
 const LoginPage: React.FC = () => {
   const [authenticationError, setAuthenticationError] =
@@ -45,10 +44,6 @@ const LoginPage: React.FC = () => {
     if (user?.authenticated) {
       onChange(user);
       await setAuthenticationError(false);
-      if (Toggle.enableCommunity) {
-        history.push('/selecao-de-comunidades');
-        return;
-      }
       history.push('/');
     }
   }

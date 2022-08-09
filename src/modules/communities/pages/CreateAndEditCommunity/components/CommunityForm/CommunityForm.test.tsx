@@ -6,9 +6,9 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import CommunityService from 'modules/communities/services/CommunityService';
 import { MockedFirstCommunity } from '../../../../mocks/MockedCommunity';
 import EditCommunityForm from './CommunityForm';
-import CommunityService from 'modules/communities/services/CommunityService';
 
 jest.mock('modules/communities/services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
