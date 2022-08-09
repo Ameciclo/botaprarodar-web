@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import toast from 'shared/components/Toast/Toast';
 import Grid from '@material-ui/core/Grid';
-import { PageTitle, Loading, CustomLabel } from 'shared/components';
+import { PageTitle, Loading, CustomLabel, toast } from 'shared/components';
 import CustomCardWithIcon from 'shared/components/CustomCardWithIcon/CustomCardWithIcon';
 import BikeService from 'modules/bicycles/services/BikeService';
 import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommunity';

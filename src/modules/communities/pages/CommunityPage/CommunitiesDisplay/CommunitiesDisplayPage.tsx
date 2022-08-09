@@ -38,7 +38,6 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
       })
       .catch(err => {
         toast.error(err);
-        console.error(err);
       })
       .finally(() => {
         setLoading(false);

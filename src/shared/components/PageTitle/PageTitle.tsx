@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 import Icon, { IconTypes } from 'shared/components/Icon/Icon';
-import useStyles from './PageTitle.styles';
+import { Box } from '@material-ui/core';
 
 interface Props {
   id: string;
@@ -12,8 +12,6 @@ interface Props {
 }
 
 const PageTitle: FC<Props> = ({ id, text, iconName }) => {
-  const classes = useStyles();
-
   return (
     <Grid
       container
@@ -29,9 +27,14 @@ const PageTitle: FC<Props> = ({ id, text, iconName }) => {
       </Typography>
 
       {!!iconName && (
-        <div className={classes.wrapperIcon}>
+        <Box
+          boxShadow={1}
+          m={1}
+          p={1}
+          style={{ width: '2rem', height: '2rem' }}
+        >
           <Icon name={iconName} />
-        </div>
+        </Box>
       )}
     </Grid>
   );

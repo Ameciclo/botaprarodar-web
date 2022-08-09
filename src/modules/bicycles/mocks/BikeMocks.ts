@@ -1,10 +1,32 @@
 import Bike from '../models/Bike';
 import { MockedFirstUser } from '../../users/mocks/MockedUser';
+import Devolution from '../models/Devolution'
+import BikeWithdraw from '../models/BikeWithdraw';
 
 interface MockedBikeParams {
   communityId?: string;
   available?: boolean;
 }
+
+const mockedBikeDevolutions = (): Devolution =>({
+    date: '01/09/2021 12:18:18',
+    id: '-WPSD2ZVXgcGT6Z16rcuw',
+    quiz: {
+      destination: 'Hogwarts',
+      giveRide: 'Sim',
+      problemsDuringRiding: 'Não',
+      reason: 'Seu local de estudo',
+    },
+    user: MockedFirstUser,
+    withdrawId: '123',
+  })
+
+  const mockedBikeWidraws = (): BikeWithdraw =>({
+      date: '01/09/2021 12:08:18',
+      id: '123',
+      user: MockedFirstUser,
+  })
+
 
 export const mockedBike = (params: MockedBikeParams = {}): Bike => {
   return {
@@ -12,59 +34,10 @@ export const mockedBike = (params: MockedBikeParams = {}): Bike => {
     communityId: params.communityId || '-MLDOXs3p35DEHg0gdUU',
     createdDate: '09/08/2021',
     withdraws: [
-      {
-        date: '01/09/2021 12:08:18',
-        id: '123',
-        user: MockedFirstUser,
-      },
-      {
-        date: '01/09/2021 12:08:18',
-        id: '456',
-        user: MockedFirstUser,
-      },
-      {
-        date: '01/09/2021 12:08:18',
-        id: '789',
-        user: MockedFirstUser,
-      },
+      mockedBikeWidraws(),
     ],
     devolutions: [
-      {
-        date: '01/09/2021 12:18:18',
-        id: '-WPSD2ZVXgcGT6Z16rcuw',
-        quiz: {
-          destination: 'Hogwarts',
-          giveRide: 'Sim',
-          problemsDuringRiding: 'Não',
-          reason: 'Seu local de estudo',
-        },
-        user: MockedFirstUser,
-        withdrawId: '123',
-      },
-      {
-        date: '01/09/2021 12:28:18',
-        id: '-WPSD2ZVXgcGT6Z16rcuw',
-        quiz: {
-          destination: 'Hogwarts',
-          giveRide: 'Sim',
-          problemsDuringRiding: 'Não',
-          reason: 'Seu local de estudo',
-        },
-        user: MockedFirstUser,
-        withdrawId: '456',
-      },
-      {
-        date: '01/09/2021 12:40:18',
-        id: '-WPSD2ZVXgcGT6Z16rcuw',
-        quiz: {
-          destination: 'Hogwarts',
-          giveRide: 'Sim',
-          problemsDuringRiding: 'Não',
-          reason: 'Seu local de estudo',
-        },
-        user: MockedFirstUser,
-        withdrawId: '789',
-      },
+      mockedBikeDevolutions(),
     ],
     id: '-MgfYTcrUFsX_NXhhvL2',
     inUse: false,
