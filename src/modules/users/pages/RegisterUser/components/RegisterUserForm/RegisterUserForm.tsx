@@ -10,27 +10,9 @@ import MotivationForm from './components/MotivationForm/MotivationForm';
 import UserService from '../../../../services/UserService';
 import { toast } from '../../../../../../shared/components';
 
-const defaultFormValues = {
-  name: '',
-  address: '',
-  gender: '',
-  race: '',
-  schooling: '',
-  income: '',
-  motivation: '',
-  phone: '',
-  problems: '',
-  profilePicture: '',
-  reason: '',
-  collison: '',
-  timeToArrive: '',
-};
-
 const RegisterUserForm: React.FC = () => {
   const classes = useStyles();
-  const { handleSubmit, control, setValue, getValues } = useForm({
-    defaultValues: defaultFormValues,
-  });
+  const { handleSubmit, control, setValue, getValues } = useForm();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const values = getValues();
@@ -46,9 +28,9 @@ const RegisterUserForm: React.FC = () => {
       .then(() => {
         toast.success('Usuário criado com sucesso');
       })
-      .catch(err => {
+      .catch(() => {
+        setLoading(false);
         toast.error('Serviço indisponível');
-        console.error(err);
       })
       .finally(() => {
         setLoading(false);
