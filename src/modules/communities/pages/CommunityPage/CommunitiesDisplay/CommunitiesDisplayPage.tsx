@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { Loading } from 'shared/components';
@@ -36,6 +37,7 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
         setCommunities(res);
       })
       .catch(err => {
+        toast.error(err);
         console.error(err);
       })
       .finally(() => {

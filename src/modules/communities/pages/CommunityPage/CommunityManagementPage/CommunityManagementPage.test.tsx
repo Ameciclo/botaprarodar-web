@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import CommunityManagementPage from './CommunityManagementPage';
 import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
-import toast from 'shared/components/Toast/Toast';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -85,7 +84,6 @@ describe('Community Management Page', () => {
 
     describe('should show community labels', () => {
       it('should show labels name', () => {
-        screen.debug;
         const labelName = screen.getAllByText('CustomLabel-component-mock');
         waitFor(() => expect(labelName.length).toHaveValue(3));
       });
@@ -105,10 +103,8 @@ describe('Community Management Page', () => {
         },
       );
     });
-
-    it.skip('should return a feedback error', () => {
-      expect(toast.error).toHaveBeenCalled();
-      screen.debug();
+    it('should return a feedback error', () => {
+      expect(screen.findByText('Erro ao carregar comunidade.')).toBeTruthy();
     });
   });
 

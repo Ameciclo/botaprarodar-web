@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import toast from 'shared/components/Toast/Toast';
 import Grid from '@material-ui/core/Grid';
 import { PageTitle, Loading, CustomLabel } from 'shared/components';
 import CustomCardWithIcon from 'shared/components/CustomCardWithIcon/CustomCardWithIcon';
@@ -8,6 +8,7 @@ import BikeService from 'modules/bicycles/services/BikeService';
 import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
 import Community from 'modules/communities/models/Community';
+import { Toggle } from '../../../../../shared';
 
 const CommunityManagementPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +25,7 @@ const CommunityManagementPage: React.FC = () => {
           setCommunity(res);
         })
         .catch(err => {
-          toast.error(err);
+          toast.error(`${err} Erro ao carregar comunidade.`);
         })
         .finally(() => {
           setLoading(false);
@@ -44,6 +45,10 @@ const CommunityManagementPage: React.FC = () => {
     return <Loading />;
   }
 
+  const enableHomeMenuItems = () => {
+    return Toggle.enableHomeMenuItems;
+  };
+
   return (
     <div>
       <PageTitle
@@ -53,29 +58,33 @@ const CommunityManagementPage: React.FC = () => {
       />
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={3} sm={6}>
-          <CustomCardWithIcon
-            id="emprestar-bicicleta"
-            iconName="lendBike"
-            text="Emprestar bicicleta"
-          />
-        </Grid>
-
-        <Grid item xs={12} md={3} sm={6}>
-          <CustomCardWithIcon
-            id="revolver-bicicleta"
-            iconName="giveBackBike"
-            text="Devolver bicicleta"
-          />
-        </Grid>
-
-        <Grid item xs={12} md={3} sm={6}>
-          <CustomCardWithIcon
-            id="emprestar-bicicleta"
-            iconName="registerBike"
-            text="Cadastrar bicicleta"
-          />
-        </Grid>
+        {enableHomeMenuItems() && (
+          <Grid item xs={12} md={3} sm={6}>
+            <CustomCardWithIcon
+              id="emprestar-bicicleta"
+              iconName="lendBike"
+              text="Emprestar bicicleta"
+            />
+          </Grid>
+        )}
+        {enableHomeMenuItems() && (
+          <Grid item xs={12} md={3} sm={6}>
+            <CustomCardWithIcon
+              id="revolver-bicicleta"
+              iconName="giveBackBike"
+              text="Devolver bicicleta"
+            />
+          </Grid>
+        )}
+        {enableHomeMenuItems() && (
+          <Grid item xs={12} md={3} sm={6}>
+            <CustomCardWithIcon
+              id="emprestar-bicicleta"
+              iconName="registerBike"
+              text="Cadastrar bicicleta"
+            />
+          </Grid>
+        )}
 
         <Grid item xs={12} md={3} sm={6}>
           <CustomCardWithIcon

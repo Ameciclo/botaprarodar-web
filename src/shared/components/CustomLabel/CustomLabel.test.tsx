@@ -10,7 +10,6 @@ describe('Component: CustomLabel', () => {
         name: /Nome da quantidade/i,
       });
       const total = screen.getByText(10);
-      screen.debug();
       expect(title).toBeInTheDocument();
       expect(total).toBeInTheDocument();
     });
