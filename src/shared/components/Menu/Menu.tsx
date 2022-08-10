@@ -118,6 +118,7 @@ const Menu: React.FC = ({ children }) => {
               noWrap
               onClick={handleLogout}
               className={classes.logoutButtonStyle}
+              data-testid="logout"
             >
               <img
                 src={ArrowBack}
