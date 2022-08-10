@@ -59,10 +59,12 @@ const LoginPage: React.FC = () => {
     <div className={classes.root}>
       <Paper className={classes.loginPaper}>
         <img
+          data-testid="brand"
           src={LogoBPR}
           alt="Logo do projeto Bota pra rodar"
           className={classes.imageEdit}
         />
+
         <form onSubmit={handleSubmit} className={classes.loginForm}>
           <TextField
             label="E-mail"
@@ -79,17 +81,23 @@ const LoginPage: React.FC = () => {
             error={!!errors.email}
           />
           {errors.email && (
-            <FormHelperText error className={classes.errorMessageFields}>
+            <FormHelperText
+              error
+              className={classes.errorMessageFields}
+              data-testid="error-email"
+            >
               <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
               &nbsp;{errors.email}
             </FormHelperText>
           )}
+
           <TextField
             label="Senha"
             type={showPassword ? 'text' : 'password'}
             name="password"
             id="password"
             variant="outlined"
+            data-testid="password"
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -109,16 +117,25 @@ const LoginPage: React.FC = () => {
             error={!!errors.password}
           />
           {errors.password && (
-            <FormHelperText error className={classes.errorMessageFields}>
+            <FormHelperText
+              error
+              className={classes.errorMessageFields}
+              data-testid="error-password"
+            >
               <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
               &nbsp;{errors.password}
             </FormHelperText>
           )}
+
           {authenticationError && (
-            <span className={classes.errorMessageLogin}>
+            <span
+              className={classes.errorMessageLogin}
+              data-testid="error-server"
+            >
               E-mail ou senha incorretos.
             </span>
           )}
+
           <Button
             data-testid="submit-button"
             type="submit"
