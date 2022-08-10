@@ -81,6 +81,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
+    "@faker-js/faker": "^7.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -95,6 +96,7 @@
     "conventional-changelog-conventionalcommits": "^4.6.0",
     "cypress": "^10.3.1",
     "cz-customizable": "^6.3.0",
+    "dotenv": "^16.0.1",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "^8.3.0",
