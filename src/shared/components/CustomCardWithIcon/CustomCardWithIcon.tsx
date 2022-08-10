@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Typography from '@material-ui/core/Typography';
-
+import { Box } from '@material-ui/core';
 import Icon, { IconTypes } from 'shared/components/Icon/Icon';
 import useStyles from './CustomCardWithIcon.styles';
 
@@ -14,7 +14,7 @@ const CustomCardWithIcon: FC<Props> = ({ id, text, iconName }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.card}>
+    <Box boxShadow={1} className={classes.card}>
       {!!iconName && (
         <div className={classes.communityManagementIcons}>
           <Icon name={iconName} />
@@ -27,7 +27,7 @@ const CustomCardWithIcon: FC<Props> = ({ id, text, iconName }) => {
       >
         {text}
       </Typography>
-    </div>
+    </Box>
   );
 };
 
