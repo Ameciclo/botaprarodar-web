@@ -31,13 +31,13 @@ const MotivationForm: React.FC<MotivationFormPros> = ({
         </Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item>
-            <InputLabel id="motivation-id">
+            <InputLabel id="motivation-id" data-testid="used-bycicle-test">
               Já utilizava bicicleta antes?
             </InputLabel>
             <Select
               name="motivation"
               labelId="motivation-label"
-              data-testid="motivation"
+              data-testid="motivation-test"
               value={values.motivation}
               onChange={onChange}
               className={classes.selectStyle}

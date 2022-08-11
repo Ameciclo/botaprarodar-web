@@ -31,13 +31,14 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
         </Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item xs={6} sm={3}>
-            <InputLabel id="collision-id">
+            <InputLabel id="collision-id" data-testid="been-collision-test">
               Já foi vítima de colisão ou atropelamento?
             </InputLabel>
             <Select
-              name="collison"
+              name="collision"
               labelId="collision-label"
               id="collision-select"
+              data-testid="collision-test"
               value={values.collison}
               onChange={onChange}
               className={classes.selectStyle}
@@ -68,7 +69,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
               control={control}
               dataTestId="time-to-arrive-test"
               defaultValue=""
-              rules={{ required: 'informar o tempo é obrigatório' }}
+              rules={{ required: 'Informar o tempo é obrigatório' }}
               fullWidth
             />
           </Grid>

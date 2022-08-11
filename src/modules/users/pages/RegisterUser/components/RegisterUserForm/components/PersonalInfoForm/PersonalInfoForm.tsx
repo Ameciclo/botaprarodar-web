@@ -57,21 +57,6 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               DDD + Número
             </Typography>
           </Grid>
-          {/* <Grid item xs={6} sm={4}>
-            <div className={classes.profilePictureALign}>
-              <Input
-                label="Foto de Perfil"
-                type="text"
-                name="profilePicture"
-                className="input"
-                control={control}
-                dataTestId="profilePicture-test"
-                defaultValue={user?.profilePicture}
-                rules={{ required: 'Foto de perfil é obrigatória' }}
-              />
-              <Button className={classes.button}>Escolher Arquivo</Button>
-            </div>
-          </Grid> */}
         </Grid>
       </CardContent>
     </Card>
