@@ -82,7 +82,7 @@ describe('CommunityPage', () => {
         'Que comunidade você está procurando?',
       ) as HTMLInputElement;
 
-      fireEvent.change(searchInput!, { target: { value: 'teste' } });
+      fireEvent.change(searchInput, { target: { value: 'teste' } });
 
       expect(searchInput.value).toBe('teste');
     });
@@ -104,10 +104,10 @@ describe('CommunityPage', () => {
         'Que comunidade você está procurando?',
       ) as HTMLInputElement;
 
-      fireEvent.change(searchInput!, { target: { value: 'Lorem Ipsum' } });
+      fireEvent.change(searchInput, { target: { value: 'Lorem Ipsum' } });
 
       expect(
-        screen.getByText(/Não há resultados para essa busca: Lorem Ipsum./i)
+        screen.getByText(/Não há resultados para essa busca: Lorem Ipsum./i),
       ).toBeInTheDocument();
     });
 
@@ -133,7 +133,7 @@ describe('CommunityPage', () => {
       expect(screen.queryByText(/XPTO/i)).toBeInTheDocument();
       expect(screen.queryByText(/Nome teste/i)).toBeInTheDocument();
 
-      fireEvent.change(searchInput!, { target: { value: 'teste' } });
+      fireEvent.change(searchInput, { target: { value: 'teste' } });
 
       communitiesList = screen.getByTestId('communities-grid');
 

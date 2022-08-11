@@ -3,12 +3,10 @@ import {
   MockedFirstUser,
   mockUserMissingInfo,
 } from 'modules/users/mocks/MockedUser';
-import UserService from 'modules/users/services/UserService';
 import { BrowserRouter } from 'react-router-dom';
 import UserDetailInfo from './UserDetailInfo';
 
 jest.mock('modules/users/services/UserService');
-const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
 let container: HTMLElement;
 

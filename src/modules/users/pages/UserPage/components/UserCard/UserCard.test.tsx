@@ -7,8 +7,8 @@ import {
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import UserService from 'modules/users/services/UserService';
-import UserCard from './UserCard';
 import { MockedFirstUser } from 'modules/users/mocks/MockedUser';
+import UserCard from './UserCard';
 
 jest.mock('modules/users/services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;
