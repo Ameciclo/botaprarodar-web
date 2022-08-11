@@ -7,32 +7,30 @@ import useStyles from './CustomCardWithIcon.styles';
 interface Props {
   id: string;
   text: string;
-  iconName?: IconTypes | null;
+  iconName: IconTypes;
+  iconDescription: string;
 }
 
-const CustomCardWithIcon: FC<Props> = ({ id, text, iconName }) => {
+const CustomCardWithIcon: FC<Props> = ({
+  id,
+  text,
+  iconName,
+  iconDescription,
+}) => {
   const classes = useStyles();
 
   return (
     <Box boxShadow={1} className={classes.card}>
       {!!iconName && (
-        <div className={classes.communityManagementIcons}>
-          <Icon name={iconName} />
+        <div className={classes.wrapperIcon}>
+          <Icon name={iconName} description={iconDescription} />
         </div>
       )}
-      <Typography
-        variant="h6"
-        data-testId={id}
-        className={classes.upperCardText}
-      >
+      <Typography variant="h6" data-testId={id} className={classes.text}>
         {text}
       </Typography>
     </Box>
   );
-};
-
-CustomCardWithIcon.defaultProps = {
-  iconName: null,
 };
 
 export default CustomCardWithIcon;

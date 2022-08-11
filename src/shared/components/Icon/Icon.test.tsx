@@ -2,11 +2,15 @@ import { render, screen } from '@testing-library/react';
 import Icon from './Icon';
 
 describe('Component: Icon', () => {
-  it('shoud render correctly by name', () => {
-    render(<Icon name="gear" />);
+  it('should render correctly by name', () => {
+    render(<Icon name="gear" description="Ícone para configurações" />);
 
-    const component = screen.getByTestId('icon-gear');
+    const componentId = screen.getByTestId('icon-gear');
+    const componentAlt = screen.getByAltText('Ícone para configurações');
 
-    expect(component).toBeInTheDocument();
+    expect(componentId).toBeInTheDocument();
+    expect(componentAlt).toBeInTheDocument();
+
   });
+
 });

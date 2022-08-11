@@ -6,7 +6,7 @@ jest.mock('../Icon/Icon', () => () => 'Icon-component-mock');
 describe('Component: PageTitle', () => {
   describe('should render correctly', () => {
     it('when has icon', () => {
-      render(<PageTitle id="my-id" text="My Text" iconName="gear" />);
+      render(<PageTitle id="my-id" text="My Text" iconName="gear" iconDescription='Ícone de configurações'/>);
 
       const title = screen.getByRole('heading', { name: /My Text/i });
       const icon = screen.getByText('Icon-component-mock');

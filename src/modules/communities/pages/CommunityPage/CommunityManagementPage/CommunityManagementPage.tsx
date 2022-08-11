@@ -49,6 +49,7 @@ const CommunityManagementPage: React.FC = () => {
         id="communityId"
         iconName="gear"
         text={community?.name || ''}
+        iconDescription="Ícone de Configurações"
       />
 
       <Grid container spacing={2}>
@@ -57,6 +58,7 @@ const CommunityManagementPage: React.FC = () => {
             id="emprestar-bicicleta"
             iconName="registerUser"
             text="Cadastrar usuária"
+            iconDescription="Emprestar bicicleta"
           />
         </Grid>
       </Grid>

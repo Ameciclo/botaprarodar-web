@@ -16,44 +16,25 @@ export type IconTypes =
 
 interface Props {
   name: IconTypes;
+  description: string;
 }
 
-const Icon: FC<Props> = ({ name }) => {
-  const iconOptions = {
-    gear: (
-      <img src={GearIcon} alt="Configurações" data-testid={`icon-${name}`} />
-    ),
-    lendBike: (
-      <img
-        src={LendBikeIcon}
-        alt="Emprestar bicicleta"
-        data-testid={`icon-${name}`}
-      />
-    ),
-    giveBackBike: (
-      <img
-        src={GiveBackBikeIcon}
-        alt="Devolver bicicleta"
-        data-testid={`icon-${name}`}
-      />
-    ),
-    registerBike: (
-      <img
-        src={RegisterBikeIcon}
-        alt="Cadastrar bicicleta"
-        data-testid={`icon-${name}`}
-      />
-    ),
-    registerUser: (
-      <img
-        src={RegisterUserIcon}
-        alt="Cadastrar usuária"
-        data-testid={`icon-${name}`}
-      />
-    ),
-  };
+const iconOptions = {
+  gear: GearIcon,
+  lendBike: LendBikeIcon,
+  giveBackBike: GiveBackBikeIcon,
+  registerBike: RegisterBikeIcon,
+  registerUser: RegisterUserIcon,
+};
 
-  return iconOptions[name];
+const Icon: FC<Props> = ({ name, description }) => {
+  return (
+    <img
+      src={iconOptions[name]}
+      alt={description}
+      data-testid={`icon-${name}`}
+    />
+  );
 };
 
 export default Icon;
