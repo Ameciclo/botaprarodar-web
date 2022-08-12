@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 
-type CommunitiesIconProps = {
-  color: string;
-  width: string;
-  height: string;
-};
+interface CommunitiesIconProps {
+  color?: string;
+  width?: string;
+  height?: string;
+}
 
-const CommunitiesIcon: FC<
-  CommunitiesIconProps & React.SVGProps<SVGSVGElement>
-> = ({ height, width, color }) => {
+type Props = CommunitiesIconProps & React.SVGProps<SVGSVGElement>;
+
+const CommunitiesIcon: FC<Props> = ({ height, width, color }) => {
   return (
     <svg
       width={width}

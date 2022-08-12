@@ -1,4 +1,3 @@
-import { screen } from '@testing-library/react';
 import { renderWithRouterAndAuth } from '../../../../../setupTests';
 import CommunityManagementPage from './CommunityManagementPage';
 
@@ -14,10 +13,4 @@ describe('Community Management Page', () => {
   it('should render community management page', async () => {
     expect(wrapper.container).toBeInTheDocument();
   });
-
-  // it('should show commmunity name', () => {
-  //   const communityName = screen.getByText('olá, Comunidade Tal');
-
-  //   expect(communityName).toBeInTheDocument();
-  // });
 });

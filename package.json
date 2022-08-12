@@ -28,6 +28,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "npx eslint 'src/**/**/**/**' --ext .tsx,.ts",
+    "lint:fix": "npx eslint 'src/**/**/**/**' --fix",
+    "lint:format": "npx prettier --write 'src/**/**/**/**/*.ts' 'src/**/**/**/**/*.tsx' ",    
     "test": "react-scripts test --passWithNoTests",
     "test-husky": "react-scripts test --watchAll=false --bail",
     "test-coverage": "react-scripts test --watchAll=false --coverage",

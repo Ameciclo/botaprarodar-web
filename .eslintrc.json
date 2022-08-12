@@ -1,14 +1,15 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "es2021": true
   },
   "extends": [
-    "plugin:react/recommended",
     "airbnb",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -18,68 +19,47 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [
-          ".tsx"
-        ]
-      }
-    ],
-    "import/prefer-default-export": "off",
-    "react/prop-types": "off",
-    "no-unused-expressions": "off",
-    "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/camelcase": "off",
-    "no-use-before-define": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "no-nested-ternary": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "camelcase": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
-      {
-        "ts": "never",
-        "tsx": "never"
-      }
+      { "ts": "never", "tsx": "never" }
     ],
-    "prettier/prettier": "error",
-    "camelcase": "off",
-    "no-console": [
-      "warn",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
       {
-        "allow": [
-          "warn",
-          "error"
+        "devDependencies": [
+          "./**/**/**/**/*.test.ts",
+          "./**/**/**/**/*.test.tsx"
         ]
       }
-    ]
+    ],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-nested-ternary": "off",
+    "no-shadow": "off",
+    "no-unused-expressions": "off",
+    "no-use-before-define": "off",
+    "prettier/prettier": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": [
-          "src"
-        ],
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   }

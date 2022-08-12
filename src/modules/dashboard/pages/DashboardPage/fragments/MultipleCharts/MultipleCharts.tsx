@@ -60,7 +60,7 @@ const MultipleCharts: FC<MultipleChartsProps> = ({ data, charts }) => {
               props.label = label;
               props.aspectRatio = 2.5;
             }
-            return <Component {...props} />;
+            return <Component {...props} key={`key-${type}`} />;
           })}
       </CustomCard>
     </Grid>
