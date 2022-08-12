@@ -1,10 +1,10 @@
-import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import React from 'react';
 import {
   Redirect,
   Route as ReactDOMRoute,
   RouteProps as ReactRouteProps,
 } from 'react-router-dom';
+import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 
 interface RouteProps extends ReactRouteProps {
   isPrivate: boolean;

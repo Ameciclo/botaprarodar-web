@@ -1,11 +1,11 @@
-import api from 'shared/services/api';
 import { act, waitFor } from '@testing-library/react';
-import CommunityService from './CommunityService';
+import api from 'shared/services/api';
 import Community from '../models/Community';
 import {
   MockedFirstCommunity,
   MockedSecondCommunity,
 } from '../mocks/MockedCommunity';
+import CommunityService from './CommunityService';
 
 jest.mock('shared/services/api');
 const mockedApi = api as jest.Mocked<typeof api>;

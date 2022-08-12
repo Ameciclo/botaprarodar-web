@@ -1,8 +1,8 @@
-import { CheckCircleOutline, ErrorOutline } from '@material-ui/icons';
 import {
   toast as rtoast,
   ToastContainer as RToastContainer,
 } from 'react-toastify';
+import { CheckCircleOutline, ErrorOutline } from '@material-ui/icons';
 import useStyles from './Toast.styles';
 
 const toast = {

@@ -1,15 +1,15 @@
+import React, { FC } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import DashboardInfo from 'modules/dashboard/models/DashboardInfo';
-import React, { FC } from 'react';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
 import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
-import DonutPercentageCard from '../../components/DonutPercentageCard/DonutPercentageCard';
-import MultipleCharts from '../MultipleCharts/MultipleCharts';
-import DashboardStyles from './Dashboard.styles';
 import TravelTimeCard from '../../components/TravelTimeCard/TravelTimeCard';
+import MultipleCharts from '../MultipleCharts/MultipleCharts';
+import DonutPercentageCard from '../../components/DonutPercentageCard/DonutPercentageCard';
+import DashboardStyles from './Dashboard.styles';
 
 interface DashboardProps {
   dashboardData: DashboardInfo;

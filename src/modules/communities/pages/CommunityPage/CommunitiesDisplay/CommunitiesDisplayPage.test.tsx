@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import {
   act,
   render,
@@ -5,13 +6,12 @@ import {
   waitForElementToBeRemoved,
   fireEvent,
 } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import CommunityService from 'modules/communities/services/CommunityService';
-import CommunityDisplayPage from './CommunitiesDisplayPage';
 import {
   MockedFirstCommunity,
   MockedSecondCommunity,
 } from '../../../mocks/MockedCommunity';
+import CommunityDisplayPage from './CommunitiesDisplayPage';
 
 jest.mock('../../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<

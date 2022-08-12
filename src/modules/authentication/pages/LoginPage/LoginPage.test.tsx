@@ -1,8 +1,8 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LoginService from '../../services/LoginService';
-import LoginPage from './LoginPage';
 import { renderWithRouterAndAuth } from '../../../../setupTests';
+import LoginPage from './LoginPage';
 
 jest.mock('../../services/LoginService', () => {
   return {

@@ -1,8 +1,8 @@
 import { act, waitFor } from '@testing-library/react';
-import UserService from './UserService';
 import api from '../../../shared/services/api';
 import { MockedFirstUser, MockedSecondUser } from '../mocks/MockedUser';
 import User from '../models/User';
+import UserService from './UserService';
 
 jest.mock('shared/services/api');
 const mockedApi = api as jest.Mocked<typeof api>;

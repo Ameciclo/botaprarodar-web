@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Dialog,
@@ -9,7 +10,6 @@ import {
 } from '@material-ui/core';
 import { InfoOutlined } from '@material-ui/icons';
 import CommunityService from 'modules/communities/services/CommunityService';
-import { useHistory } from 'react-router-dom';
 import { toast } from 'shared/components';
 import useStyles from './DeleteCommunityButton.styles';
 

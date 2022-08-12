@@ -1,6 +1,6 @@
+import React, { FC, ReactElement } from 'react';
 import { Card, CardContent, CardHeader } from '@material-ui/core';
 import clsx from 'clsx';
-import React, { FC, ReactElement } from 'react';
 import CustomCardStyles from './CustomCard.styles';
 
 interface CustomCardProps {

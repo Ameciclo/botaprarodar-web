@@ -1,5 +1,5 @@
-import CommunityManagementPage from 'modules/communities/pages/CommunityPage/CommunityManagementPage/CommunityManagementPage';
 import { lazy } from 'react';
+import CommunityManagementPage from 'modules/communities/pages/CommunityPage/CommunityManagementPage/CommunityManagementPage';
 
 const CreateAndEditCommunityPage = lazy(
   () =>

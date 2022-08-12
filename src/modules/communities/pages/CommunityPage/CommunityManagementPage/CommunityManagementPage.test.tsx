@@ -1,11 +1,11 @@
 import { waitFor, screen } from '@testing-library/react';
-import { renderWithRouterAndAuth } from '../../../../../setupTests';
 import { BrowserRouter } from 'react-router-dom';
-import CommunityManagementPage from './CommunityManagementPage';
-import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
 import BikeService from 'modules/bicycles/services/BikeService';
 import { MockedAmountsBikesPerCommunity } from 'modules/bicycles/mocks/BikeMocks';
+import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
+import { renderWithRouterAndAuth } from '../../../../../setupTests';
+import CommunityManagementPage from './CommunityManagementPage';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -156,7 +156,7 @@ describe('Community Management Page', () => {
       mockedCommunityService.getCommunityById.mockResolvedValue(
         MockedFirstCommunity,
       );
-      
+
       mockedBikeService.getAmountFilteredBikesPerCommunity.mockRejectedValue(
         new Error(),
       );

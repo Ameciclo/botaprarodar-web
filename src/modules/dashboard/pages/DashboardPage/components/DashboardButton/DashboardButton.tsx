@@ -1,6 +1,6 @@
+import React, { FC } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import clsx from 'clsx';
-import React, { FC } from 'react';
 import DashboardButtonStyles from './DashboardButton.styles';
 
 interface DashboardButtonProps {

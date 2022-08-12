@@ -1,6 +1,6 @@
 import { waitFor } from '@testing-library/react';
-import Route from './Route';
 import { renderWithRouterAndAuth, setUserAuthenticated } from '../setupTests';
+import Route from './Route';
 
 describe('route redirections based on authentication', () => {
   it('should render public page', async () => {

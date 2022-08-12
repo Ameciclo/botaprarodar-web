@@ -1,9 +1,9 @@
 import { act, waitFor } from '@testing-library/react';
-import BikeService from './BikeService';
-import api from '../../../shared/services/api';
-import { mockedBikes, mockedBike } from '../mocks/BikeMocks';
+import api from 'shared/services/api';
+import { mockedBike } from '../mocks/BikeMocks';
 import Bike from '../models/Bike';
 import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
+import BikeService from './BikeService';
 
 jest.mock('shared/services/api');
 const mockedApi = api as jest.Mocked<typeof api>;

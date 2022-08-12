@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { IconButton, InputAdornment, TextField } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import { Loading, toast } from 'shared/components';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
-import { IconButton, InputAdornment, TextField } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
 import Community from '../../../models/Community';
 import CommunityService from '../../../services/CommunityService';
-import useStyles from './CommunitiesDisplayPage.styles';
 import CommunityCard from '../components/CommunityCard/CommunityCard';
 import CreateCommunityButton from '../components/CreateCommunityButton/CreateCommunityButton';
+import useStyles from './CommunitiesDisplayPage.styles';
 
 type CommunitiesDisplayType = {
   isSelectingCommunities: boolean;

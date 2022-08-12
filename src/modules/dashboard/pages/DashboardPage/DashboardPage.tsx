@@ -1,5 +1,5 @@
-import DashboardService from 'modules/dashboard/services/DashboardService';
 import React, { FC, useEffect, useState } from 'react';
+import DashboardService from 'modules/dashboard/services/DashboardService';
 import { Loading } from 'shared/components';
 import DashboardInfo from '../../models/DashboardInfo';
 import Dashboard from './fragments/Dashboard/Dashboard';

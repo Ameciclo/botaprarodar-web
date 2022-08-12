@@ -1,9 +1,9 @@
+import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import {
   MockedFirstUser,
   mockUserMissingInfo,
 } from 'modules/users/mocks/MockedUser';
-import { BrowserRouter } from 'react-router-dom';
 import UserDetailInfo from './UserDetailInfo';
 
 jest.mock('modules/users/services/UserService');

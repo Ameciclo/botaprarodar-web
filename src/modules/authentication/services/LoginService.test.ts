@@ -1,5 +1,5 @@
-import LoginService from './LoginService';
 import { auth } from '../../../shared/services/firebase';
+import LoginService from './LoginService';
 
 jest.mock('../../../shared/services/firebase', () => {
   return {

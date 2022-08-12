@@ -1,6 +1,6 @@
+import { AxiosError } from 'axios';
 import Bike from 'modules/bicycles/models/Bike';
 import api from 'shared/services/api';
-import { AxiosError } from 'axios';
 import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 
 const BikeService = {
