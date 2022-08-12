@@ -22,7 +22,7 @@ const CustomLabel: FC<Props> = ({ text, total, variant }) => {
           {text}
         </Typography>
         <Typography variant="body1" component="h6">
-          <div>{total}</div>
+          {total}
         </Typography>
       </div>
     </Box>

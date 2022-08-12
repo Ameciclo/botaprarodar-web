@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import CommunityManagementPage from './CommunityManagementPage';
 import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
+import BikeService from 'modules/bicycles/services/BikeService';
+import { MockedAmountsBikesPerCommunity } from 'modules/bicycles/mocks/BikeMocks';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -31,11 +33,19 @@ const mockedCommunityService = CommunityService as jest.Mocked<
   typeof CommunityService
 >;
 
+jest.mock('../../../../bicycles/services/BikeService');
+const mockedBikeService = BikeService as jest.Mocked<typeof BikeService>;
+
 describe('Community Management Page', () => {
   it('should show loading info when page is loading', () => {
     mockedCommunityService.getCommunityById.mockResolvedValue(
       MockedFirstCommunity,
     );
+
+    mockedBikeService.getAmountFilteredBikesPerCommunity.mockResolvedValue(
+      MockedAmountsBikesPerCommunity,
+    );
+
     renderWithRouterAndAuth(
       <BrowserRouter>
         <CommunityManagementPage />
@@ -55,6 +65,10 @@ describe('Community Management Page', () => {
     beforeEach(() => {
       mockedCommunityService.getCommunityById.mockResolvedValue(
         MockedFirstCommunity,
+      );
+
+      mockedBikeService.getAmountFilteredBikesPerCommunity.mockResolvedValue(
+        MockedAmountsBikesPerCommunity,
       );
 
       renderWithRouterAndAuth(
@@ -94,6 +108,10 @@ describe('Community Management Page', () => {
     beforeEach(() => {
       mockedCommunityService.getCommunityById.mockRejectedValue(new Error());
 
+      mockedBikeService.getAmountFilteredBikesPerCommunity.mockResolvedValue(
+        MockedAmountsBikesPerCommunity,
+      );
+
       renderWithRouterAndAuth(
         <BrowserRouter>
           <CommunityManagementPage />
@@ -113,6 +131,11 @@ describe('Community Management Page', () => {
       mockedCommunityService.getCommunityById.mockResolvedValue(
         MockedFirstCommunity,
       );
+
+      mockedBikeService.getAmountFilteredBikesPerCommunity.mockResolvedValue(
+        MockedAmountsBikesPerCommunity,
+      );
+
       const { history } = renderWithRouterAndAuth(
         <BrowserRouter>
           <CommunityManagementPage />
@@ -127,4 +150,32 @@ describe('Community Management Page', () => {
       );
     });
   });
+
+  describe('render community listing feedback error', () => {
+    beforeEach(() => {
+      mockedCommunityService.getCommunityById.mockResolvedValue(
+        MockedFirstCommunity,
+      );
+      
+      mockedBikeService.getAmountFilteredBikesPerCommunity.mockRejectedValue(
+        new Error(),
+      );
+
+      renderWithRouterAndAuth(
+        <BrowserRouter>
+          <CommunityManagementPage />
+        </BrowserRouter>,
+        {
+          route: `/gerenciador-de-comunidade/${MockedFirstCommunity.id}`,
+        },
+      );
+    });
+    it('should return community listing feedback error', () => {
+      expect(
+        screen.findByText('Erro ao carregar lista de comunidades.'),
+      ).toBeTruthy();
+    });
+  });
+  
 });
+

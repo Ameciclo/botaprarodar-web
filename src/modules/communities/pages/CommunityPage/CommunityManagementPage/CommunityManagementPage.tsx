@@ -33,8 +33,8 @@ const CommunityManagementPage: React.FC = () => {
         .then(res => {
           setAmountsBikesPerCommunity(res);
         })
-        .catch(err => {
-          console.error(err);
+        .catch(() => {
+          toast.error('Erro ao carregar lista de comunidades.');
         });
     }
   }, [id]);
