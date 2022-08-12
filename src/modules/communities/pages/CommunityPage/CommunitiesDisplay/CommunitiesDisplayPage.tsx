@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { Loading } from 'shared/components';
+import { Loading, toast } from 'shared/components';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
 import { IconButton, InputAdornment, TextField } from '@material-ui/core';
@@ -36,7 +36,7 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
         setCommunities(res);
       })
       .catch(err => {
-        console.error(err);
+        toast.error(err);
       })
       .finally(() => {
         setLoading(false);

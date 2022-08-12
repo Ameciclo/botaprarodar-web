@@ -2,3 +2,8 @@ export { default as MapPin } from './mapPin.svg';
 export { default as MoreHorizontal } from './more-horizontal.svg';
 export { default as Lock } from './lock.svg';
 export { default as UnLock } from './unlock.svg';
+export { default as RegisterBikeIcon } from './register-bike.svg';
+export { default as GiveBackBikeIcon } from './giveBack-bike.svg';
+export { default as LendBikeIcon } from './lend-bike.svg';
+export { default as RegisterUserIcon } from './register-user.svg';
+export { default as GearIcon } from './gearIcon.svg';
