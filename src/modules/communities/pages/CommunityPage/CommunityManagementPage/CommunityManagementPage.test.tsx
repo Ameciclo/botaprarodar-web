@@ -176,6 +176,4 @@ describe('Community Management Page', () => {
       ).toBeTruthy();
     });
   });
-  
 });
-

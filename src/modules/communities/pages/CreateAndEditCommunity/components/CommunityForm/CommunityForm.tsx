@@ -24,20 +24,6 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
   const { handleSubmit, control } = useForm();
   const [loading, setLoading] = useState(false);
 
-  EditCommunityForm.defaultProps = {
-    community: {
-      id: '',
-      address: '',
-      created_date: new Date(),
-      description: '',
-      name: '',
-      org_email: '',
-      org_name: '',
-      bicycles: [],
-      withdrawals: [],
-    },
-  };
-
   const onSubmit = (data: any) => {
     if (community?.id) {
       setLoading(true);
@@ -152,6 +138,20 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
       </CardContent>
     </Card>
   );
+};
+
+EditCommunityForm.defaultProps = {
+  community: {
+    id: '',
+    address: '',
+    created_date: new Date(),
+    description: '',
+    name: '',
+    org_email: '',
+    org_name: '',
+    bicycles: [],
+    withdrawals: [],
+  },
 };
 
 export default EditCommunityForm;

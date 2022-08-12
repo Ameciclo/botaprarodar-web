@@ -44,8 +44,8 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 
 ## Tecnologies required
 
-- NodeJS 10 or above
-- Yarn package mannager
+- Node 14 or above
+- NPM Package manager
 
 ---
 
@@ -70,3 +70,10 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 1. Push `git push`
 1. Check Git Action
    1. RED? Fix immediately or git revert
+
+## Important informations
+
+`main` branch ├── [DEV Environment](https://dev-botaprarodar.netlify.app/login)
+`production` branch ├── [PROD Environment](https://botaprarodar.netlify.app/login)
+
+We are developing and integrating code using feature branch. Our `main` branch is the development branch. This means that every new code you may want to integrate to the project should have a PR point towards the `main` branch. Once the PR is validated and integrated into the `main` branch, the project will decide when is the time to integrate on the `production` branch, which is the branch used for deploying on the production environment.
