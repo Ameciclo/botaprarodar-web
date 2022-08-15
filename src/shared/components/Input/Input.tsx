@@ -1,5 +1,5 @@
-import { TextField } from '@material-ui/core';
 import { Controller } from 'react-hook-form';
+import { TextField } from '@material-ui/core';
 import { ErrorOutline } from '@material-ui/icons';
 import useStyles from './Input.styles';
 

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -8,10 +10,8 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import Community from 'modules/communities/models/Community';
-import { useForm } from 'react-hook-form';
 import { Input, toast } from 'shared/components';
 import CommunityService from 'modules/communities/services/CommunityService';
-import { useHistory } from 'react-router-dom';
 import useStyles from './CommunityForm.styles';
 
 interface EditCommunityProps {

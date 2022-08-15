@@ -1,3 +1,5 @@
+import React, { FC, useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   AppBar,
   Divider,
@@ -14,8 +16,6 @@ import {
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
-import React, { FC, useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { LogoBPRwhite, ArrowBack } from 'shared/assets';
 import {
   useClearAuth,

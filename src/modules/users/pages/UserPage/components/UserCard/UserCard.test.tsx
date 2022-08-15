@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import {
   act,
   fireEvent,
@@ -5,7 +6,6 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import UserService from 'modules/users/services/UserService';
 import { MockedFirstUser } from 'modules/users/mocks/MockedUser';
 import UserCard from './UserCard';

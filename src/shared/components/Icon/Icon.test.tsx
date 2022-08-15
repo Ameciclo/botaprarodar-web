@@ -10,7 +10,5 @@ describe('Component: Icon', () => {
 
     expect(componentId).toBeInTheDocument();
     expect(componentAlt).toBeInTheDocument();
-
   });
-
 });

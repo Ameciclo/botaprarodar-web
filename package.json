@@ -22,7 +22,6 @@
     "react-viewer": "^3.2.2",
     "sass": "^1.37.5",
     "serve": "^12.0.0",
-    "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -30,7 +29,7 @@
     "build": "react-scripts build",
     "lint": "npx eslint 'src/**/**/**/**' --ext .tsx,.ts",
     "lint:fix": "npx eslint 'src/**/**/**/**' --fix",
-    "lint:format": "npx prettier --write 'src/**/**/**/**/*.ts' 'src/**/**/**/**/*.tsx' ",    
+    "lint:format": "npx prettier --write 'src/**/**/**/**/*.ts' 'src/**/**/**/**/*.tsx' ",
     "test": "react-scripts test --passWithNoTests",
     "test-husky": "react-scripts test --watchAll=false --bail",
     "test-coverage": "react-scripts test --watchAll=false --coverage",
@@ -86,20 +85,22 @@
     "@types/react-dom": "^17.0.17",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
+    "@typescript-eslint/parser": "^4.33.0",
     "commitizen": "^4.2.4",
     "conventional-changelog-conventionalcommits": "^4.6.0",
     "cz-customizable": "^6.3.0",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-import-resolver-typescript": "^3.4.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
     "husky": "^7.0.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "typescript": "^4.7.4"
   },
   "config": {
     "commitizen": {

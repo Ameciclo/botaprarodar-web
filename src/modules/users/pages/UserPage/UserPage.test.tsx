@@ -1,13 +1,13 @@
+import { BrowserRouter } from 'react-router-dom';
 import {
   act,
   render,
   screen,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import UserService from '../../services/UserService';
-import UserPage from './UserPage';
 import { MockedFirstUser, MockedSecondUser } from '../../mocks/MockedUser';
+import UserPage from './UserPage';
 
 jest.mock('../../services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;

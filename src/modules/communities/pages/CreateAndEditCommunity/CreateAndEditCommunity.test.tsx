@@ -1,7 +1,6 @@
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen, act } from '@testing-library/react';
 import CommunityService from 'modules/communities/services/CommunityService';
-import { MemoryRouter } from 'react-router-dom';
-
 import EditCommunityPage from './CreateAndEditCommunity';
 
 const renderElement = () =>

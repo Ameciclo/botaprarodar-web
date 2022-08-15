@@ -1,11 +1,11 @@
-import User from 'modules/users/models/User';
-import { Grid, Typography, Avatar } from '@material-ui/core';
-import { LockOutlined, PlaceOutlined, PhoneOutlined } from '@material-ui/icons';
 import React, { useState } from 'react';
-import useStyles, { StyledBadgeUserDetail } from './UserDetailInfo.styles';
+import { LockOutlined, PlaceOutlined, PhoneOutlined } from '@material-ui/icons';
+import { Grid, Typography, Avatar } from '@material-ui/core';
+import User from 'modules/users/models/User';
 import UserService from '../../../../services/UserService';
 import UserDetailMenu from '../UserDetailMenu/UserDetailMenu';
 import { toast } from '../../../../../../shared/components';
+import useStyles, { StyledBadgeUserDetail } from './UserDetailInfo.styles';
 
 interface UserInfoProps {
   user: User;

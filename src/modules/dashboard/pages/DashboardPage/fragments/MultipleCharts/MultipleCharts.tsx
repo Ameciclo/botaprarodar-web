@@ -1,12 +1,12 @@
-import { Grid } from '@material-ui/core';
 import React, { FC, useState } from 'react';
+import { Grid } from '@material-ui/core';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
 import PolarAreaChart from 'shared/components/PolarAreaChart/PolarAreaChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
 import ChartDataProps from 'shared/models/ChartDataProps';
-import ButtonGrid from '../../components/ButtonGrid/ButtonGrid';
 import DashboardButton from '../../components/DashboardButton/DashboardButton';
+import ButtonGrid from '../../components/ButtonGrid/ButtonGrid';
 
 interface MultipleChartsProps {
   charts: { label: string; type: string }[];
