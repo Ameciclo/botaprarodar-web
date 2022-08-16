@@ -30,7 +30,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
           Dificuldades e problemas
         </Typography>
         <Grid container direction="row" spacing={3}>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={12} sm={12} md={12}>
             <InputLabel id="collision-id" data-testid="been-collision-test">
               Já foi vítima de colisão ou atropelamento?
             </InputLabel>
@@ -47,7 +47,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
               <MenuItem value="No">Não</MenuItem>
             </Select>
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={12} sm={6} md={6}>
             <Input
               label="Quais problemas você observa no trajeto?"
               type="text"
@@ -60,7 +60,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
               fullWidth
             />
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={12} sm={6} md={6}>
             <Input
               label="Quanto tempo você leva no seu trajeto?"
               type="text"
