@@ -58,6 +58,26 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               DDD + Número
             </Typography>
           </Grid>
+
+          <Grid item xs={6} sm={3}>
+            <Input
+              label="Data de nascimento"
+              type="text"
+              name="age"
+              mask="date"
+              className="input"
+              control={control}
+              dataTestId="age-test"
+              defaultValue=""
+              rules={{
+                required: 'Data de nascimento do usuário é obrigatória',
+              }}
+              fullWidth
+            />
+            <Typography variant="caption" display="block" gutterBottom>
+              DD/MM/AAAA
+            </Typography>
+          </Grid>
         </Grid>
       </CardContent>
     </Card>

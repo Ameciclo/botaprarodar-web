@@ -4,7 +4,7 @@ import { ErrorOutline } from '@material-ui/icons';
 import InputMask from 'react-input-mask';
 import useStyles from './Input.styles';
 
-export type MaskType = 'phone';
+export type MaskType = 'phone' | 'date';
 
 interface InputProps {
   control: any;
@@ -21,6 +21,7 @@ interface InputProps {
 
 const enumMask = {
   phone: '(99)99999-9999',
+  date: '99/99/9999',
 };
 
 const Input: React.FC<InputProps> = ({
