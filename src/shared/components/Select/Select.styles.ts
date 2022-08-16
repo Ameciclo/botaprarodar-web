@@ -6,6 +6,5 @@ export default makeStyles((theme: Theme) => ({
   },
   label: {
     backgroundColor: theme.palette.common.white,
-    padding: `0 ${theme.spacing(1)}`,
   },
 }));

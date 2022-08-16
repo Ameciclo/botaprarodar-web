@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import SelectBase from '@material-ui/core/Select';
@@ -11,7 +11,7 @@ interface SelectOptionsLabel {
   text: string;
 }
 
-interface Props {
+export interface Props {
   id: string;
   dataTestId: string;
   label: string;
@@ -32,8 +32,14 @@ const Select = ({
   onChange,
   options,
 }: Props) => {
+  const [valueSelected, setValueSelected] = useState(value);
   const classes = useStyles();
   const hasError = !!error;
+
+  const handleChange = e => {
+    onChange(e);
+    setValueSelected(e.target.value);
+  };
 
   return (
     <FormControl
@@ -49,13 +55,13 @@ const Select = ({
       >
         {label}
       </Label>
+
       <SelectBase
-        id={id}
         labelId={`label-${id}`}
-        name={name}
-        value={value}
         data-testid={`select-${dataTestId}`}
-        onChange={onChange}
+        name={name}
+        value={valueSelected}
+        onChange={handleChange}
       >
         {options.map(option => (
           <Option key={option.value} value={option.value}>
@@ -63,6 +69,7 @@ const Select = ({
           </Option>
         ))}
       </SelectBase>
+
       {hasError && (
         <FormHelperText data-testid={`error-${dataTestId}`}>
           {error}
