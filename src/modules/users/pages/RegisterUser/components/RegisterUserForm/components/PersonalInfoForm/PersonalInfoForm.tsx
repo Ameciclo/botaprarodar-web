@@ -46,6 +46,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               label="Nº do celular"
               type="text"
               name="phone"
+              mask="phone"
               className="input"
               control={control}
               dataTestId="phone-test"
