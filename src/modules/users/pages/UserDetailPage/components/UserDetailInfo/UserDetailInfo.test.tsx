@@ -29,8 +29,5 @@ describe('User Detail Info', () => {
         <UserDetailInfo user={userMissingInfo} />
       </BrowserRouter>,
     ).container;
-
-    //expect(screen.queryByText('Endereço não informado')).toBeInTheDocument();
-   // expect(screen.queryByText('Telefone não informado')).toBeInTheDocument();
   });
 });

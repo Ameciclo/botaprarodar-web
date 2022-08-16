@@ -1,5 +1,4 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { renderWithRouterAndAuth } from 'setupTests';
 import RegisterUserForm from '../../RegisterUserForm';
 
 describe('PersonalInfoForm', () => {

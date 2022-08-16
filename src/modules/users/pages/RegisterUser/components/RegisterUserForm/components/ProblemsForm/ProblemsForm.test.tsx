@@ -12,9 +12,7 @@ describe('ProblemsForm', () => {
   });
 
   it('should show error when submitting empty values', async () => {
-    const { getByText, history } = renderWithRouterAndAuth(
-      <RegisterUserForm />,
-    );
+    const { getByText } = renderWithRouterAndAuth(<RegisterUserForm />);
 
     await act(async () => {
       fireEvent.click(getByText('CONCLUIR CADASTRO'));

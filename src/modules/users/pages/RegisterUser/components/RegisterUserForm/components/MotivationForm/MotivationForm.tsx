@@ -1,28 +1,19 @@
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@material-ui/core';
-import { Input } from 'shared/components';
+import { FC } from 'react';
+import { Card, CardContent, Grid, Typography } from '@material-ui/core';
+import { Input, Select } from 'shared/components';
 import useStyles from './MotivationForm.styles';
 
-interface MotivationFormPros {
+export type MotivationField = 'Yes' | 'No';
+
+export interface Props {
   control: any;
   onChange: any;
   values: any;
 }
 
-const MotivationForm: React.FC<MotivationFormPros> = ({
-  control,
-  onChange,
-  values,
-}) => {
+const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
   const classes = useStyles();
+
   return (
     <Card>
       <CardContent>
@@ -30,23 +21,21 @@ const MotivationForm: React.FC<MotivationFormPros> = ({
           Motivação
         </Typography>
         <Grid container direction="row" spacing={3}>
-          <Grid item>
-            <InputLabel id="motivation-id" data-testid="used-bycicle-test">
-              Já utilizava bicicleta antes?
-            </InputLabel>
+          <Grid item xs={12} sm={6} md={6}>
             <Select
+              dataTestId="used-bycicle-test"
+              id="motivation-select"
               name="motivation"
-              labelId="motivation-label"
-              data-testid="motivation-test"
+              label="Já utilizava bicicleta antes?"
               value={values.motivation}
               onChange={onChange}
-              className={classes.selectStyle}
-            >
-              <MenuItem value="Yes">Sim</MenuItem>
-              <MenuItem value="No">Não</MenuItem>
-            </Select>
+              options={[
+                { value: 'Yes', text: 'Sim' },
+                { value: 'No', text: 'Não' },
+              ]}
+            />
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={12} sm={6} md={6}>
             <Input
               label="Por que você precisa usar esta bicicleta?"
               type="text"

@@ -44,8 +44,6 @@ describe('UserPage', () => {
     });
 
     expect(screen.getByTestId('userList')).toBeInTheDocument();
-    //expect(screen.getByText('Antoni')).toBeInTheDocument();
-   // expect(screen.getByText('Antonia Silva')).toBeInTheDocument();
   });
 
   it('should render no users and an empty state message', async () => {

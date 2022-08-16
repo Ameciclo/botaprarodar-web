@@ -1,4 +1,3 @@
-
 export default interface User {
   name: string;
   createDate: string;

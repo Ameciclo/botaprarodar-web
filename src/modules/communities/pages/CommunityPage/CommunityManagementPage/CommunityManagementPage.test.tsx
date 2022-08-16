@@ -1,11 +1,11 @@
 import { waitFor, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import CommunityService from 'modules/communities/services/CommunityService';
-import BikeService from 'modules/bicycles/services/BikeService';
-import { MockedAmountsBikesPerCommunity } from 'modules/bicycles/mocks/BikeMocks';
 import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
 import { renderWithRouterAndAuth } from '../../../../../setupTests';
 import CommunityManagementPage from './CommunityManagementPage';
+import CommunityService from 'modules/communities/services/CommunityService';
+import BikeService from 'modules/bicycles/services/BikeService';
+import { MockedAmountsBikesPerCommunity } from 'modules/bicycles/mocks/BikeMocks';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
