@@ -4,8 +4,8 @@ import { Avatar, Card, CardContent, Typography, Grid } from '@material-ui/core';
 import { LockOutlined, PlaceOutlined } from '@material-ui/icons';
 import { toast } from 'shared/components';
 import UserMenu from '../UserMenu/UserMenu';
-import useStyles, { StyledBadgeUserCard } from './UserCard.styles';
 import UserService from '../../../../services/UserService';
+import useStyles, { StyledBadgeUserCard } from './UserCard.styles';
 
 interface UserCardProps {
   user: {

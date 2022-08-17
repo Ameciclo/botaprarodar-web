@@ -1,21 +1,21 @@
+import React, { useState } from 'react';
 import { Button, CircularProgress, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import React, { useState } from 'react';
+import UserService from '../../../../services/UserService';
+import { toast } from '../../../../../../shared/components';
 import PersonalInfoForm from './components/PersonalInfoForm/PersonalInfoForm';
 import SocialInfoForm from './components/SocialInfoForm/SocialInfoForm';
 import useStyles from './RegisterUserForm.styles';
 import ProblemsForm from './components/ProblemsForm/ProblemsForm';
 import MotivationForm from './components/MotivationForm/MotivationForm';
-import UserService from '../../../../services/UserService';
-import { toast } from '../../../../../../shared/components';
 
 const RegisterUserForm: React.FC = () => {
   const classes = useStyles();
-  const { handleSubmit, control, setValue, getValues } = useForm();
+  const { handleSubmit, control, setValue, watch } = useForm();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-  const values = getValues();
+  const values = watch();
 
   const handleChange = event => {
     const { name, value } = event.target;

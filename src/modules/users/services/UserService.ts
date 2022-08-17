@@ -1,5 +1,5 @@
-import api from 'shared/services/api';
 import { v4 as uuidv4 } from 'uuid';
+import api from 'shared/services/api';
 import User from '../models/User';
 
 const UserService = {

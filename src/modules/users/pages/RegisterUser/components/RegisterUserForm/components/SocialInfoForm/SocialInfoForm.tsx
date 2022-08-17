@@ -1,21 +1,33 @@
 import React from 'react';
+import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import {
-  Card,
-  CardContent,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@material-ui/core';
-import { GenderEnum } from 'modules/users/models/types/GenderTypes';
-import { IncomeEnum } from 'modules/users/models/types/IncomeTypes';
-import { RacialEnum } from 'modules/users/models/types/RacialTypes';
-import { SchoolingEnum } from 'modules/users/models/types/SchoolingTypes';
+  GenderEnum,
+  GenderTypes,
+} from 'modules/users/models/types/GenderTypes';
+import {
+  IncomeEnum,
+  IncomeTypes,
+} from 'modules/users/models/types/IncomeTypes';
+import {
+  RacialEnum,
+  RacialTypes,
+} from 'modules/users/models/types/RacialTypes';
+import {
+  SchoolingEnum,
+  SchoolingTypes,
+} from 'modules/users/models/types/SchoolingTypes';
+import { Select } from 'shared/components';
+import { SchoolingStatusEnum } from 'modules/users/models/types/SchoolingStatusTypes';
 import useStyles from './SocialInfoForm.styles';
 
 interface SocialInfoFormProps {
-  values: any;
+  values?: {
+    schooling?: SchoolingTypes | string;
+    gender?: GenderTypes | string;
+    race?: RacialTypes | string;
+    income?: IncomeTypes | string;
+    schoolingStatus?: string;
+  };
   onChange: any;
 }
 
@@ -24,6 +36,13 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
   onChange,
 }) => {
   const classes = useStyles();
+  const hasSchoolingValue = values?.schooling;
+  const hasChoosenNotInformed =
+    hasSchoolingValue && values.schooling === SchoolingEnum.NotInformed;
+  const hasLessThanAYear =
+    hasSchoolingValue && values.schooling === SchoolingEnum.SemOuMenosDeUmAno;
+  const shouldShowExtraField =
+    hasSchoolingValue && !hasChoosenNotInformed && !hasLessThanAYear;
   return (
     <Card>
       <CardContent>
@@ -32,115 +51,189 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
         </Typography>
         <Grid container direction="row" spacing={3}>
           <Grid item>
-            <InputLabel id="gender-id">Gênero</InputLabel>
             <Select
-              labelId="gender-label"
+              id="gender"
+              label="Gênero"
               name="gender"
-              id="gender-select"
-              data-testid="gender-test"
-              value={values.gender}
+              dataTestId="gender-test"
+              value={values?.gender || GenderEnum.notDeclared}
               onChange={onChange}
-              className={classes.selectStyle}
-            >
-              <MenuItem value={GenderEnum.male}>Masculino</MenuItem>
-              <MenuItem value={GenderEnum.female}>Feminino</MenuItem>
-              <MenuItem value={GenderEnum.other}>Outro</MenuItem>
-              <MenuItem value={GenderEnum.notDeclared}>
-                Prefiro não informar
-              </MenuItem>
-            </Select>
+              options={[
+                {
+                  value: GenderEnum.female,
+                  text: GenderEnum.female,
+                },
+                {
+                  value: GenderEnum.male,
+                  text: GenderEnum.male,
+                },
+                {
+                  value: GenderEnum.other,
+                  text: GenderEnum.other,
+                },
+                {
+                  value: GenderEnum.notDeclared,
+                  text: GenderEnum.notDeclared,
+                },
+              ]}
+            />
           </Grid>
           <Grid item>
-            <InputLabel id="race-id">Raça</InputLabel>
             <Select
-              labelId="race-label"
+              id="race"
+              label="Raça"
               name="race"
-              id="race-select"
-              data-testid="race-test"
-              value={values.race}
+              dataTestId="race-test"
+              value={values?.race || RacialEnum.notInformed}
               onChange={onChange}
-              className={classes.selectStyle}
-            >
-              <MenuItem value={RacialEnum.asian}>Amarela</MenuItem>
-              <MenuItem value={RacialEnum.white}>Branca</MenuItem>
-              <MenuItem value={RacialEnum.indigenous}>Indígena</MenuItem>
-              <MenuItem value={RacialEnum.brown}>Parda</MenuItem>
-              <MenuItem value={RacialEnum.black}>Preta</MenuItem>
-              <MenuItem value={RacialEnum.notInformed}>
-                Prefiro não informar
-              </MenuItem>
-            </Select>
+              options={[
+                {
+                  value: RacialEnum.asian,
+                  text: RacialEnum.asian,
+                },
+                {
+                  value: RacialEnum.black,
+                  text: RacialEnum.black,
+                },
+                {
+                  value: RacialEnum.brown,
+                  text: RacialEnum.brown,
+                },
+                {
+                  value: RacialEnum.indigenous,
+                  text: RacialEnum.indigenous,
+                },
+                {
+                  value: RacialEnum.white,
+                  text: RacialEnum.white,
+                },
+                {
+                  value: RacialEnum.notInformed,
+                  text: RacialEnum.notInformed,
+                },
+              ]}
+            />
           </Grid>
           <Grid item>
-            <InputLabel id="schooling-id">Grau de instrução</InputLabel>
             <Select
-              labelId="schooling-label"
-              name="schooling"
-              id="schooling-select"
-              data-testid="schooling-test"
-              value={values.schooling}
-              onChange={onChange}
-              className={classes.selectStyle}
-            >
-              <MenuItem value={SchoolingEnum.SemOuMenosDeUmAno}>
-                Sem instrução ou menos de um ano de estudo
-              </MenuItem>
-              <MenuItem value={SchoolingEnum.EnsinoFundamental1}>
-                Ensino Fundamental 1
-              </MenuItem>
-              <MenuItem value={SchoolingEnum.EnsinoFundamental2}>
-                Ensino Fundamental 2
-              </MenuItem>
-              <MenuItem value={SchoolingEnum.EnsinoMedio}>
-                Ensino Médio
-              </MenuItem>
-              <MenuItem value={SchoolingEnum.EnsinoTecnico}>
-                Ensino Técnico
-              </MenuItem>
-              <MenuItem value={SchoolingEnum.EnsinoSuperior}>
-                Ensino Superior
-              </MenuItem>
-              <MenuItem value={SchoolingEnum.NotInformed}>
-                Não determinado
-              </MenuItem>
-            </Select>
-          </Grid>
-          <Grid item>
-            <InputLabel id="income-id">Qual sua renda?</InputLabel>
-            <Select
-              labelId="income-label"
+              id="income"
+              label="Qual sua renda?"
               name="income"
-              id="income-select"
-              data-testid="income-test"
-              value={values.income}
+              dataTestId="income-test"
+              value={values?.income || IncomeEnum.notInformed}
               onChange={onChange}
-              className={classes.selectStyle}
-            >
-              <MenuItem value={IncomeEnum.until150}>Até 150 reais</MenuItem>
-              <MenuItem value={IncomeEnum.from150To300}>
-                Entre 150 e 300 reais
-              </MenuItem>
-              <MenuItem value={IncomeEnum.from500To700}>
-                Entre 500 e 700 reais
-              </MenuItem>
-              <MenuItem value={IncomeEnum.from750To1100}>
-                Entre 750 e 1100 reais
-              </MenuItem>
-              <MenuItem value={IncomeEnum.from1100To2000}>
-                Entre 1100 e 2000 reais
-              </MenuItem>
-              <MenuItem value={IncomeEnum.above2000}>
-                Mais de 2000 reais
-              </MenuItem>
-              <MenuItem value={IncomeEnum.notInformed}>
-                Não desejo informar
-              </MenuItem>
-            </Select>
+              options={[
+                {
+                  value: IncomeEnum.until150,
+                  text: IncomeEnum.until150,
+                },
+                {
+                  value: IncomeEnum.from150To300,
+                  text: IncomeEnum.from150To300,
+                },
+                {
+                  value: IncomeEnum.from500To700,
+                  text: IncomeEnum.from500To700,
+                },
+                {
+                  value: IncomeEnum.from750To1100,
+                  text: IncomeEnum.from750To1100,
+                },
+                {
+                  value: IncomeEnum.from1100To2000,
+                  text: IncomeEnum.from1100To2000,
+                },
+                {
+                  value: IncomeEnum.above2000,
+                  text: IncomeEnum.above2000,
+                },
+                {
+                  value: IncomeEnum.notInformed,
+                  text: IncomeEnum.notInformed,
+                },
+              ]}
+            />
           </Grid>
+          <Grid item>
+            <Select
+              id="schooling"
+              label="Grau de instrução"
+              name="schooling"
+              dataTestId="schooling-test"
+              value={values?.schooling || SchoolingEnum.NotInformed}
+              onChange={onChange}
+              options={[
+                {
+                  value: SchoolingEnum.EnsinoFundamental1,
+                  text: SchoolingEnum.EnsinoFundamental1,
+                },
+                {
+                  value: SchoolingEnum.EnsinoFundamental2,
+                  text: SchoolingEnum.EnsinoFundamental2,
+                },
+                {
+                  value: SchoolingEnum.EnsinoMedio,
+                  text: SchoolingEnum.EnsinoMedio,
+                },
+                {
+                  value: SchoolingEnum.EnsinoSuperior,
+                  text: SchoolingEnum.EnsinoSuperior,
+                },
+                {
+                  value: SchoolingEnum.EnsinoTecnico,
+                  text: SchoolingEnum.EnsinoTecnico,
+                },
+                {
+                  value: SchoolingEnum.SemOuMenosDeUmAno,
+                  text: SchoolingEnum.SemOuMenosDeUmAno,
+                },
+                {
+                  value: SchoolingEnum.NotInformed,
+                  text: SchoolingEnum.NotInformed,
+                },
+              ]}
+            />
+          </Grid>
+          {shouldShowExtraField && (
+            <Grid item xs={12} sm={6} md={6}>
+              <Select
+                id="schoolingStatus"
+                label="Concluiu o grau acima?"
+                name="schoolingStatus"
+                dataTestId="schooling-status-test"
+                value={values?.schoolingStatus || SchoolingStatusEnum.Sim}
+                onChange={onChange}
+                options={[
+                  {
+                    value: SchoolingStatusEnum.InProgress,
+                    text: SchoolingStatusEnum.InProgress,
+                  },
+                  {
+                    value: SchoolingStatusEnum.Nao,
+                    text: SchoolingStatusEnum.Nao,
+                  },
+                  {
+                    value: SchoolingStatusEnum.Sim,
+                    text: SchoolingStatusEnum.Sim,
+                  },
+                ]}
+              />
+            </Grid>
+          )}
         </Grid>
       </CardContent>
     </Card>
   );
+};
+
+SocialInfoForm.defaultProps = {
+  values: {
+    schooling: SchoolingEnum.NotInformed,
+    gender: GenderEnum.notDeclared,
+    race: RacialEnum.notInformed,
+    income: IncomeEnum.notInformed,
+    schoolingStatus: SchoolingStatusEnum.Sim,
+  },
 };
 
 export default SocialInfoForm;
