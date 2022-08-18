@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form';
-import { TextField } from '@material-ui/core';
-import { ErrorOutline } from '@material-ui/icons';
 import InputMask from 'react-input-mask';
+import { TextField, PropTypes } from '@material-ui/core';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import useStyles from './Input.styles';
 
 export type MaskType = 'phone' | 'date' | 'time';
@@ -10,11 +10,13 @@ interface InputProps {
   control: any;
   name: string;
   label: string;
-  type: string;
+  type: React.InputHTMLAttributes<unknown>['type'];
   dataTestId: string;
-  className: string;
+  className?: string;
   defaultValue?: string;
   mask?: MaskType;
+  fullWidth?: boolean;
+  margin?: PropTypes.Margin;
   rules: Record<string, unknown>;
   fullWidth?: boolean;
 }
@@ -45,10 +47,18 @@ const Input: React.FC<InputProps> = ({
       control={control}
       defaultValue={defaultValue}
       rules={rules}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
+      render={({
+        field: { onChange, onBlur, value },
+        fieldState: { error },
+      }) => (
         <>
           {hasMask ? (
-            <InputMask mask={enumMask[mask]} value={value} onChange={onChange}>
+            <InputMask
+              mask={enumMask[mask]}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+            >
               {inputProps => (
                 <TextField
                   label={label}
@@ -58,6 +68,8 @@ const Input: React.FC<InputProps> = ({
                   inputProps={{ 'data-testid': dataTestId }}
                   fullWidth={fullWidth}
                   error={!!error}
+                  margin="normal"
+                  size="medium"
                   helperText={
                     error ? (
                       <span className={classes.errorContainer}>
@@ -78,7 +90,10 @@ const Input: React.FC<InputProps> = ({
               name={name}
               value={value}
               onChange={onChange}
+              onBlur={onBlur}
               variant="outlined"
+              margin="normal"
+              size="medium"
               defaultValue={defaultValue}
               inputProps={{ 'data-testid': dataTestId }}
               fullWidth={fullWidth}
