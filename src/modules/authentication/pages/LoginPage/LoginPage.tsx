@@ -44,7 +44,7 @@ const LoginPage: React.FC = () => {
     if (user?.authenticated) {
       onChange(user);
       await setAuthenticationError(false);
-      history.push('/');
+      history.push('/selecao-de-comunidades');
     }
   }
 
