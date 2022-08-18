@@ -17,12 +17,12 @@ import MotivationForm from './components/MotivationForm/MotivationForm';
 
 const RegisterUserForm: React.FC = () => {
   const classes = useStyles();
-  const { handleSubmit, control, setValue, getValues } = useForm<FormValues>({
+  const { handleSubmit, control, setValue, watch } = useForm<FormValues>({
     defaultValues: defaultFormValues,
   });
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-  const values = getValues();
+  const values = watch();
 
   const handleChange = event => {
     const { name, value } = event.target;
