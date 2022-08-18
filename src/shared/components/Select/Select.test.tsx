@@ -77,7 +77,7 @@ describe('Component: Select', () => {
     });
   });
 
-  it('should selected a right option when user choice click', async () => {
+  it('should select option when user click', async () => {
     render(<Select {...defaultProps} />);
 
     const { options } = defaultProps;
@@ -95,12 +95,12 @@ describe('Component: Select', () => {
     render(<Select {...defaultProps} onChange={mockedOnChange} />);
 
     const { options } = defaultProps;
-    const textSelected = options[1].text;
     const textNotSelected = options[0].text;
+    const textSelected = options[1].text;
     const selectAction = screen.getByRole('button');
 
-    expect(screen.queryByText(textSelected)).not.toBeInTheDocument();
     expect(screen.queryByText(textNotSelected)).not.toBeInTheDocument();
+    expect(screen.queryByText(textSelected)).not.toBeInTheDocument();
 
     userEvent.click(selectAction);
 
@@ -108,8 +108,8 @@ describe('Component: Select', () => {
       userEvent.click(screen.getByRole('option', { name: textSelected })),
     );
 
-    expect(screen.getByRole('button', { name: textSelected })).toBeVisible();
     expect(screen.queryByText(textNotSelected)).not.toBeVisible();
+    expect(screen.getByRole('button', { name: textSelected })).toBeVisible();
     expect(mockedOnChange).toHaveBeenCalled();
   });
 });
