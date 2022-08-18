@@ -32,7 +32,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
         <Grid container direction="row" spacing={3}>
           <Grid item xs={12} sm={12} md={12}>
             <InputLabel id="collision-id" data-testid="been-collision-test">
-              Já foi vítima de colisão ou atropelamento?
+              Já foi vítima de colisão ou atropelamento?*
             </InputLabel>
             <Select
               name="collision"
@@ -49,7 +49,7 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
           </Grid>
           <Grid item xs={12} sm={6} md={6}>
             <Input
-              label="Quais problemas você observa no trajeto?"
+              label="Quais os problemas que você observa durante seu trajeto?*"
               type="text"
               name="problems"
               className="problems"
@@ -59,12 +59,21 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
               rules={{ required: 'Citar problemas é obrigatório' }}
               fullWidth
             />
+            <Typography
+              variant="caption"
+              display="block"
+              gutterBottom
+              color="textSecondary"
+            >
+              Ex: Falta de ciclovia
+            </Typography>
           </Grid>
           <Grid item xs={12} sm={6} md={6}>
             <Input
-              label="Quanto tempo você leva no seu trajeto?"
+              label="Quanto tempo você leva no trajeto mais frequente/comum realizado com bicicleta?*"
               type="text"
               name="timeToArrive"
+              mask="time"
               className="input"
               control={control}
               dataTestId="time-to-arrive-test"
@@ -72,6 +81,14 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
               rules={{ required: 'Informar o tempo é obrigatório' }}
               fullWidth
             />
+            <Typography
+              variant="caption"
+              display="block"
+              gutterBottom
+              color="textSecondary"
+            >
+              Preencha o intervalo de tempo no formato 00:00
+            </Typography>
           </Grid>
         </Grid>
       </CardContent>

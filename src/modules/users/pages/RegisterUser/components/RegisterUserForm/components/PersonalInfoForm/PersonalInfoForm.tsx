@@ -54,7 +54,12 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               rules={{ required: 'Telefone do usuário é obrigatório' }}
               fullWidth
             />
-            <Typography variant="caption" display="block" gutterBottom>
+            <Typography
+              variant="caption"
+              display="block"
+              gutterBottom
+              color="textSecondary"
+            >
               DDD + Número
             </Typography>
           </Grid>
@@ -74,7 +79,12 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               }}
               fullWidth
             />
-            <Typography variant="caption" display="block" gutterBottom>
+            <Typography
+              variant="caption"
+              display="block"
+              gutterBottom
+              color="textSecondary"
+            >
               DD/MM/AAAA
             </Typography>
           </Grid>

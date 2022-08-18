@@ -26,7 +26,7 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
               dataTestId="used-bycicle-test"
               id="motivation-select"
               name="motivation"
-              label="Já utilizava bicicleta antes?"
+              label="Já utilizava bicicleta antes do Bota pra Rodar?"
               value={values.motivation}
               onChange={onChange}
               options={[
@@ -37,7 +37,7 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
           </Grid>
           <Grid item xs={12} sm={6} md={6}>
             <Input
-              label="Por que você precisa usar esta bicicleta?"
+              label="Qual sua motivação para utilizar a bicicleta como meio de transporte?*"
               type="text"
               name="reason"
               className="reason"
