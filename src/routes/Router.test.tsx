@@ -5,7 +5,11 @@ import Route from './Route';
 describe('route redirections based on authentication', () => {
   it('should render public page', async () => {
     const { getByText } = renderWithRouterAndAuth(
-      <Route path="/dashboard" comp={() => <div>DashboardPage</div>} />,
+      <Route
+        path="/dashboard"
+        isPrivate={false}
+        comp={() => <div>DashboardPage</div>}
+      />,
       { route: '/dashboard' },
     );
 

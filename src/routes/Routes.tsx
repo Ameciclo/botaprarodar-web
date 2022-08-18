@@ -1,14 +1,14 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import LoginPage from '../modules/authentication/pages/LoginPage/LoginPage';
-import Menu from '../shared/components/Menu/Menu';
+import { Login } from 'modules/authentication/pages';
+import { Menu } from 'shared/components';
 import Route from './Route';
 import { routes } from './routesCoordinator';
 
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <Route path="/login" isPrivate={false} comp={LoginPage} />
+      <Route path="/login" isPrivate={false} comp={Login} />
       <Menu>
         {routes.map(route => (
           <Route

@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import CommunityManagementPage from 'modules/communities/pages/CommunityPage/CommunityManagementPage/CommunityManagementPage';
+import { ROUTER } from '.';
 
 const CreateAndEditCommunityPage = lazy(
   () =>
@@ -23,7 +24,7 @@ const RegisterUserPage = lazy(
 
 export const routes = [
   {
-    path: '/',
+    path: ROUTER.DASHBOARD,
     comp: DashboardPage,
     private: true,
   },
