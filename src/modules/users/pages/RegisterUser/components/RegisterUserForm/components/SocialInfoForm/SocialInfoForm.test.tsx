@@ -1,14 +1,18 @@
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SchoolingEnum } from 'modules/users/models/types/SchoolingTypes';
-import RegisterUserForm from '../../RegisterUserForm';
 import SocialInfoForm from './SocialInfoForm';
-
-jest.mock('shared/components/Input/Input', () => () => `Input-component-mock`);
 
 describe('SocialInfoForm', () => {
   it('should have default fields', async () => {
-    render(<RegisterUserForm />);
+    const props = {
+      onChange: jest.fn(),
+      values: {
+        schooling: '',
+      },
+    };
+
+    render(<SocialInfoForm {...props} />);
 
     expect(screen.getByTestId('select-gender-test')).toBeInTheDocument();
     expect(screen.getByTestId('select-race-test')).toBeInTheDocument();
