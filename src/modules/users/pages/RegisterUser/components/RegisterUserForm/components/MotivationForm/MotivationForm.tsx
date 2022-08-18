@@ -1,22 +1,23 @@
 import { FC } from 'react';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input, Select } from 'shared/components';
-import { FormValues } from '../../RegisterUserForm.schema';
+import { FormValues, Schema } from '../../RegisterUserForm.schema';
 import useStyles from './MotivationForm.styles';
 
 export type AlreadyUseBPRField = 'Yes' | 'No';
 
-type Value = Pick<
-  FormValues,
-  'alreadyUseBPR' | 'alreadyUseBPROpenQuestion' | 'reason'
->;
+type Fields = 'alreadyUseBPR' | 'alreadyUseBPROpenQuestion' | 'reason';
+type FormValue = Pick<FormValues, Fields>;
+type FormSchema = Pick<Schema, Fields>;
+
 export interface Props {
   control: any;
   onChange: any;
-  values: Value;
+  values: FormValue;
+  schema: FormSchema;
 }
 
-const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
+const MotivationForm: FC<Props> = ({ control, onChange, values, schema }) => {
   const classes = useStyles();
   const hasUsedBikesInThePast = values?.alreadyUseBPR === 'Yes';
 
@@ -41,6 +42,7 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
               ]}
             />
           </Grid>
+
           {hasUsedBikesInThePast && (
             <Grid item xs={12} sm={6} md={6}>
               <Input
@@ -50,11 +52,12 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
                 className=""
                 control={control}
                 dataTestId="already-use-bpr-open-question-test"
-                rules={{ required: 'Campo obrigatório' }}
+                rules={schema.alreadyUseBPROpenQuestion}
                 fullWidth
               />
             </Grid>
           )}
+
           <Grid item xs={12} sm={6} md={6}>
             <Input
               label="Qual sua motivação para utilizar a bicicleta como meio de transporte?*"
@@ -63,7 +66,7 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
               className="reason"
               control={control}
               dataTestId="reason-test"
-              rules={{ required: 'A motivação do uso é obrigatória' }}
+              rules={schema.reason}
               fullWidth
             />
           </Grid>

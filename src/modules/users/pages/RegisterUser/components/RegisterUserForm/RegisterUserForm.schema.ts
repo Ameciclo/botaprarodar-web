@@ -37,7 +37,7 @@ export type Schema = Record<Keys, Rules>;
 export const schema: Schema = {
   reason: { required: 'A motivação do uso é obrigatória' },
   alreadyUseBPR: {},
-  alreadyUseBPROpenQuestion: {},
+  alreadyUseBPROpenQuestion: { required: 'Campo obrigatório' },
   schooling: {},
   gender: {},
   race: {},

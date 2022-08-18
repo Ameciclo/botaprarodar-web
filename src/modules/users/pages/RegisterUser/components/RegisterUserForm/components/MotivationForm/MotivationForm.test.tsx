@@ -1,20 +1,31 @@
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import MotivationForm from './MotivationForm';
+import MotivationForm, { Props } from './MotivationForm';
 
 jest.mock('shared/components/Input/Input', () => () => `Input-component-mock`);
 
 describe('MotivationForm', () => {
-  it('should render correctly', async () => {
-    const props = {
+  let defaultProps: Props;
+
+  beforeEach(() => {
+    defaultProps = {
       onChange: jest.fn(),
       control: jest.fn(),
+      schema: {
+        alreadyUseBPR: {},
+        alreadyUseBPROpenQuestion: {},
+        reason: {},
+      },
       values: {
-        alreadyUseBPR: '',
+        alreadyUseBPR: 'No',
+        alreadyUseBPROpenQuestion: '',
+        reason: '',
       },
     };
+  });
 
-    render(<MotivationForm {...props} />);
+  it('should render correctly', async () => {
+    render(<MotivationForm {...defaultProps} />);
 
     const title = screen.getByRole('heading', { name: /motivação/i });
     const input = screen.getByText('Input-component-mock');
@@ -26,56 +37,50 @@ describe('MotivationForm', () => {
   });
 
   it('should show additional option when selecting previous user of bikes', async () => {
-    const props = {
-      onChange: jest.fn(),
-      control: jest.fn(),
-      values: {
-        alreadyUseBPR: '',
-      },
-    };
-    const { rerender } = render(<MotivationForm {...props} />);
+    const { rerender } = render(<MotivationForm {...defaultProps} />);
+
+    expect(screen.queryByText('Por quanto tempo?')).toBeFalsy();
 
     const view = screen.getByTestId('select-already-use-bpr-test');
     const select = within(view).getByRole('button');
-    expect(screen.queryByText('Por quanto tempo?')).toBeFalsy();
 
     userEvent.click(select);
+
     await waitFor(() =>
       userEvent.click(screen.getByRole('option', { name: 'Sim' })),
     );
 
     expect(screen.getByRole('button', { name: 'Sim' })).toBeVisible();
+
     await rerender(
-      <MotivationForm {...props} values={{ alreadyUseBPR: 'Yes' }} />,
+      <MotivationForm {...defaultProps} values={{ alreadyUseBPR: 'Yes' }} />,
     );
+
     expect(
       screen.queryAllByText('Input-component-mock').length,
     ).toBeGreaterThanOrEqual(2);
   });
 
   it('should not show additional option when selecting no previous user of bikes', async () => {
-    const props = {
-      onChange: jest.fn(),
-      control: jest.fn(),
-      values: {
-        alreadyUseBPR: '',
-      },
-    };
-    const { rerender } = render(<MotivationForm {...props} />);
+    const { rerender } = render(<MotivationForm {...defaultProps} />);
+
+    expect(screen.queryByText('Por quanto tempo?')).toBeFalsy();
 
     const view = screen.getByTestId('select-already-use-bpr-test');
     const select = within(view).getByRole('button');
-    expect(screen.queryByText('Por quanto tempo?')).toBeFalsy();
 
     userEvent.click(select);
+
     await waitFor(() =>
       userEvent.click(screen.getByRole('option', { name: 'Não' })),
     );
 
     expect(screen.getByRole('button', { name: 'Não' })).toBeVisible();
+
     await rerender(
-      <MotivationForm {...props} values={{ alreadyUseBPR: 'Não' }} />,
+      <MotivationForm {...defaultProps} values={{ alreadyUseBPR: 'No' }} />,
     );
+
     expect(
       screen.queryAllByText('Input-component-mock').length,
     ).toBeGreaterThanOrEqual(1);
