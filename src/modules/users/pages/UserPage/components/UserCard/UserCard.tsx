@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom';
 import { Avatar, Card, CardContent, Typography, Grid } from '@material-ui/core';
 import { LockOutlined, PlaceOutlined } from '@material-ui/icons';
 import { toast } from 'shared/components';
-import { GenderTypes } from 'modules/users/models/types/GenderTypes';
-import { RacialTypes } from 'modules/users/models/types/RacialTypes';
-import { SchoolingTypes } from 'modules/users/models/types/SchoolingTypes';
-import { SchoolingStatusTypes } from 'modules/users/models/types/SchoolingStatusTypes';
-import { IncomeTypes } from 'modules/users/models/types/IncomeTypes';
-import UserService from '../../../../services/UserService';
 import UserMenu from '../UserMenu/UserMenu';
+import UserService from '../../../../services/UserService';
 import useStyles, { StyledBadgeUserCard } from './UserCard.styles';
 
 interface UserCardProps {
@@ -17,13 +12,13 @@ interface UserCardProps {
     name: string;
     createDate: string;
     address: string;
-    gender: GenderTypes;
+    gender: string;
     profilePicture: string;
     age: string;
-    racial: RacialTypes;
-    schooling: SchoolingTypes;
-    schoolingStatus: SchoolingStatusTypes;
-    income: IncomeTypes;
+    racial: string;
+    schooling: string;
+    schoolingStatus: string;
+    income: string;
     communityId: string;
     telephone: string;
     status: boolean;

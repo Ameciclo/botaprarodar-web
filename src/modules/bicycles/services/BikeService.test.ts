@@ -1,5 +1,5 @@
 import { act, waitFor } from '@testing-library/react';
-import api from 'shared/services/api';
+import api from '../../../shared/services/api';
 import { mockedBike } from '../mocks/BikeMocks';
 import Bike from '../models/Bike';
 import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';

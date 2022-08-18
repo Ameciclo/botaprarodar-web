@@ -17,6 +17,9 @@ const DashboardPage = lazy(
   () => import('../modules/dashboard/pages/DashboardPage/DashboardPage'),
 );
 const UserPage = lazy(() => import('../modules/users/pages/UserPage/UserPage'));
+const RegisterUserPage = lazy(
+  () => import('../modules/users/pages/RegisterUser/RegisterUserPage'),
+);
 
 export const routes = [
   {
@@ -34,9 +37,15 @@ export const routes = [
     comp: UserDetailPage,
     private: true,
   },
+
   {
     path: '/comunidades',
     comp: CommunityPage,
+    private: true,
+  },
+  {
+    path: '/comunidades/cadastrar-usuario',
+    comp: RegisterUserPage,
     private: true,
   },
   {

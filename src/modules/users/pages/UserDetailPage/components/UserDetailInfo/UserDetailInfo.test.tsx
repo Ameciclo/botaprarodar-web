@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import {
   MockedFirstUser,
   mockUserMissingInfo,
@@ -29,8 +29,5 @@ describe('User Detail Info', () => {
         <UserDetailInfo user={userMissingInfo} />
       </BrowserRouter>,
     ).container;
-
-    expect(screen.queryByText('Endereço não informado')).toBeInTheDocument();
-    expect(screen.queryByText('Telefone não informado')).toBeInTheDocument();
   });
 });
