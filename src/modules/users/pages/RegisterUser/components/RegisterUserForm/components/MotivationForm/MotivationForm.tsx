@@ -3,7 +3,7 @@ import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input, Select } from 'shared/components';
 import useStyles from './MotivationForm.styles';
 
-export type MotivationField = 'Yes' | 'No';
+export type AlreadyUseBPRField = 'Yes' | 'No';
 
 export interface Props {
   control: any;
@@ -13,6 +13,8 @@ export interface Props {
 
 const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
   const classes = useStyles();
+  const hasUsedBikesInThePast =
+    values?.alreadyUseBPR && values.alreadyUseBPR === 'Yes';
 
   return (
     <Card>
@@ -23,11 +25,11 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
         <Grid container direction="row" spacing={3}>
           <Grid item xs={12} sm={6} md={6}>
             <Select
-              dataTestId="used-bycicle-test"
-              id="motivation-select"
-              name="motivation"
+              dataTestId="already-use-bpr-test"
+              id="already-use-bpr-select"
+              name="alreadyUseBPR"
               label="Já utilizava bicicleta antes do Bota pra Rodar?"
-              value={values.motivation}
+              value={values.alreadyUseBPR}
               onChange={onChange}
               options={[
                 { value: 'Yes', text: 'Sim' },
@@ -35,6 +37,21 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
               ]}
             />
           </Grid>
+          {hasUsedBikesInThePast && (
+            <Grid item xs={12} sm={6} md={6}>
+              <Input
+                label="Por quanto tempo?"
+                type="text"
+                name="alreadyUseBPROpenQuestion"
+                className="alreadyUseBPROpenQuestion"
+                control={control}
+                dataTestId="already-use-bpr-open-question-test"
+                defaultValue=""
+                rules={{ required: 'Campo obrigatório' }}
+                fullWidth
+              />
+            </Grid>
+          )}
           <Grid item xs={12} sm={6} md={6}>
             <Input
               label="Qual sua motivação para utilizar a bicicleta como meio de transporte?*"

@@ -36,8 +36,8 @@ const UserService = {
       id: uuidv4(),
       isBlocked: false,
       userQuiz: {
-        alreadyUseBPR: body.motivation,
-        alreadyUseBPROpenQuestion: '',
+        alreadyUseBPR: body.alreadyUseBPR,
+        alreadyUseBPROpenQuestion: body.alreadyUseBPROpenQuestion,
         motivationOpenQuestion: body.reason,
         alreadyAccidentVictim: body.collision,
         problemsOnWayOpenQuestion: body.problems,
