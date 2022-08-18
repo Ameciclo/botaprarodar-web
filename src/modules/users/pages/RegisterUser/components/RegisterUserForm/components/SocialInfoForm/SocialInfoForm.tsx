@@ -2,39 +2,25 @@ import React from 'react';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import {
   GenderEnum,
-  GenderTypes,
-} from 'modules/users/models/types/GenderTypes';
-import {
   IncomeEnum,
-  IncomeTypes,
-} from 'modules/users/models/types/IncomeTypes';
-import {
   RacialEnum,
-  RacialTypes,
-} from 'modules/users/models/types/RacialTypes';
-import {
   SchoolingEnum,
-  SchoolingTypes,
-} from 'modules/users/models/types/SchoolingTypes';
+  SchoolingStatusEnum,
+} from 'modules/users/models/enums';
 import { Select } from 'shared/components';
-import { SchoolingStatusEnum } from 'modules/users/models/types/SchoolingStatusTypes';
+import { FormValues } from '../../RegisterUserForm.schema';
 import useStyles from './SocialInfoForm.styles';
 
-interface SocialInfoFormProps {
-  values?: {
-    schooling?: SchoolingTypes | string;
-    gender?: GenderTypes | string;
-    race?: RacialTypes | string;
-    income?: IncomeTypes | string;
-    schoolingStatus?: string;
-  };
+type Values = Pick<
+  FormValues,
+  'schooling' | 'gender' | 'race' | 'income' | 'schoolingStatus'
+>;
+export interface Props {
   onChange: any;
+  values: Values;
 }
 
-const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
-  values,
-  onChange,
-}) => {
+const SocialInfoForm: React.FC<Props> = ({ values, onChange }) => {
   const classes = useStyles();
   const hasSchoolingValue = values?.schooling;
   const hasChoosenNotInformed =
@@ -43,6 +29,7 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
     hasSchoolingValue && values.schooling === SchoolingEnum.SemOuMenosDeUmAno;
   const shouldShowExtraField =
     hasSchoolingValue && !hasChoosenNotInformed && !hasLessThanAYear;
+
   return (
     <Card>
       <CardContent>
@@ -224,16 +211,6 @@ const SocialInfoForm: React.FC<SocialInfoFormProps> = ({
       </CardContent>
     </Card>
   );
-};
-
-SocialInfoForm.defaultProps = {
-  values: {
-    schooling: SchoolingEnum.NotInformed,
-    gender: GenderEnum.notDeclared,
-    race: RacialEnum.notInformed,
-    income: IncomeEnum.notInformed,
-    schoolingStatus: SchoolingStatusEnum.Sim,
-  },
 };
 
 export default SocialInfoForm;

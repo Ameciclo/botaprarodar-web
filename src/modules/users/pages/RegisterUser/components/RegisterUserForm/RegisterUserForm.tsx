@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { Button, CircularProgress, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import UserService from '../../../../services/UserService';
-import { toast } from '../../../../../../shared/components';
+import { Button, CircularProgress, Grid } from '@material-ui/core';
+import { UserService } from 'modules/users/services';
+import { toast } from 'shared/components';
+import useStyles from './RegisterUserForm.styles';
+import { defaultFormValues, FormValues } from './RegisterUserForm.schema';
 import PersonalInfoForm from './components/PersonalInfoForm/PersonalInfoForm';
 import SocialInfoForm from './components/SocialInfoForm/SocialInfoForm';
-import useStyles from './RegisterUserForm.styles';
 import ProblemsForm from './components/ProblemsForm/ProblemsForm';
 import MotivationForm from './components/MotivationForm/MotivationForm';
 
 const RegisterUserForm: React.FC = () => {
   const classes = useStyles();
-  const { handleSubmit, control, setValue, watch } = useForm();
+  const { handleSubmit, control, setValue, getValues } = useForm<FormValues>({
+    defaultValues: defaultFormValues,
+  });
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-  const values = watch();
+  const values = getValues();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -62,18 +65,20 @@ const RegisterUserForm: React.FC = () => {
           />
         </Grid>
       </Grid>
+
       <Button
         data-testid="cancel-button"
         type="button"
-        className={`${classes.buttonCancel}`}
+        className={classes.buttonCancel}
         onClick={() => history.push('/')}
       >
         CANCELAR
       </Button>
+
       <Button
         data-testid="submit-button"
         type="submit"
-        className={`${classes.buttonStyle}`}
+        className={classes.buttonStyle}
         disabled={loading}
         startIcon={
           loading ? <CircularProgress style={{ width: 23, height: 23 }} /> : ''

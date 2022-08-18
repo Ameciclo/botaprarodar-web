@@ -1,18 +1,22 @@
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SchoolingEnum } from 'modules/users/models/types/SchoolingTypes';
-import SocialInfoForm from './SocialInfoForm';
+import { SchoolingEnum } from 'modules/users/models/enums';
+import SocialInfoForm, { Props } from './SocialInfoForm';
 
 describe('SocialInfoForm', () => {
-  it('should have default fields', async () => {
-    const props = {
+  let defaultProps: Props;
+
+  beforeEach(() => {
+    defaultProps = {
       onChange: jest.fn(),
       values: {
         schooling: '',
       },
     };
+  });
 
-    render(<SocialInfoForm {...props} />);
+  it('should have default fields', async () => {
+    render(<SocialInfoForm {...defaultProps} />);
 
     expect(screen.getByTestId('select-gender-test')).toBeInTheDocument();
     expect(screen.getByTestId('select-race-test')).toBeInTheDocument();
@@ -21,14 +25,7 @@ describe('SocialInfoForm', () => {
   });
 
   it('should show additional option when selecting schooling', async () => {
-    const props = {
-      onChange: jest.fn(),
-      values: {
-        schooling: '',
-      },
-    };
-
-    const { rerender } = render(<SocialInfoForm {...props} />);
+    const { rerender } = render(<SocialInfoForm {...defaultProps} />);
 
     const view = screen.getByTestId('select-schooling-test');
     const select = within(view).getByRole('button', {
@@ -48,7 +45,7 @@ describe('SocialInfoForm', () => {
     ).toBeVisible();
     await rerender(
       <SocialInfoForm
-        {...props}
+        {...defaultProps}
         values={{ schooling: SchoolingEnum.EnsinoFundamental1 }}
       />,
     );
@@ -56,22 +53,15 @@ describe('SocialInfoForm', () => {
   });
 
   it('should not show additional option when selecting less than a year of schooling', async () => {
-    const props = {
-      onChange: jest.fn(),
-      values: {
-        schooling: '',
-      },
-    };
-
-    const { rerender } = render(<SocialInfoForm {...props} />);
+    const { rerender } = render(<SocialInfoForm {...defaultProps} />);
 
     const view = screen.getByTestId('select-schooling-test');
-    const select = within(view).getByRole('button', {
-      name: /não informado/i,
-    });
+    const select = within(view).getByRole('button', { name: /não informado/i });
+
     expect(screen.queryByText('Concluiu o grau acima?')).toBeFalsy();
 
     userEvent.click(select);
+
     await waitFor(() =>
       userEvent.click(
         screen.getByRole('option', { name: SchoolingEnum.SemOuMenosDeUmAno }),
@@ -81,9 +71,10 @@ describe('SocialInfoForm', () => {
     expect(
       screen.getByRole('button', { name: SchoolingEnum.SemOuMenosDeUmAno }),
     ).toBeVisible();
+
     await rerender(
       <SocialInfoForm
-        {...props}
+        {...defaultProps}
         values={{ schooling: SchoolingEnum.SemOuMenosDeUmAno }}
       />,
     );
@@ -91,14 +82,7 @@ describe('SocialInfoForm', () => {
   });
 
   it('should not show additional option when selecting not to inform', async () => {
-    const props = {
-      onChange: jest.fn(),
-      values: {
-        schooling: '',
-      },
-    };
-
-    const { rerender } = render(<SocialInfoForm {...props} />);
+    const { rerender } = render(<SocialInfoForm {...defaultProps} />);
 
     const view = screen.getByTestId('select-schooling-test');
     const select = within(view).getByRole('button', {
@@ -121,7 +105,7 @@ describe('SocialInfoForm', () => {
     expect(notInformedSelected).toBeVisible();
     await rerender(
       <SocialInfoForm
-        {...props}
+        {...defaultProps}
         values={{ schooling: SchoolingEnum.NotInformed }}
       />,
     );

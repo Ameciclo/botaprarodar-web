@@ -1,3 +1,12 @@
+export interface UserQuiz {
+  alreadyUseBPR: boolean;
+  alreadyUseBPROpenQuestion: string;
+  motivationOpenQuestion: string;
+  alreadyAccidentVictim: boolean;
+  problemsOnWayOpenQuestion: string;
+  timeOnWayOpenQuestion: string;
+}
+
 export default interface User {
   name: string;
   createDate: string;
@@ -14,12 +23,5 @@ export default interface User {
   status: boolean;
   id: string;
   isBlocked: boolean;
-  userQuiz: {
-    alreadyUseBPR: boolean;
-    alreadyUseBPROpenQuestion: string;
-    motivationOpenQuestion: string;
-    alreadyAccidentVictim: boolean;
-    problemsOnWayOpenQuestion: string;
-    timeOnWayOpenQuestion: string;
-  };
+  userQuiz: UserQuiz;
 }

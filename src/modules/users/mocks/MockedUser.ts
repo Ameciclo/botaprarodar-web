@@ -1,5 +1,4 @@
-import { GenderEnum } from 'modules/users/models/types/GenderTypes';
-import { IncomeEnum } from 'modules/users/models/types/IncomeTypes';
+import { GenderEnum, IncomeEnum } from 'modules/users/models/enums';
 import User from '../models/User';
 
 export const mockedUser = (): User => ({
@@ -7,9 +6,9 @@ export const mockedUser = (): User => ({
   createDate: '29-03-2011',
   communityId: '-MLDOXs3p35DEHg0gdUU',
   age: '5',
-  income: IncomeEnum.above2000,
+  income: IncomeEnum.notInformed,
   telephone: '+55 51 3626-2001',
-  gender: GenderEnum.female,
+  gender: GenderEnum.notDeclared,
   status: true,
   id: '123',
   profilePicture: 'test',

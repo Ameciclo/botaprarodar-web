@@ -1,25 +1,29 @@
 import { FC } from 'react';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input, Select } from 'shared/components';
+import { FormValues } from '../../RegisterUserForm.schema';
 import useStyles from './MotivationForm.styles';
 
 export type AlreadyUseBPRField = 'Yes' | 'No';
 
+type Value = Pick<
+  FormValues,
+  'alreadyUseBPR' | 'alreadyUseBPROpenQuestion' | 'reason'
+>;
 export interface Props {
   control: any;
   onChange: any;
-  values: any;
+  values: Value;
 }
 
 const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
   const classes = useStyles();
-  const hasUsedBikesInThePast =
-    values?.alreadyUseBPR && values.alreadyUseBPR === 'Yes';
+  const hasUsedBikesInThePast = values?.alreadyUseBPR === 'Yes';
 
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5" className={classes.titleStyle}>
+        <Typography variant="h5" className={classes.title}>
           Motivação
         </Typography>
         <Grid container direction="row" spacing={3}>
@@ -29,7 +33,7 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
               id="already-use-bpr-select"
               name="alreadyUseBPR"
               label="Já utilizava bicicleta antes do Bota pra Rodar?"
-              value={values.alreadyUseBPR}
+              value={values?.alreadyUseBPR || ''}
               onChange={onChange}
               options={[
                 { value: 'Yes', text: 'Sim' },
@@ -43,10 +47,9 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
                 label="Por quanto tempo?"
                 type="text"
                 name="alreadyUseBPROpenQuestion"
-                className="alreadyUseBPROpenQuestion"
+                className=""
                 control={control}
                 dataTestId="already-use-bpr-open-question-test"
-                defaultValue=""
                 rules={{ required: 'Campo obrigatório' }}
                 fullWidth
               />
@@ -60,7 +63,6 @@ const MotivationForm: FC<Props> = ({ control, onChange, values }) => {
               className="reason"
               control={control}
               dataTestId="reason-test"
-              defaultValue=""
               rules={{ required: 'A motivação do uso é obrigatória' }}
               fullWidth
             />
