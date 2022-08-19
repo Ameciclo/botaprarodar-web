@@ -1,29 +1,24 @@
+import type * as TYPE from 'modules/users/models/types';
 import type { SchemaType as Rules } from 'shared/models';
-import type {
-  SchoolingType,
-  GenderType,
-  RacialType,
-  IncomeType,
-} from 'modules/users/models/types';
 
-export type AlreadyUseBPRField = 'Yes' | 'No';
+type AlreadyUseBPRField = 'Yes' | 'No';
 
 export type FormValues = {
-  reason?: string;
-  alreadyUseBPR?: AlreadyUseBPRField;
-  alreadyUseBPROpenQuestion?: string;
-  schooling?: SchoolingType;
-  gender?: GenderType;
-  race?: RacialType;
-  income?: IncomeType;
-  schoolingStatus?: string;
+  reason: string;
+  alreadyUseBPR: AlreadyUseBPRField;
+  alreadyUseBPROpenQuestion: string;
+  schooling: TYPE.SchoolingType;
+  gender: TYPE.GenderType;
+  race: TYPE.RacialType;
+  income: TYPE.IncomeType;
+  schoolingStatus: string;
 };
 
 export const defaultFormValues: FormValues = {
   reason: '',
   alreadyUseBPR: 'No',
   alreadyUseBPROpenQuestion: '',
-  schooling: 'Not Informed',
+  schooling: 'Não informado',
   gender: 'Não declarado',
   race: 'Não Informado',
   income: 'Não informado',

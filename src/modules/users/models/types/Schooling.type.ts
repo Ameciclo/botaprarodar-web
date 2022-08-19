@@ -5,4 +5,4 @@ export type SchoolingType =
   | 'Ensino Médio'
   | 'Ensino Técnico'
   | 'Ensino Superior'
-  | 'Not Informed';
+  | 'Não informado';
