@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import { PageTitle, Loading, CustomLabel, toast } from 'shared/components';
-import CustomCardWithIcon from 'shared/components/CustomCardWithIcon/CustomCardWithIcon';
+import {
+  PageTitle,
+  Loading,
+  CustomLabel,
+  toast,
+  CustomCardWithIcon,
+} from 'shared/components';
 import BikeService from 'modules/bicycles/services/BikeService';
 import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
@@ -13,40 +18,41 @@ type Params = {
 };
 
 const CommunityManagementPage: React.FC = () => {
-  const { id } = useParams<Params>();
   const [community, setCommunity] = useState<Community>();
   const [loading, setLoading] = useState<boolean>(false);
   const [amountsBikesPerCommunity, setAmountsBikesPerCommunity] =
     useState<AmountBikesPerCommunity>();
 
   const history = useHistory();
+  const { id: communityId } = useParams<Params>();
+
+  const showFeedbackError = () => {
+    toast.error('Erro ao carregar comunidade.');
+  };
+
+  const fetchData = async id => {
+    setLoading(true);
+
+    try {
+      const communityData = await CommunityService.getCommunityById(id);
+      const bikeData = await BikeService.getAmountFilteredBikesPerCommunity(id);
+
+      setCommunity(communityData);
+      setAmountsBikesPerCommunity(bikeData);
+    } catch {
+      showFeedbackError();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (id) {
-      setLoading(true);
-      CommunityService.getCommunityById(id)
-        .then(res => {
-          setCommunity(res);
-        })
-        .catch(() => {
-          toast.error('Erro ao carregar comunidade.');
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-
-      BikeService.getAmountFilteredBikesPerCommunity(id)
-        .then(res => {
-          setAmountsBikesPerCommunity(res);
-        })
-        .catch(() => {
-          toast.error('Erro ao carregar lista de comunidades.');
-        });
-    }
-  }, [id]);
+    if (!communityId) return;
+    fetchData(communityId);
+  }, [communityId]);
 
   const redirectToRegister = () => {
-    const params = { communityId: id };
+    const params = { communityId };
     history.push('/comunidades/cadastrar-usuario', params);
   };
 
