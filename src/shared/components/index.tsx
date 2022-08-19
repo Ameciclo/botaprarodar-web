@@ -6,3 +6,5 @@ export { default as toast, ToastContainer } from './Toast/Toast';
 export { default as Icon } from './Icon/Icon';
 export { default as PageTitle } from './PageTitle/PageTitle';
 export { default as Select } from './Select/Select';
+export { default as EmptyState } from './EmptyState/EmptyState';
+export { default as FormHeader } from './FormHeader/FormHeader';
