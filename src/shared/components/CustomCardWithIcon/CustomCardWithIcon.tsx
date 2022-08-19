@@ -29,11 +29,10 @@ const CustomCardWithIcon: FC<Props> = ({
     <Card>
       <CardActionArea onClick={onClick} data-testid={`card-action-${id}`}>
         <CardContent>
-          {!!iconName && (
-            <div className={classes.wrapperIcon}>
-              <Icon name={iconName} description={iconDescription} />
-            </div>
-          )}
+          <div className={classes.wrapperIcon}>
+            <Icon name={iconName} description={iconDescription} />
+          </div>
+
           <Typography variant="h6" data-testid={id} className={classes.text}>
             {text}
           </Typography>
