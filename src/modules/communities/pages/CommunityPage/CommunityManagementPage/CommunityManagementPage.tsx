@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { PageTitle, Loading, CustomLabel, toast } from 'shared/components';
 import CustomCardWithIcon from 'shared/components/CustomCardWithIcon/CustomCardWithIcon';
@@ -8,12 +8,18 @@ import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommun
 import CommunityService from 'modules/communities/services/CommunityService';
 import Community from 'modules/communities/models/Community';
 
+type Params = {
+  id: string;
+};
+
 const CommunityManagementPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<Params>();
   const [community, setCommunity] = useState<Community>();
   const [loading, setLoading] = useState<boolean>(false);
   const [amountsBikesPerCommunity, setAmountsBikesPerCommunity] =
     useState<AmountBikesPerCommunity>();
+
+  const history = useHistory();
 
   useEffect(() => {
     if (id) {
@@ -39,12 +45,17 @@ const CommunityManagementPage: React.FC = () => {
     }
   }, [id]);
 
+  const redirectToRegister = () => {
+    const params = { communityId: id };
+    history.push('/comunidades/cadastrar-usuario', params);
+  };
+
   if (loading) {
     return <Loading />;
   }
 
   return (
-    <div>
+    <>
       <PageTitle
         id="communityId"
         iconName="gear"
@@ -59,6 +70,7 @@ const CommunityManagementPage: React.FC = () => {
             iconName="registerUser"
             text="Cadastrar usuária"
             iconDescription="Emprestar bicicleta"
+            onClick={redirectToRegister}
           />
         </Grid>
       </Grid>
@@ -87,7 +99,7 @@ const CommunityManagementPage: React.FC = () => {
           />
         </Grid>
       </Grid>
-    </div>
+    </>
   );
 };
 
