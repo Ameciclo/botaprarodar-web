@@ -52,8 +52,37 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 ## NPM Important commands
 
 - `npm test` - Runs unit tests
+- `npm run e2e:local` - Runs end-to-end tests
 - `npm run build` - Builds the application
 - `npm start` - Start applications
+
+## End-to-end tests
+
+Update your `.env`
+
+```
+REACT_APP_E2E_BASE_URL
+REACT_APP_E2E_USER
+REACT_APP_E2E_PASS
+```
+
+Install dependencies
+
+```
+npm install
+```
+
+Start application
+
+```
+npm start
+```
+
+Runs tests
+
+```
+npm run e2e:local
+```
 
 ## Check-in dance
 
