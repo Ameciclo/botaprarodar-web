@@ -1,28 +1,31 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { renderWithRouterAndAuth } from 'setupTests';
 import RegisterUserForm from '../../RegisterUserForm';
+import ProblemsForm, { ProblemsFormProps } from './ProblemsForm';
+
+jest.mock('shared/components/Input/Input', () => () => `Input-component-mock`);
 
 describe('ProblemsForm', () => {
-  it('should have all fields required', async () => {
-    render(<RegisterUserForm />);
+  let defaultProps: ProblemsFormProps;
 
-    expect(screen.getByTestId('time-to-arrive-test')).toBeInTheDocument();
-    expect(screen.getByTestId('problems-test')).toBeInTheDocument();
-    expect(screen.getByTestId('been-collision-test')).toBeInTheDocument();
+  beforeEach(() => {
+    defaultProps = {
+      onChange: jest.fn(),
+      control: jest.fn(),
+      values: {
+        collision: 'No',
+        problems: '',
+        timeToArrive: '',
+      },
+    };
   });
 
-  it('should show error when submitting empty values', async () => {
-    const { getByText } = renderWithRouterAndAuth(<RegisterUserForm />);
-
-    await act(async () => {
-      fireEvent.click(getByText('CONCLUIR CADASTRO'));
-    });
+  it('should have all fields required', async () => {
+    render(<ProblemsForm {...defaultProps} />);
 
     expect(
-      screen.getByText('Citar problemas é obrigatório'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('Informar o tempo é obrigatório'),
-    ).toBeInTheDocument();
+      screen.queryAllByText('Input-component-mock').length,
+    ).toBeGreaterThanOrEqual(2);
+    expect(screen.getByTestId('select-collision-test')).toBeInTheDocument();
   });
 });
