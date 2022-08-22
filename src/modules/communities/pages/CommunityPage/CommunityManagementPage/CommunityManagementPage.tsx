@@ -30,24 +30,27 @@ const CommunityManagementPage: React.FC = () => {
     toast.error('Erro ao carregar comunidade.');
   };
 
-  const fetchData = async id => {
-    setLoading(true);
-
-    try {
-      const communityData = await CommunityService.getCommunityById(id);
-      const bikeData = await BikeService.getAmountFilteredBikesPerCommunity(id);
-
-      setCommunity(communityData);
-      setAmountsBikesPerCommunity(bikeData);
-    } catch {
-      showFeedbackError();
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     if (!communityId) return;
+
+    const fetchData = async id => {
+      setLoading(true);
+
+      try {
+        const communityData = await CommunityService.getCommunityById(id);
+        const bikeData = await BikeService.getAmountFilteredBikesPerCommunity(
+          id,
+        );
+
+        setCommunity(communityData);
+        setAmountsBikesPerCommunity(bikeData);
+      } catch {
+        showFeedbackError();
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData(communityId);
   }, [communityId]);
 
