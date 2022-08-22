@@ -1,27 +1,70 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { renderWithRouterAndAuth } from 'setupTests';
-import RegisterUserForm from './RegisterUserForm';
+import UserService from 'modules/users/services/UserService';
+import RegisterUserForm, { Props } from './RegisterUserForm';
+
+let defaultProps: Props;
+
+jest.mock('modules/users/services/UserService');
+jest.mock(
+  './components/PersonalInfoForm/PersonalInfoForm',
+  () => () => `PersonalInfoForm-mock`,
+);
+jest.mock(
+  './components/SocialInfoForm/SocialInfoForm',
+  () => () => `SocialInfoForm-mock`,
+);
+jest.mock(
+  './components/ProblemsForm/ProblemsForm',
+  () => () => `ProblemsForm-mock`,
+);
+jest.mock(
+  './components/MotivationForm/MotivationForm',
+  () => () => `MotivationForm-mock`,
+);
 
 describe('RegisterUserForm', () => {
-  it('should render sections and buttons for registering users', async () => {
-    render(<RegisterUserForm />);
-    expect(screen.getByText('Informações pessoais')).toBeInTheDocument();
-    expect(screen.getByText('Dados sociais')).toBeInTheDocument();
-    expect(screen.getByText('Motivação')).toBeInTheDocument();
-    expect(screen.getByText('Dificuldades e problemas')).toBeInTheDocument();
+  beforeEach(() => {
+    defaultProps = {
+      communityId: 'my-id',
+    };
+  });
+
+  it('should render correctly', async () => {
+    render(<RegisterUserForm {...defaultProps} />);
+
+    expect(screen.getByText('PersonalInfoForm-mock')).toBeInTheDocument();
+    expect(screen.getByText('SocialInfoForm-mock')).toBeInTheDocument();
+    expect(screen.getByText('ProblemsForm-mock')).toBeInTheDocument();
+    expect(screen.getByText('MotivationForm-mock')).toBeInTheDocument();
+
     expect(screen.getByText('CANCELAR')).toBeInTheDocument();
     expect(screen.getByText('CONCLUIR CADASTRO')).toBeInTheDocument();
   });
 
-  it('should redirect to home after submit form', async () => {
-    const { getByText, history } = renderWithRouterAndAuth(
-      <RegisterUserForm />,
+  it('should redirect after submit form', async () => {
+    const spy = jest.spyOn(UserService, 'createUser').mockResolvedValue(true);
+
+    const { history } = renderWithRouterAndAuth(
+      <RegisterUserForm {...defaultProps} />,
+      {
+        route: '/comunidades/cadastrar-usuario',
+      },
     );
 
+    expect(history.location.pathname).toBe('/comunidades/cadastrar-usuario');
+
+    const button = screen.getByRole('button', { name: /concluir cadastro/i });
+
     await act(async () => {
-      fireEvent.click(getByText('CONCLUIR CADASTRO'));
+      await fireEvent.click(button);
     });
 
-    expect(history.location.pathname).toBe('/');
+    expect(spy).toHaveBeenCalled();
+    const { communityId } = defaultProps;
+
+    expect(history.location.pathname).toBe(
+      `/comunidades/gerenciador-de-comunidade/${communityId}`,
+    );
   });
 });

@@ -15,7 +15,11 @@ import SocialInfoForm from './components/SocialInfoForm/SocialInfoForm';
 import ProblemsForm from './components/ProblemsForm/ProblemsForm';
 import MotivationForm from './components/MotivationForm/MotivationForm';
 
-const RegisterUserForm: React.FC = () => {
+export interface Props {
+  communityId: string;
+}
+
+const RegisterUserForm: React.FC<Props> = ({ communityId }) => {
   const classes = useStyles();
   const { handleSubmit, control, setValue, watch } = useForm<FormValues>({
     defaultValues: defaultFormValues,
@@ -29,20 +33,31 @@ const RegisterUserForm: React.FC = () => {
     setValue(name, value);
   };
 
-  const onSubmit = (data: any) => {
+  const showFeedbakSuccess = () => {
+    toast.success('Usuário criado com sucesso');
+  };
+
+  const showFeedbackError = () => {
+    toast.error('Serviço indisponível');
+  };
+
+  const goBack = () => {
+    history.push(`/comunidades/gerenciador-de-comunidade/${communityId}`);
+  };
+
+  const onSubmit = async (data: any) => {
+    const body = { ...data, communityId };
+
     setLoading(true);
-    UserService.createUser(data)
-      .then(() => {
-        toast.success('Usuário criado com sucesso');
-      })
-      .catch(() => {
-        setLoading(false);
-        toast.error('Serviço indisponível');
-      })
-      .finally(() => {
-        setLoading(false);
-        history.push('/');
-      });
+
+    try {
+      await UserService.createUser(body);
+      showFeedbakSuccess();
+      goBack();
+    } catch {
+      showFeedbackError();
+      setLoading(false);
+    }
   };
 
   return (

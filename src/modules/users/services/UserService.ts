@@ -31,7 +31,7 @@ const UserService = {
       schooling: body.schooling,
       schoolingStatus: body.schoolingStatus,
       income: body.income,
-      communityId: '',
+      communityId: body.communityId,
       telephone: body.telephone,
       id: uuidv4(),
       isBlocked: false,

@@ -98,8 +98,6 @@ describe('Component: Select', () => {
       userEvent.click(screen.getByRole('option', { name: textSelected })),
     );
 
-    screen.debug();
-    // expect(screen.queryByText(textNotSelected)).not.toBeVisible();
     expect(screen.getByRole('button', { name: textSelected })).toBeVisible();
     expect(mockedOnChange).toHaveBeenCalled();
   });

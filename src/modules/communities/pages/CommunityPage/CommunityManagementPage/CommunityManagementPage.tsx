@@ -1,50 +1,70 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import { PageTitle, Loading, CustomLabel, toast } from 'shared/components';
-import CustomCardWithIcon from 'shared/components/CustomCardWithIcon/CustomCardWithIcon';
+import {
+  PageTitle,
+  Loading,
+  CustomLabel,
+  toast,
+  CustomCardWithIcon,
+} from 'shared/components';
 import BikeService from 'modules/bicycles/services/BikeService';
 import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
 import Community from 'modules/communities/models/Community';
 
+type Params = {
+  id: string;
+};
+
 const CommunityManagementPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
   const [community, setCommunity] = useState<Community>();
   const [loading, setLoading] = useState<boolean>(false);
   const [amountsBikesPerCommunity, setAmountsBikesPerCommunity] =
     useState<AmountBikesPerCommunity>();
 
-  useEffect(() => {
-    if (id) {
-      setLoading(true);
-      CommunityService.getCommunityById(id)
-        .then(res => {
-          setCommunity(res);
-        })
-        .catch(() => {
-          toast.error('Erro ao carregar comunidade.');
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+  const history = useHistory();
+  const { id: communityId } = useParams<Params>();
 
-      BikeService.getAmountFilteredBikesPerCommunity(id)
-        .then(res => {
-          setAmountsBikesPerCommunity(res);
-        })
-        .catch(() => {
-          toast.error('Erro ao carregar lista de comunidades.');
-        });
-    }
-  }, [id]);
+  const showFeedbackError = () => {
+    toast.error('Erro ao carregar comunidade.');
+  };
+
+  useEffect(() => {
+    if (!communityId) return;
+
+    const fetchData = async id => {
+      setLoading(true);
+
+      try {
+        const communityData = await CommunityService.getCommunityById(id);
+        const bikeData = await BikeService.getAmountFilteredBikesPerCommunity(
+          id,
+        );
+
+        setCommunity(communityData);
+        setAmountsBikesPerCommunity(bikeData);
+      } catch {
+        showFeedbackError();
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData(communityId);
+  }, [communityId]);
+
+  const redirectToRegister = () => {
+    const params = { communityId };
+    history.push('/comunidades/cadastrar-usuario', params);
+  };
 
   if (loading) {
     return <Loading />;
   }
 
   return (
-    <div>
+    <>
       <PageTitle
         id="communityId"
         iconName="gear"
@@ -59,6 +79,7 @@ const CommunityManagementPage: React.FC = () => {
             iconName="registerUser"
             text="Cadastrar usuária"
             iconDescription="Emprestar bicicleta"
+            onClick={redirectToRegister}
           />
         </Grid>
       </Grid>
@@ -87,7 +108,7 @@ const CommunityManagementPage: React.FC = () => {
           />
         </Grid>
       </Grid>
-    </div>
+    </>
   );
 };
 

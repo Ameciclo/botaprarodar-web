@@ -21,6 +21,13 @@ beforeEach(() => {
   localStorage.setItem('authStorage', JSON.stringify(INITIAL_AUTH));
 });
 
+// eslint-disable-next-line react/display-name
+export const mockedComponent = (ComponentName: string) => (props: any) => {
+  const ComponentMoked = <ComponentName {...props} />;
+
+  return ComponentMoked;
+};
+
 export function setUserAuthenticated() {
   const mockedUser: AuthInterface = {
     token: 'token',
@@ -35,9 +42,12 @@ export function renderWithRouterAndAuth(
   uiComponent: React.ReactElement,
   {
     route = '/',
+    stateParams = {},
     history = createMemoryHistory({ initialEntries: [route] }),
   } = {},
 ) {
+  history.push(route, stateParams);
+
   return {
     ...render(
       <AuthProvider>
