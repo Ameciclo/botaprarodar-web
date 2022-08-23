@@ -40,6 +40,7 @@ const CommunityMenu: React.FC<CommunityMenuProps> = ({ communityId }) => {
       >
         <MenuItem
           onClick={() => history.push(`/comunidades/editar/${communityId}`)}
+          data-testid="menu-test"
         >
           <EditOutlined /> Editar
         </MenuItem>
