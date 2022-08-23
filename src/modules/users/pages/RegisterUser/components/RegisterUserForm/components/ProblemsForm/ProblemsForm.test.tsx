@@ -1,6 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import { renderWithRouterAndAuth } from 'setupTests';
-import RegisterUserForm from '../../RegisterUserForm';
+import { render, screen } from '@testing-library/react';
 import ProblemsForm, { ProblemsFormProps } from './ProblemsForm';
 
 jest.mock('shared/components/Input/Input', () => () => `Input-component-mock`);
