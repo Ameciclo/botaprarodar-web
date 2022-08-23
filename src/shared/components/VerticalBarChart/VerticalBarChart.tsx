@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { Avatar, Grid, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import ChartDataProps from 'shared/models/ChartDataProps';

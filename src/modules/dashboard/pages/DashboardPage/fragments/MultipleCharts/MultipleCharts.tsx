@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Grid } from '@material-ui/core';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
@@ -60,7 +60,7 @@ const MultipleCharts: FC<MultipleChartsProps> = ({ data, charts }) => {
               props.label = label;
               props.aspectRatio = 2.5;
             }
-            return <Component {...props} key={`key-${type}`} />;
+            return <Component {...props} key={`key-${String(type)}`} />;
           })}
       </CustomCard>
     </Grid>

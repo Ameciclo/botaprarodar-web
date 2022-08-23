@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { PolarArea } from 'react-chartjs-2';
 import { useTheme } from '@material-ui/core';
 import { ChartOptions } from 'chart.js';
