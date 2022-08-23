@@ -26,7 +26,7 @@ describe('Menu', () => {
 
     fireEvent.click(getByText('Comunidades'));
 
-    expect(history.location.pathname).toBe('/comunidades');
+    expect(history.location.pathname).toBe('/selecao-de-comunidades');
   });
 
   it('should redirect to login page when click in logout button', () => {

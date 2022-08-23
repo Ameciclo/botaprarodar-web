@@ -17,9 +17,9 @@ export default (history: History, auth: AuthInterface) => [
   },
   {
     name: 'Comunidades',
-    path: '/comunidades',
+    path: '/selecao-de-comunidades',
     icon: GroupOutlined,
-    action: () => history.push('/comunidades'),
+    action: () => history.push('/selecao-de-comunidades'),
     hide: !auth?.authenticated,
   },
   {
