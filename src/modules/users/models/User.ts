@@ -1,24 +1,27 @@
-import { GenderTypes } from './GenderTypes';
+export interface UserQuiz {
+  alreadyUseBPR: boolean;
+  alreadyUseBPROpenQuestion: string;
+  motivationOpenQuestion: string;
+  alreadyAccidentVictim: boolean;
+  problemsOnWayOpenQuestion: string;
+  timeOnWayOpenQuestion: string;
+}
 
 export default interface User {
   name: string;
+  createDate: string;
+  address: string;
+  gender: string;
+  profilePicture: string;
   age: string;
+  racial: string;
+  schooling: string;
+  schoolingStatus: string;
   income: string;
   communityId: string;
   telephone: string;
   status: boolean;
-  gender: GenderTypes;
-  profilePicture: string;
   id: string;
-  address: string;
-  docNumber: bigint;
-  docPicture: string;
-  docPictureBack: string;
-  residenceProofPicture: string;
   isBlocked: boolean;
-  racial: string;
-  schooling: string;
-  userQuiz: {
-    alreadyUseBPR: boolean;
-  };
+  userQuiz: UserQuiz;
 }

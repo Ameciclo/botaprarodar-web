@@ -1,6 +1,6 @@
+import React, { FC, useMemo } from 'react';
 import { Avatar, Grid, Typography } from '@material-ui/core';
 import clsx from 'clsx';
-import React, { FC, useMemo } from 'react';
 import ChartDataProps from 'shared/models/ChartDataProps';
 import VerticalBarChartStyles from './VerticalBarChart.styles';
 

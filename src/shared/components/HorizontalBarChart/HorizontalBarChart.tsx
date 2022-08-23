@@ -1,7 +1,7 @@
-import { useTheme } from '@material-ui/core';
-import { ChartOptions } from 'chart.js';
 import { FC, useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { useTheme } from '@material-ui/core';
+import { ChartOptions } from 'chart.js';
 import ChartDataProps from 'shared/models/ChartDataProps';
 
 interface HorizontalBarChartProps {

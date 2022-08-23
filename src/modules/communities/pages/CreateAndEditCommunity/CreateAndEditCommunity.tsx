@@ -1,12 +1,12 @@
-import Community from 'modules/communities/models/Community';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Community from 'modules/communities/models/Community';
 import CommunityService from 'modules/communities/services/CommunityService';
 import { Loading } from 'shared/components';
 import FormHeader from 'shared/components/FormHeader/FormHeader';
-import useStyles from './CreateAndEditCommunity.styles';
-import EditCommunityForm from './components/CommunityForm/CommunityForm';
 import DeleteCommunityButton from './components/DeleteCommunityButton/DeleteCommunityButton';
+import EditCommunityForm from './components/CommunityForm/CommunityForm';
+import useStyles from './CreateAndEditCommunity.styles';
 
 const EditCommunityPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,7 +35,7 @@ const EditCommunityPage: React.FC = () => {
       <FormHeader
         link="/comunidades"
         title={
-          community?.name ? `Editar ${community.name}` : 'Criar comunidade'
+          community?.name ? `Editar ${community.name}` : 'Cadastrar comunidade'
         }
       />
       {loading ? (

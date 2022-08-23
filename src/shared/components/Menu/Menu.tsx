@@ -1,3 +1,5 @@
+import React, { FC, useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   AppBar,
   Divider,
@@ -14,8 +16,7 @@ import {
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import clsx from 'clsx';
-import React, { FC, useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { LogoBPRwhite, ArrowBack } from 'shared/assets';
 import {
   useClearAuth,
   useGetAuth,
@@ -34,6 +35,10 @@ const Menu: React.FC = ({ children }) => {
 
   const handleDrawer = () => {
     setOpen(state => !state);
+  };
+
+  const showMenuBar = () => {
+    return history.location.pathname !== '/selecao-de-comunidades';
   };
 
   const handleLogout = () => {
@@ -82,10 +87,18 @@ const Menu: React.FC = ({ children }) => {
   );
 
   const MenuDrawer = mobile ? ResizableDrawer : PermanentDrawer;
+
+  const showButtonLogout = () => {
+    if (getAuth.value.authenticated) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <>
       <AppBar className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.appBarLayout}>
           {mobile && (
             <IconButton
               color="inherit"
@@ -97,45 +110,61 @@ const Menu: React.FC = ({ children }) => {
               {open ? <ChevronLeftIcon /> : <MenuIcon />}
             </IconButton>
           )}
-          <Typography variant="h6" noWrap>
-            Bota pra rodar
-          </Typography>
+          <img src={LogoBPRwhite} alt="Logo do projeto Bota pra rodar" />
+
+          {showButtonLogout() && (
+            <Typography
+              variant="h6"
+              noWrap
+              onClick={handleLogout}
+              className={classes.logoutButtonStyle}
+            >
+              <img
+                src={ArrowBack}
+                alt="Logo do projeto Bota pra rodar"
+                className={classes.arrowStyle}
+              />
+              Sair
+            </Typography>
+          )}
         </Toolbar>
       </AppBar>
-      <MenuDrawer>
-        <Toolbar />
-        <div className={classes.drawerContainer}>
-          <List>
-            {menuItems(history, getAuth.value, handleLogout).map(
-              item =>
-                !item.hide && (
-                  <div className={handleActiveMenu(item)} key={item.name}>
-                    <ListItem
-                      button
-                      key={item.name}
-                      onClick={item.action}
-                      disabled={item.disabled}
-                    >
-                      <ListItemIcon>
-                        <item.icon />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={item.name}
-                        style={{ fontWeight: 500 }}
-                      />
-                    </ListItem>
-                    {item.name === 'Usuários' && (
-                      <Divider className={classes.separator} />
-                    )}
-                  </div>
-                ),
-            )}
-          </List>
-        </div>
-      </MenuDrawer>
+      {showMenuBar() && (
+        <MenuDrawer>
+          <Toolbar />
+          <div className={classes.drawerContainer}>
+            <List>
+              {menuItems(history, getAuth.value).map(
+                item =>
+                  !item.hide && (
+                    <div className={handleActiveMenu(item)} key={item.name}>
+                      <ListItem
+                        button
+                        key={item.name}
+                        onClick={item.action}
+                        disabled={item.disabled}
+                      >
+                        <ListItemIcon>
+                          <item.icon />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={item.name}
+                          style={{ fontWeight: 500 }}
+                        />
+                      </ListItem>
+                      {item.name === 'Usuários' && (
+                        <Divider className={classes.separator} />
+                      )}
+                    </div>
+                  ),
+              )}
+            </List>
+          </div>
+        </MenuDrawer>
+      )}
       <main
         className={clsx(classes.content, {
-          [classes.contentShift]: mobile,
+          [classes.contentShift]: mobile || !showMenuBar(),
         })}
       >
         <Toolbar />

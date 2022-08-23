@@ -1,25 +1,20 @@
-import { Typography } from '@material-ui/core';
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import useStyles from './EmptyState.style';
 
-type EmptyStateProps = {
+export type Props = {
   imgSrc: string;
   heading: string;
   subheading: string;
 };
 
-const EmptyState: React.FC<EmptyStateProps> = ({
-  imgSrc,
-  heading,
-  subheading,
-}) => {
+const EmptyState: React.FC<Props> = ({ imgSrc, heading, subheading }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div data-testid="empty-state" className={classes.root}>
       <img src={imgSrc} alt="ciclistas" className={classes.image} />
       <Typography variant="h3" component="h3" className={classes.heading}>
-        {' '}
         {heading}
       </Typography>
       <Typography variant="h4" component="h4" className={classes.subheading}>

@@ -1,10 +1,10 @@
-import { act, render, waitFor } from '@testing-library/react';
 import { BrowserRouter, Router } from 'react-router-dom';
+import { act, render, waitFor } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import UserDetailPage from './UserDetailPage';
 import UserService from '../../services/UserService';
 import { MockedFirstUser } from '../../mocks/MockedUser';
 import Route from '../../../../routes/Route';
+import UserDetailPage from './UserDetailPage';
 
 jest.mock('../../services/UserService');
 const mockedUserService = UserService as jest.Mocked<typeof UserService>;

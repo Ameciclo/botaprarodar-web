@@ -1,48 +1,34 @@
-import { GenderTypes } from '../models/GenderTypes';
+import { GenderEnum, IncomeEnum } from 'modules/users/models/enums';
 import User from '../models/User';
 
-export const MockedFirstUser: User = {
+export const mockedUser = (): User => ({
   name: 'Antoni',
+  createDate: '29-03-2011',
   communityId: '-MLDOXs3p35DEHg0gdUU',
   age: '5',
-  income: 'Entre 350 e 500',
+  income: IncomeEnum.notInformed,
   telephone: '+55 51 3626-2001',
-  gender: GenderTypes.Masculino,
+  gender: GenderEnum.notDeclared,
   status: true,
   id: '123',
   profilePicture: 'test',
   address: 'Test street',
-  docNumber: BigInt(12345678910),
-  docPictureBack: 'test-back-picture',
-  docPicture: 'test-picture',
-  residenceProofPicture: 'residence-picture',
   isBlocked: false,
-  racial: 'Parda',
-  schooling: 'Ensino médio completo',
+  racial: '',
+  schooling: '',
+  schoolingStatus: '',
   userQuiz: {
     alreadyUseBPR: false,
+    alreadyUseBPROpenQuestion: 'Trabalho',
+    motivationOpenQuestion: 'trabalho',
+    alreadyAccidentVictim: true,
+    problemsOnWayOpenQuestion: 'Não',
+    timeOnWayOpenQuestion: '50min',
   },
-};
+});
 
-export const MockedSecondUser: User = {
-  name: 'Antonia Maria da Silva ',
-  communityId: '-MLDOXs3p35DEHg0gdUU',
-  telephone: '+55 51 3626-2001',
-  gender: GenderTypes.Feminino,
-  age: '40',
-  income: 'Entre 750 e 1100',
-  status: true,
-  id: '321',
-  profilePicture: 'test',
-  address: 'Test street',
-  docNumber: BigInt(12345678910),
-  docPictureBack: 'test-back-picture',
-  docPicture: 'test-picture',
-  residenceProofPicture: 'residence-picture',
-  isBlocked: false,
-  racial: 'Negra',
-  schooling: 'Ensino médio incompleto',
-  userQuiz: {
-    alreadyUseBPR: false,
-  },
-};
+export const MockedFirstUser: User = mockedUser();
+
+export const MockedSecondUser: User = mockedUser();
+
+export const mockUserMissingInfo: User = mockedUser();

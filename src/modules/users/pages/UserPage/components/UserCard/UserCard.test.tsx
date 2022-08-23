@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import {
   act,
   fireEvent,
@@ -5,9 +6,8 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import UserService from 'modules/users/services/UserService';
+import { MockedFirstUser } from 'modules/users/mocks/MockedUser';
 import UserCard from './UserCard';
 
 jest.mock('modules/users/services/UserService');
@@ -15,17 +15,7 @@ const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
 let container: HTMLElement;
 
-const mockUser = {
-  name: 'Test',
-  communityId: '123',
-  telephone: '32423',
-  status: true,
-  profilePicture: 'test',
-  id: '1',
-  address: 'Test street',
-  docNumber: BigInt(12345678910),
-  isBlocked: false,
-};
+const mockUser = MockedFirstUser;
 
 beforeEach(() => {
   container = render(

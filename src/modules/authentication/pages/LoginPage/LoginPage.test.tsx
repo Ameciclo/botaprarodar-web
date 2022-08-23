@@ -1,8 +1,8 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import LoginService from '../../services/LoginService';
-import LoginPage from './LoginPage';
 import { renderWithRouterAndAuth } from '../../../../setupTests';
+import LoginPage from './LoginPage';
 
 jest.mock('../../services/LoginService', () => {
   return {
@@ -13,7 +13,7 @@ const mockedLoginService = LoginService as jest.Mocked<typeof LoginService>;
 
 async function fillAndSubmitLoginForm(email: string, password: string) {
   const emailField = screen.getByTestId('e-mail');
-  const passwordField = screen.getByTestId('password');
+  const passwordField = screen.getByLabelText('Senha');
 
   fireEvent.change(emailField, {
     target: { value: email },
@@ -41,7 +41,7 @@ describe('Login Page', () => {
 
   it('should have e-mail and password fields', () => {
     const emailField = screen.getByTestId('e-mail');
-    const passwordField = screen.getByTestId('password');
+    const passwordField = screen.getByLabelText('Senha');
     expect(emailField).toBeInTheDocument();
     expect(passwordField).toBeInTheDocument();
   });
@@ -76,7 +76,7 @@ describe('Login Page', () => {
   });
 
   it('should show error messages when password field is empty', async () => {
-    const passwordField = screen.getByTestId('password');
+    const passwordField = screen.getByLabelText('Senha');
 
     fireEvent.blur(passwordField);
 
@@ -103,7 +103,8 @@ describe('Login Page', () => {
     });
 
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
-
-    await waitFor(() => expect(wrapper.history.location.pathname).toBe('/'));
+    await waitFor(() =>
+      expect(wrapper.history.location.pathname).toBe('/selecao-de-comunidades'),
+    );
   });
 });

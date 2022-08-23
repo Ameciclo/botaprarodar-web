@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export default makeStyles({
+export default makeStyles(theme => ({
   root: {
     backgroundColor: '#E5E5E5',
     display: 'flex',
@@ -13,52 +13,44 @@ export default makeStyles({
       backgroundColor: '#D8D8D8',
     },
   },
-  logoSize: {
-    height: '90px',
-    width: '117px',
+  imageEdit: {
+    height: '135px',
+    width: '240px',
     alignSelf: 'center',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+      height: '80%',
+    },
   },
   loginPaper: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     display: 'flex',
     alignSelf: 'center',
     flexDirection: 'column',
-    width: '487px',
-    height: '494px',
-    left: '0%',
-    right: '0%',
-    bottom: '0%',
-    top: '0%',
+    width: '50%',
+    padding: '20px',
+    maxWidth: '440px',
+    maxHeight: '515px',
     background: '#FFFFFF',
   },
-  fontStyle: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    fontSize: 14,
-    color: '#515151',
-    letterSpacing: '0.1px',
-    alignSelf: 'center',
-  },
   loginForm: {
-    height: '300px',
-    justifyContent: 'space-between',
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
+    width: '100%',
   },
   fieldsLogin: {
-    marginLeft: '33px',
-    marginRight: '33px',
-    width: '421px',
-    height: '52.7px',
+    margin: '10px',
+    width: '90%',
   },
   buttonStyle: {
+    margin: '10px',
     background: '#018786',
     borderRadius: '4px',
-    width: '179px',
-    height: '40px',
+    width: '90%',
+    height: '100%',
     fontStyle: 'normal',
     color: '#FFFFFF',
     fontFamily: 'Roboto',
@@ -67,21 +59,6 @@ export default makeStyles({
     letterSpacing: '1.25px',
     '&:hover': {
       backgroundColor: '#0187867F',
-    },
-  },
-  backButtonStyle: {
-    background: '#B00020',
-    borderRadius: '4px',
-    width: '179px',
-    height: '40px',
-    fontStyle: 'normal',
-    color: '#FFFFFF',
-    fontFamily: 'Roboto',
-    fontWeight: 500,
-    fontSize: 14,
-    letterSpacing: '1.25px',
-    '&:hover': {
-      backgroundColor: '#B000207F',
     },
   },
   errorIconStyle: {
@@ -106,4 +83,4 @@ export default makeStyles({
     fontFamily: 'Roboto',
     color: 'red',
   },
-});
+}));

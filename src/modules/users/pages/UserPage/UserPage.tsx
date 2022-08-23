@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Grid } from '@material-ui/core';
-import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
+import EmptyState from 'shared/components/EmptyState/EmptyState';
 import User from '../../models/User';
 import UserService from '../../services/UserService';
+import Loading from '../../../../shared/components/Loading/Loading';
 import UserCard from './components/UserCard/UserCard';
 import useStyles from './UserPage.styles';
-import Loading from '../../../../shared/components/Loading/Loading';
 
 const UserPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);

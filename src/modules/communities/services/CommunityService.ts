@@ -9,7 +9,7 @@ const CommunityService = {
       return { id, ...data[id] };
     });
   },
-  async getCommunityById(id: string) {
+  async getCommunityById(id: string): Promise<Community> {
     const { data } = await api.get(`/communities/${id}.json`);
     return data;
   },

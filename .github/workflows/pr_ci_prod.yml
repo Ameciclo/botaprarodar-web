@@ -1,15 +1,19 @@
-name: Run tests
+name: CI for PRs - PROD
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches:
+      - production
 jobs:
-  test:
+  TestingPR:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Get main
-        run: git fetch origin main
+          ref: production
+      - name: Get production
+        run: git fetch origin production
       - name: Install dependencies
         run: npm install
       - name: Install Jest globally

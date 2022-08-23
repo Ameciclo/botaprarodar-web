@@ -1,0 +1,118 @@
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import {
+  PageTitle,
+  Loading,
+  CustomLabel,
+  toast,
+  CustomCardWithIcon,
+} from 'shared/components';
+import BikeService from 'modules/bicycles/services/BikeService';
+import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommunity';
+import CommunityService from 'modules/communities/services/CommunityService';
+import Community from 'modules/communities/models/Community';
+import CommunityMenu from '../components/CommunityMenu/CommunityMenu';
+
+type Params = {
+  id: string;
+};
+
+const CommunityManagementPage: React.FC = () => {
+  const [community, setCommunity] = useState<Community>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [amountsBikesPerCommunity, setAmountsBikesPerCommunity] =
+    useState<AmountBikesPerCommunity>();
+
+  const history = useHistory();
+  const { id: communityId } = useParams<Params>();
+
+  const showFeedbackError = () => {
+    toast.error('Erro ao carregar comunidade.');
+  };
+
+  useEffect(() => {
+    if (!communityId) return;
+
+    const fetchData = async id => {
+      setLoading(true);
+
+      try {
+        const communityData = await CommunityService.getCommunityById(id);
+        const bikeData = await BikeService.getAmountFilteredBikesPerCommunity(
+          id,
+        );
+
+        setCommunity(communityData);
+        setAmountsBikesPerCommunity(bikeData);
+      } catch {
+        showFeedbackError();
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData(communityId);
+  }, [communityId]);
+
+  const redirectToRegister = () => {
+    const params = { communityId };
+    history.push('/comunidades/cadastrar-usuario', params);
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  return (
+    <>
+      <Grid container spacing={2}>
+        <Grid item xs={3} md={3} sm={3}>
+          <PageTitle id="communityId" text={community?.name || ''} />
+        </Grid>
+        <Grid item xs={1} md={1} sm={1} style={{ marginLeft: '-40px' }}>
+          <CommunityMenu communityId={communityId} />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="emprestar-bicicleta"
+            iconName="registerUser"
+            text="Cadastrar usuária"
+            iconDescription="Emprestar bicicleta"
+            onClick={redirectToRegister}
+          />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
+            <CustomLabel
+              text="Total de bicicletas"
+              total={amountsBikesPerCommunity?.total}
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <CustomLabel
+              text="Bicicletas disponíveis"
+              total={amountsBikesPerCommunity?.available}
+            />
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <CustomLabel
+            text="Bicicletas emprestadas"
+            total={amountsBikesPerCommunity?.borrowed}
+            variant="primary"
+          />
+        </Grid>
+      </Grid>
+    </>
+  );
+};
+
+export default CommunityManagementPage;

@@ -5,6 +5,9 @@ export default makeStyles({
     width: '100%',
     height: '100%',
     display: 'inline-block',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   cardHeader: {
     display: 'flex',
@@ -40,7 +43,16 @@ export default makeStyles({
   listItem: {
     padding: 0,
     marginBottom: 10,
-    width: '80%',
+    width: '97%',
+    '&:last-child': {
+      marginBottom: 0,
+    },
+  },
+  listAddressItem: {
+    paddingTop: '16px',
+    borderTop: '0.5px solid #515151',
+    marginBottom: 10,
+    width: '97%',
     '&:last-child': {
       marginBottom: 0,
     },
@@ -51,5 +63,6 @@ export default makeStyles({
   listItemText: {
     fontSize: '14px',
     color: '#515151',
+    wordBreak: 'break-all',
   },
 });

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Loading } from 'shared/components';
+import { Link, useParams } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import { ArrowBackIos } from '@material-ui/icons';
-import { Link, useParams } from 'react-router-dom';
+import { Loading } from 'shared/components';
 import User from 'modules/users/models/User';
 import UserService from 'modules/users/services/UserService';
-import useStyles from './UserDetailPage.styles';
 import { UserDetailHeading, UserDetailInfo } from './components';
+import useStyles from './UserDetailPage.styles';
 
 const UserDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -8,10 +10,8 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import Community from 'modules/communities/models/Community';
-import { useForm } from 'react-hook-form';
 import { Input, toast } from 'shared/components';
 import CommunityService from 'modules/communities/services/CommunityService';
-import { useHistory } from 'react-router-dom';
 import useStyles from './CommunityForm.styles';
 
 interface EditCommunityProps {
@@ -23,20 +23,6 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
   const history = useHistory();
   const { handleSubmit, control } = useForm();
   const [loading, setLoading] = useState(false);
-
-  EditCommunityForm.defaultProps = {
-    community: {
-      id: '',
-      address: '',
-      created_date: new Date(),
-      description: '',
-      name: '',
-      org_email: '',
-      org_name: '',
-      bicycles: [],
-      withdrawals: [],
-    },
-  };
 
   const onSubmit = (data: any) => {
     if (community?.id) {
@@ -152,6 +138,20 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
       </CardContent>
     </Card>
   );
+};
+
+EditCommunityForm.defaultProps = {
+  community: {
+    id: '',
+    address: '',
+    created_date: new Date(),
+    description: '',
+    name: '',
+    org_email: '',
+    org_name: '',
+    bicycles: [],
+    withdrawals: [],
+  },
 };
 
 export default EditCommunityForm;

@@ -6,47 +6,42 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import {
-  AccountCircleOutlined,
-  MailOutlineOutlined,
-  PlaceOutlined,
-} from '@material-ui/icons';
-import useStyles from './CommunityCard.styles';
+import { PlaceOutlined } from '@material-ui/icons';
 import CommunityMenu from '../CommunityMenu/CommunityMenu';
+import Community from '../../../../models/Community';
+import useStyles from './CommunityCard.styles';
 
-const CommunityCard: React.FC<any> = ({ community }) => {
+interface CommunityCardProps {
+  community: Community;
+  showEditOption: boolean;
+  onClick(): void;
+}
+
+const CommunityCard: React.FC<CommunityCardProps> = ({
+  community,
+  showEditOption,
+  onClick,
+}) => {
   const classes = useStyles();
 
   return (
     <>
-      <Card className={classes.root}>
+      <Card className={classes.root} onClick={onClick}>
         <CardContent className={classes.cardContent}>
           <div className={classes.cardHeader}>
             <Typography variant="h6" component="h2" className={classes.title}>
               {community.name}
             </Typography>
-            <CommunityMenu communityId={community.id} />
+            {showEditOption && <CommunityMenu communityId={community.id} />}
           </div>
           <List>
             <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <AccountCircleOutlined />
-              </ListItemIcon>
               <ListItemText
-                secondary={community.org_name || 'Nome do gestor não informado'}
+                secondary={community.description || 'Descrição não informada'}
                 className={classes.listItemText}
               />
             </ListItem>
-            <ListItem className={classes.listItem}>
-              <ListItemIcon className={classes.listItemIcon}>
-                <MailOutlineOutlined />
-              </ListItemIcon>
-              <ListItemText
-                secondary={community.org_email || 'E-mail não informado'}
-                className={classes.listItemText}
-              />
-            </ListItem>
-            <ListItem className={classes.listItem}>
+            <ListItem className={classes.listAddressItem}>
               <ListItemIcon className={classes.listItemIcon}>
                 <PlaceOutlined />
               </ListItemIcon>

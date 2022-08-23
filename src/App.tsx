@@ -1,11 +1,12 @@
+import { Suspense } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { createTheme } from '@material-ui/core';
 import { ptBR } from '@material-ui/core/locale';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { AuthProvider } from 'modules/authentication/contexts/AuthContext';
-import { BrowserRouter as Router } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'shared/components';
-import Routes from './routes';
+import Routes from './routes/Routes';
 import 'shared/styles/global.css';
 
 const Theme = createTheme(
@@ -28,7 +29,9 @@ function App() {
       <ThemeProvider theme={Theme}>
         <AuthProvider>
           <ToastContainer />
-          <Routes />
+          <Suspense fallback={<></>}>
+            <Routes />
+          </Suspense>
         </AuthProvider>
       </ThemeProvider>
     </Router>

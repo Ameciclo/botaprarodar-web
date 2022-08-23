@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import useStyles from './CreateCommunityButton.styles';
 
 const DeleteCommunityButton: React.FC = () => {
@@ -17,7 +17,7 @@ const DeleteCommunityButton: React.FC = () => {
       className={classes.button}
       onClick={handleClick}
     >
-      Criar comunidade
+      Cadastrar comunidade
     </Button>
   );
 };

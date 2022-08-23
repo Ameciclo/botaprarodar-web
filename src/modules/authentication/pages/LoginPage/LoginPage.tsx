@@ -1,8 +1,17 @@
-import { Button, FormHelperText, Paper, TextField } from '@material-ui/core';
-import ErrorIcon from '@material-ui/icons/Error';
-import { useFormControls } from 'modules/authentication/hooks/index';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import {
+  Button,
+  FormHelperText,
+  Paper,
+  TextField,
+  InputAdornment,
+  IconButton,
+} from '@material-ui/core';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import ErrorIcon from '@material-ui/icons/Error';
+import { useFormControls } from 'modules/authentication/hooks/index';
 import { LogoBPR } from '../../../../shared/assets/index';
 import { useHandleAuth } from '../../contexts/AuthContext';
 import LoginService from '../../services/LoginService';
@@ -17,6 +26,9 @@ const LoginPage: React.FC = () => {
   const { values, errors, handleInputChange, formIsValid } = useFormControls();
 
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   useEffect(() => {
     setAuthenticationError(false);
@@ -32,7 +44,7 @@ const LoginPage: React.FC = () => {
     if (user?.authenticated) {
       onChange(user);
       await setAuthenticationError(false);
-      history.push('/');
+      history.push('/selecao-de-comunidades');
     }
   }
 
@@ -43,61 +55,65 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  const handleBack = () => {
-    history.go(-1);
-  };
-
   return (
     <div className={classes.root}>
       <Paper className={classes.loginPaper}>
         <img
           src={LogoBPR}
           alt="Logo do projeto Bota pra rodar"
-          className={classes.logoSize}
+          className={classes.imageEdit}
         />
         <form onSubmit={handleSubmit} className={classes.loginForm}>
-          <span className={classes.fontStyle}> Entrar no Bota pra Rodar </span>
-          <div>
-            <TextField
-              label="E-mail"
-              type="text"
-              name="email"
-              onError={err => err}
-              variant="outlined"
-              inputProps={{
-                'data-testid': 'e-mail',
-              }}
-              className={classes.fieldsLogin}
-              onChange={handleInputChange}
-              onBlur={handleInputChange}
-              error={!!errors.email}
-            />
-            {errors.email && (
-              <FormHelperText error className={classes.errorMessageFields}>
-                <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
-                &nbsp;{errors.email}
-              </FormHelperText>
-            )}
-          </div>
-          <div>
-            <TextField
-              label="Senha"
-              type="password"
-              name="password"
-              variant="outlined"
-              inputProps={{ 'data-testid': 'password' }}
-              className={classes.fieldsLogin}
-              onChange={handleInputChange}
-              onBlur={handleInputChange}
-              error={!!errors.password}
-            />
-            {errors.password && (
-              <FormHelperText error className={classes.errorMessageFields}>
-                <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
-                &nbsp;{errors.password}
-              </FormHelperText>
-            )}
-          </div>
+          <TextField
+            label="E-mail"
+            type="text"
+            name="email"
+            onError={err => err}
+            variant="outlined"
+            inputProps={{
+              'data-testid': 'e-mail',
+            }}
+            className={classes.fieldsLogin}
+            onChange={handleInputChange}
+            onBlur={handleInputChange}
+            error={!!errors.email}
+          />
+          {errors.email && (
+            <FormHelperText error className={classes.errorMessageFields}>
+              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              &nbsp;{errors.email}
+            </FormHelperText>
+          )}
+          <TextField
+            label="Senha"
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            id="password"
+            variant="outlined"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            className={classes.fieldsLogin}
+            onChange={handleInputChange}
+            onBlur={handleInputChange}
+            error={!!errors.password}
+          />
+          {errors.password && (
+            <FormHelperText error className={classes.errorMessageFields}>
+              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              &nbsp;{errors.password}
+            </FormHelperText>
+          )}
           {authenticationError && (
             <span className={classes.errorMessageLogin}>
               E-mail ou senha incorretos.
@@ -110,13 +126,6 @@ const LoginPage: React.FC = () => {
             disabled={!formIsValid()}
           >
             Entrar
-          </Button>
-          <Button
-            data-testid="back-button"
-            className={`${classes.backButtonStyle} ${classes.disabled}`}
-            onClick={() => handleBack()}
-          >
-            Voltar
           </Button>
         </form>
       </Paper>

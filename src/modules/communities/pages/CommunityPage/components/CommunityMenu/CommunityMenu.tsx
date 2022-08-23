@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button, MenuItem, Menu } from '@material-ui/core';
 import { MoreHoriz, EditOutlined } from '@material-ui/icons';
-import { useHistory } from 'react-router-dom';
 import useStyles from './CommunityMenu.styles';
 
 interface CommunityMenuProps {
@@ -40,6 +40,7 @@ const CommunityMenu: React.FC<CommunityMenuProps> = ({ communityId }) => {
       >
         <MenuItem
           onClick={() => history.push(`/comunidades/editar/${communityId}`)}
+          data-testid="menu-test"
         >
           <EditOutlined /> Editar
         </MenuItem>

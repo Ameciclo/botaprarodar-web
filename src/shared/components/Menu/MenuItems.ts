@@ -2,24 +2,12 @@ import {
   GroupOutlined,
   DashboardOutlined,
   DirectionsBikeOutlined,
-  ArrowBack,
   SupervisedUserCircleOutlined,
 } from '@material-ui/icons';
 import { History } from 'history';
 import AuthInterface from '../../../modules/authentication/models/AuthInterface';
 
-export default (
-  history: History,
-  auth: AuthInterface,
-  handleLogout: () => void,
-) => [
-  {
-    name: 'Login',
-    path: '/login',
-    icon: SupervisedUserCircleOutlined,
-    action: () => history.push('/login'),
-    hide: auth.authenticated,
-  },
+export default (history: History, auth: AuthInterface) => [
   {
     name: 'Dados',
     path: '/',
@@ -29,9 +17,9 @@ export default (
   },
   {
     name: 'Comunidades',
-    path: '/comunidades',
+    path: '/selecao-de-comunidades',
     icon: GroupOutlined,
-    action: () => history.push('/comunidades'),
+    action: () => history.push('/selecao-de-comunidades'),
     hide: !auth?.authenticated,
   },
   {
@@ -46,12 +34,6 @@ export default (
     path: '',
     icon: SupervisedUserCircleOutlined,
     disabled: true,
-    hide: !auth?.authenticated,
-  },
-  {
-    name: 'Sair',
-    icon: ArrowBack,
-    action: handleLogout,
     hide: !auth?.authenticated,
   },
 ];
