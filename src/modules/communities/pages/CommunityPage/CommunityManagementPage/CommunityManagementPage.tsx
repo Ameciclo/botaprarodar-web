@@ -12,6 +12,7 @@ import BikeService from 'modules/bicycles/services/BikeService';
 import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
 import Community from 'modules/communities/models/Community';
+import CommunityMenu from '../components/CommunityMenu/CommunityMenu';
 
 type Params = {
   id: string;
@@ -65,12 +66,14 @@ const CommunityManagementPage: React.FC = () => {
 
   return (
     <>
-      <PageTitle
-        id="communityId"
-        iconName="gear"
-        text={community?.name || ''}
-        iconDescription="Ícone de Configurações"
-      />
+      <Grid container spacing={2}>
+        <Grid item xs={3} md={3} sm={3}>
+          <PageTitle id="communityId" text={community?.name || ''} />
+        </Grid>
+        <Grid item xs={1} md={1} sm={1} style={{ marginLeft: '-40px' }}>
+          <CommunityMenu communityId={communityId} />
+        </Grid>
+      </Grid>
 
       <Grid container spacing={2}>
         <Grid item xs={12} md={3} sm={6}>

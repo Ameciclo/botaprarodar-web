@@ -23,9 +23,8 @@ const PageTitle: FC<Props> = ({ id, text, iconName, iconDescription = '' }) => {
       alignItems="center"
       justifyContent="flex-start"
       spacing={2}
-      xs={12}
     >
-      <Typography variant="h5" data-testId={id}>
+      <Typography variant="h5" data-testid={id}>
         {text}
       </Typography>
 
