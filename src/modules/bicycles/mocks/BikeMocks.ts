@@ -7,6 +7,7 @@ import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 interface MockedBikeParams {
   communityId?: string;
   available?: boolean;
+  inUse?: boolean;
 }
 
 const mockedBikeDevolutions = (): Devolution => ({
@@ -30,13 +31,13 @@ const mockedBikeWidraws = (): BikeWithdraw => ({
 
 export const mockedBike = (params: MockedBikeParams = {}): Bike => {
   return {
-    available: !!params.available,
+    available: !!params.available || true,
     communityId: params.communityId || '-MLDOXs3p35DEHg0gdUU',
     createdDate: '09/08/2021',
     withdraws: [mockedBikeWidraws()],
     devolutions: [mockedBikeDevolutions()],
     id: '-MgfYTcrUFsX_NXhhvL2',
-    inUse: false,
+    inUse: !params.inUse || false,
     name: 'Bike 1',
     orderNumber: 12345,
     path: 'bikes',

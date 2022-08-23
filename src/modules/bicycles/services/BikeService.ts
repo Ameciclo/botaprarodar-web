@@ -26,7 +26,7 @@ const BikeService = {
         );
         total = bikePerCommunity.length;
 
-        borrowed = bikePerCommunity.filter(bike => !bike.available).length;
+        borrowed = bikePerCommunity.filter(bike => bike.inUse).length;
 
         available = total - borrowed;
       }
