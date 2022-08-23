@@ -88,8 +88,12 @@ describe('Bike Service', () => {
       it('should get all bikes in a different communities with available bikes', async () => {
         mockedApiBikesResponse.data = [
           mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y', available: true }),
-          mockedBike({ communityId: '-MLDOXs3p35DEHg0gdUU', available: true }),
+          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
+          mockedBike({
+            communityId: '-MLDOXs3p35DEHg0gdUU',
+            available: false,
+            inUse: true,
+          }),
           mockedBike({ communityId: '-MLDOXs3p35DEHg0gdUU' }),
         ];
         mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
