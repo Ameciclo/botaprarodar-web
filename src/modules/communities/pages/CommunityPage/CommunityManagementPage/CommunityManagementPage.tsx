@@ -13,6 +13,7 @@ import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommun
 import CommunityService from 'modules/communities/services/CommunityService';
 import Community from 'modules/communities/models/Community';
 import CommunityMenu from '../components/CommunityMenu/CommunityMenu';
+import useStyles from './CommunityManagementPage.styles';
 
 type Params = {
   id: string;
@@ -26,6 +27,7 @@ const CommunityManagementPage: React.FC = () => {
 
   const history = useHistory();
   const { id: communityId } = useParams<Params>();
+  const classes = useStyles();
 
   const showFeedbackError = () => {
     toast.error('Erro ao carregar comunidade.');
@@ -66,11 +68,11 @@ const CommunityManagementPage: React.FC = () => {
 
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid item xs={3} md={3} sm={3}>
+      <Grid container spacing={1}>
+        <Grid className={classes.headerStyle}>
           <PageTitle id="communityId" text={community?.name || ''} />
         </Grid>
-        <Grid item xs={1} md={1} sm={1} style={{ marginLeft: '-40px' }}>
+        <Grid>
           <CommunityMenu communityId={communityId} />
         </Grid>
       </Grid>
