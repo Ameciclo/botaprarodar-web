@@ -45,7 +45,7 @@ const LoginPage = () => {
 
   const saveUser = (user: AuthInterface) => saveUserInContext(user);
 
-  const redirectToLoggedPage = () => history.push(ROUTER.DASHBOARD);
+  const redirectToLoggedPage = () => history.push(ROUTER.HOME);
 
   return (
     <Grid container className={classes.wrapper}>
