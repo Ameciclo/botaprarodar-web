@@ -1,5 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { renderWithRouterAndAuth } from '../../../../setupTests';
+import { renderWithRouterAndAuth } from 'setupTests';
 import LoginPage from './Login';
 
 import 'shared/components/Logo/Logo';
@@ -9,7 +8,5 @@ describe('Page: Login', () => {
     renderWithRouterAndAuth(<LoginPage />, {
       route: '/login',
     });
-
-    screen.debug();
   });
 });

@@ -55,8 +55,6 @@ const FormLogin: FC<Props> = ({
 
       {hasServerError && (
         <ErrorText id="error-server" text="E-mail ou senha incorretos." />
-        // <div data-testid="error-server"></div>
-        // <ErrorText id="error-server" text="E-mail ou senha incorretos." />
       )}
 
       <div className={classes.wrapperButton}>
