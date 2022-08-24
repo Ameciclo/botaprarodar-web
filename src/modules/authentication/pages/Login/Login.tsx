@@ -26,7 +26,7 @@ const LoginPage = () => {
   const { onChange: saveUserInContext } = useHandleAuth();
   const { isDirty, isValid } = formState;
 
-  const onSubmit: SubmitHandler<FormValues> = async data => {
+  const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     try {
       const { email, password } = data;
       const user = await LoginService.requestLogin(email, password);

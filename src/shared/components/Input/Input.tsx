@@ -15,7 +15,6 @@ interface InputProps {
   className?: string;
   defaultValue?: string;
   mask?: MaskType;
-  fullWidth?: boolean;
   margin?: PropTypes.Margin;
   rules: Record<string, unknown>;
   fullWidth?: boolean;

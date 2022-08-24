@@ -1,4 +1,4 @@
-import type { SchemaType } from 'shared/models';
+import type { SchemaType as Rules } from 'shared/models';
 
 export interface FormValues {
   email: string;
@@ -10,7 +10,11 @@ export const defaultValues: FormValues = {
   password: '',
 };
 
-export const schema: SchemaType = {
+type Keys = keyof typeof defaultValues;
+
+export type Schema = Record<Keys, Rules>;
+
+export const schema: Schema = {
   email: {
     required: 'Digite seu e-mail',
     pattern: {
