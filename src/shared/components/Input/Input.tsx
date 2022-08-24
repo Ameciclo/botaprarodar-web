@@ -71,7 +71,10 @@ const Input: React.FC<InputProps> = ({
                   size="medium"
                   helperText={
                     error ? (
-                      <span className={classes.errorContainer}>
+                      <span
+                        data-testid={`error-${name}`}
+                        className={classes.errorContainer}
+                      >
                         <ErrorOutline />
                         {error.message}
                       </span>
@@ -99,7 +102,10 @@ const Input: React.FC<InputProps> = ({
               error={!!error}
               helperText={
                 error ? (
-                  <span className={classes.errorContainer}>
+                  <span
+                    data-testid={`error-${name}`}
+                    className={classes.errorContainer}
+                  >
                     <ErrorOutline />
                     {error.message}
                   </span>
