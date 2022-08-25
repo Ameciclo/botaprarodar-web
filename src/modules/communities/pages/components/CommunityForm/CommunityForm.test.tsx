@@ -7,8 +7,8 @@ import {
   waitFor,
 } from '@testing-library/react';
 import CommunityService from 'modules/communities/services/CommunityService';
-import { MockedFirstCommunity } from '../../../../mocks/MockedCommunity';
-import EditCommunityForm from './CommunityForm';
+import { MockedFirstCommunity } from '../../../mocks/MockedCommunity';
+import CommunityForm from './CommunityForm';
 
 jest.mock('modules/communities/services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
@@ -20,9 +20,9 @@ async function fillAndSubmitComunityForm(
   communityName: string,
   orgEmail: string,
 ) {
-  const orgNameField = screen.getByTestId('org_name');
+  const orgNameField = screen.getByTestId('org-name');
   const communityNameField = screen.getByTestId('name-test');
-  const orgEmailField = screen.getByTestId('org_email');
+  const orgEmailField = screen.getByTestId('org-email');
 
   fireEvent.change(orgNameField, {
     target: { value: orgName },
@@ -41,7 +41,7 @@ async function fillAndSubmitComunityForm(
 
 describe('CommunityForm', () => {
   beforeEach(() => {
-    render(<EditCommunityForm community={MockedFirstCommunity} />);
+    render(<CommunityForm community={MockedFirstCommunity} />);
   });
   it('should render community form component', async () => {
     expect(screen.getByDisplayValue('joao@joao.com')).toBeInTheDocument();

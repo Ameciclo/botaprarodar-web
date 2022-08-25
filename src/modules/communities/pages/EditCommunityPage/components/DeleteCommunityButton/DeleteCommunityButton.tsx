@@ -31,7 +31,7 @@ const DeleteCommunityButton: React.FC<{ communityId: string }> = ({
     if (communityId) {
       CommunityService.deleteCommunityById(communityId)
         .then(() => {
-          history.push('/comunidades');
+          history.push('/selecao-de-comunidades');
           toast.success('Comunidade deletada com sucesso.');
         })
         .catch(() => {

@@ -2,8 +2,15 @@
 
 Qualquer mudança significativa no código do projeto estará presente neste change logs.
 
-## [2.0.1](https://github.com/Ameciclo/botaprarodar-web/releases/tag/2.0.1) (24-8-2022)
+## [2.0.2](https://github.com/Ameciclo/botaprarodar-web/compare/2.0.1...2.0.2) (25-8-2022)
 
+Esta release contempla apenas uma correção no fluxo do usuário:
+
+### Bug Fixes
+
+- Correção do botão de "Voltar" no form de criação e edição de comunidades que estava redirecionando o usuário para a tela `/comunidadades`.
+
+## [2.0.1](https://github.com/Ameciclo/botaprarodar-web/releases/tag/2.0.1) (24-8-2022)
 
 Esta release contempla apenas correções menores e falhas na UI. São elas:
 
@@ -13,7 +20,6 @@ Esta release contempla apenas correções menores e falhas na UI. São elas:
 - [Estilização da tela de Home foi corrigida.](https://github.com/Ameciclo/botaprarodar-web/pull/46)
 
 ## [2.0](https://github.com/Ameciclo/botaprarodar-web/releases/tag/2.0) (23-8-2022)
-
 
 Esta release contempla uma completa remodelção no fluxo do usuário e apresenta um MVP do que será a plataforma WEB do Bota pra Rodar.
 
@@ -29,6 +35,7 @@ Esta release contempla uma completa remodelção no fluxo do usuário e apresent
 - Remoção de dados sensíveis da tela de usuários, tornando a plataforma web de acordo com a LGPD.
 
 ### Melhorias
+
 - Implementação de CI/CD em PRs e em merges integrado ao Netlify.
 - Implementação de uma cobertura de teste mais robusta.
 - Melhoria na organização das dependências.
