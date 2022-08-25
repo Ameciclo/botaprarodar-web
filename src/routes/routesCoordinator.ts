@@ -1,11 +1,12 @@
 import { lazy } from 'react';
 import CommunityManagementPage from 'modules/communities/pages/CommunityPage/CommunityManagementPage/CommunityManagementPage';
 
-const CreateAndEditCommunityPage = lazy(
+const CreateCommunityPage = lazy(
   () =>
-    import(
-      'modules/communities/pages/CreateAndEditCommunity/CreateAndEditCommunity'
-    ),
+    import('modules/communities/pages/CreateCommunityPage/CreateCommunityPage'),
+);
+const EditCommunityPage = lazy(
+  () => import('modules/communities/pages/EditCommunityPage/EditCommunityPage'),
 );
 const UserDetailPage = lazy(
   () => import('modules/users/pages/UserDetailPage/UserDetailPage'),
@@ -50,12 +51,12 @@ export const routes = [
   },
   {
     path: '/comunidades/editar/:id',
-    comp: CreateAndEditCommunityPage,
+    comp: EditCommunityPage,
     private: true,
   },
   {
     path: '/comunidades/criar',
-    comp: CreateAndEditCommunityPage,
+    comp: CreateCommunityPage,
     private: true,
   },
   {
