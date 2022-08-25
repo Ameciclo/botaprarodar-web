@@ -51,9 +51,10 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 
 ## NPM Important commands
 
-- `npm test` - Runs unit tests
 - `npm run build` - Builds the application
 - `npm start` - Start applications
+- `npm test` - Runs unit tests
+- `npm run test-coverage ` - Create coverage report [file path: Users/<user_name>/<project_path>/botaprarodar-web/coverage/lcov-report/index.html]
 
 ## Check-in dance
 
