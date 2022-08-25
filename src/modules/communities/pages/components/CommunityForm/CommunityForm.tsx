@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import {
@@ -14,11 +15,11 @@ import { Input, toast } from 'shared/components';
 import CommunityService from 'modules/communities/services/CommunityService';
 import useStyles from './CommunityForm.styles';
 
-interface EditCommunityProps {
+interface Props {
   community?: Community;
 }
 
-const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
+const CommunityForm: React.FC<Props> = ({ community }) => {
   const classes = useStyles();
   const history = useHistory();
   const { handleSubmit, control } = useForm();
@@ -32,11 +33,11 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
         ...data,
       })
         .then(() => {
-          history.push('/comunidades');
+          history.goBack();
           toast.success('Comunidade editada com sucesso.');
         })
-        .catch(err => {
-          console.error(err);
+        .catch(() => {
+          toast.error('Serviço indisponível');
         })
         .finally(() => {
           setLoading(false);
@@ -46,14 +47,14 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
       CommunityService.createCommunity({
         ...community,
         ...data,
-        id: null,
+        id: uuidv4(),
       })
         .then(() => {
-          history.push('/comunidades');
+          history.goBack();
           toast.success('Comunidade criada com sucesso.');
         })
-        .catch(err => {
-          console.error(err);
+        .catch(() => {
+          toast.error('Serviço indisponível');
         })
         .finally(() => {
           setLoading(false);
@@ -90,7 +91,7 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
                 name="org_name"
                 className={classes.input}
                 control={control}
-                dataTestId="org_name"
+                dataTestId="org-name"
                 defaultValue={community?.org_name}
                 rules={{ required: 'Nome do gestor é obrigatório' }}
               />
@@ -102,7 +103,7 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
                 name="org_email"
                 className={classes.input}
                 control={control}
-                dataTestId="org_email"
+                dataTestId="org-email"
                 defaultValue={community?.org_email}
                 rules={{
                   required: 'E-mail do gestor é obrigatório',
@@ -115,7 +116,7 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
             data-testid="cancel-button"
             type="button"
             className={`${classes.buttonCancel}`}
-            onClick={() => history.push('/comunidades')}
+            onClick={() => history.goBack()}
           >
             CANCELAR
           </Button>
@@ -140,7 +141,7 @@ const EditCommunityForm: React.FC<EditCommunityProps> = ({ community }) => {
   );
 };
 
-EditCommunityForm.defaultProps = {
+CommunityForm.defaultProps = {
   community: {
     id: '',
     address: '',
@@ -154,4 +155,4 @@ EditCommunityForm.defaultProps = {
   },
 };
 
-export default EditCommunityForm;
+export default CommunityForm;
