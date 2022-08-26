@@ -7,7 +7,6 @@ import CommunityService from 'modules/communities/services/CommunityService';
 import { EmptyState, Loading } from 'shared/components';
 import FormHeader from 'shared/components/FormHeader/FormHeader';
 import CommunityForm from '../components/CommunityForm/CommunityForm';
-import DeleteCommunityButton from './components/DeleteCommunityButton/DeleteCommunityButton';
 import useStyles from './EditCommunityPage.styles';
 
 const EditCommunityPage: React.FC = () => {
@@ -45,7 +44,6 @@ const EditCommunityPage: React.FC = () => {
           ) : (
             <>
               <CommunityForm community={community} />
-              <DeleteCommunityButton communityId={id} />
             </>
           )}
         </div>
