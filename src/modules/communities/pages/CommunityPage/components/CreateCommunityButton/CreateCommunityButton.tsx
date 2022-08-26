@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import useStyles from './CreateCommunityButton.styles';
 
-const DeleteCommunityButton: React.FC = () => {
+const CreateCommunityButton: React.FC = () => {
   const history = useHistory();
   const classes = useStyles();
   const handleClick = () => {
@@ -22,4 +22,4 @@ const DeleteCommunityButton: React.FC = () => {
   );
 };
 
-export default DeleteCommunityButton;
+export default CreateCommunityButton;
