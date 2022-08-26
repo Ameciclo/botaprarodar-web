@@ -19,7 +19,6 @@ export interface Props {
 
 const MotivationForm: FC<Props> = ({ control, onChange, values, schema }) => {
   const classes = useStyles();
-  const hasUsedBikesInThePast = values?.alreadyUseBPR === 'Yes';
 
   return (
     <Card>
@@ -34,7 +33,7 @@ const MotivationForm: FC<Props> = ({ control, onChange, values, schema }) => {
               id="already-use-bpr-select"
               name="alreadyUseBPR"
               label="Já utilizava bicicleta antes do Bota pra Rodar?"
-              value={values?.alreadyUseBPR || ''}
+              value={values?.alreadyUseBPR || 'No'}
               onChange={onChange}
               options={[
                 { value: 'Yes', text: 'Sim' },
@@ -42,21 +41,6 @@ const MotivationForm: FC<Props> = ({ control, onChange, values, schema }) => {
               ]}
             />
           </Grid>
-
-          {hasUsedBikesInThePast && (
-            <Grid item xs={12} sm={6} md={6}>
-              <Input
-                label="Por quanto tempo?"
-                type="text"
-                name="alreadyUseBPROpenQuestion"
-                className=""
-                control={control}
-                dataTestId="already-use-bpr-open-question-test"
-                rules={schema.alreadyUseBPROpenQuestion}
-                fullWidth
-              />
-            </Grid>
-          )}
 
           <Grid item xs={12} sm={6} md={6}>
             <Input
