@@ -34,6 +34,9 @@ describe('Edit community', () => {
     expect(
       await screen.findByText('Editar Comunidade XPTO'),
     ).toBeInTheDocument();
+    expect(
+      await screen.queryByText('DELETAR COMUNIDADE'),
+    ).not.toBeInTheDocument();
   });
 
   it('renders page exception', async () => {
