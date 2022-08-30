@@ -15,6 +15,9 @@ const TravelTimeCard: React.FC<TravelTimeCardProps> = ({ travelTime }) => {
   const totalTravels = travelTime.length;
   const averageTime = Number((accumulatedTime / travelTime.length).toFixed(0));
 
+  const totalTimeDisplay = accumulatedTime / Number(60);
+  const averageTimeDisplay = averageTime / Number(60);
+
   const infoContainer = (
     numberToDisplay: number,
     labelToDisplay: string,
@@ -36,8 +39,8 @@ const TravelTimeCard: React.FC<TravelTimeCardProps> = ({ travelTime }) => {
       content={
         <div className={classes.root}>
           {infoContainer(
-            accumulatedTime,
-            'Minutos',
+            Number(totalTimeDisplay.toFixed(2)),
+            'Horas',
             <AccessTime fontSize="large" />,
           )}
           {infoContainer(
@@ -49,7 +52,7 @@ const TravelTimeCard: React.FC<TravelTimeCardProps> = ({ travelTime }) => {
             withoutPaddingBottom
             content={
               <span className={classes.averageTimeLabel}>
-                Em média, são {averageTime} minutos por viagem
+                Em média, são {averageTimeDisplay.toFixed(2)} horas por viagem
               </span>
             }
           />
