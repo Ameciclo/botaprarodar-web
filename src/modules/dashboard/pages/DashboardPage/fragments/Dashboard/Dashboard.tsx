@@ -98,7 +98,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
       <>
         <Grid item xl={6} lg={6} sm={12} xs={12}>
           <CustomCard headerTitle="Uso das Bicicletas durante os Empréstimos">
-          <HorizontalBarChart
+            <HorizontalBarChart
               data={dashboardData.withdrawalsReason}
               label="Motivações de uso mais comuns"
             />
