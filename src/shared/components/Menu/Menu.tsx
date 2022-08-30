@@ -94,6 +94,9 @@ const Menu: React.FC = ({ children }) => {
     }
     return false;
   };
+  const handleClick = () => {
+    history.push('/selecao-de-comunidades');
+  };
 
   return (
     <>
@@ -110,8 +113,14 @@ const Menu: React.FC = ({ children }) => {
               {open ? <ChevronLeftIcon /> : <MenuIcon />}
             </IconButton>
           )}
-          <img src={LogoBPRwhite} alt="Logo do projeto Bota pra rodar" />
-
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => handleClick()}
+            onKeyPress={() => handleClick()}
+          >
+            <img src={LogoBPRwhite} alt="Logo do projeto Bota pra rodar" />
+          </div>
           {showButtonLogout() && (
             <Typography
               variant="h6"
