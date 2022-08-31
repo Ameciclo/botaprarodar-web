@@ -112,27 +112,27 @@ const SocialInfoForm: React.FC<Props> = ({ values, onChange }) => {
               options={[
                 {
                   value: IncomeEnum.until150,
-                  text: IncomeEnum.until150,
+                  text: '>R$150',
                 },
                 {
                   value: IncomeEnum.from150To300,
-                  text: IncomeEnum.from150To300,
+                  text: 'R$150-R$300',
                 },
                 {
                   value: IncomeEnum.from500To700,
-                  text: IncomeEnum.from500To700,
+                  text: 'R$500-R$700',
                 },
                 {
                   value: IncomeEnum.from750To1100,
-                  text: IncomeEnum.from750To1100,
+                  text: 'R$750-R$1100',
                 },
                 {
                   value: IncomeEnum.from1100To2000,
-                  text: IncomeEnum.from1100To2000,
+                  text: 'R$1100-R$2000',
                 },
                 {
                   value: IncomeEnum.above2000,
-                  text: IncomeEnum.above2000,
+                  text: '+R$2000',
                 },
                 {
                   value: IncomeEnum.notInformed,
