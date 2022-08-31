@@ -11,24 +11,24 @@ import {
   MockedFirstCommunity,
   MockedSecondCommunity,
 } from '../../../mocks/MockedCommunity';
-import CommunityDisplayPage from './CommunitiesDisplayPage';
+import CommunitySelectionPage from './CommunitiesSelectionPage';
 
 jest.mock('../../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
   typeof CommunityService
 >;
 
-describe('CommunityPage', () => {
+describe('CommunitySelectionPage', () => {
   beforeEach(() => {
     mockedCommunityService.getAllCommunities.mockResolvedValue([]);
   });
 
-  describe(' Render Community Page', () => {
+  describe(' Render Community Selection Page', () => {
     it('should render loading component', async () => {
       act(() => {
         render(
           <BrowserRouter>
-            <CommunityDisplayPage isSelectingCommunities={false} />
+            <CommunitySelectionPage />
           </BrowserRouter>,
         );
       });
@@ -45,7 +45,7 @@ describe('CommunityPage', () => {
       await act(async () => {
         render(
           <BrowserRouter>
-            <CommunityDisplayPage isSelectingCommunities={false} />
+            <CommunitySelectionPage />
           </BrowserRouter>,
         );
       });
@@ -58,13 +58,15 @@ describe('CommunityPage', () => {
       await act(async () => {
         render(
           <BrowserRouter>
-            <CommunityDisplayPage isSelectingCommunities={false} />
+            <CommunitySelectionPage />
           </BrowserRouter>,
         );
       });
 
       const emptyStateText = 'Nenhuma comunidade cadastrada!';
+      const registerCommunity = 'Cadastrar comunidade';
       expect(screen.getByText(emptyStateText)).toBeInTheDocument();
+      expect(screen.getByText(registerCommunity)).toBeInTheDocument();
     });
   });
 
@@ -73,7 +75,7 @@ describe('CommunityPage', () => {
       await act(async () => {
         render(
           <BrowserRouter>
-            <CommunityDisplayPage isSelectingCommunities />
+            <CommunitySelectionPage />
           </BrowserRouter>,
         );
       });
@@ -95,7 +97,7 @@ describe('CommunityPage', () => {
       await act(async () => {
         render(
           <BrowserRouter>
-            <CommunityDisplayPage isSelectingCommunities />
+            <CommunitySelectionPage />
           </BrowserRouter>,
         );
       });
@@ -119,7 +121,7 @@ describe('CommunityPage', () => {
       await act(async () => {
         render(
           <BrowserRouter>
-            <CommunityDisplayPage isSelectingCommunities />
+            <CommunitySelectionPage />
           </BrowserRouter>,
         );
       });

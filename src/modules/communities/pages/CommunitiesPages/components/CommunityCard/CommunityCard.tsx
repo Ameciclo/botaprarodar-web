@@ -7,19 +7,16 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { PlaceOutlined } from '@material-ui/icons';
-import CommunityMenu from '../CommunityMenu/CommunityMenu';
 import Community from '../../../../models/Community';
 import useStyles from './CommunityCard.styles';
 
 interface CommunityCardProps {
   community: Community;
-  showEditOption: boolean;
   onClick(): void;
 }
 
 const CommunityCard: React.FC<CommunityCardProps> = ({
   community,
-  showEditOption,
   onClick,
 }) => {
   const classes = useStyles();
@@ -32,7 +29,6 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
             <Typography variant="h6" component="h2" className={classes.title}>
               {community.name}
             </Typography>
-            {showEditOption && <CommunityMenu communityId={community.id} />}
           </div>
           <List>
             <ListItem className={classes.listItem}>
