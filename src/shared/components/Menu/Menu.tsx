@@ -118,6 +118,7 @@ const Menu: React.FC = ({ children }) => {
             tabIndex={-1}
             onClick={() => handleClick()}
             onKeyPress={() => handleClick()}
+            data-testid="logo-button"
           >
             <img src={LogoBPRwhite} alt="Logo do projeto Bota pra rodar" />
           </div>
