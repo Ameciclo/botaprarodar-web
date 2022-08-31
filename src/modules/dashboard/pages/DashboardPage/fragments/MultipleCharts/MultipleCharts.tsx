@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
 import PolarAreaChart from 'shared/components/PolarAreaChart/PolarAreaChart';
@@ -62,6 +62,7 @@ const MultipleCharts: FC<MultipleChartsProps> = ({ data, charts }) => {
             }
             return <Component {...props} key={`key-${type}`} />;
           })}
+        <Typography>Quantidade de usuários</Typography>
       </CustomCard>
     </Grid>
   );
