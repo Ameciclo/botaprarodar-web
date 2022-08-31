@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core';
-import { AccessTime, FlightTakeoff } from '@material-ui/icons';
+import { AccessTime, DirectionsBike } from '@material-ui/icons';
 import CustomCard from '../../../../../../shared/components/CustomCard/CustomCard';
 import TravelTimeCardStyles from './TravelTimeCard.styles';
 
@@ -46,7 +46,7 @@ const TravelTimeCard: React.FC<TravelTimeCardProps> = ({ travelTime }) => {
           {infoContainer(
             totalTravels,
             'Viagens',
-            <FlightTakeoff fontSize="large" />,
+            <DirectionsBike fontSize="large" />,
           )}
           <CustomCard
             withoutPaddingBottom
