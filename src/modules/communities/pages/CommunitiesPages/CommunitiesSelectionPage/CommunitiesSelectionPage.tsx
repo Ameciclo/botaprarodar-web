@@ -11,20 +11,23 @@ import Community from '../../../models/Community';
 import CommunityService from '../../../services/CommunityService';
 import CommunityCard from '../components/CommunityCard/CommunityCard';
 import CreateCommunityButton from '../components/CreateCommunityButton/CreateCommunityButton';
-import useStyles from './CommunitiesDisplayPage.styles';
+import useStyles from './CommunitiesSelectionPage.styles';
 
-type CommunitiesDisplayType = {
-  isSelectingCommunities: boolean;
-};
-
-const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
-  isSelectingCommunities,
-}) => {
+const CommunitiesSelectionPage: React.FC = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [textInput, setTextInput] = useState('');
   const history = useHistory();
   const classes = useStyles();
+  const lowerCased = textInput.toUpperCase();
+
+  const manageOnClick = community => {
+    history.push(`comunidades/gerenciador-de-comunidade/${community.id}`);
+  };
+
+  const filteredCommunities = communities.filter(com =>
+    com.name.toUpperCase().includes(lowerCased),
+  );
 
   const handleTextInput = e => {
     setTextInput(e.target.value);
@@ -35,23 +38,13 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
       .then(res => {
         setCommunities(res);
       })
-      .catch(err => {
-        toast.error(err);
+      .catch(() => {
+        toast.error('Serviço Indisponível');
       })
       .finally(() => {
         setLoading(false);
       });
   }, []);
-
-  const manageOnClick = community => {
-    if (isSelectingCommunities) {
-      history.push(`comunidades/gerenciador-de-comunidade/${community.id}`);
-    }
-  };
-  const lowerCased = textInput.toUpperCase();
-  const filteredCommunities = communities.filter(com =>
-    com.name.toUpperCase().includes(lowerCased),
-  );
 
   return (
     <div>
@@ -65,30 +58,26 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
           <Typography variant="h5" gutterBottom className={classes.pageTitle}>
             Comunidades do Bota pra Rodar
           </Typography>
-          {isSelectingCommunities && (
-            <Typography variant="h6" gutterBottom className={classes.subtitle}>
-              Selecione a comunidade que deseja administrar
-            </Typography>
-          )}
-          {isSelectingCommunities && (
-            <TextField
-              id="busca"
-              type="text"
-              placeholder="Que comunidade você está procurando?"
-              onChange={handleTextInput}
-              className={classes.filterCommunity}
-              InputProps={{
-                disableUnderline: true,
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <IconButton>
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-          )}
+          <Typography variant="h6" gutterBottom className={classes.subtitle}>
+            Selecione a comunidade que deseja administrar
+          </Typography>
+          <TextField
+            id="busca"
+            type="text"
+            placeholder="Que comunidade você está procurando?"
+            onChange={handleTextInput}
+            className={classes.filterCommunity}
+            InputProps={{
+              disableUnderline: true,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
         </Grid>
         <Grid
           item
@@ -118,7 +107,6 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
                 <CommunityCard
                   key={community.id}
                   community={community}
-                  showEditOption={!isSelectingCommunities}
                   onClick={() => manageOnClick(community)}
                 />
               </Grid>
@@ -142,4 +130,4 @@ const CommunitiesDisplayPage: React.FC<CommunitiesDisplayType> = ({
   );
 };
 
-export default CommunitiesDisplayPage;
+export default CommunitiesSelectionPage;

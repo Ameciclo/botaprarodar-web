@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import CommunityManagementPage from 'modules/communities/pages/CommunityPage/CommunityManagementPage/CommunityManagementPage';
+import CommunityManagementPage from 'modules/communities/pages/CommunitiesPages/CommunityManagementPage/CommunityManagementPage';
 
 const CreateCommunityPage = lazy(
   () =>
@@ -11,8 +11,11 @@ const EditCommunityPage = lazy(
 const UserDetailPage = lazy(
   () => import('modules/users/pages/UserDetailPage/UserDetailPage'),
 );
-const CommunityPage = lazy(
-  () => import('../modules/communities/pages/CommunityPage/CommunityPage'),
+const CommunitySelectionPage = lazy(
+  () =>
+    import(
+      '../modules/communities/pages/CommunitiesPages/CommunitiesSelectionPage/CommunitiesSelectionPage'
+    ),
 );
 const DashboardPage = lazy(
   () => import('../modules/dashboard/pages/DashboardPage/DashboardPage'),
@@ -38,12 +41,6 @@ export const routes = [
     comp: UserDetailPage,
     private: true,
   },
-
-  {
-    path: '/comunidades',
-    comp: CommunityPage,
-    private: true,
-  },
   {
     path: '/comunidades/cadastrar-usuario',
     comp: RegisterUserPage,
@@ -61,7 +58,7 @@ export const routes = [
   },
   {
     path: '/selecao-de-comunidades',
-    comp: CommunityPage,
+    comp: CommunitySelectionPage,
     private: true,
   },
   {
