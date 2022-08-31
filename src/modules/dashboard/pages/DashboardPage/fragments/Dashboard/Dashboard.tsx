@@ -91,7 +91,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             partial={dashboardData.newUsers}
             total={dashboardData.usersQuantity}
             labelPartial="Novos Ciclistas"
-            labelTotal="Já era ciclista"
+            labelTotal="Já eram ciclistas"
           />
         </Grid>
       </>
