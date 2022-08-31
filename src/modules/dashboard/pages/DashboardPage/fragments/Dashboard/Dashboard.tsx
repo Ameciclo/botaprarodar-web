@@ -87,11 +87,11 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DonutPercentageCard
-            title="Novas pessoas usuárias de bicicleta"
+            title="Novos Ciclistas"
             partial={dashboardData.newUsers}
             total={dashboardData.usersQuantity}
-            labelPartial="novas"
-            labelTotal="total"
+            labelPartial="Novos Ciclistas"
+            labelTotal="Já eram ciclistas"
           />
         </Grid>
       </>
