@@ -120,9 +120,9 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             dashboardData.income,
           ]}
           charts={[
-            { label: 'Raça', type: 'polar' },
-            { label: 'Gênero', type: 'polar' },
-            { label: 'Escolaridade', type: 'polar' },
+            { label: 'Raça', type: 'horizontal-bar' },
+            { label: 'Gênero', type: 'horizontal-bar' },
+            { label: 'Escolaridade', type: 'horizontal-bar' },
             { label: 'Idade', type: 'horizontal-bar' },
             { label: 'Renda', type: 'horizontal-bar' },
           ]}
