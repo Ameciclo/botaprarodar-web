@@ -47,6 +47,9 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
             fontWeight: 'bold',
             show: true,
             offsetY: 8,
+            formatter(val: number) {
+              return val < 1 ? '<1%' : `${val}%`;
+            },
           },
         },
       },
