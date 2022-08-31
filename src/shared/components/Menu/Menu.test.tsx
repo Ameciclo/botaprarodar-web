@@ -20,6 +20,15 @@ describe('Menu', () => {
     expect(queryByText('Login')).not.toBeInTheDocument();
   });
 
+  it('should redirect to Community Management Page when clicking in the logo', () => {
+    setUserAuthenticated();
+    const { getByTestId, history } = renderWithRouterAndAuth(<Menu />);
+
+    fireEvent.click(getByTestId('logo-button'));
+
+    expect(history.location.pathname).toBe('/selecao-de-comunidades');
+  });
+
   it('should redirect to given page when click in menu item', () => {
     setUserAuthenticated();
     const { getByText, history } = renderWithRouterAndAuth(<Menu />);
