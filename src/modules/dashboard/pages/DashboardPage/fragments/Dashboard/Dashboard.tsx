@@ -87,11 +87,11 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         </Grid>
         <Grid item xl={3} lg={3} sm={6} xs={12}>
           <DonutPercentageCard
-            title="Novas pessoas usuárias de bicicleta"
+            title="Novos Ciclistas"
             partial={dashboardData.newUsers}
             total={dashboardData.usersQuantity}
-            labelPartial="novas"
-            labelTotal="total"
+            labelPartial="Novos Ciclistas"
+            labelTotal="Já eram ciclistas"
           />
         </Grid>
       </>
@@ -100,8 +100,9 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
           <CustomCard headerTitle="Uso das Bicicletas durante os Empréstimos">
             <HorizontalBarChart
               data={dashboardData.withdrawalsReason}
-              label="Ciclistas das Comunidades da Ameciclo"
+              label="Motivação mais comum"
             />
+            <p>Quantidade de usuários</p>
           </CustomCard>
         </Grid>
         <Grid item xl={6} lg={6} sm={12} xs={12}>
@@ -120,9 +121,9 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             dashboardData.income,
           ]}
           charts={[
-            { label: 'Raça', type: 'polar' },
-            { label: 'Gênero', type: 'polar' },
-            { label: 'Escolaridade', type: 'polar' },
+            { label: 'Raça', type: 'horizontal-bar' },
+            { label: 'Gênero', type: 'horizontal-bar' },
+            { label: 'Escolaridade', type: 'horizontal-bar' },
             { label: 'Idade', type: 'horizontal-bar' },
             { label: 'Renda', type: 'horizontal-bar' },
           ]}

@@ -4,7 +4,7 @@ import type { SchemaType as Rules } from 'shared/models';
 type AlreadyUseBPRField = 'Yes' | 'No';
 
 export type FormValues = {
-  reason: string;
+  reason: TYPE.ReasonType;
   alreadyUseBPR: AlreadyUseBPRField;
   alreadyUseBPROpenQuestion: string;
   schooling: TYPE.SchoolingType;
@@ -15,7 +15,7 @@ export type FormValues = {
 };
 
 export const defaultFormValues: FormValues = {
-  reason: '',
+  reason: 'Porque começou a trabalhar com entregas.',
   alreadyUseBPR: 'No',
   alreadyUseBPROpenQuestion: '',
   schooling: 'Não informado',

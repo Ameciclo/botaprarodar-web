@@ -2,6 +2,31 @@
 
 Qualquer mudança significativa no código do projeto estará presente neste change logs.
 
+## [2.0.4](https://github.com/Ameciclo/botaprarodar-web/compare/2.0.3...2.0.4) (02-9-2022)
+
+Esta release contempla apenas uma correção no fluxo do usuário:
+
+### UI Change
+
+- Remoção da opção adicional sobre a motivação para o uso de bicicleta;
+- Mudança na legenda do gráfico sobre a motivação do usuário;
+- Substituição na exibição do tempo de uso: de minutos para horas; 
+- Inclusão do `R$` no cadastro de usuário;
+- Mudança do gráfico "donut" para o gráfico horizontal;
+- Mudança no icone das viagens para uma bicicleta.
+- Ao cliclar no logo o usuário é redirecionado para a tela de seleção de comunidades.
+- Gráfico Donuts exibe o valor `<1%` quando o valor é muito baixo.
+- Adição de um seletor na motivação do uso das bicicletas
+- Ajuste no seletor de renda para valores menores que 150
+- Adição de legenda descrevendo 'Quantidade de usuários' nos gráficos horizontais
+
+### Ajustes de código
+
+- Template para PRs direcionados para Produção.
+- Componente de exibição de comunidades agora possui somente o propósito de seleção.
+os que faltaram acho que seriam estes
+
+
 ## [2.0.3](https://github.com/Ameciclo/botaprarodar-web/compare/2.0.2...2.0.3) (26-8-2022)
 
 Esta release contempla apenas uma correção no fluxo do usuário:

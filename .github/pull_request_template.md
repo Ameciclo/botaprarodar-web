@@ -2,6 +2,12 @@
 
 <!--- Descreva suas alterações em detalhes -->
 
+## Checklist nova versão em production
+
+- [ ] O ultimo commit contém o CHANGELOG
+- [ ] Definido o numero da versão
+- [ ] Itens críticos da versão passaram por desk check
+
 ## Checklist
 
 - [ ] Realizei uma auto-revisão do meu código
@@ -13,4 +19,4 @@
 
 ## Checklist Frontend
 
-- [ ] Inseri na PR captura de tela da feature desenvolvida 
+- [ ] Inseri na PR captura de tela da feature desenvolvida

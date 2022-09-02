@@ -1,25 +1,25 @@
 import { FC } from 'react';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input, Select } from 'shared/components';
-import { FormValues, Schema } from '../../RegisterUserForm.schema';
+import { ReasonEnum } from 'modules/users/models/enums';
+import { FormValues } from '../../RegisterUserForm.schema';
 import useStyles from './MotivationForm.styles';
-
-export type AlreadyUseBPRField = 'Yes' | 'No';
 
 type Fields = 'alreadyUseBPR' | 'alreadyUseBPROpenQuestion' | 'reason';
 type FormValue = Pick<FormValues, Fields>;
-type FormSchema = Pick<Schema, Fields>;
 
 export interface Props {
-  control: any;
   onChange: any;
   values: FormValue;
-  schema: FormSchema;
+  control: any;
 }
 
-const MotivationForm: FC<Props> = ({ control, onChange, values, schema }) => {
+const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
   const classes = useStyles();
-  const hasUsedBikesInThePast = values?.alreadyUseBPR === 'Yes';
+
+  const hasReasonValue = values?.reason;
+  const hasChoosenOther = hasReasonValue && values.reason === ReasonEnum.Other;
+  const shouldShowExtraField = hasChoosenOther;
 
   return (
     <Card>
@@ -34,7 +34,7 @@ const MotivationForm: FC<Props> = ({ control, onChange, values, schema }) => {
               id="already-use-bpr-select"
               name="alreadyUseBPR"
               label="Já utilizava bicicleta antes do Bota pra Rodar?"
-              value={values?.alreadyUseBPR || ''}
+              value={values?.alreadyUseBPR || 'No'}
               onChange={onChange}
               options={[
                 { value: 'Yes', text: 'Sim' },
@@ -43,33 +43,54 @@ const MotivationForm: FC<Props> = ({ control, onChange, values, schema }) => {
             />
           </Grid>
 
-          {hasUsedBikesInThePast && (
+          <Grid item xs={12} sm={6} md={6}>
+            <Select
+              dataTestId="reason-test"
+              id="reason"
+              name="reason"
+              label="Por que a usuária começou a usar a bicicleta como meio de transporte?"
+              value={values?.reason || 'economy-of-money'}
+              onChange={onChange}
+              options={[
+                {
+                  value: ReasonEnum.EconomyOFMoney,
+                  text: ReasonEnum.EconomyOFMoney,
+                },
+                {
+                  value: ReasonEnum.Ecology,
+                  text: ReasonEnum.Ecology,
+                },
+                {
+                  value: ReasonEnum.EconomyOfTime,
+                  text: ReasonEnum.EconomyOfTime,
+                },
+                {
+                  value: ReasonEnum.Health,
+                  text: ReasonEnum.Health,
+                },
+                {
+                  value: ReasonEnum.Delivery,
+                  text: ReasonEnum.Delivery,
+                },
+                { value: ReasonEnum.Other, text: ReasonEnum.Other },
+              ]}
+            />
+          </Grid>
+          {shouldShowExtraField && (
             <Grid item xs={12} sm={6} md={6}>
               <Input
-                label="Por quanto tempo?"
-                type="text"
-                name="alreadyUseBPROpenQuestion"
-                className=""
-                control={control}
                 dataTestId="already-use-bpr-open-question-test"
-                rules={schema.alreadyUseBPROpenQuestion}
+                label="Descreva porque começou a usar a bicicleta como meio de transporte, por favor."
+                type="text"
+                control={control}
+                name="alreadyUseBPROpenQuestion"
+                className="input"
+                defaultValue=""
+                rules={{ required: 'Descrever a razão é obrigatório.' }}
                 fullWidth
               />
             </Grid>
           )}
-
-          <Grid item xs={12} sm={6} md={6}>
-            <Input
-              label="Qual sua motivação para utilizar a bicicleta como meio de transporte?*"
-              type="text"
-              name="reason"
-              className="reason"
-              control={control}
-              dataTestId="reason-test"
-              rules={schema.reason}
-              fullWidth
-            />
-          </Grid>
         </Grid>
       </CardContent>
     </Card>
