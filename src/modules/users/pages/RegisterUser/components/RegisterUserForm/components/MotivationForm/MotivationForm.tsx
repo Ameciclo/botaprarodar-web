@@ -79,7 +79,7 @@ const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
           {shouldShowExtraField && (
             <Grid item xs={12} sm={6} md={6}>
               <Input
-                dataTestId="alreadyUseBPROpenQuestion-test"
+                dataTestId="already-use-bpr-open-question-test"
                 label="Descreva porque começou a usar a bicicleta como meio de transporte, por favor."
                 type="text"
                 control={control}
