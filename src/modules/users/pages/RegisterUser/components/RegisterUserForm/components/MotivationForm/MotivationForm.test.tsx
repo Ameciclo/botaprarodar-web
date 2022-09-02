@@ -1,4 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { ReasonEnum } from 'modules/users/models/enums';
 import MotivationForm, { Props } from './MotivationForm';
 
 jest.mock('shared/components/Input/Input', () => () => `Input-component-mock`);
@@ -10,28 +12,57 @@ describe('MotivationForm', () => {
     defaultProps = {
       onChange: jest.fn(),
       control: jest.fn(),
-      schema: {
-        alreadyUseBPR: {},
-        alreadyUseBPROpenQuestion: {},
-        reason: {},
-      },
       values: {
         alreadyUseBPR: 'No',
         alreadyUseBPROpenQuestion: '',
-        reason: '',
+        reason: 'Porque começou a trabalhar com entregas.',
       },
     };
   });
 
-  it('should render correctly', async () => {
+  it('should have default fields', async () => {
     render(<MotivationForm {...defaultProps} />);
 
-    const title = screen.getByRole('heading', { name: /motivação/i });
-    const input = screen.getByText('Input-component-mock');
-    const select = screen.getByTestId('select-already-use-bpr-test');
+    expect(
+      screen.getByTestId('select-already-use-bpr-test'),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('select-reason-test')).toBeInTheDocument();
+  });
 
-    expect(title).toBeInTheDocument();
-    expect(input).toBeInTheDocument();
-    expect(select).toBeInTheDocument();
+  it('should show additional option when selecting other', async () => {
+    const { rerender } = render(<MotivationForm {...defaultProps} />);
+
+    const view = screen.getByTestId('select-reason-test');
+    const select = within(view).getByRole('button', {
+      name: /porque começou a trabalhar com entregas\./i,
+    });
+
+    expect(
+      screen.getByText(
+        'Por que a usuária começou a usar a bicicleta como meio de transporte?',
+      ),
+    ).toBeVisible();
+    userEvent.click(select);
+    await waitFor(() =>
+      userEvent.click(screen.getByRole('option', { name: ReasonEnum.Other })),
+    );
+
+    expect(
+      screen.getByRole('button', { name: ReasonEnum.Other }),
+    ).toBeVisible();
+    await rerender(
+      <MotivationForm
+        {...defaultProps}
+        values={{
+          alreadyUseBPR: 'Yes',
+          alreadyUseBPROpenQuestion: '',
+          reason: 'Outro',
+        }}
+      />,
+    );
+
+    expect(
+      screen.queryAllByText('Input-component-mock').length,
+    ).toBeGreaterThanOrEqual(1);
   });
 });
