@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import MotivationForm, { Props } from './MotivationForm';
 
-jest.mock('shared/components/Input/Input', () => () => `Input-component-mock`);
-
 describe('MotivationForm', () => {
   let defaultProps: Props;
 
@@ -10,11 +8,6 @@ describe('MotivationForm', () => {
     defaultProps = {
       onChange: jest.fn(),
       control: jest.fn(),
-      schema: {
-        alreadyUseBPR: {},
-        alreadyUseBPROpenQuestion: {},
-        reason: {},
-      },
       values: {
         alreadyUseBPR: 'No',
         alreadyUseBPROpenQuestion: '',
@@ -23,15 +16,12 @@ describe('MotivationForm', () => {
     };
   });
 
-  it('should render correctly', async () => {
+  it('should have default fields', async () => {
     render(<MotivationForm {...defaultProps} />);
 
-    const title = screen.getByRole('heading', { name: /motivação/i });
-    const input = screen.getByText('Input-component-mock');
-    const select = screen.getByTestId('select-already-use-bpr-test');
-
-    expect(title).toBeInTheDocument();
-    expect(input).toBeInTheDocument();
-    expect(select).toBeInTheDocument();
+    expect(
+      screen.getByTestId('select-already-use-bpr-test'),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('select-reason-test')).toBeInTheDocument();
   });
 });

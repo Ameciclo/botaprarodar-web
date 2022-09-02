@@ -5,11 +5,7 @@ import { Button, CircularProgress, Grid } from '@material-ui/core';
 import { UserService } from 'modules/users/services';
 import { toast } from 'shared/components';
 import useStyles from './RegisterUserForm.styles';
-import {
-  defaultFormValues,
-  FormValues,
-  schema,
-} from './RegisterUserForm.schema';
+import { defaultFormValues, FormValues } from './RegisterUserForm.schema';
 import PersonalInfoForm from './components/PersonalInfoForm/PersonalInfoForm';
 import SocialInfoForm from './components/SocialInfoForm/SocialInfoForm';
 import ProblemsForm from './components/ProblemsForm/ProblemsForm';
@@ -78,10 +74,9 @@ const RegisterUserForm: React.FC<Props> = ({ communityId }) => {
         </Grid>
         <Grid item xs={12}>
           <MotivationForm
-            control={control}
             onChange={handleChange}
             values={values}
-            schema={schema}
+            control={control}
           />
         </Grid>
       </Grid>
