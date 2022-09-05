@@ -7,13 +7,13 @@ import {
   fireEvent,
 } from '@testing-library/react';
 import CommunityService from 'modules/communities/services/CommunityService';
+import { renderWithRouterAndAuth, setUserAuthenticated } from 'setupTests';
 import {
   MockedFirstCommunity,
   MockedLoggedInUserManager,
   MockedSecondCommunity,
 } from '../../../mocks/MockedCommunity';
 import CommunitySelectionPage from './CommunitiesSelectionPage';
-import { renderWithRouterAndAuth, setUserAuthenticated } from 'setupTests';
 
 jest.mock('../../../services/CommunityService');
 const mockedCommunityService = CommunityService as jest.Mocked<
