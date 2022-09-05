@@ -2,7 +2,7 @@
 
 Qualquer mudança significativa no código do projeto estará presente neste change logs.
 
-## [2.1](https://github.com/Ameciclo/botaprarodar-web/compare/2.0.4...2.1) (02-9-2022)
+## [2.1](https://github.com/Ameciclo/botaprarodar-web/compare/2.0.4...2.1) (05-9-2022)
 
 Esta release contempla apenas uma correção no fluxo do usuário:
 
@@ -32,7 +32,6 @@ Esta release contempla apenas uma correção no fluxo do usuário:
 
 - Template para PRs direcionados para Produção.
 - Componente de exibição de comunidades agora possui somente o propósito de seleção.
-  os que faltaram acho que seriam estes
 
 ## [2.0.3](https://github.com/Ameciclo/botaprarodar-web/compare/2.0.2...2.0.3) (26-8-2022)
 
