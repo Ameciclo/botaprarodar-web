@@ -7,6 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Loading, toast } from 'shared/components';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
+import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import Community from '../../../models/Community';
 import CommunityService from '../../../services/CommunityService';
 import CommunityCard from '../components/CommunityCard/CommunityCard';
@@ -20,13 +21,20 @@ const CommunitiesSelectionPage: React.FC = () => {
   const history = useHistory();
   const classes = useStyles();
   const lowerCased = textInput.toUpperCase();
+  const { value } = useGetAuth();
 
   const manageOnClick = community => {
     history.push(`comunidades/gerenciador-de-comunidade/${community.id}`);
   };
 
-  const filteredCommunities = communities.filter(com =>
-    com.name.toUpperCase().includes(lowerCased),
+  const isLoggedInUserCommunityManager = community => {
+    return value.email === community.org_email;
+  };
+
+  const filteredCommunities = communities.filter(
+    com =>
+      isLoggedInUserCommunityManager(com) &&
+      com.name.toUpperCase().includes(lowerCased),
   );
 
   const handleTextInput = e => {
@@ -103,6 +111,7 @@ const CommunitiesSelectionPage: React.FC = () => {
                 md={6}
                 sm={12}
                 className={classes.card}
+                data-testid="community-card-grid"
               >
                 <CommunityCard
                   key={community.id}
@@ -112,9 +121,11 @@ const CommunitiesSelectionPage: React.FC = () => {
               </Grid>
             ))
           ) : (
-            <Typography className={classes.emptySearch}>
-              Não há resultados para essa busca: {textInput}.
-            </Typography>
+            <EmptyState
+              imgSrc={EmptyStateImage}
+              heading="Não há resultados"
+              subheading="Cadastre uma nova comunidade em nosso aplicaticativo."
+            />
           )}
         </Grid>
       ) : (
