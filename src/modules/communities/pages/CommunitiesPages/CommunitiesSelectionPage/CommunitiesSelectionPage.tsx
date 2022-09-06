@@ -141,7 +141,7 @@ const CommunitiesSelectionPage: React.FC = () => {
             <EmptyState
               imgSrc={EmptyStateImage}
               heading="Não há resultados"
-              subheading="Cadastre uma nova comunidade em nosso aplicaticativo."
+              subheading="Cadastre uma nova comunidade em nosso aplicativo."
             />
           )}
         </Grid>
@@ -150,7 +150,7 @@ const CommunitiesSelectionPage: React.FC = () => {
           <EmptyState
             imgSrc={EmptyStateImage}
             heading="Nenhuma comunidade cadastrada!"
-            subheading="Cadastre uma nova comunidade em nosso aplicaticativo."
+            subheading="Cadastre uma nova comunidade em nosso aplicativo."
           />
         </div>
       )}

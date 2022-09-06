@@ -104,7 +104,7 @@ describe('CommunitySelectionPage', () => {
 
       const emptyStateText = 'Não há resultados';
       const registerCommunity =
-        'Cadastre uma nova comunidade em nosso aplicaticativo.';
+        'Cadastre uma nova comunidade em nosso aplicativo.';
       const communities = screen.queryByTestId('community-card-grid');
 
       expect(screen.getByText(emptyStateText)).toBeInTheDocument();
