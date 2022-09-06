@@ -6,6 +6,7 @@ import {
   waitForElementToBeRemoved,
   fireEvent,
 } from '@testing-library/react';
+import { UserService } from 'modules/users/services';
 import CommunityService from 'modules/communities/services/CommunityService';
 import { renderWithRouterAndAuth, setUserAuthenticated } from 'setupTests';
 import {
@@ -20,9 +21,13 @@ const mockedCommunityService = CommunityService as jest.Mocked<
   typeof CommunityService
 >;
 
+jest.mock('../../../../users/services/UserService');
+const mockedUserService = UserService as jest.Mocked<typeof UserService>;
+
 describe('CommunitySelectionPage', () => {
   beforeEach(() => {
     mockedCommunityService.getAllCommunities.mockResolvedValue([]);
+    mockedUserService.isUserAdmin.mockResolvedValue(false);
     setUserAuthenticated();
   });
 
@@ -99,12 +104,46 @@ describe('CommunitySelectionPage', () => {
 
       const emptyStateText = 'Não há resultados';
       const registerCommunity =
-        'Cadastre uma nova comunidade em nosso aplicaticativo.';
+        'Cadastre uma nova comunidade em nosso aplicativo.';
       const communities = screen.queryByTestId('community-card-grid');
 
       expect(screen.getByText(emptyStateText)).toBeInTheDocument();
       expect(screen.getByText(registerCommunity)).toBeInTheDocument();
       expect(communities).toBeFalsy();
+    });
+
+    it('should render all community cards if user is an admin', async () => {
+      mockedUserService.isUserAdmin.mockResolvedValue(true);
+      mockedCommunityService.getAllCommunities.mockResolvedValue([
+        MockedLoggedInUserManager,
+        MockedFirstCommunity,
+        MockedSecondCommunity,
+      ]);
+      await act(async () => {
+        renderWithRouterAndAuth(
+          <BrowserRouter>
+            <CommunitySelectionPage />
+          </BrowserRouter>,
+        );
+      });
+
+      const communityCardsQuantity = screen.queryAllByTestId(
+        'community-card-grid',
+      ).length;
+      const communityName1 = screen.getByRole('heading', {
+        name: /comunidade gerenciada/i,
+      });
+      const communityName2 = screen.queryByRole('heading', {
+        name: /XPTO/i,
+      });
+      const communityName3 = screen.queryByRole('heading', {
+        name: /Nome Teste/i,
+      });
+
+      expect(communityName1).toBeInTheDocument();
+      expect(communityName2).toBeInTheDocument();
+      expect(communityName3).toBeInTheDocument();
+      expect(communityCardsQuantity).toBeGreaterThanOrEqual(3);
     });
 
     it('renders no communities and an empty state message', async () => {

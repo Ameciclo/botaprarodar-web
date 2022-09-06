@@ -13,6 +13,15 @@ const UserService = {
     return users;
   },
 
+  async isUserAdmin(userId: string) {
+    try {
+      const { data } = await api.get(`/admins/${userId}.json`);
+      return Object.keys(data).length > 0;
+    } catch (error) {
+      return false;
+    }
+  },
+
   async getUserById(id: string) {
     const { data } = await api.get(`/users/${id}.json`);
 

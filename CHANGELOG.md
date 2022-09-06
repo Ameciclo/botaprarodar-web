@@ -2,6 +2,14 @@
 
 Qualquer mudança significativa no código do projeto estará presente neste change logs.
 
+## [2.1.1](https://github.com/Ameciclo/botaprarodar-web/compare/2.1...2.1.1) (06-9-2022)
+
+Esta release contempla apenas uma ajuste no fluxo do usuário durante a seleção de comunidades:
+
+### Feature
+
+- Agora os administradores da Ameciclo serão capazes de visualizar todas as comunidades durante a seleção.
+
 ## [2.1](https://github.com/Ameciclo/botaprarodar-web/compare/2.0.4...2.1) (05-9-2022)
 
 Esta release contempla apenas uma correção no fluxo do usuário:

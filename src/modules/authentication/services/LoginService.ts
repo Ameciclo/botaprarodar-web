@@ -16,6 +16,7 @@ const LoginService = {
       displayName: userDetails?.displayName || '',
       email: userDetails?.email || '',
       authenticated: userDetails?.emailVerified || false,
+      uid: userDetails?.uid || '',
     };
   },
 };
