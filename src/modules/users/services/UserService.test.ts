@@ -28,6 +28,39 @@ describe('User Service', () => {
     await waitFor(() => expect(data).toStrictEqual(mockedUsers));
   });
 
+  it('should validate if user is admin', async () => {
+    const isAdminMockedResponse = {
+      data: {
+        userId: {
+          email: 'admin@teste.com',
+          uid: 'userId',
+        },
+      },
+    };
+
+    mockedApi.get.mockResolvedValue(isAdminMockedResponse);
+    let data: boolean;
+
+    await act(async () => {
+      data = await UserService.isUserAdmin('userId');
+    });
+
+    expect(mockedApi.get).toHaveBeenCalledWith('/admins/userId.json');
+    await waitFor(() => expect(data).toBeTruthy());
+  });
+
+  it('should validate if user is not an admin', async () => {
+    mockedApi.get.mockResolvedValue([]);
+    let data: boolean;
+
+    await act(async () => {
+      data = await UserService.isUserAdmin('userNotAdminId');
+    });
+
+    expect(mockedApi.get).toHaveBeenCalledWith('/admins/userNotAdminId.json');
+    await waitFor(() => expect(data).toBeFalsy());
+  });
+
   it('should get user by ID', async () => {
     mockedApi.get.mockResolvedValue({
       data: {
