@@ -8,6 +8,7 @@ import { Loading, toast } from 'shared/components';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
 import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
+import { UserService } from 'modules/users/services';
 import Community from '../../../models/Community';
 import CommunityService from '../../../services/CommunityService';
 import CommunityCard from '../components/CommunityCard/CommunityCard';
@@ -17,6 +18,8 @@ import useStyles from './CommunitiesSelectionPage.styles';
 const CommunitiesSelectionPage: React.FC = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isLoggedInUserAdmin, setIsLoggedInUserAdmin] =
+    useState<boolean>(false);
   const [textInput, setTextInput] = useState('');
   const history = useHistory();
   const classes = useStyles();
@@ -27,13 +30,13 @@ const CommunitiesSelectionPage: React.FC = () => {
     history.push(`comunidades/gerenciador-de-comunidade/${community.id}`);
   };
 
-  const isLoggedInUserCommunityManager = community => {
-    return value.email === community.org_email;
+  const shouldLoggedInUserSeeCommunityCard = community => {
+    return value.email === community.org_email || isLoggedInUserAdmin;
   };
 
   const filteredCommunities = communities.filter(
     com =>
-      isLoggedInUserCommunityManager(com) &&
+      shouldLoggedInUserSeeCommunityCard(com) &&
       com.name.toUpperCase().includes(lowerCased),
   );
 
@@ -42,6 +45,20 @@ const CommunitiesSelectionPage: React.FC = () => {
   };
 
   useEffect(() => {
+    UserService.isUserAdmin(value.uid)
+      .then(isAdmin => {
+        setIsLoggedInUserAdmin(isAdmin);
+      })
+      .catch(() => {
+        toast.error('Serviço Indisponível');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  });
+
+  useEffect(() => {
+    setLoading(true);
     CommunityService.getAllCommunities()
       .then(res => {
         setCommunities(res);

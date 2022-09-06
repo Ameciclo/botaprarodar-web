@@ -3,4 +3,5 @@ export default interface AuthInterface {
   email: string;
   displayName: string;
   token: string;
+  uid: string;
 }
