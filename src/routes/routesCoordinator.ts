@@ -21,8 +21,13 @@ const DashboardPage = lazy(
   () => import('../modules/dashboard/pages/DashboardPage/DashboardPage'),
 );
 const UserPage = lazy(() => import('../modules/users/pages/UserPage/UserPage'));
+
 const RegisterUserPage = lazy(
   () => import('../modules/users/pages/RegisterUser/RegisterUserPage'),
+);
+
+const LendBikePage = lazy(
+  () => import('../modules/users/pages/LendBike/LendBikePage'),
 );
 
 export const routes = [
@@ -44,6 +49,11 @@ export const routes = [
   {
     path: '/comunidades/cadastrar-usuario',
     comp: RegisterUserPage,
+    private: true,
+  },
+  {
+    path: '/comunidades/emprestar-bicicleta',
+    comp: LendBikePage,
     private: true,
   },
   {
