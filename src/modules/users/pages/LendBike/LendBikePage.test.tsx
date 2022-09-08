@@ -1,5 +1,5 @@
 import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { renderWithRouterAndAuth, mockedComponent } from 'setupTests';
+import { renderWithRouterAndAuth } from 'setupTests';
 import LendBikePage from './LendBikePage';
 
 describe('LandBikePage', () => {
