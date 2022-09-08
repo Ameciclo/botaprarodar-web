@@ -80,11 +80,19 @@ const CommunityManagementPage: React.FC = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={3} sm={6}>
           <CustomCardWithIcon
-            id="emprestar-bicicleta"
+            id="cadastrar-usuaria"
             iconName="registerUser"
             text="Cadastrar usuária"
-            iconDescription="Emprestar bicicleta"
+            iconDescription="Cadastrar usuária"
             onClick={redirectToRegister}
+          />
+        </Grid>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="emprestar-bicicleta"
+            iconName="lendBike"
+            text="Emprestar bicicleta"
+            iconDescription="Emprestar bicicleta"
           />
         </Grid>
       </Grid>
