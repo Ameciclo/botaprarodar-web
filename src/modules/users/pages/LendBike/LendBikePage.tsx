@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader } from 'shared/components';
-import SelectBikeCard from '../RegisterUser/components/LendBikeCards/SelectBikeCard';
+import SelectBikePage from './LendBikeCards/SelectBikePage';
 
 type StateParams = {
   communityId?: string;
@@ -29,7 +29,10 @@ const LendBikePage: React.FC = () => {
             link={`/comunidades/gerenciador-de-comunidade/${state.communityId}`}
             title="Voltar"
           />
-          <SelectBikeCard values={undefined} />
+          <SelectBikePage
+            data-testId="SelectBikeCard"
+            communityId={state.communityId || ''}
+          />
         </>
       )}
     </>
