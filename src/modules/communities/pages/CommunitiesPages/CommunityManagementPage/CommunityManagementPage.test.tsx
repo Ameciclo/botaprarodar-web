@@ -1,4 +1,4 @@
-import { waitFor, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { MockedAmountsBikesPerCommunity } from 'modules/bicycles/mocks/BikeMocks';
 import BikeService from 'modules/bicycles/services/BikeService';
@@ -89,17 +89,18 @@ describe('Community Management Page', () => {
 
     describe('should show custom card with icon', () => {
       it('should show card name', () => {
-        const cardName = screen.getAllByText(
+        const cardName = screen.queryAllByText(
           'CustomCardWithIcon-component-mock',
         );
-        waitFor(() => expect(cardName).toBeInTheDocument());
+        expect(cardName).toHaveLength(3);
       });
     });
 
     describe('should show community labels', () => {
       it('should show labels name', () => {
-        const labelName = screen.getAllByText('CustomLabel-component-mock');
-        waitFor(() => expect(labelName.length).toHaveValue(3));
+        screen.debug();
+        const labelName = screen.queryAllByText('CustomLabel-component-mock');
+        expect(labelName).toHaveLength(3);
       });
     });
   });

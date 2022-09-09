@@ -95,6 +95,14 @@ const CommunityManagementPage: React.FC = () => {
             iconDescription="Emprestar bicicleta"
           />
         </Grid>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="devolver-bicicleta"
+            iconName="giveBackBike"
+            text="Devolver Bicicleta"
+            iconDescription="Devolver Bicicleta"
+          />
+        </Grid>
       </Grid>
 
       <Grid container spacing={2}>
