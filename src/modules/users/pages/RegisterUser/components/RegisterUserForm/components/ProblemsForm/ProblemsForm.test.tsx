@@ -21,9 +21,7 @@ describe('ProblemsForm', () => {
   it('should have all fields required', async () => {
     render(<ProblemsForm {...defaultProps} />);
 
-    expect(
-      screen.queryAllByText('Input-component-mock').length,
-    ).toBeGreaterThanOrEqual(2);
+    expect(screen.queryAllByText('Input-component-mock')).toHaveLength(2);
     expect(screen.getByTestId('select-collision-test')).toBeInTheDocument();
   });
 });

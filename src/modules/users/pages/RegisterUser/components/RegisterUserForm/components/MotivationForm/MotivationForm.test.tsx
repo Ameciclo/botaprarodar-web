@@ -61,8 +61,6 @@ describe('MotivationForm', () => {
       />,
     );
 
-    expect(
-      screen.queryAllByText('Input-component-mock').length,
-    ).toBeGreaterThanOrEqual(1);
+    expect(screen.queryAllByText('Input-component-mock')).toHaveLength(1);
   });
 });

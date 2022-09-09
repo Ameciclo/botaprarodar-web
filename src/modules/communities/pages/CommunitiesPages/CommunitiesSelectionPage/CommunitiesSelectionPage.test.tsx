@@ -129,7 +129,7 @@ describe('CommunitySelectionPage', () => {
 
       const communityCardsQuantity = screen.queryAllByTestId(
         'community-card-grid',
-      ).length;
+      );
       const communityName1 = screen.getByRole('heading', {
         name: /comunidade gerenciada/i,
       });
@@ -143,7 +143,7 @@ describe('CommunitySelectionPage', () => {
       expect(communityName1).toBeInTheDocument();
       expect(communityName2).toBeInTheDocument();
       expect(communityName3).toBeInTheDocument();
-      expect(communityCardsQuantity).toBeGreaterThanOrEqual(3);
+      expect(communityCardsQuantity).toHaveLength(3);
     });
 
     it('renders no communities and an empty state message', async () => {
