@@ -12,6 +12,22 @@ const BikeService = {
     return bikes;
   },
 
+  async getBikesPerCommunity(communityId: string): Promise<Bike[]> {
+    try {
+      const { data } = await api.get('/bikes.json');
+      if (data) {
+        const bikePerCommunity: Bike[] = mapBikesData(data).filter(
+          bike => bike.communityId === communityId,
+        );
+        return bikePerCommunity;
+      }
+    } catch (error) {
+      const err = error as AxiosError;
+      throw new Error(err.message);
+    }
+    return [];
+  },
+
   async getAmountFilteredBikesPerCommunity(
     communityId: string,
   ): Promise<AmountBikesPerCommunity> {

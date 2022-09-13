@@ -62,6 +62,11 @@ const CommunityManagementPage: React.FC = () => {
     history.push('/comunidades/cadastrar-usuario', params);
   };
 
+  const redirectToLendBike = () => {
+    const params = { communityId };
+    history.push('/comunidades/emprestar-bicicleta', params);
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -93,6 +98,7 @@ const CommunityManagementPage: React.FC = () => {
             iconName="lendBike"
             text="Emprestar bicicleta"
             iconDescription="Emprestar bicicleta"
+            onClick={redirectToLendBike}
           />
         </Grid>
         <Grid item xs={12} md={3} sm={6}>

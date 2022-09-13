@@ -126,6 +126,25 @@ describe('Bike Service', () => {
         );
       });
     });
+
+    describe('getBikesPerCommunity', () => {
+      it('should get bikes per community', async () => {
+        mockedApiBikesResponse.data = [
+          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
+          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
+          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
+        ];
+        mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
+        const bikeList = await BikeService.getBikesPerCommunity(
+          '-MLy8y1-5v5GLg7Z428y',
+        );
+        bikeList?.map(bike => {
+          return expect(bike.communityId).toStrictEqual('-MLy8y1-5v5GLg7Z428y');
+        });
+        expect(bikeList).toHaveLength(3);
+      });
+    });
+
     describe('should return error when api fails', () => {
       it('should return error', async () => {
         const err = new Error('Error de comunicação com a api');
