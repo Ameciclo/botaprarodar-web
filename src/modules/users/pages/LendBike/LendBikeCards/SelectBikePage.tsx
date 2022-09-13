@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Bike from 'modules/users/models/Bike';
 import BikeService from 'modules/bicycles/services/BikeService';
 import toast from 'shared/components/Toast/Toast';
+import { Loading } from 'shared/components';
 import useStyles from './SelectBikePage.styles';
 
 export interface SelectBikeProps {
@@ -37,34 +38,46 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({ communityId }) => {
         Selecione a bicicleta
       </Typography>
       <>
-        {bikes?.map(item => {
-          return (
-            <Card
-              data-testid="select-bike-page"
-              className={classes.root}
-              key={item.name}
-            >
-              <CardMedia
-                className={classes.cover}
-                image={item.photoThumbnailPath}
-              />
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h3" variant="h3">
-                    ORDEM: {item.orderNumber}
-                  </Typography>
-                  <Typography component="h4" variant="h4" color="textSecondary">
-                    {item.name}
-                  </Typography>
-                  <Typography component="h5" variant="h5" color="textSecondary">
-                    SÉRIE: {item.serialNumber}
-                  </Typography>
-                </CardContent>
-                <div className={classes.controls} />
-              </div>
-            </Card>
-          );
-        })}
+        {loading ? (
+          <Loading />
+        ) : (
+          bikes?.map(item => {
+            return (
+              <Card
+                data-testid="select-bike-page"
+                className={classes.root}
+                key={item.name}
+              >
+                <CardMedia
+                  className={classes.cover}
+                  image={item.photoThumbnailPath}
+                />
+                <div className={classes.details}>
+                  <CardContent className={classes.content}>
+                    <Typography component="h3" variant="h3">
+                      ORDEM: {item.orderNumber}
+                    </Typography>
+                    <Typography
+                      component="h4"
+                      variant="h4"
+                      color="textSecondary"
+                    >
+                      {item.name}
+                    </Typography>
+                    <Typography
+                      component="h5"
+                      variant="h5"
+                      color="textSecondary"
+                    >
+                      SÉRIE: {item.serialNumber}
+                    </Typography>
+                  </CardContent>
+                  <div className={classes.controls} />
+                </div>
+              </Card>
+            );
+          })
+        )}
       </>
     </div>
   );

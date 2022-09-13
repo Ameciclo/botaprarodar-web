@@ -44,7 +44,7 @@ describe('LandBikePage', () => {
     });
 
     it('should show empy state when having no parameters', async () => {
-      const { history } = renderWithRouterAndAuth(<LendBikePage />, {
+      renderWithRouterAndAuth(<LendBikePage />, {
         route: '/comunidades/emprestar-bicicleta',
       });
       const loadingText = screen.getByText('Pagina não encontrada');
