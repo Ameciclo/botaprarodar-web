@@ -14,6 +14,7 @@ jobs:
       - name: Cleanup cache
         run: npm cache clean --force
       - name: Install dependencies
+        run: npm cache clean --force
         run: npm install
       - name: Install Jest globally
         run: sudo npm install -g jest
