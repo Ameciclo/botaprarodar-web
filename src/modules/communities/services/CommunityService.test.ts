@@ -38,7 +38,7 @@ describe('Community Service', () => {
         '-MLDOXs3p35DEHg0gdUU': MockedFirstCommunity,
       },
     });
-    let data: Community[];
+    let data: Community;
 
     await act(async () => {
       data = await CommunityService.getCommunityById('MLDOXs3p35DEHg0gdUU');
