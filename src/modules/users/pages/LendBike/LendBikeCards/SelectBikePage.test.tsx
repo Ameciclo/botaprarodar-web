@@ -1,5 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
-import { act, render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import {
+  act,
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import { renderWithRouterAndAuth } from 'setupTests';
 import BikeService from '../../../../bicycles/services/BikeService';
 import { mockedBike } from '../../../../bicycles/mocks/BikeMocks';
@@ -21,9 +26,9 @@ describe('SelectBikePage', () => {
       });
 
       await waitForElementToBeRemoved(() =>
-      screen.getByText('Carregando, por favor aguarde...'),
-    );
-    
+        screen.getByText('Carregando, por favor aguarde...'),
+      );
+
       const card = screen.getByTestId('select-bike-page');
       expect(card).toBeInTheDocument();
     });
