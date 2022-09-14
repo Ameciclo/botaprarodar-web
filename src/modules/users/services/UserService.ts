@@ -28,6 +28,20 @@ const UserService = {
     return data;
   },
 
+  async getUsersByCommunity(communityId: string) {
+    const { data } = await api.get('/users.json');
+
+    const dataArray = Object.keys(data).map(key => {
+      return data[key];
+    });
+
+    const users: User[] = communityId
+      ? dataArray.filter(d => d?.communityId === communityId)
+      : dataArray;
+
+    return users;
+  },
+
   async createUser(body: any) {
     const payload = {
       name: body.name,

@@ -17,6 +17,7 @@ const LoginService = {
       email: userDetails?.email || '',
       authenticated: userDetails?.emailVerified || false,
       uid: userDetails?.uid || '',
+      currentCommunity: '',
     };
   },
 };

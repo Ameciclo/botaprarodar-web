@@ -4,4 +4,5 @@ export default interface AuthInterface {
   displayName: string;
   token: string;
   uid: string;
+  currentCommunity: string;
 }

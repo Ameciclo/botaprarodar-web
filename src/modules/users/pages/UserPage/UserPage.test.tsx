@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import {
   act,
@@ -14,7 +15,7 @@ const mockedUserService = UserService as jest.Mocked<typeof UserService>;
 
 describe('UserPage', () => {
   it('should render loading component', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([MockedFirstUser]);
+    mockedUserService.getUsersByCommunity.mockResolvedValue([MockedFirstUser]);
     act(() => {
       render(
         <BrowserRouter>
@@ -30,7 +31,7 @@ describe('UserPage', () => {
   });
 
   it('should render list of users', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([
+    mockedUserService.getUsersByCommunity.mockResolvedValue([
       MockedFirstUser,
       MockedSecondUser,
     ]);
@@ -47,7 +48,7 @@ describe('UserPage', () => {
   });
 
   it('should render no users and an empty state message', async () => {
-    mockedUserService.getAllUsers.mockResolvedValue([]);
+    mockedUserService.getUsersByCommunity.mockResolvedValue([]);
     await act(async () => {
       render(
         <BrowserRouter>
