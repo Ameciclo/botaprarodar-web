@@ -17,6 +17,8 @@ beforeEach(() => {
     authenticated: false,
     email: '',
     displayName: ' ',
+    uid: '',
+    currentCommunity: '',
   };
   localStorage.setItem('authStorage', JSON.stringify(INITIAL_AUTH));
 });
@@ -34,6 +36,8 @@ export function setUserAuthenticated() {
     authenticated: true,
     email: 'email@example.com',
     displayName: 'John Smith',
+    uid: '123',
+    currentCommunity: '',
   };
   localStorage.setItem('authStorage', JSON.stringify(mockedUser));
 }

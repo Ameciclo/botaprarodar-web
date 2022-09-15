@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Loading, toast } from 'shared/components';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
 import { EmptyStateImage } from 'shared/assets/images';
-import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
+import { useAuth } from 'modules/authentication/contexts/AuthContext';
 import { UserService } from 'modules/users/services';
 import Community from '../../../models/Community';
 import CommunityService from '../../../services/CommunityService';
@@ -24,13 +24,16 @@ const CommunitiesSelectionPage: React.FC = () => {
   const history = useHistory();
   const classes = useStyles();
   const lowerCased = textInput.toUpperCase();
-  const { value } = useGetAuth();
+  const { value, onChange } = useAuth();
 
-  const manageOnClick = community => {
+  const manageOnClick = (community: Community) => {
+    const newValue = { ...value };
+    newValue.currentCommunity = community.id;
+    onChange(newValue);
     history.push(`comunidades/gerenciador-de-comunidade/${community.id}`);
   };
 
-  const shouldLoggedInUserSeeCommunityCard = community => {
+  const shouldLoggedInUserSeeCommunityCard = (community: Community) => {
     return value.email === community.org_email || isLoggedInUserAdmin;
   };
 

@@ -26,7 +26,8 @@ export default (history: History, auth: AuthInterface) => [
     name: 'Usuárias',
     path: '/usuarios',
     icon: DirectionsBikeOutlined,
-    action: () => history.push('/usuarios'),
+    action: () =>
+      history.push('/usuarios', { communityId: auth.currentCommunity }),
     hide: !auth?.authenticated,
   },
   {

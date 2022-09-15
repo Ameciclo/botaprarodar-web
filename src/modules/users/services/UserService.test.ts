@@ -94,4 +94,21 @@ describe('User Service', () => {
       isBlocked: true,
     });
   });
+
+  it('should get users by community ID', async () => {
+    mockedApi.get.mockResolvedValue(mockedApiUsersResponse);
+    let data: User[];
+    const communityId = '-MLDOXs3p35DEHg0gdUU';
+
+    await act(async () => {
+      data = await UserService.getUsersByCommunity(communityId);
+    });
+
+    expect(mockedApi.get).toHaveBeenCalledWith('/users.json');
+    await waitFor(() =>
+      data.forEach(user => {
+        expect(user.communityId).toBe(communityId);
+      }),
+    );
+  });
 });
