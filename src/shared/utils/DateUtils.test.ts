@@ -25,8 +25,8 @@ describe('Util: DateUtils', () => {
       const invalidMonth = '10/15/2022';
       const invalidDay = '32/01/2022';
       const invalidDayMonth = '30/02/2022';
-      const dateAterMaxDate = new Date();
-      dateAterMaxDate.setDate(dateAterMaxDate.getDate() + 1);
+      const dateAfterMaxDate = new Date();
+      dateAfterMaxDate.setDate(dateAfterMaxDate.getDate() + 1);
       const dateBeforeMinDate = new Date(DateUtils.minDateString);
       dateBeforeMinDate.setDate(dateBeforeMinDate.getDate() - 1);
       it.each`
@@ -35,7 +35,7 @@ describe('Util: DateUtils', () => {
         ${'has an invalid month value'}                      | ${invalidMonth}
         ${'has an invalid day value'}                        | ${invalidDay}
         ${'has an invalid day value according to the month'} | ${invalidDayMonth}
-        ${'is after max date'}                               | ${dateAterMaxDate.toLocaleDateString('pt-BR')}
+        ${'is after max date'}                               | ${dateAfterMaxDate.toLocaleDateString('pt-BR')}
         ${'is before min date'}                              | ${dateBeforeMinDate.toLocaleDateString('pt-BR')}
       `('when date $testTitle', async ({ testedDate }) => {
         expect(DateUtils.validateDate(testedDate)).toEqual(
