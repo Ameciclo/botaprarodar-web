@@ -100,6 +100,8 @@ describe('Login Page', () => {
       displayName: 'string',
       email: 'string',
       authenticated: true,
+      uid: 'id',
+      currentCommunity: '',
     });
 
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
