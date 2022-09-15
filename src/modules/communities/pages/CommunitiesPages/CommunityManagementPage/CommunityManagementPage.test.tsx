@@ -98,7 +98,6 @@ describe('Community Management Page', () => {
 
     describe('should show community labels', () => {
       it('should show labels name', () => {
-        screen.debug();
         const labelName = screen.queryAllByText('CustomLabel-component-mock');
         expect(labelName).toHaveLength(3);
       });
