@@ -1,5 +1,6 @@
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input } from 'shared/components';
+import DateUtils from 'shared/utils/DateUtils';
 import useStyles from './PersonalInfoForm.styles';
 
 interface PersonalInfoFormProps {
@@ -76,6 +77,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               defaultValue=""
               rules={{
                 required: 'Data de nascimento do usuário é obrigatória',
+                validate: (date: string) => DateUtils.validateDate(date),
               }}
               fullWidth
             />
