@@ -1,14 +1,14 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { FormHeader, EmptyState } from 'shared/components';
 import { EmptyStateImage } from 'shared/assets/images';
-import RegisterUserForm from './components/RegisterUserForm/RegisterUserForm';
+import { EmptyState, FormHeader } from 'shared/components';
+import SelectBikePage from '../components/SelectBikePage/SelectBikePage';
 
 type StateParams = {
   communityId?: string;
 };
 
-const RegisterUserPage: React.FC = () => {
+const LendBikePage: React.FC = () => {
   const location = useLocation();
   const state = location.state as StateParams;
   const hasParams = !!state?.communityId;
@@ -29,10 +29,10 @@ const RegisterUserPage: React.FC = () => {
             link={`/comunidades/gerenciador-de-comunidade/${state.communityId}`}
             title="Voltar"
           />
-
-          <RegisterUserForm
-            data-testId="form-register"
+          <SelectBikePage
+            data-testId="SelectBikeCard"
             communityId={state.communityId || ''}
+            actionType="withdraw"
           />
         </>
       )}
@@ -40,4 +40,4 @@ const RegisterUserPage: React.FC = () => {
   );
 };
 
-export default RegisterUserPage;
+export default LendBikePage;

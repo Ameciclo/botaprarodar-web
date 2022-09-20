@@ -137,6 +137,7 @@ describe('Bike Service', () => {
         mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
         const bikeList = await BikeService.getBikesPerCommunity(
           '-MLy8y1-5v5GLg7Z428y',
+          null,
         );
         bikeList?.map(bike => {
           return expect(bike.communityId).toStrictEqual('-MLy8y1-5v5GLg7Z428y');

@@ -42,7 +42,7 @@ const UserPage: React.FC = () => {
           data-testid="userList"
           className={classes.userList}
           direction="row"
-          justifyContent="space-between"
+          justifyContent="flex-start"
           spacing={3}
         >
           {users?.map(user => {

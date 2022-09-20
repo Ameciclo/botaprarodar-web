@@ -27,7 +27,18 @@ const RegisterUserPage = lazy(
 );
 
 const LendBikePage = lazy(
-  () => import('../modules/users/pages/LendBike/LendBikePage'),
+  () => import('../modules/bicycles/pages/LendBike/LendBikePage'),
+);
+
+const ReturnBikePage = lazy(
+  () => import('../modules/bicycles/pages/ReturnBike/ReturnBikePage'),
+);
+
+const ReturnBikeStepOne = lazy(
+  () =>
+    import(
+      '../modules/bicycles/pages/ReturnBike/ReturnBikeStepOne/ReturnBikeStepOne'
+    ),
 );
 
 export const routes = [
@@ -54,6 +65,16 @@ export const routes = [
   {
     path: '/comunidades/emprestar-bicicleta',
     comp: LendBikePage,
+    private: true,
+  },
+  {
+    path: '/comunidades/devolver-bicicleta',
+    comp: ReturnBikePage,
+    private: true,
+  },
+  {
+    path: '/comunidades/devolver-bicicleta/questionario',
+    comp: ReturnBikeStepOne,
     private: true,
   },
   {
