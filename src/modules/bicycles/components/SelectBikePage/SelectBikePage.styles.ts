@@ -4,7 +4,7 @@ export default makeStyles(theme => ({
   cardPosition: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'right',
   },
   root: {
     display: 'flex',

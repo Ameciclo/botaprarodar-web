@@ -27,7 +27,7 @@ const RegisterUserPage = lazy(
 );
 
 const LendBikePage = lazy(
-  () => import('../modules/users/pages/LendBike/LendBikePage'),
+  () => import('../modules/bicycles/pages/LendBike/LendBikePage'),
 );
 
 export const routes = [
