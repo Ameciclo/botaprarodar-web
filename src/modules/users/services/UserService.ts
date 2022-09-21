@@ -60,8 +60,8 @@ const UserService = {
       isBlocked: false,
       userQuiz: {
         alreadyUseBPR: body.alreadyUseBPR,
-        alreadyUseBPROpenQuestion: body.alreadyUseBPROpenQuestion,
-        motivationOpenQuestion: body.reason,
+        alreadyUseBPROpenQuestion: body.reason,
+        motivationOpenQuestion: body.alreadyUseBPROpenQuestion,
         alreadyAccidentVictim: body.collision,
         problemsOnWayOpenQuestion: body.problems,
         timeOnWayOpenQuestion: body.timeToArrive,
