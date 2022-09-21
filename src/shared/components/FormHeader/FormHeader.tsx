@@ -7,9 +7,15 @@ import useStyles from './FormHeader.styles';
 interface FormHeaderProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   title: string;
   link: string;
+  state?: any | null;
 }
 
-const FormHeader: React.FC<FormHeaderProps> = ({ title, link, ...props }) => {
+const FormHeader: React.FC<FormHeaderProps> = ({
+  title,
+  link,
+  state,
+  ...props
+}) => {
   const classes = useStyles();
 
   return (
@@ -22,6 +28,10 @@ const FormHeader: React.FC<FormHeaderProps> = ({ title, link, ...props }) => {
       </Typography>
     </div>
   );
+};
+
+FormHeader.defaultProps = {
+  state: null,
 };
 
 export default FormHeader;

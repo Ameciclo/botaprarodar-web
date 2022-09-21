@@ -1,6 +1,6 @@
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithRouterAndAuth } from 'setupTests';
-import LendBikePage from './LendBikePage';
+import ReturnBikePage from './ReturnBikePage';
 
 describe('LandBikePage', () => {
   let communityId;
@@ -11,8 +11,8 @@ describe('LandBikePage', () => {
     });
 
     it('should render correctly', async () => {
-      const { history } = renderWithRouterAndAuth(<LendBikePage />, {
-        route: '/comunidades/emprestar-bicicleta',
+      const { history } = renderWithRouterAndAuth(<ReturnBikePage />, {
+        route: '/comunidades/devolver-bicicleta',
         stateParams: { communityId },
       });
 
@@ -20,15 +20,15 @@ describe('LandBikePage', () => {
 
       const title = screen.getByRole('heading', { name: 'Voltar' });
 
-      expect(location.pathname).toEqual('/comunidades/emprestar-bicicleta');
+      expect(location.pathname).toEqual('/comunidades/devolver-bicicleta');
       expect(location.state).toEqual({ communityId: 'my-community-id' });
 
       expect(title).toBeInTheDocument();
     });
 
     it('should redirect to home when clicking back', async () => {
-      const { history } = renderWithRouterAndAuth(<LendBikePage />, {
-        route: '/comunidades/emprestar-bicicleta',
+      const { history } = renderWithRouterAndAuth(<ReturnBikePage />, {
+        route: '/comunidades/devolver-bicicleta',
         stateParams: { communityId },
       });
 
@@ -44,8 +44,8 @@ describe('LandBikePage', () => {
     });
 
     it('should show empty state when having no parameters', async () => {
-      renderWithRouterAndAuth(<LendBikePage />, {
-        route: '/comunidades/emprestar-bicicleta',
+      renderWithRouterAndAuth(<ReturnBikePage />, {
+        route: '/comunidades/devolver-bicicleta',
       });
       const loadingText = screen.getByText('Página não encontrada');
       expect(loadingText).toBeInTheDocument();

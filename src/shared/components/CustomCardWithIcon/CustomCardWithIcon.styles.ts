@@ -27,4 +27,8 @@ export default makeStyles(theme => ({
     color: theme.palette.grey[500],
     textTransform: 'uppercase',
   },
+
+  opacity: {
+    opacity: 0.8,
+  },
 }));

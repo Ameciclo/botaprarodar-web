@@ -67,6 +67,11 @@ const CommunityManagementPage: React.FC = () => {
     history.push('/comunidades/emprestar-bicicleta', params);
   };
 
+  const redirectToReturnBike = () => {
+    const params = { communityId };
+    history.push('/comunidades/devolver-bicicleta', params);
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -98,7 +103,16 @@ const CommunityManagementPage: React.FC = () => {
             iconName="lendBike"
             text="Emprestar bicicleta"
             iconDescription="Emprestar bicicleta"
-            onClick={redirectToLendBike}
+            empty={
+              amountsBikesPerCommunity &&
+              amountsBikesPerCommunity.available === 0
+            }
+            onClick={
+              amountsBikesPerCommunity &&
+              amountsBikesPerCommunity.available === 0
+                ? undefined
+                : redirectToLendBike
+            }
           />
         </Grid>
         <Grid item xs={12} md={3} sm={6}>
@@ -107,6 +121,16 @@ const CommunityManagementPage: React.FC = () => {
             iconName="giveBackBike"
             text="Devolver Bicicleta"
             iconDescription="Devolver Bicicleta"
+            empty={
+              amountsBikesPerCommunity &&
+              amountsBikesPerCommunity.borrowed === 0
+            }
+            onClick={
+              amountsBikesPerCommunity &&
+              amountsBikesPerCommunity.borrowed === 0
+                ? undefined
+                : redirectToReturnBike
+            }
           />
         </Grid>
       </Grid>

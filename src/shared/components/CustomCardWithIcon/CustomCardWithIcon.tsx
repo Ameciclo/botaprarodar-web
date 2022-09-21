@@ -14,6 +14,7 @@ export interface Props {
   iconName: IconTypes;
   iconDescription: string;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void | undefined;
+  empty?: boolean;
 }
 
 const CustomCardWithIcon: FC<Props> = ({
@@ -22,11 +23,12 @@ const CustomCardWithIcon: FC<Props> = ({
   iconName,
   iconDescription,
   onClick,
+  empty,
 }) => {
   const classes = useStyles();
 
   return (
-    <Card>
+    <Card className={empty ? classes.opacity : ''}>
       <CardActionArea onClick={onClick} data-testid={`card-action-${id}`}>
         <CardContent>
           <div className={classes.wrapperIcon}>
@@ -44,6 +46,7 @@ const CustomCardWithIcon: FC<Props> = ({
 
 CustomCardWithIcon.defaultProps = {
   onClick: undefined,
+  empty: false,
 };
 
 export default CustomCardWithIcon;

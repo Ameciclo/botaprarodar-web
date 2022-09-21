@@ -1,18 +1,16 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { FormHeader, EmptyState } from 'shared/components';
 import { EmptyStateImage } from 'shared/assets/images';
-import RegisterUserForm from './components/RegisterUserForm/RegisterUserForm';
+import { EmptyState, FormHeader } from 'shared/components';
 
 type StateParams = {
   communityId?: string;
+  selectedBike?: string;
 };
 
-const RegisterUserPage: React.FC = () => {
+const ReturnBikeStepOne: React.FC = () => {
   const location = useLocation();
   const state = location.state as StateParams;
-  const hasParams = !!state?.communityId;
-
+  const hasParams = !!state?.communityId && !!state?.selectedBike;
   return (
     <>
       {!hasParams && (
@@ -26,13 +24,9 @@ const RegisterUserPage: React.FC = () => {
       {hasParams && (
         <>
           <FormHeader
-            link={`/comunidades/gerenciador-de-comunidade/${state.communityId}`}
+            link="/comunidades/devolver-bicicleta"
             title="Voltar"
-          />
-
-          <RegisterUserForm
-            data-testId="form-register"
-            communityId={state.communityId || ''}
+            state={{ communityId: state.communityId }}
           />
         </>
       )}
@@ -40,4 +34,4 @@ const RegisterUserPage: React.FC = () => {
   );
 };
 
-export default RegisterUserPage;
+export default ReturnBikeStepOne;
