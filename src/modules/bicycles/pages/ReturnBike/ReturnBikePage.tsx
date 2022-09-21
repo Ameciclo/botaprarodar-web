@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader } from 'shared/components';
-import SelectBikePage from '../components/SelectBikePage/SelectBikePage';
+import SelectBikePage from '../../components/SelectBikePage/SelectBikePage';
 
 type StateParams = {
   communityId?: string;

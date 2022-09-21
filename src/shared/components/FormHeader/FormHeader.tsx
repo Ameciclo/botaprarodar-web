@@ -22,7 +22,7 @@ const FormHeader: React.FC<FormHeaderProps> = ({
     <div className={classes.root} {...props}>
       <div className={classes.formHeaderBackground} />
       <Typography variant="h5" component="h5" className={classes.heading}>
-        <Link to={link} style={{ display: 'flex' }}>
+        <Link to={{ pathname: link, state }} style={{ display: 'flex' }}>
           <ArrowBackIos /> {title}
         </Link>
       </Typography>

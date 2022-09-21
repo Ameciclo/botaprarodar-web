@@ -4,12 +4,13 @@ export default makeStyles(theme => ({
   cardPosition: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'right',
+    alignItems: 'center',
   },
   root: {
     display: 'flex',
     marginBottom: '20px',
     width: 600,
+    cursor: 'pointer',
   },
   details: {
     display: 'flex',
@@ -31,7 +32,6 @@ export default makeStyles(theme => ({
     height: 38,
     width: 38,
   },
-
   titleStyle: {
     paddingBottom: '20px',
   },

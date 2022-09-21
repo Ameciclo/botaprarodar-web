@@ -5,6 +5,12 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: '20px',
+  },
+  pageNameStyle: {
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    fontSize: 25,
+    fontWeight: 500,
+    padding: '20px 0 20px 0',
   },
 });

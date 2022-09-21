@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader } from 'shared/components';
@@ -32,12 +33,15 @@ const LendBikePage: React.FC = () => {
             link={`/comunidades/gerenciador-de-comunidade/${state.communityId}`}
             title="Voltar"
           />
+          <Typography className={classes.pageNameStyle}>
+            Emprestar bicicleta
+          </Typography>
           <div className={classes.cardsColumnsStyle}>
             <SelectBikeUserPage />
             <SelectBikePage
-             data-testId="SelectBikeCard"
-             communityId={state.communityId || ''}
-             actionType="withdraw"
+              data-testId="SelectBikeCard"
+              communityId={state.communityId || ''}
+              actionType="withdraw"
             />
           </div>
         </>
