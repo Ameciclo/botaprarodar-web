@@ -4,7 +4,7 @@ export default makeStyles(() => ({
   root: {
     display: 'flex',
     alignItems: 'flex-start',
-    height: 100,
+    height: 65,
   },
   formHeaderBackground: {
     background: 'rgba(1, 135, 134, 0.5)',
