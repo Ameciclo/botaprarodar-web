@@ -6,11 +6,11 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { renderWithRouterAndAuth } from 'setupTests';
-import BikeService from '../../../../bicycles/services/BikeService';
-import { mockedBike } from '../../../../bicycles/mocks/BikeMocks';
+import BikeService from '../../services/BikeService';
+import { mockedBike } from '../../mocks/BikeMocks';
 import SelectBikePage from './SelectBikePage';
 
-jest.mock('../../../../bicycles/services/BikeService');
+jest.mock('../../services/BikeService');
 const mockedBikeService = BikeService as jest.Mocked<typeof BikeService>;
 
 describe('SelectBikePage', () => {

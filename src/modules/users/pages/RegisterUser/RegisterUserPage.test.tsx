@@ -61,7 +61,7 @@ describe('RegisterUserPage', () => {
       const feedbackError = screen.getByTestId('empty-state');
       const feedbackHeading = screen.getByRole('heading', { name: 'Opss!' });
       const feedbackSubHeading = screen.getByRole('heading', {
-        name: 'Pagina não encontrada',
+        name: 'Página não encontrada',
       });
 
       expect(feedbackError).toBeInTheDocument();

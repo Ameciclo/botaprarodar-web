@@ -43,11 +43,11 @@ describe('LandBikePage', () => {
       );
     });
 
-    it('should show empy state when having no parameters', async () => {
+    it('should show empty state when having no parameters', async () => {
       renderWithRouterAndAuth(<LendBikePage />, {
         route: '/comunidades/emprestar-bicicleta',
       });
-      const loadingText = screen.getByText('Pagina não encontrada');
+      const loadingText = screen.getByText('Página não encontrada');
       expect(loadingText).toBeInTheDocument();
     });
   });

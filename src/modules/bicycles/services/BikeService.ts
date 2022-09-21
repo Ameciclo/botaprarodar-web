@@ -12,12 +12,20 @@ const BikeService = {
     return bikes;
   },
 
-  async getBikesPerCommunity(communityId: string): Promise<Bike[]> {
+  async getBikesPerCommunity(
+    communityId: string,
+    actionType: string | null | undefined,
+  ): Promise<Bike[]> {
     try {
       const { data } = await api.get('/bikes.json');
       if (data) {
         const bikePerCommunity: Bike[] = mapBikesData(data).filter(
-          bike => bike.communityId === communityId,
+          bike =>
+            bike.communityId === communityId &&
+            (actionType
+              ? (actionType === 'devolution' && bike.inUse) ||
+                (actionType === 'withdraw' && !bike.inUse)
+              : true),
         );
         return bikePerCommunity;
       }

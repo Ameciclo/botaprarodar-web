@@ -10,6 +10,7 @@ export default makeStyles(theme => ({
     display: 'flex',
     marginBottom: '20px',
     width: 600,
+    cursor: 'pointer',
   },
   details: {
     display: 'flex',
@@ -31,7 +32,6 @@ export default makeStyles(theme => ({
     height: 38,
     width: 38,
   },
-
   titleStyle: {
     paddingBottom: '20px',
   },
