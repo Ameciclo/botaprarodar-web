@@ -40,6 +40,15 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 - Node 14 or above
 - NPM Package manager
 
+## Initial Configuration
+
+1. Clone this repository: `git clone git@github.com:Ameciclo/botaprarodar-web.git`
+1. Have the Node 14 installed on your machine (Using brew: `brew install node@14`)
+1. Put the node command on your bashrc: `echo 'export PATH="/usr/local/opt/node@14/bin:$PATH"' >> ~/.zshrc`
+1. On project root folder install packages: `npm install`
+1. Using the `.sample-env` as template ask the team for environment variables.
+1. You are ready to go.
+
 ## Process for integration
 
 1. Every feature or change **should go through a pull request and point to `main`. Every PR will trigger the CI to Test and Build the PR. Once the CI is finished and the PR approved, it can be merged into main.** 
