@@ -62,7 +62,16 @@ export default makeStyles({
   },
   listItemText: {
     fontSize: '14px',
-    color: '#515151',
     wordBreak: 'break-all',
+    color: '#515151',
   },
 });
+
+export const descriptionStyle: any = {
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  WebkitLineClamp: '3',
+  WebkitBoxOrient: 'vertical',
+  minHeight: '60px',
+};
