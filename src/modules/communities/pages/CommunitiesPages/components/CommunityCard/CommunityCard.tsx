@@ -8,7 +8,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { PlaceOutlined } from '@material-ui/icons';
 import Community from '../../../../models/Community';
-import useStyles from './CommunityCard.styles';
+import useStyles, { descriptionStyle } from './CommunityCard.styles';
 
 interface CommunityCardProps {
   community: Community;
@@ -34,6 +34,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
             <ListItem className={classes.listItem}>
               <ListItemText
                 secondary={community.description || 'Descrição não informada'}
+                style={descriptionStyle}
                 className={classes.listItemText}
               />
             </ListItem>
