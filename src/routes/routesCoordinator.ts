@@ -41,6 +41,13 @@ const ReturnBikeStepOne = lazy(
     ),
 );
 
+const BikeConfirmationPage = lazy(
+  () =>
+    import(
+      '../modules/bicycles/components/BikeConfirmationPage/BikeConfirmationPage'
+    ),
+);
+
 export const routes = [
   {
     path: '/',
@@ -75,6 +82,11 @@ export const routes = [
   {
     path: '/comunidades/devolver-bicicleta/questionario',
     comp: ReturnBikeStepOne,
+    private: true,
+  },
+  {
+    path: '/comunidades/devolver-bicicleta/confirmacao',
+    comp: BikeConfirmationPage,
     private: true,
   },
   {
