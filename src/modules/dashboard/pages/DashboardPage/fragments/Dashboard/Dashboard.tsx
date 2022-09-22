@@ -23,7 +23,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
         <Grid item xl={12} lg={12} sm={12} xs={12}>
           <Typography
             className={classes.userTitle}
-          >{`Olá, ${auth.displayName}`}</Typography>
+          >{`Olá, ${auth.displayName} esses são os dados gerais do Bota Pra Rodar`}</Typography>
         </Grid>
       )}
       <>

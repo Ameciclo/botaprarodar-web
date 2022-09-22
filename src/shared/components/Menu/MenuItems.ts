@@ -9,7 +9,7 @@ import AuthInterface from '../../../modules/authentication/models/AuthInterface'
 
 export default (history: History, auth: AuthInterface) => [
   {
-    name: 'Dados',
+    name: 'Dados Gerais',
     path: '/',
     icon: DashboardOutlined,
     action: () => history.push('/'),
