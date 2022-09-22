@@ -82,7 +82,7 @@ const CommunitiesSelectionPage: React.FC = () => {
         direction="row"
         justifyContent="space-between"
       >
-        <Grid item md={8} xs={12}>
+        <Grid item md={6} xs={12}>
           <Typography variant="h5" gutterBottom className={classes.pageTitle}>
             Comunidades do Bota pra Rodar
           </Typography>

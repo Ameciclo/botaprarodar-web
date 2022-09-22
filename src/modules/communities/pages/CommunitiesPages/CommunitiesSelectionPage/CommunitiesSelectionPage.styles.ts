@@ -18,7 +18,7 @@ export default makeStyles(theme => ({
     fontWeight: 'lighter',
   },
   filterCommunity: {
-    width: '780px',
+    width: '100%',
     height: '48px',
     background: '#F0F0F0',
     marginTop: '20px',
