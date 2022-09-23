@@ -4,10 +4,14 @@ export default makeStyles({
   root: {
     marginBottom: '20px',
     width: 600,
+    height: 100,
     marginTop: '20px',
   },
   media: {
     height: 140,
+  },
+  avatar: {
+    backgroundColor: '#018786',
   },
   positionStyle: {
     display: 'flex',
