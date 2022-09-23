@@ -21,7 +21,16 @@ const SelectBikeUserPage: React.FC = () => {
   const communityId = location.state?.communityId;
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [textInput, setTextInput] = useState('');
   const classes = useStyles();
+
+  const handleTextInput = e => {
+    setTextInput(e.target.value);
+  };
+  const lowerCased = textInput.toUpperCase();
+  const filteredUsers = users.filter(user =>
+    user.name.toUpperCase().includes(lowerCased),
+  );
 
   useEffect(() => {
     UserService.getUsersByCommunity(communityId)
@@ -47,6 +56,7 @@ const SelectBikeUserPage: React.FC = () => {
         id="busca"
         type="text"
         placeholder="Procure o ciclista pelo nome..."
+        onChange={handleTextInput}
         InputProps={{
           disableUnderline: true,
           startAdornment: (
@@ -58,7 +68,7 @@ const SelectBikeUserPage: React.FC = () => {
           ),
         }}
       />
-      {users?.map(user => {
+      {filteredUsers?.map(user => {
         return (
           user.id && (
             <Card className={classes.root}>
