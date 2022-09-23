@@ -11,6 +11,8 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { EmptyState } from 'shared/components';
+import { EmptyStateImage } from 'shared/assets/images';
 import Loading from '../../../../../../shared/components/Loading/Loading';
 import UserService from '../../../../../users/services/UserService';
 import User from '../../../../../users/models/User';
@@ -68,30 +70,43 @@ const SelectBikeUserPage: React.FC = () => {
           ),
         }}
       />
-      {filteredUsers?.map(user => {
-        return (
-          user.id && (
-            <Card className={classes.root}>
-              <CardHeader
-                avatar={
-                  <Avatar
-                    className={classes.avatar}
-                    src={user?.profilePicture}
-                    alt="profile"
+
+      {loading ? (
+        <Loading />
+      ) : filteredUsers.length ? (
+        <div>
+          {filteredUsers?.map(user => {
+            return (
+              user.id && (
+                <Card className={classes.root}>
+                  <CardHeader
+                    avatar={
+                      <Avatar
+                        className={classes.avatar}
+                        src={user?.profilePicture}
+                        alt="profile"
+                      />
+                    }
+                    action={
+                      <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                      </IconButton>
+                    }
+                    title={user?.name}
+                    subheader={user?.telephone}
                   />
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={user?.name}
-                subheader={user?.telephone}
-              />
-            </Card>
-          )
-        );
-      })}
+                </Card>
+              )
+            );
+          })}
+        </div>
+      ) : (
+        <EmptyState
+          imgSrc={EmptyStateImage}
+          heading="Nenhuma usuária cadastrada!"
+          subheading="Cadastre uma nova usuária em nosso aplicativo."
+        />
+      )}
     </div>
   );
 };
