@@ -37,7 +37,7 @@ describe('Component: CustomRadioButton', () => {
       expect(radio).not.toBeInTheDocument();
     });
 
-    it('with radio buttons when has options', async () => {
+    it('with radio buttons when has options', () => {
       defaultProps.options = [
         { label: 'Sim', value: 'Sim' },
         { label: 'Não', value: 'Não' },
@@ -73,7 +73,7 @@ describe('Component: CustomRadioButton', () => {
       mockedOnChange = jest.fn();
     });
 
-    it('when some option is clicked', async () => {
+    it('when some option is clicked', () => {
       const { container } = renderWithRouterAndAuth(
         <CustomRadioGroup {...defaultProps} onChange={mockedOnChange} />,
       );
@@ -89,7 +89,7 @@ describe('Component: CustomRadioButton', () => {
       expect(mockedOnChange).toHaveBeenCalledTimes(1);
     });
 
-    it('when option clicked is changed', async () => {
+    it('when option clicked is changed', () => {
       const { container } = renderWithRouterAndAuth(
         <CustomRadioGroup {...defaultProps} onChange={mockedOnChange} />,
       );

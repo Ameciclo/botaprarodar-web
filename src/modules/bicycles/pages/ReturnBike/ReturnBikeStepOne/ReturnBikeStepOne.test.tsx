@@ -1,4 +1,5 @@
 import { screen, fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndAuth } from 'setupTests';
 import ReturnBikeStepOne from './ReturnBikeStepOne';
 
@@ -12,7 +13,7 @@ describe('ReturnBikeStepOne', () => {
       selectedBike = '123';
     });
 
-    it('should render correctly', async () => {
+    it('should render correctly', () => {
       const { history, container } = renderWithRouterAndAuth(
         <ReturnBikeStepOne />,
         {
@@ -73,7 +74,75 @@ describe('ReturnBikeStepOne', () => {
       );
     });
 
-    it('should show empty state when having no parameters', async () => {
+    it('should allow submit form only with all fields filled', async () => {
+      const { history, container } = renderWithRouterAndAuth(
+        <ReturnBikeStepOne />,
+        {
+          route: '/comunidades/devolver-bicicleta/formulario',
+          stateParams: { communityId, selectedBike },
+        },
+      );
+      const { location } = history;
+      const submitButton = screen.getByTestId('submit-button');
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        const errorMessage = container.querySelector(`p span`);
+
+        expect(errorMessage).toBeInTheDocument();
+        expect(errorMessage?.textContent).toBe(
+          'Informação do bairro de destino é obrigatória',
+        );
+        expect(location.pathname).toEqual(
+          '/comunidades/devolver-bicicleta/formulario',
+        );
+        expect(location.state).toEqual({
+          communityId: 'my-community-id',
+          selectedBike: '123',
+        });
+      });
+    });
+
+    it('should go to the next page when all fields were filled', async () => {
+      const { container, history } = renderWithRouterAndAuth(
+        <ReturnBikeStepOne />,
+        {
+          route: '/comunidades/devolver-bicicleta/formulario',
+          stateParams: { communityId, selectedBike },
+        },
+      );
+
+      const neighborhood = screen.getByTestId('bike-neighborhood-test');
+      const submitButton = screen.getByTestId('submit-button');
+      const radioButtonRideShare = container.querySelectorAll<HTMLInputElement>(
+        `input[type="radio"][name="rideShare"]`,
+      );
+      const optionYes = radioButtonRideShare[0];
+
+      fireEvent.change(neighborhood, { target: { value: 'Bairro X' } });
+      userEvent.click(optionYes);
+      userEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(history.location.pathname).toEqual(
+          '/comunidades/devolver-bicicleta/confirmacao',
+        );
+        expect(history.location.state).toEqual({
+          communityId: 'my-community-id',
+          selectedBike: '123',
+          formValues: {
+            bikeUse: 'Para realizar entregas de aplicativos.',
+            neighborhood: 'Bairro X',
+            accidents: 'Não',
+            rideShare: 'Sim',
+          },
+        });
+      });
+    });
+  });
+
+  describe('when has no state params', () => {
+    it('should show empty state when having no parameters', () => {
       renderWithRouterAndAuth(<ReturnBikeStepOne />, {
         route: '/comunidades/devolver-bicicleta/formulario',
       });

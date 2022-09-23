@@ -124,7 +124,7 @@ const ReturnBikeStepOne: React.FC = () => {
                 <Input
                   label=""
                   type="text"
-                  name="bikeNeighborhood"
+                  name="neighborhood"
                   className=""
                   control={control}
                   dataTestId="bike-neighborhood-test"
