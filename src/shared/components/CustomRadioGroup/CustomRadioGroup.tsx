@@ -14,7 +14,7 @@ interface OptionRadioGroup {
   label: string;
 }
 
-interface Props {
+export interface Props {
   title: string;
   value: string;
   direction?: directionLabel;
