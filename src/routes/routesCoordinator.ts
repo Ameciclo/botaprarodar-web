@@ -25,15 +25,15 @@ const UserPage = lazy(() => import('../modules/users/pages/UserPage/UserPage'));
 const RegisterUserPage = lazy(
   () => import('../modules/users/pages/RegisterUser/RegisterUserPage'),
 );
-
 const LendBikePage = lazy(
   () => import('../modules/bicycles/pages/LendBike/LendBikePage'),
 );
-
+const LendBikeNextStep = lazy(
+  () => import('../modules/bicycles/pages/LendBike/LendBikeNextStep'),
+);
 const ReturnBikePage = lazy(
   () => import('../modules/bicycles/pages/ReturnBike/ReturnBikePage'),
 );
-
 const ReturnBikeStepOne = lazy(
   () =>
     import(
@@ -67,6 +67,12 @@ export const routes = [
     comp: LendBikePage,
     private: true,
   },
+  {
+    path: '/comunidades/emprestar-bicicleta/selecionar-bicicleta',
+    comp: LendBikeNextStep,
+    private: true,
+  },
+
   {
     path: '/comunidades/devolver-bicicleta',
     comp: ReturnBikePage,

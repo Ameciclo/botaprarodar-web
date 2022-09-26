@@ -4,7 +4,7 @@ export default makeStyles({
   cardsColumnsStyle: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   pageNameStyle: {
     textAlign: 'center',
