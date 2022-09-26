@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography/Typography';
 import {
   Avatar,
@@ -25,6 +25,7 @@ const SelectBikeUserPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [textInput, setTextInput] = useState('');
   const classes = useStyles();
+  const history = useHistory();
 
   const handleTextInput = e => {
     setTextInput(e.target.value);
@@ -46,6 +47,14 @@ const SelectBikeUserPage: React.FC = () => {
         setLoading(false);
       });
   }, [communityId]);
+
+  const selectBikeUser = (selectedUser: string) => {
+    const params = { communityId, selectedUser };
+    history.push(
+      '/comunidades/emprestar-bicicleta/selecionar-bicicleta',
+      params,
+    );
+  };
 
   return (
     <div className={classes.positionStyle}>
@@ -78,7 +87,10 @@ const SelectBikeUserPage: React.FC = () => {
           {filteredUsers?.map(user => {
             return (
               user.id && (
-                <Card className={classes.root}>
+                <Card
+                  className={classes.root}
+                  onClick={() => selectBikeUser(user.id)}
+                >
                   <CardHeader
                     avatar={
                       <Avatar

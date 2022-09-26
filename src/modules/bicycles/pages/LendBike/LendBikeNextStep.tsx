@@ -3,14 +3,14 @@ import { Typography } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader } from 'shared/components';
-import SelectBikeUserPage from './LendBikeCards/SelectBikeUserPage/SelectBikeUserPage';
+import SelectBikePage from '../../components/SelectBikePage/SelectBikePage';
 import useStyles from './LendBikePage.styles';
 
 type StateParams = {
   communityId?: string;
 };
 
-const LendBikePage: React.FC = () => {
+const LendBikeNextStep: React.FC = () => {
   const classes = useStyles();
   const location = useLocation();
   const state = location.state as StateParams;
@@ -36,7 +36,11 @@ const LendBikePage: React.FC = () => {
             Emprestar bicicleta
           </Typography>
           <div className={classes.cardsColumnsStyle}>
-            <SelectBikeUserPage />
+            <SelectBikePage
+              data-testId="SelectBikeCard"
+              communityId={state.communityId || ''}
+              actionType="withdraw"
+            />
           </div>
         </>
       )}
@@ -44,4 +48,4 @@ const LendBikePage: React.FC = () => {
   );
 };
 
-export default LendBikePage;
+export default LendBikeNextStep;

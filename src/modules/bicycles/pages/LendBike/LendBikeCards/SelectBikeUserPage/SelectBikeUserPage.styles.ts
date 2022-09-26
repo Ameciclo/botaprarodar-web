@@ -6,6 +6,9 @@ export default makeStyles({
     width: 600,
     height: 100,
     marginTop: '20px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   media: {
     height: 140,
