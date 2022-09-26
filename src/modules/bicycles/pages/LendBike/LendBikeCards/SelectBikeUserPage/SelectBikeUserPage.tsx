@@ -83,7 +83,7 @@ const SelectBikeUserPage: React.FC = () => {
       {loading ? (
         <Loading />
       ) : filteredUsers.length ? (
-        <div>
+        <div data-testid="userList">
           {filteredUsers?.map(user => {
             return (
               user.id && (
@@ -115,8 +115,8 @@ const SelectBikeUserPage: React.FC = () => {
       ) : (
         <EmptyState
           imgSrc={EmptyStateImage}
-          heading="Nenhuma usuária cadastrada!"
-          subheading="Cadastre uma nova usuária em nosso aplicativo."
+          heading="Nenhuma usuária com esse nome!"
+          subheading="Cadastre a nova usuária em nosso aplicativo."
         />
       )}
     </div>

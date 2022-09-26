@@ -21,6 +21,9 @@ export default makeStyles({
     flexDirection: 'column',
   },
   titleStyle: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
     paddingBottom: '20px',
   },
   textFieldStyle: {
