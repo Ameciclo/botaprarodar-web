@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export default makeStyles(theme => ({
+export default makeStyles({
   cardPosition: {
     display: 'flex',
     flexDirection: 'column',
@@ -9,4 +9,4 @@ export default makeStyles(theme => ({
   titleStyle: {
     paddingBottom: '20px',
   },
-}));
+});
