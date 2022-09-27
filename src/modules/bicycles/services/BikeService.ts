@@ -23,7 +23,9 @@ const BikeService = {
           bike =>
             bike.communityId === communityId &&
             (actionType
-              ? (actionType === 'devolution' && bike.inUse) ||
+              ? (actionType === 'devolution' &&
+                  bike.inUse &&
+                  bike.withdrawToUser) ||
                 (actionType === 'withdraw' && !bike.inUse)
               : true),
         );
@@ -50,7 +52,9 @@ const BikeService = {
         );
         total = bikePerCommunity.length;
 
-        borrowed = bikePerCommunity.filter(bike => bike.inUse).length;
+        borrowed = bikePerCommunity.filter(
+          bike => bike.inUse && bike.withdrawToUser,
+        ).length;
 
         available = total - borrowed;
       }

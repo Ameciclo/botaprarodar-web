@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography/Typography';
-import {
-  Avatar,
-  Card,
-  CardHeader,
-  IconButton,
-  InputAdornment,
-  TextField,
-} from '@material-ui/core';
+import { IconButton, InputAdornment, TextField } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { EmptyState } from 'shared/components';
 import { EmptyStateImage } from 'shared/assets/images';
+import BikeUserCard from 'modules/bicycles/components/BikeUserCard/BikeUserCard';
 import Loading from '../../../../../../shared/components/Loading/Loading';
 import UserService from '../../../../../users/services/UserService';
 import User from '../../../../../users/models/User';
@@ -48,7 +41,7 @@ const SelectBikeUserPage: React.FC = () => {
       });
   }, [communityId]);
 
-  const selectBikeUser = (selectedUser: string) => {
+  const selectBikeUser = (selectedUser: User) => {
     const params = { communityId, selectedUser };
     history.push(
       '/comunidades/emprestar-bicicleta/selecionar-bicicleta',
@@ -87,27 +80,13 @@ const SelectBikeUserPage: React.FC = () => {
           {filteredUsers?.map(user => {
             return (
               user.id && (
-                <Card
-                  className={classes.root}
-                  onClick={() => selectBikeUser(user.id)}
-                >
-                  <CardHeader
-                    avatar={
-                      <Avatar
-                        className={classes.avatar}
-                        src={user?.profilePicture}
-                        alt="profile"
-                      />
-                    }
-                    action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
-                    }
-                    title={user?.name}
-                    subheader={user?.telephone}
-                  />
-                </Card>
+                <BikeUserCard
+                  key={user.id}
+                  cardClick={() => selectBikeUser(user)}
+                  profilePicture={user?.profilePicture}
+                  name={user?.name}
+                  telephone={user?.telephone}
+                />
               )
             );
           })}

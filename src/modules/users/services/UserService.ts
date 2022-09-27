@@ -22,10 +22,13 @@ const UserService = {
     }
   },
 
-  async getUserById(id: string) {
-    const { data } = await api.get(`/users/${id}.json`);
+  async getUserById(id: string | undefined) {
+    if (id) {
+      const { data } = await api.get(`/users/${id}.json`);
 
-    return data;
+      return data;
+    }
+    return {};
   },
 
   async getUsersByCommunity(communityId: string) {
