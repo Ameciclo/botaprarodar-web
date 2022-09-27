@@ -7,22 +7,35 @@ import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader, Select, Input } from 'shared/components';
 import { BikeUseEnum } from 'modules/bicycles/models/enum';
 import CustomRadioGroup from 'shared/components/CustomRadioGroup/CustomRadioGroup';
+import Bike from 'modules/users/models/Bike';
 import useStyles from './ReturnBikeStepOne.styles';
 import { defaultFormValues, FormValues } from './ReturnBikeForm.schema';
 
 type StateParams = {
   communityId?: string;
-  selectedBike?: string;
+  selectedBike?: Bike;
+  formValues?: FormValues;
 };
 
 const ReturnBikeStepOne: React.FC = () => {
-  const { control, setValue, watch, handleSubmit } = useForm<FormValues>({
-    defaultValues: defaultFormValues,
-  });
-  const values = watch();
-  const classes = useStyles();
   const location = useLocation();
   const state = location.state as StateParams;
+  const { control, setValue, watch, handleSubmit } = useForm<FormValues>(
+    !state || !state.formValues
+      ? {
+          defaultValues: defaultFormValues,
+        }
+      : {
+          defaultValues: {
+            bikeUse: state.formValues.bikeUse,
+            neighborhood: state.formValues.neighborhood,
+            accidents: state.formValues.accidents,
+            rideShare: state.formValues.rideShare,
+          },
+        },
+  );
+  const values = watch();
+  const classes = useStyles();
   const hasParams = !!state?.communityId && !!state?.selectedBike;
   const yes = { label: 'Sim', value: 'Sim' };
   const no = { label: 'Não', value: 'Não' };
@@ -57,7 +70,10 @@ const ReturnBikeStepOne: React.FC = () => {
           <FormHeader
             link="/comunidades/devolver-bicicleta"
             title="Voltar"
-            state={{ communityId: state.communityId }}
+            state={{
+              communityId: state.communityId,
+              formValues: state.formValues,
+            }}
           />
           <TitleBikePage title="Questionário" />
           <Card>
@@ -84,7 +100,7 @@ const ReturnBikeStepOne: React.FC = () => {
                   label=""
                   name="bikeUse"
                   dataTestId="bike-use-test"
-                  value={values?.bikeUse}
+                  value={values.bikeUse}
                   onChange={handleChange}
                   options={[
                     {

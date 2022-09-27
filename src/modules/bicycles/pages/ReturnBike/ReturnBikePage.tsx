@@ -3,9 +3,11 @@ import TitleBikePage from 'modules/bicycles/components/TitleBikePage/TitleBikePa
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader } from 'shared/components';
 import SelectBikePage from '../../components/SelectBikePage/SelectBikePage';
+import { FormValues } from './ReturnBikeStepOne/ReturnBikeForm.schema';
 
 type StateParams = {
   communityId?: string;
+  formValues?: FormValues;
 };
 
 const ReturnBikePage: React.FC = () => {
@@ -33,6 +35,7 @@ const ReturnBikePage: React.FC = () => {
           <SelectBikePage
             data-testId="SelectBikeCard"
             communityId={state.communityId || ''}
+            formValues={state.formValues}
             actionType="devolution"
           />
         </>

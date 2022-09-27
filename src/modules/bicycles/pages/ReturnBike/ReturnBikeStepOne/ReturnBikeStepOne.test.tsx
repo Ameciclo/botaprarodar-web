@@ -6,11 +6,13 @@ import ReturnBikeStepOne from './ReturnBikeStepOne';
 describe('ReturnBikeStepOne', () => {
   let communityId;
   let selectedBike;
+  let formValues;
 
   describe('when has state params', () => {
     beforeEach(() => {
       communityId = 'my-community-id';
       selectedBike = '123';
+      formValues = undefined;
     });
 
     it('should render correctly', () => {
@@ -18,7 +20,7 @@ describe('ReturnBikeStepOne', () => {
         <ReturnBikeStepOne />,
         {
           route: '/comunidades/devolver-bicicleta/formulario',
-          stateParams: { communityId, selectedBike },
+          stateParams: { communityId, selectedBike, formValues },
         },
       );
 
@@ -31,6 +33,7 @@ describe('ReturnBikeStepOne', () => {
       expect(location.state).toEqual({
         communityId: 'my-community-id',
         selectedBike: '123',
+        formValues: undefined,
       });
       expect(title).toBeInTheDocument();
       expect(screen.getByText('Questionário')).toBeInTheDocument();
@@ -60,7 +63,7 @@ describe('ReturnBikeStepOne', () => {
     it('should redirect to first page of return bike when clicking back', async () => {
       const { history } = renderWithRouterAndAuth(<ReturnBikeStepOne />, {
         route: '/comunidades/devolver-bicicleta/formulario',
-        stateParams: { communityId, selectedBike },
+        stateParams: { communityId, selectedBike, formValues },
       });
 
       const title = screen.getByText('Voltar');
@@ -108,7 +111,7 @@ describe('ReturnBikeStepOne', () => {
         <ReturnBikeStepOne />,
         {
           route: '/comunidades/devolver-bicicleta/formulario',
-          stateParams: { communityId, selectedBike },
+          stateParams: { communityId, selectedBike, formValues },
         },
       );
 
