@@ -1,5 +1,7 @@
 import { Button } from '@material-ui/core';
 import Bike from 'modules/bicycles/models/Bike';
+import { FormValues } from 'modules/bicycles/pages/ReturnBike/ReturnBikeStepOne/ReturnBikeForm.schema';
+import BikeService from 'modules/bicycles/services/BikeService';
 import { User } from 'modules/users/models';
 import BikeCard from '../BikeCard/BikeCard';
 import BikeUserCard from '../BikeUserCard/BikeUserCard';
@@ -10,6 +12,8 @@ interface BikeConfirmationCardsParams {
   selectedBike?: Bike;
   selectedUser?: User;
   buttonText?: string;
+  formValues?: FormValues;
+  type?: 'withdraw' | 'devolution' | undefined;
 }
 
 const BikeConfirmationCards: React.FC<BikeConfirmationCardsParams> = ({
@@ -17,8 +21,25 @@ const BikeConfirmationCards: React.FC<BikeConfirmationCardsParams> = ({
   selectedBike,
   selectedUser,
   buttonText,
+  formValues,
+  type,
 }) => {
   const classes = useStyles();
+  const confirm = () => {
+    if (type === 'withdraw') {
+      BikeService.lendBike(selectedUser, selectedBike);
+    }
+
+    if (type === 'devolution' && formValues) {
+      BikeService.returnBike(selectedUser, selectedBike, {
+        destination: formValues?.neighborhood,
+        giveRide: formValues?.rideShare,
+        reason: formValues?.bikeUse,
+        problemsDuringRide: formValues?.accidents,
+      });
+    }
+  };
+
   return (
     <>
       <p className={classes.p}>{subtitle}</p>
@@ -32,9 +53,10 @@ const BikeConfirmationCards: React.FC<BikeConfirmationCardsParams> = ({
 
           <Button
             data-testid="submit-button"
-            type="submit"
+            type="button"
             className={classes.buttonStyle}
             disabled={false}
+            onClick={() => confirm()}
           >
             {buttonText}
           </Button>
