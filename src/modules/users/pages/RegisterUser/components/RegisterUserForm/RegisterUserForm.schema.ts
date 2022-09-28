@@ -4,9 +4,9 @@ import type { SchemaType as Rules } from 'shared/models';
 type AlreadyUseBPRField = 'Yes' | 'No';
 
 export type FormValues = {
-  reason: TYPE.ReasonType;
+  motivation: TYPE.ReasonType;
   alreadyUseBPR: AlreadyUseBPRField;
-  alreadyUseBPROpenQuestion: string;
+  motivationOpenQuestion: string;
   schooling: TYPE.SchoolingType;
   gender: TYPE.GenderType;
   race: TYPE.RacialType;
@@ -15,9 +15,9 @@ export type FormValues = {
 };
 
 export const defaultFormValues: FormValues = {
-  reason: 'Porque começou a trabalhar com entregas.',
+  motivation: 'Porque começou a trabalhar com entregas.',
   alreadyUseBPR: 'No',
-  alreadyUseBPROpenQuestion: '',
+  motivationOpenQuestion: '',
   schooling: 'Não informado',
   gender: 'Não declarado',
   race: 'Não Informado',
@@ -30,9 +30,9 @@ type Keys = keyof typeof defaultFormValues;
 export type Schema = Record<Keys, Rules>;
 
 export const schema: Schema = {
-  reason: { required: 'A motivação do uso é obrigatória' },
+  motivation: { required: 'A motivação do uso é obrigatória' },
   alreadyUseBPR: {},
-  alreadyUseBPROpenQuestion: { required: 'Campo obrigatório' },
+  motivationOpenQuestion: { required: 'Campo obrigatório' },
   schooling: {},
   gender: {},
   race: {},

@@ -14,8 +14,8 @@ describe('MotivationForm', () => {
       control: jest.fn(),
       values: {
         alreadyUseBPR: 'No',
-        alreadyUseBPROpenQuestion: '',
-        reason: 'Porque começou a trabalhar com entregas.',
+        motivationOpenQuestion: '',
+        motivation: 'Porque começou a trabalhar com entregas.',
       },
     };
   });
@@ -26,13 +26,13 @@ describe('MotivationForm', () => {
     expect(
       screen.getByTestId('select-already-use-bpr-test'),
     ).toBeInTheDocument();
-    expect(screen.getByTestId('select-reason-test')).toBeInTheDocument();
+    expect(screen.getByTestId('select-motivation-test')).toBeInTheDocument();
   });
 
   it('should show additional option when selecting other', async () => {
     const { rerender } = render(<MotivationForm {...defaultProps} />);
 
-    const view = screen.getByTestId('select-reason-test');
+    const view = screen.getByTestId('select-motivation-test');
     const select = within(view).getByRole('button', {
       name: /porque começou a trabalhar com entregas\./i,
     });
@@ -55,8 +55,8 @@ describe('MotivationForm', () => {
         {...defaultProps}
         values={{
           alreadyUseBPR: 'Yes',
-          alreadyUseBPROpenQuestion: '',
-          reason: 'Outro',
+          motivationOpenQuestion: '',
+          motivation: 'Outro',
         }}
       />,
     );

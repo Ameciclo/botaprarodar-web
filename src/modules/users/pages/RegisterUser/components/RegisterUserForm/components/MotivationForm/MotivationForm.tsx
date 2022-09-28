@@ -5,7 +5,7 @@ import { ReasonEnum } from 'modules/users/models/enums';
 import { FormValues } from '../../RegisterUserForm.schema';
 import useStyles from './MotivationForm.styles';
 
-type Fields = 'alreadyUseBPR' | 'alreadyUseBPROpenQuestion' | 'reason';
+type Fields = 'alreadyUseBPR' | 'motivationOpenQuestion' | 'motivation';
 type FormValue = Pick<FormValues, Fields>;
 
 export interface Props {
@@ -17,8 +17,9 @@ export interface Props {
 const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
   const classes = useStyles();
 
-  const hasReasonValue = values?.reason;
-  const hasChoosenOther = hasReasonValue && values.reason === ReasonEnum.Other;
+  const hasReasonValue = values?.motivation;
+  const hasChoosenOther =
+    hasReasonValue && values.motivation === ReasonEnum.Other;
   const shouldShowExtraField = hasChoosenOther;
 
   return (
@@ -45,11 +46,11 @@ const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
 
           <Grid item xs={12} sm={6} md={6}>
             <Select
-              dataTestId="reason-test"
-              id="reason"
-              name="reason"
+              dataTestId="motivation-test"
+              id="motivation"
+              name="motivation"
               label="Por que a usuária começou a usar a bicicleta como meio de transporte?"
-              value={values?.reason || 'economy-of-money'}
+              value={values?.motivation || 'economy-of-money'}
               onChange={onChange}
               options={[
                 {
@@ -79,11 +80,11 @@ const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
           {shouldShowExtraField && (
             <Grid item xs={12} sm={6} md={6}>
               <Input
-                dataTestId="already-use-bpr-open-question-test"
+                dataTestId="motivation-open-question-test"
                 label="Descreva porque começou a usar a bicicleta como meio de transporte, por favor."
                 type="text"
                 control={control}
-                name="alreadyUseBPROpenQuestion"
+                name="motivationOpenQuestion"
                 className="input"
                 defaultValue=""
                 rules={{ required: 'Descrever a razão é obrigatório.' }}
