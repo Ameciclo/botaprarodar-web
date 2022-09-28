@@ -75,25 +75,37 @@ const BikeService = {
   },
 
   async updateBike(bike: Bike, user: User | undefined) {
-    const newBike = { ...bike };
-    newBike.withdrawToUser = user ? user.id : '';
-    newBike.inUse = !!user;
-    const { data } = await api.put(`/bikes/${newBike.id}.json`, newBike);
-    return data;
+    if (bike.available && !user?.isBlocked) {
+      const newBike = { ...bike };
+      newBike.withdrawToUser = user ? user.id : '';
+      newBike.inUse = !!user;
+      const { data } = await api.put(`/bikes/${newBike.id}.json`, newBike);
+      return data;
+    }
+
+    return {};
   },
 
   async updateBikeWithdraws(bike: Bike, user: User) {
-    const id = uuidv4();
-    const withdraw = {
-      date: new Date().toLocaleString('pt-BR'),
-      id,
-      user,
-    };
-    const { data } = await api.put(
-      `/bikes/${bike.id}/withdraws/${id}.json`,
-      withdraw,
-    );
-    return data;
+    if (
+      bike.available &&
+      bike.inUse &&
+      bike.withdrawToUser === user.id &&
+      !user.isBlocked
+    ) {
+      const id = uuidv4();
+      const withdraw = {
+        date: new Date().toLocaleString('pt-BR'),
+        id,
+        user,
+      };
+      const { data } = await api.put(
+        `/bikes/${bike.id}/withdraws/${id}.json`,
+        withdraw,
+      );
+      return data;
+    }
+    return {};
   },
 
   async updateBikeDevolutions(

@@ -1,4 +1,5 @@
 import { act, waitFor } from '@testing-library/react';
+import { v4 as uuidv4 } from 'uuid';
 import { mockedUser } from 'modules/users/mocks/MockedUser';
 import api from '../../../shared/services/api';
 import { mockedBike } from '../mocks/BikeMocks';
@@ -155,35 +156,109 @@ describe('Bike Service', () => {
     });
 
     describe('updateBike', () => {
-      it('should clear withdraw information when user is not passed', async () => {
-        const bike = mockedBike({ inUse: true });
+      describe('should clear withdraw information', () => {
+        it('when user is not passed', async () => {
+          const bike = mockedBike({ inUse: true });
 
-        const expectedBike = { ...bike };
-        expectedBike.inUse = false;
-        expectedBike.withdrawToUser = '';
+          const expectedBike = { ...bike };
+          expectedBike.inUse = false;
+          expectedBike.withdrawToUser = '';
 
-        mockedApiBikesResponse.data = [expectedBike];
-        mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+          mockedApiBikesResponse.data = [expectedBike];
+          mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
 
-        const bikeUpdated = await BikeService.updateBike(bike, undefined);
-        expect(bikeUpdated[0].inUse).toEqual(false);
-        expect(bikeUpdated[0].withdrawToUser).toEqual('');
+          const bikeUpdated = await BikeService.updateBike(bike, undefined);
+          expect(bikeUpdated[0].inUse).toEqual(false);
+          expect(bikeUpdated[0].withdrawToUser).toEqual('');
+        });
       });
 
-      it('should update withdraw information when user is passed', async () => {
-        const bike = mockedBike();
+      describe('should update withdraw information', () => {
+        it('when user is passed', async () => {
+          const bike = mockedBike();
+          const user = mockedUser();
+
+          const expectedBike = { ...bike };
+          expectedBike.inUse = true;
+          expectedBike.withdrawToUser = user.id;
+
+          mockedApiBikesResponse.data = [expectedBike];
+          mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+
+          const bikeUpdated = await BikeService.updateBike(bike, user);
+          expect(bikeUpdated[0].inUse).toEqual(true);
+          expect(bikeUpdated[0].withdrawToUser).toEqual(user.id);
+        });
+      });
+
+      describe('should not update withdraw information', () => {
+        it('when bike is not available', async () => {
+          const bike = mockedBike({ available: false });
+
+          mockedApi.put.mockResolvedValue({});
+
+          const bikeUpdated = await BikeService.updateBike(bike, undefined);
+          expect(bikeUpdated).toEqual({});
+        });
+
+        it('when user is blocked', async () => {
+          const bike = mockedBike();
+          const user = mockedUser();
+          user.isBlocked = true;
+
+          mockedApi.put.mockResolvedValue({});
+
+          const bikeUpdated = await BikeService.updateBike(bike, user);
+          expect(bikeUpdated).toEqual({});
+        });
+      });
+    });
+
+    describe('updateBikeWithdraws', () => {
+      describe('should add a new withdraw', () => {
+        it('to a bike in use by a user', async () => {
+          const user = mockedUser();
+          const bike = mockedBike({ inUse: true, userId: user.id });
+
+          const withdraw = {
+            date: new Date().toLocaleString('pt-BR'),
+            id: uuidv4(),
+            user,
+          };
+
+          mockedApi.put.mockResolvedValue({ data: withdraw });
+
+          const newBikeWithdraw = await BikeService.updateBikeWithdraws(
+            bike,
+            user,
+          );
+          expect(newBikeWithdraw).toEqual(withdraw);
+        });
+      });
+
+      describe('should not add a new withdraw to a bike', () => {
         const user = mockedUser();
+        const blockedUser = { ...user, isBlocked: true };
+        const bike = mockedBike({
+          inUse: true,
+          userId: user.id,
+        });
+        const bikeNoInUse = { ...bike, inUse: false };
+        const bikeNotAvailable = { ...bike, available: false };
+        const bikeDifferentWithdrawToUser = { ...bike, withdrawToUser: '0000' };
+        mockedApi.put.mockResolvedValue({});
 
-        const expectedBike = { ...bike };
-        expectedBike.inUse = true;
-        expectedBike.withdrawToUser = user.id;
-
-        mockedApiBikesResponse.data = [expectedBike];
-        mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
-
-        const bikeUpdated = await BikeService.updateBike(bike, user);
-        expect(bikeUpdated[0].inUse).toEqual(true);
-        expect(bikeUpdated[0].withdrawToUser).toEqual(user.id);
+        it.each`
+          testTitle                            | testedUser     | testedBike
+          ${'not in use'}                      | ${user}        | ${bikeNoInUse}
+          ${'not avaiable'}                    | ${user}        | ${bikeNotAvailable}
+          ${'with a different withdrawToUser'} | ${user}        | ${bikeDifferentWithdrawToUser}
+          ${'if user is blocked'}              | ${blockedUser} | ${bike}
+        `('$testTitle', async ({ testedUser, testedBike }) => {
+          expect(
+            await BikeService.updateBikeWithdraws(testedBike, testedUser),
+          ).toEqual({});
+        });
       });
     });
   });

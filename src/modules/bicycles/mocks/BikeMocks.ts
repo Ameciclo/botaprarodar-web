@@ -32,7 +32,7 @@ const mockedBikeWidraws = (): BikeWithdraw => ({
 
 export const mockedBike = (params: MockedBikeParams = {}): Bike => {
   return {
-    available: !!params.available || true,
+    available: params.available === undefined ? true : params.available,
     communityId: params.communityId || '-MLDOXs3p35DEHg0gdUU',
     createdDate: '09/08/2021',
     withdraws: [mockedBikeWidraws()],
