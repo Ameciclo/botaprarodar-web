@@ -1,4 +1,5 @@
 import { act, waitFor } from '@testing-library/react';
+import { mockedUser } from 'modules/users/mocks/MockedUser';
 import api from '../../../shared/services/api';
 import { mockedBike } from '../mocks/BikeMocks';
 import Bike from '../models/Bike';
@@ -30,6 +31,13 @@ describe('Bike Service', () => {
 
     describe('getAmountFilteredBikesPerCommunity', () => {
       it('should get all bikes of same community', async () => {
+        mockedApiBikesResponse.data = [
+          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
+          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
+          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
+          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
+          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
+        ];
         mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
         let amount: AmountBikesPerCommunity;
 
@@ -66,10 +74,10 @@ describe('Bike Service', () => {
 
       it('should get all bikes in a different communities', async () => {
         mockedApiBikesResponse.data = [
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
-          mockedBike({ communityId: '-MLDOXs3p35DEHg0gdUU' }),
-          mockedBike({ communityId: '-MLDOXs3p35DEHg0gdUU' }),
+          mockedBike({ inUse: true, communityId: '-MLy8y1-5v5GLg7Z428y' }),
+          mockedBike({ inUse: true, communityId: '-MLy8y1-5v5GLg7Z428y' }),
+          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
+          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
         ];
         mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
         let amount: AmountBikesPerCommunity;
@@ -146,19 +154,52 @@ describe('Bike Service', () => {
       });
     });
 
-    describe('should return error when api fails', () => {
-      it('should return error', async () => {
-        const err = new Error('Error de comunicação com a api');
-        mockedApi.get.mockRejectedValueOnce(err);
+    describe('updateBike', () => {
+      it('should clear withdraw information when user is not passed', async () => {
+        const bike = mockedBike({ inUse: true });
 
-        try {
-          await BikeService.getAmountFilteredBikesPerCommunity(
-            '-MLDOXs3p35DEHg0gdUU',
-          );
-        } catch (e) {
-          expect(e).toEqual(err);
-        }
+        const expectedBike = { ...bike };
+        expectedBike.inUse = false;
+        expectedBike.withdrawToUser = '';
+
+        mockedApiBikesResponse.data = [expectedBike];
+        mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+
+        const bikeUpdated = await BikeService.updateBike(bike, undefined);
+        expect(bikeUpdated[0].inUse).toEqual(false);
+        expect(bikeUpdated[0].withdrawToUser).toEqual('');
       });
+
+      it('should update withdraw information when user is passed', async () => {
+        const bike = mockedBike();
+        const user = mockedUser();
+
+        const expectedBike = { ...bike };
+        expectedBike.inUse = true;
+        expectedBike.withdrawToUser = user.id;
+
+        mockedApiBikesResponse.data = [expectedBike];
+        mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+
+        const bikeUpdated = await BikeService.updateBike(bike, user);
+        expect(bikeUpdated[0].inUse).toEqual(true);
+        expect(bikeUpdated[0].withdrawToUser).toEqual(user.id);
+      });
+    });
+  });
+
+  describe('should return error when api fails', () => {
+    it('should return error', async () => {
+      const err = new Error('Error de comunicação com a api');
+      mockedApi.get.mockRejectedValueOnce(err);
+
+      try {
+        await BikeService.getAmountFilteredBikesPerCommunity(
+          '-MLDOXs3p35DEHg0gdUU',
+        );
+      } catch (e) {
+        expect(e).toEqual(err);
+      }
     });
   });
 });

@@ -8,6 +8,7 @@ interface MockedBikeParams {
   communityId?: string;
   available?: boolean;
   inUse?: boolean;
+  userId?: string;
 }
 
 const mockedBikeDevolutions = (): Devolution => ({
@@ -37,7 +38,7 @@ export const mockedBike = (params: MockedBikeParams = {}): Bike => {
     withdraws: [mockedBikeWidraws()],
     devolutions: [mockedBikeDevolutions()],
     id: '-MgfYTcrUFsX_NXhhvL2',
-    inUse: !params.inUse || false,
+    inUse: params.inUse || false,
     name: 'Bike 1',
     orderNumber: 12345,
     path: 'bikes',
@@ -46,7 +47,11 @@ export const mockedBike = (params: MockedBikeParams = {}): Bike => {
     photoThumbnailPath:
       'https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fbike%2F12345%20_thumb_1628523317.jpg?alt=media&token=fa5fa903-6c62-4d61-8378-62e624030a01',
     serialNumber: '12345',
-    withdrawToUser: !params.inUse ? 'user' : '',
+    withdrawToUser: params.inUse
+      ? params.userId
+        ? params.userId
+        : 'user'
+      : '',
   };
 };
 
