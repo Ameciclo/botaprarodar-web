@@ -51,6 +51,10 @@ const BikeConfirmationPage = lazy(
     ),
 );
 
+const BikeFinalPage = lazy(
+  () => import('../modules/bicycles/pages/BikeFinalPage/BikeFinalPage'),
+);
+
 export const routes = [
   {
     path: '/',
@@ -100,6 +104,11 @@ export const routes = [
   {
     path: '/comunidades/devolver-bicicleta/confirmacao',
     comp: BikeConfirmationPage,
+    private: true,
+  },
+  {
+    path: '/comunidades/bicicleta/final',
+    comp: BikeFinalPage,
     private: true,
   },
   {

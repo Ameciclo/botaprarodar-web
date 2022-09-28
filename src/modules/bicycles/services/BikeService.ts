@@ -134,7 +134,7 @@ const BikeService = {
     if (user && user.id && bike && bike.id) {
       try {
         newBike = await this.updateBike(bike, user);
-        newBike.push(await this.updateBikeWithdraws(newBike, user));
+        newBike.withdraws.push(await this.updateBikeWithdraws(newBike, user));
         return newBike;
       } catch (error) {
         const err = error as AxiosError;
@@ -180,7 +180,7 @@ const BikeService = {
           )[0].id;
         }
 
-        newBike.push(
+        newBike.devolutions.push(
           await this.updateBikeDevolutions(newBike, user, withdrawId, bikeQuiz),
         );
         return newBike;

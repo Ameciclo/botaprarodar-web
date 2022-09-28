@@ -1,8 +1,10 @@
 import { Button } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import Bike from 'modules/bicycles/models/Bike';
 import { FormValues } from 'modules/bicycles/pages/ReturnBike/ReturnBikeStepOne/ReturnBikeForm.schema';
 import BikeService from 'modules/bicycles/services/BikeService';
 import { User } from 'modules/users/models';
+import { toast } from 'shared/components';
 import BikeCard from '../BikeCard/BikeCard';
 import BikeUserCard from '../BikeUserCard/BikeUserCard';
 import useStyles from './BikeConfirmationCards.styles';
@@ -14,6 +16,7 @@ interface BikeConfirmationCardsParams {
   buttonText?: string;
   formValues?: FormValues;
   type?: 'withdraw' | 'devolution' | undefined;
+  communityId?: string;
 }
 
 const BikeConfirmationCards: React.FC<BikeConfirmationCardsParams> = ({
@@ -23,20 +26,39 @@ const BikeConfirmationCards: React.FC<BikeConfirmationCardsParams> = ({
   buttonText,
   formValues,
   type,
+  communityId,
 }) => {
   const classes = useStyles();
-  const confirm = () => {
-    if (type === 'withdraw') {
-      BikeService.lendBike(selectedUser, selectedBike);
-    }
+  const history = useHistory();
 
-    if (type === 'devolution' && formValues) {
-      BikeService.returnBike(selectedUser, selectedBike, {
-        destination: formValues?.neighborhood,
-        giveRide: formValues?.rideShare,
-        reason: formValues?.bikeUse,
-        problemsDuringRide: formValues?.accidents,
-      });
+  const goToFinalPage = () => {
+    const params = { type, communityId };
+    history.push('/comunidades/bicicleta/final', params);
+  };
+
+  const confirm = async () => {
+    let bikeUpdated;
+    try {
+      if (type === 'withdraw') {
+        bikeUpdated = await BikeService.lendBike(selectedUser, selectedBike);
+      }
+
+      if (type === 'devolution' && formValues) {
+        bikeUpdated = await BikeService.returnBike(selectedUser, selectedBike, {
+          destination: formValues?.neighborhood,
+          giveRide: formValues?.rideShare,
+          reason: formValues?.bikeUse,
+          problemsDuringRide: formValues?.accidents,
+        });
+      }
+
+      if (bikeUpdated) {
+        goToFinalPage();
+      } else {
+        toast.error('Ocorreu algum erro. Por favor, tente novamente');
+      }
+    } catch (error) {
+      toast.error('Ocorreu algum erro. por favor, tente novamente');
     }
   };
 

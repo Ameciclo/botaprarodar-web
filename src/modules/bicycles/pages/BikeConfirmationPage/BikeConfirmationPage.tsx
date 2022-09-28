@@ -69,6 +69,7 @@ const BikeConfirmationPage: React.FC = () => {
         selectedUser={user}
         selectedBike={bike}
         formValues={state.formValues}
+        communityId={state.communityId}
         type={
           (returnBike && 'devolution') ||
           (lendBike && 'withdraw') ||

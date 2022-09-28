@@ -7,3 +7,4 @@ export { default as GiveBackBikeIcon } from './giveBack-bike.svg';
 export { default as LendBikeIcon } from './lend-bike.svg';
 export { default as RegisterUserIcon } from './register-user.svg';
 export { default as GearIcon } from './gearIcon.svg';
+export { default as Confirm } from './confirm.svg';
