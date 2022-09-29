@@ -15,7 +15,7 @@ interface BikeConfirmationCardsParams {
   selectedUser?: User;
   buttonText?: string;
   formValues?: FormValues;
-  type?: 'withdraw' | 'devolution' | undefined;
+  type?: 'withdraw' | 'devolution';
   communityId?: string;
 }
 

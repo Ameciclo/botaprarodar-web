@@ -12,6 +12,11 @@ const uuid = 'abc1234';
 jest.mock('uuid', () => ({ v4: () => uuid }));
 const mockedApi = api as jest.Mocked<typeof api>;
 
+const bikeWithCommunityId = mockedBike({
+  inUse: true,
+  communityId: '-MLy8y1-5v5GLg7Z428y',
+});
+
 const mockedApiBikesResponse = {
   data: [mockedBike(), mockedBike(), mockedBike(), mockedBike(), mockedBike()],
 };
@@ -35,18 +40,18 @@ describe('Bike Service', () => {
     describe('getAmountFilteredBikesPerCommunity', () => {
       it('should get all bikes of same community', async () => {
         mockedApiBikesResponse.data = [
-          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
-          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
-          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
-          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
-          mockedBike({ inUse: true, communityId: '-MLDOXs3p35DEHg0gdUU' }),
+          bikeWithCommunityId,
+          bikeWithCommunityId,
+          bikeWithCommunityId,
+          bikeWithCommunityId,
+          bikeWithCommunityId,
         ];
         mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
         let amount: AmountBikesPerCommunity;
 
         await act(async () => {
           amount = await BikeService.getAmountFilteredBikesPerCommunity(
-            '-MLDOXs3p35DEHg0gdUU',
+            '-MLy8y1-5v5GLg7Z428y',
           );
         });
 
@@ -57,9 +62,9 @@ describe('Bike Service', () => {
 
       it('should get all bikes in a community without bikes', async () => {
         mockedApiBikesResponse.data = [
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
+          bikeWithCommunityId,
+          bikeWithCommunityId,
+          bikeWithCommunityId,
         ];
         mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
         let amount: AmountBikesPerCommunity;
@@ -141,9 +146,9 @@ describe('Bike Service', () => {
     describe('getBikesPerCommunity', () => {
       it('should get bikes per community', async () => {
         mockedApiBikesResponse.data = [
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
-          mockedBike({ communityId: '-MLy8y1-5v5GLg7Z428y' }),
+          bikeWithCommunityId,
+          bikeWithCommunityId,
+          bikeWithCommunityId,
         ];
         mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
         const bikeList = await BikeService.getBikesPerCommunity(
