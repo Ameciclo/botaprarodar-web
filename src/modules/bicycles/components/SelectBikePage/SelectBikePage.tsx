@@ -75,7 +75,7 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
         <>
           {loading ? (
             <Loading />
-          ) : bikes.length ? (
+          ) : (
             bikes?.map(item => {
               return (
                 <BikeCard
@@ -89,7 +89,9 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
                 />
               );
             })
-          ) : (
+          )}
+
+          {!bikes.length && !loading && (
             <EmptyState
               imgSrc={EmptyStateImage}
               heading="Nenhuma bicicleta disponível!"

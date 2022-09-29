@@ -1,10 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import {
-  act,
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { act, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { renderWithRouterAndAuth } from 'setupTests';
 import BikeService from '../../services/BikeService';
 import { mockedBike } from '../../mocks/BikeMocks';
