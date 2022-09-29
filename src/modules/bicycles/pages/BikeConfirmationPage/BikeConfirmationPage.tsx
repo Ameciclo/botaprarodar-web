@@ -68,6 +68,13 @@ const BikeConfirmationPage: React.FC = () => {
       <BikeConfirmationCards
         selectedUser={user}
         selectedBike={bike}
+        formValues={state.formValues}
+        communityId={state.communityId}
+        type={
+          (returnBike && 'devolution') ||
+          (lendBike && 'withdraw') ||
+          (undefined && '')
+        }
         {...cardProps}
       />
     </>
