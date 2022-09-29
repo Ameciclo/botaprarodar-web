@@ -29,7 +29,7 @@ describe('SelectBikePage', () => {
         screen.getByText('Carregando, por favor aguarde...'),
       );
 
-      const card = screen.getByTestId('select-bike-page');
+      const card = screen.getByTestId('bikeList');
       expect(card).toBeInTheDocument();
     });
 

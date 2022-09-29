@@ -21,12 +21,12 @@ const BikeCard: React.FC<BikeCardProps> = ({
   return (
     <>
       <Card
-        data-testid="select-bike-page"
+        data-testid="bike-card"
         className={classes.root}
         key={name}
         onClick={cardClick}
       >
-        <CardMedia className={classes.cover} image={imagePath} />
+        {imagePath && <CardMedia className={classes.cover} image={imagePath} />}
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography component="h3" variant="h3">
