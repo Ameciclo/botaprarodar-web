@@ -8,6 +8,8 @@ import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 import BikeService from './BikeService';
 
 jest.mock('shared/services/api');
+const uuid = 'abc1234';
+jest.mock('uuid', () => ({ v4: () => uuid }));
 const mockedApi = api as jest.Mocked<typeof api>;
 
 const mockedApiBikesResponse = {
@@ -258,6 +260,96 @@ describe('Bike Service', () => {
           expect(
             await BikeService.updateBikeWithdraws(testedBike, testedUser),
           ).toEqual({});
+        });
+      });
+    });
+
+    describe('updateBikeDevolutions', () => {
+      const bike = mockedBike();
+      const user = mockedUser();
+      const withdrawId = '123';
+      const quiz = {
+        destination: 'neighborhood',
+        giveRide: 'Não',
+        problemsDuringRide: 'Não',
+        reason: 'Para realizar entregas de aplicativos.',
+      };
+      describe('should add a new devolution', () => {
+        it('to a bike not in use by a user', async () => {
+          const devolution = {
+            date: new Date().toLocaleString('pt-BR'),
+            id: uuidv4(),
+            quiz,
+            user,
+            withdrawId,
+          };
+
+          mockedApi.put.mockResolvedValue({ data: devolution });
+
+          const newBikeDevolution = await BikeService.updateBikeDevolutions(
+            bike,
+            user,
+            withdrawId,
+            quiz,
+          );
+          expect(newBikeDevolution).toEqual(devolution);
+        });
+      });
+
+      describe('should not add a new devolution to a bike', () => {
+        const bikeInUse = {
+          ...bike,
+          inUse: true,
+        };
+        const bikeNotAvailable = {
+          ...bike,
+          available: false,
+        };
+
+        it.each`
+          testTitle         | testedUser | testedBike
+          ${'in use'}       | ${user}    | ${bikeInUse}
+          ${'not avaiable'} | ${user}    | ${bikeNotAvailable}
+        `('$testTitle', async ({ testedUser, testedBike }) => {
+          expect(
+            await BikeService.updateBikeDevolutions(
+              testedBike,
+              testedUser,
+              withdrawId,
+              quiz,
+            ),
+          ).toEqual({});
+        });
+      });
+    });
+
+    describe('lendBike', () => {
+      describe('should return a borrowed bike when', () => {
+        it('valid user and bike are provided', async () => {
+          const bike = mockedBike();
+          const user = mockedUser();
+
+          const borrowedBike = mockedBike({
+            userId: user.id,
+            inUse: true,
+          });
+
+          const withdraw = {
+            date: new Date().toLocaleString('pt-BR'),
+            id: uuid,
+            user,
+          };
+
+          mockedApi.put.mockResolvedValueOnce({
+            data: borrowedBike,
+          });
+
+          mockedApi.put.mockResolvedValueOnce({
+            data: withdraw,
+          });
+
+          const returnedBike = await BikeService.lendBike(user, bike);
+          expect(returnedBike).toEqual(borrowedBike);
         });
       });
     });

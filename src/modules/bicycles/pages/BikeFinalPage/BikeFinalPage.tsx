@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Card, CardContent } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Icon from 'shared/components/Icon/Icon';
 import useStyles from './BikeFinalPage.styles';
@@ -53,27 +53,31 @@ const BikeFinalPage: React.FC = () => {
 
   return (
     <>
-      <div className={classes.root}>
-        <Icon name="confirm" description="Confirmação" />
-        <p className={classes.title}>{confirmationTitle}</p>
-        <Button
-          data-testid="submit-button"
-          type="button"
-          className={classes.buttonStyle}
-          disabled={false}
-          onClick={() => goBack()}
-        >
-          {buttonText}
-        </Button>
-        <Button
-          data-testid="submit-button"
-          type="button"
-          disabled={false}
-          onClick={() => goToCommunityPage()}
-        >
-          Voltar para o início
-        </Button>
-      </div>
+      <Card>
+        <CardContent>
+          <div className={classes.root}>
+            <Icon name="confirm" description="Confirmação" />
+            <p className={classes.title}>{confirmationTitle}</p>
+            <Button
+              data-testid="submit-button"
+              type="button"
+              className={classes.buttonStyle}
+              disabled={false}
+              onClick={() => goBack()}
+            >
+              {buttonText}
+            </Button>
+            <Button
+              data-testid="submit-button"
+              type="button"
+              disabled={false}
+              onClick={() => goToCommunityPage()}
+            >
+              Voltar para o início
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </>
   );
 };

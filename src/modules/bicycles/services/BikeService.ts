@@ -114,19 +114,23 @@ const BikeService = {
     withdrawId: string,
     quiz: BikeQuiz,
   ) {
-    const id = uuidv4();
-    const devolution = {
-      date: new Date().toLocaleString('pt-BR'),
-      id,
-      quiz,
-      user,
-      withdrawId,
-    };
-    const { data } = await api.put(
-      `/bikes/${bike.id}/devolutions/${id}.json`,
-      devolution,
-    );
-    return data;
+    if (!bike.inUse && bike.available) {
+      const id = uuidv4();
+      const devolution = {
+        date: new Date().toLocaleString('pt-BR'),
+        id,
+        quiz,
+        user,
+        withdrawId,
+      };
+      const { data } = await api.put(
+        `/bikes/${bike.id}/devolutions/${id}.json`,
+        devolution,
+      );
+      return data;
+    }
+
+    return {};
   },
 
   async lendBike(user: User | undefined, bike: Bike | undefined) {

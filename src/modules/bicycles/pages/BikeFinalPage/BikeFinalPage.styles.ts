@@ -24,7 +24,6 @@ export default makeStyles({
     fontWeight: 500,
     fontSize: 14,
     letterSpacing: '1.25px',
-    width: 260,
     height: 45,
     marginTop: 20,
     '&:disabled': {
