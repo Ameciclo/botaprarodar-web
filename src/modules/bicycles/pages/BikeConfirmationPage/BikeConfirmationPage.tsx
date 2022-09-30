@@ -18,8 +18,8 @@ type StateParams = {
 const BikeConfirmationPage: React.FC = () => {
   const location = useLocation();
   const state = location.state as StateParams;
-  const lendBike = state.selectedUser;
-  const returnBike = state.formValues;
+  const lendBike = state?.selectedUser;
+  const returnBike = state?.formValues;
   const [user, setUser] = useState<User>();
   const [bike, setBike] = useState<Bike>();
   const cardProps = (lendBike && {
@@ -36,12 +36,12 @@ const BikeConfirmationPage: React.FC = () => {
     }) || { returnButtonLink: '', title: '', subtitle: '', buttonText: '' };
 
   useEffect(() => {
-    setUser(state.selectedUser);
-  }, [state.selectedUser]);
+    setUser(state?.selectedUser);
+  }, [state?.selectedUser]);
 
   useEffect(() => {
-    setBike(state.selectedBike);
-  }, [state.selectedBike]);
+    setBike(state?.selectedBike);
+  }, [state?.selectedBike]);
 
   useEffect(() => {
     async function getUserFromBike() {
@@ -58,18 +58,18 @@ const BikeConfirmationPage: React.FC = () => {
         link={cardProps.returnButtonLink}
         title="Voltar"
         state={{
-          communityId: state.communityId,
-          selectedBike: state.selectedBike,
-          formValues: returnBike && state.formValues,
-          selectedUser: lendBike && state.selectedUser,
+          communityId: state?.communityId,
+          selectedBike: state?.selectedBike,
+          formValues: returnBike && state?.formValues,
+          selectedUser: lendBike && state?.selectedUser,
         }}
       />
       <TitleBikePage title={cardProps.title} />
       <BikeConfirmationCards
         selectedUser={user}
         selectedBike={bike}
-        formValues={state.formValues}
-        communityId={state.communityId}
+        formValues={state?.formValues}
+        communityId={state?.communityId}
         type={
           (returnBike && 'devolution') ||
           (lendBike && 'withdraw') ||
