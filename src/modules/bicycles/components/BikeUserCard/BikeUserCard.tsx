@@ -18,7 +18,11 @@ const BikeUserCard: React.FC<BikeUserCardProps> = ({
   const classes = useStyles();
   return (
     <>
-      <Card className={classes.root} onClick={cardClick}>
+      <Card
+        className={classes.root}
+        onClick={cardClick}
+        data-testid="selected-user"
+      >
         <CardHeader
           avatar={
             <Avatar
