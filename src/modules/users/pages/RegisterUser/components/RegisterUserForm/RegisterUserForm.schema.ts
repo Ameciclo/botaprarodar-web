@@ -1,10 +1,11 @@
+import { ReasonEnum } from 'modules/users/models/enums';
 import type * as TYPE from 'modules/users/models/types';
 import type { SchemaType as Rules } from 'shared/models';
 
 type AlreadyUseBPRField = 'Yes' | 'No';
 
 export type FormValues = {
-  motivation: TYPE.ReasonType;
+  motivation: ReasonEnum;
   alreadyUseBPR: AlreadyUseBPRField;
   motivationOpenQuestion: string;
   schooling: TYPE.SchoolingType;
@@ -15,7 +16,7 @@ export type FormValues = {
 };
 
 export const defaultFormValues: FormValues = {
-  motivation: 'Porque começou a trabalhar com entregas.',
+  motivation: ReasonEnum.Delivery,
   alreadyUseBPR: 'No',
   motivationOpenQuestion: '',
   schooling: 'Não informado',

@@ -63,7 +63,7 @@ const UserService = {
       isBlocked: false,
       userQuiz: {
         alreadyUseBPR: body.alreadyUseBPR,
-        motivation: body.motivation,
+        motivation: Number(body.motivation),
         motivationOpenQuestion: body.motivationOpenQuestion,
         alreadyAccidentVictim: body.collision,
         problemsOnWayOpenQuestion: body.problems,

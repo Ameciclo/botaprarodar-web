@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input, Select } from 'shared/components';
 import { ReasonEnum } from 'modules/users/models/enums';
+import { ReasonTexts } from 'modules/users/models/enums/Reason.enum';
 import { FormValues } from '../../RegisterUserForm.schema';
 import useStyles from './MotivationForm.styles';
 
@@ -50,30 +51,30 @@ const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
               id="motivation"
               name="motivation"
               label="Por que a usuária começou a usar a bicicleta como meio de transporte?"
-              value={values?.motivation || 'economy-of-money'}
+              value={values?.motivation || ReasonEnum.EconomyOFMoney}
               onChange={onChange}
               options={[
                 {
                   value: ReasonEnum.EconomyOFMoney,
-                  text: ReasonEnum.EconomyOFMoney,
+                  text: ReasonTexts.EconomyOFMoney,
                 },
                 {
                   value: ReasonEnum.Ecology,
-                  text: ReasonEnum.Ecology,
+                  text: ReasonTexts.Ecology,
                 },
                 {
                   value: ReasonEnum.EconomyOfTime,
-                  text: ReasonEnum.EconomyOfTime,
+                  text: ReasonTexts.EconomyOfTime,
                 },
                 {
                   value: ReasonEnum.Health,
-                  text: ReasonEnum.Health,
+                  text: ReasonTexts.Health,
                 },
                 {
                   value: ReasonEnum.Delivery,
-                  text: ReasonEnum.Delivery,
+                  text: ReasonTexts.Delivery,
                 },
-                { value: ReasonEnum.Other, text: ReasonEnum.Other },
+                { value: ReasonEnum.Other, text: ReasonTexts.Other },
               ]}
             />
           </Grid>
