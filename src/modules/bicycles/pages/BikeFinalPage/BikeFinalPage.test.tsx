@@ -31,67 +31,35 @@ describe('BikeFinalPage', () => {
     return history;
   }
 
-  let historyRender;
-  let buttonText;
   const communityId = 'my-community-id';
   describe('when has state params', () => {
-    describe('and it is a withdraw', () => {
-      beforeEach(() => {
-        buttonText = 'Emprestar outra bicicleta';
-        historyRender = renderPageAndReturnHistory(communityId, 'withdraw');
-      });
-      it('should render correctly', async () => {
-        const { location } = historyRender;
+    it.each`
+      testCase        | messageText                | buttonText
+      ${'withdraw'}   | ${'Empréstimo realizado!'} | ${'Emprestar outra bicicleta'}
+      ${'devolution'} | ${'Devolução realizada!'}  | ${'Devolver outra bicicleta'}
+    `(
+      'should render correctly for $testCase',
+      async ({ testCase, messageText, buttonText }) => {
+        const { location } = renderPageAndReturnHistory(communityId, testCase);
+        commonExpects(location, messageText, buttonText, communityId, testCase);
+      },
+    );
 
-        commonExpects(
-          location,
-          'Empréstimo realizado!',
-          buttonText,
-          communityId,
-          'withdraw',
-        );
-      });
-
-      it('should redirect to redo all steps when clicking first button', async () => {
+    it.each`
+      testCase        | url                                   | buttonText
+      ${'withdraw'}   | ${'/comunidades/emprestar-bicicleta'} | ${'Emprestar outra bicicleta'}
+      ${'devolution'} | ${'/comunidades/devolver-bicicleta'}  | ${'Devolver outra bicicleta'}
+    `(
+      'should redirect to redo all steps when clicking first button for $testCase',
+      async ({ testCase, url, buttonText }) => {
+        const historyRender = renderPageAndReturnHistory(communityId, testCase);
         userEvent.click(screen.getByText(buttonText));
 
-        await waitFor(() =>
-          expect(historyRender.location.pathname).toBe(
-            '/comunidades/emprestar-bicicleta',
-          ),
-        );
-      });
-    });
-
-    describe('and it is a devolution', () => {
-      beforeEach(() => {
-        buttonText = 'Devolver outra bicicleta';
-        historyRender = renderPageAndReturnHistory(communityId, 'devolution');
-      });
-
-      it('should render correctly for devolution', async () => {
-        const { location } = historyRender;
-
-        commonExpects(
-          location,
-          'Devolução realizada!',
-          buttonText,
-          communityId,
-          'devolution',
-        );
-      });
-
-      it('should redirect to redo all steps when clicking first button for devolution', async () => {
-        userEvent.click(screen.getByText(buttonText));
-
-        await waitFor(() =>
-          expect(historyRender.location.pathname).toBe(
-            '/comunidades/devolver-bicicleta',
-          ),
-        );
-      });
-    });
+        await waitFor(() => expect(historyRender.location.pathname).toBe(url));
+      },
+    );
   });
+
   describe('when does not have state params', () => {
     it('should show empty state when having no parameters', async () => {
       renderWithRouterAndAuth(<BikeFinalPage />, {
