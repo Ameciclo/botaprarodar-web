@@ -4,12 +4,13 @@ import { renderWithRouterAndAuth } from 'setupTests';
 import BikeFinalPage from './BikeFinalPage';
 
 describe('BikeFinalPage', () => {
-  let communityId;
-  let type;
-  let historyRender;
-  let buttonText;
-
-  function commonExpects(location: any, text1: string, text2: string) {
+  function commonExpects(
+    location: any,
+    text1: string,
+    text2: string,
+    communityId: string,
+    type: string,
+  ) {
     expect(location.pathname).toEqual('/comunidades/bicicleta/final');
     expect(location.state).toEqual({ communityId, type });
 
@@ -21,25 +22,34 @@ describe('BikeFinalPage', () => {
     expect(screen.getByText('Voltar para o início')).toBeInTheDocument();
   }
 
-  describe('when has state params', () => {
-    beforeEach(() => {
-      communityId = 'my-community-id';
+  function renderPageAndReturnHistory(communityId: string, type: string) {
+    const { history } = renderWithRouterAndAuth(<BikeFinalPage />, {
+      route: '/comunidades/bicicleta/final',
+      stateParams: { communityId, type },
     });
 
+    return history;
+  }
+
+  let historyRender;
+  let buttonText;
+  const communityId = 'my-community-id';
+  describe('when has state params', () => {
     describe('and it is a withdraw', () => {
       beforeEach(() => {
         buttonText = 'Emprestar outra bicicleta';
-        type = 'withdraw';
-        const { history } = renderWithRouterAndAuth(<BikeFinalPage />, {
-          route: '/comunidades/bicicleta/final',
-          stateParams: { communityId, type },
-        });
-        historyRender = history;
+        historyRender = renderPageAndReturnHistory(communityId, 'withdraw');
       });
       it('should render correctly', async () => {
         const { location } = historyRender;
 
-        commonExpects(location, 'Empréstimo realizado!', buttonText);
+        commonExpects(
+          location,
+          'Empréstimo realizado!',
+          buttonText,
+          communityId,
+          'withdraw',
+        );
       });
 
       it('should redirect to redo all steps when clicking first button', async () => {
@@ -56,18 +66,19 @@ describe('BikeFinalPage', () => {
     describe('and it is a devolution', () => {
       beforeEach(() => {
         buttonText = 'Devolver outra bicicleta';
-        type = 'devolution';
-        const { history } = renderWithRouterAndAuth(<BikeFinalPage />, {
-          route: '/comunidades/bicicleta/final',
-          stateParams: { communityId, type },
-        });
-        historyRender = history;
+        historyRender = renderPageAndReturnHistory(communityId, 'devolution');
       });
 
       it('should render correctly for devolution', async () => {
         const { location } = historyRender;
 
-        commonExpects(location, 'Devolução realizada!', buttonText);
+        commonExpects(
+          location,
+          'Devolução realizada!',
+          buttonText,
+          communityId,
+          'devolution',
+        );
       });
 
       it('should redirect to redo all steps when clicking first button for devolution', async () => {
