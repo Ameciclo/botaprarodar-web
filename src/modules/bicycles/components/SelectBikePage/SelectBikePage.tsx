@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom';
 import Bike from 'modules/users/models/Bike';
 import BikeService from 'modules/bicycles/services/BikeService';
 import toast from 'shared/components/Toast/Toast';
-import { Loading } from 'shared/components';
+import { EmptyState, Loading } from 'shared/components';
 import { User } from 'modules/users/models';
 import { FormValues } from 'modules/bicycles/pages/ReturnBike/ReturnBikeStepOne/ReturnBikeForm.schema';
+import { EmptyStateImage } from 'shared/assets/images';
 import BikeCard from '../BikeCard/BikeCard';
 import useStyles from './SelectBikePage.styles';
 
@@ -60,9 +61,17 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
   return (
     <>
       <div className={classes.cardPosition} data-testid="bikeList">
-        <Typography component="h5" variant="h5" className={classes.titleStyle}>
-          Selecione a bicicleta
-        </Typography>
+        {bikes.length ? (
+          <Typography
+            component="h5"
+            variant="h5"
+            className={classes.titleStyle}
+          >
+            Selecione a bicicleta
+          </Typography>
+        ) : (
+          ''
+        )}
         <>
           {loading ? (
             <Loading />
@@ -80,6 +89,14 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
                 />
               );
             })
+          )}
+
+          {!bikes.length && !loading && (
+            <EmptyState
+              imgSrc={EmptyStateImage}
+              heading="Nenhuma bicicleta disponível!"
+              subheading="Verifique as bicicletas cadastradas e tente novamente."
+            />
           )}
         </>
       </div>
