@@ -9,6 +9,9 @@ interface MockedBikeParams {
   available?: boolean;
   inUse?: boolean;
   userId?: string;
+  orderNumber?: number;
+  name?: string;
+  serialNumber?: string;
 }
 
 const mockedBikeDevolutions = (): Devolution => ({
