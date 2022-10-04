@@ -18,7 +18,7 @@ export interface SelectBikeProps {
   formValues?: FormValues;
 }
 
-const SelectBikeCard: React.FC<SelectBikeProps> = ({
+const SelectBikePage: React.FC<SelectBikeProps> = ({
   communityId,
   actionType,
   selectedUser,
@@ -104,10 +104,10 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
   );
 };
 
-SelectBikeCard.defaultProps = {
+SelectBikePage.defaultProps = {
   actionType: null,
   selectedUser: undefined,
   formValues: undefined,
 };
 
-export default SelectBikeCard;
+export default SelectBikePage;
