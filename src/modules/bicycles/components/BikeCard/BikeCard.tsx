@@ -21,7 +21,7 @@ const BikeCard: React.FC<BikeCardProps> = ({
   return (
     <>
       <Card
-        data-testid="select-bike-page"
+        data-testid="bike-card"
         className={classes.root}
         key={name}
         onClick={cardClick}

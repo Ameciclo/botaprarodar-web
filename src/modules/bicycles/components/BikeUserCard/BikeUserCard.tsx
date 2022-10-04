@@ -21,7 +21,7 @@ const BikeUserCard: React.FC<BikeUserCardProps> = ({
       <Card
         className={classes.root}
         onClick={cardClick}
-        data-testid="selected-user"
+        data-testid="bike-user-card"
       >
         <CardHeader
           avatar={

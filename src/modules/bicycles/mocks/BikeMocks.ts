@@ -9,6 +9,10 @@ interface MockedBikeParams {
   available?: boolean;
   inUse?: boolean;
   userId?: string;
+  orderNumber?: number;
+  name?: string;
+  serialNumber?: string;
+  photoThumbnailPath?: string;
 }
 
 const mockedBikeDevolutions = (): Devolution => ({
@@ -39,14 +43,15 @@ export const mockedBike = (params: MockedBikeParams = {}): Bike => {
     devolutions: [mockedBikeDevolutions()],
     id: '-MgfYTcrUFsX_NXhhvL2',
     inUse: params.inUse || false,
-    name: 'Bike 1',
-    orderNumber: 12345,
+    name: params.name || 'Bike 1',
+    orderNumber: params.orderNumber || 12345,
     path: 'bikes',
     photoPath:
       'https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fbike%2F12345%20_1628523317.jpg?alt=media&token=03ebd3b4-723d-4c4e-8dca-7c647ef2cbf3',
     photoThumbnailPath:
+      params.photoThumbnailPath ||
       'https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fbike%2F12345%20_thumb_1628523317.jpg?alt=media&token=fa5fa903-6c62-4d61-8378-62e624030a01',
-    serialNumber: '12345',
+    serialNumber: params.serialNumber || '12345',
     withdrawToUser: params.inUse ? params.userId || 'user' : '',
   };
 };
