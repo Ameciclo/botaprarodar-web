@@ -9,12 +9,7 @@ jest.mock('modules/bicycles/services/BikeService');
 
 const mockedBikeService = BikeService as jest.Mocked<typeof BikeService>;
 
-const bikeMock = mockedBike({
-  communityId: '-MLy8y1-5v5GLg7Z428y',
-  orderNumber: 12345,
-  name: 'Bike 14455 he',
-  serialNumber: '12345',
-});
+const bikeMock = mockedBike();
 
 describe('User Card', () => {
   renderWithRouterAndAuth(

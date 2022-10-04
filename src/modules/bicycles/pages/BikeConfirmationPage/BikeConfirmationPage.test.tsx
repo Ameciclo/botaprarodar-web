@@ -1,70 +1,89 @@
-import { BrowserRouter } from 'react-router-dom';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { renderWithRouterAndAuth } from 'setupTests';
 import { MockedFirstUser } from 'modules/users/mocks/MockedUser';
 import { mockedBike } from 'modules/bicycles/mocks/BikeMocks';
-import BikeUserCard from 'modules/bicycles/components/BikeUserCard/BikeUserCard';
-import BikeCard from 'modules/bicycles/components/BikeCard/BikeCard';
+import BikeService from 'modules/bicycles/services/BikeService';
 import BikeConfirmationPage from './BikeConfirmationPage';
 
 const mockUser = MockedFirstUser;
+const bikeMock = mockedBike();
+let communityId;
+let selectedBike;
+let selectedUser;
+let historyRender;
 
-const bikeMock = mockedBike({
-  communityId: '-MLy8y1-5v5GLg7Z428y',
-  orderNumber: 12345,
-  name: 'Bike 14455 he',
-  serialNumber: '12345',
-});
+jest.mock('modules/bicycles/services/BikeService');
+const mockedBikeService = BikeService as jest.Mocked<typeof BikeService>;
 
-describe(' Render Community Selection Page', () => {
-  renderWithRouterAndAuth(
-    <BrowserRouter>
-      <BikeConfirmationPage />
-    </BrowserRouter>,
-  );
-  it('should render bike card and bike user card', async () => {
-    const bikeCard = screen.getByTestId('bike-card');
-    expect(bikeCard).toBeInTheDocument();
+describe('Render Bike Confirmation Page', () => {
+  describe('without props', () => {
+    renderWithRouterAndAuth(<BikeConfirmationPage />);
+    it('should render bike card and bike user card', async () => {
+      const bikeCard = screen.getByTestId('bike-card');
+      expect(bikeCard).toBeInTheDocument();
 
-    const bikeUserCard = screen.getByTestId('bike-user-card');
-    expect(bikeUserCard).toBeInTheDocument();
+      const bikeUserCard = screen.getByTestId('bike-user-card');
+      expect(bikeUserCard).toBeInTheDocument();
+    });
   });
 
-  it('should render bike card and bike user card with props', async () => {
-    renderWithRouterAndAuth(
-      <BrowserRouter>
-        <BikeUserCard
-          profilePicture={mockUser.profilePicture}
-          name={mockUser.name}
-          telephone={mockUser.telephone}
-        />
-      </BrowserRouter>,
-    );
-    const bikeUserCard = screen.getByTestId('bike-user-card');
-    expect(bikeUserCard).toBeInTheDocument();
-    expect(screen.getByText(mockUser.name)).toBeInTheDocument();
-    expect(screen.getByText(mockUser.telephone)).toBeInTheDocument();
+  describe('with props', () => {
+    beforeEach(() => {
+      selectedBike = bikeMock;
+      communityId = bikeMock.communityId;
+      selectedUser = mockUser;
+      const { history } = renderWithRouterAndAuth(<BikeConfirmationPage />, {
+        route: '/comunidades/emprestar-bicicleta/confirmacao',
+        stateParams: {
+          selectedBike,
+          communityId,
+          selectedUser,
+          formValues: undefined,
+        },
+      });
+      historyRender = history;
+    });
+    it('should render bike card and bike user card with props for withdraw', async () => {
+      const { location } = historyRender;
 
-    renderWithRouterAndAuth(
-      <BrowserRouter>
-        <BikeCard
-          imagePath={bikeMock.photoThumbnailPath}
-          orderNumber={bikeMock.orderNumber}
-          name={bikeMock.name}
-          serialNumber={bikeMock.serialNumber}
-          key={bikeMock.name}
-        />
-      </BrowserRouter>,
-    );
-    const bikeCard = screen.getByTestId('bike-card');
-    expect(bikeCard).toBeInTheDocument();
+      expect(location.pathname).toEqual(
+        '/comunidades/emprestar-bicicleta/confirmacao',
+      );
+      expect(location.state).toEqual({
+        communityId,
+        selectedBike,
+        selectedUser,
+      });
 
-    expect(
-      screen.getByText(`ORDEM: ${bikeMock.orderNumber}`),
-    ).toBeInTheDocument();
-    expect(screen.getByText(bikeMock.name)).toBeInTheDocument();
-    expect(
-      screen.getByText(`SÉRIE: ${bikeMock.serialNumber}`),
-    ).toBeInTheDocument();
+      await waitFor(() => {
+        const bikeUserCard = screen.getByTestId('bike-user-card');
+        expect(bikeUserCard).toBeInTheDocument();
+        expect(screen.getByText(mockUser.name)).toBeInTheDocument();
+        expect(screen.getByText(mockUser.telephone)).toBeInTheDocument();
+        const bikeCard = screen.getByTestId('bike-card');
+        expect(bikeCard).toBeInTheDocument();
+
+        expect(
+          screen.getByText(`ORDEM: ${bikeMock.orderNumber}`),
+        ).toBeInTheDocument();
+        expect(screen.getByText(bikeMock.name)).toBeInTheDocument();
+        expect(
+          screen.getByText(`SÉRIE: ${bikeMock.serialNumber}`),
+        ).toBeInTheDocument();
+      });
+    });
+
+    it('should go to next page for withdraw', async () => {
+      mockedBikeService.lendBike.mockResolvedValue(selectedBike);
+
+      userEvent.click(screen.getByTestId('submit-button'));
+
+      await waitFor(() => {
+        expect(historyRender.location.pathname).toEqual(
+          '/comunidades/bicicleta/final',
+        );
+      });
+    });
   });
 });
