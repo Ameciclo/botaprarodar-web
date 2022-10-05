@@ -58,7 +58,7 @@ const UserService = {
       schoolingStatus: body.schoolingStatus,
       income: body.income,
       communityId: body.communityId,
-      telephone: body.telephone,
+      telephone: body.phone,
       id: uuidv4(),
       isBlocked: false,
       userQuiz: {
