@@ -23,7 +23,7 @@ export const defaultFormValues: FormValues = {
   gender: 'Não declarado',
   race: 'Não Informado',
   income: 'Não informado',
-  schoolingStatus: '',
+  schoolingStatus: 'Sim',
 };
 
 type Keys = keyof typeof defaultFormValues;
