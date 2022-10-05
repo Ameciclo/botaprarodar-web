@@ -22,7 +22,7 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
 }) => {
   const classes = DonutPercentageCardStyles();
   const initialStateOptions = {
-    series: [Math.trunc((partial / total) * 100)],
+    series: [total > 0 ? Math.trunc((partial / total) * 100) : 0],
     colors: ['#1C1C28'],
     chart: {
       height: 500,
