@@ -24,8 +24,8 @@ jest.mock(
   () => () => 'CustomCardWithIcon-component-mock',
 );
 jest.mock(
-  '../../../../../shared/components/CustomLabel/CustomLabel',
-  () => () => 'CustomLabel-component-mock',
+  '../components/AmountBikes/AmountBikes',
+  () => () => 'AmountBikes-component-mock',
 );
 
 jest.mock('../../../services/CommunityService');
@@ -98,8 +98,8 @@ describe('Community Management Page', () => {
 
     describe('should show community labels', () => {
       it('should show labels name', () => {
-        const labelName = screen.queryAllByText('CustomLabel-component-mock');
-        expect(labelName).toHaveLength(3);
+        const labelName = screen.queryAllByText('AmountBikes-component-mock');
+        expect(labelName).toHaveLength(1);
       });
     });
   });

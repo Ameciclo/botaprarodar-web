@@ -6,17 +6,21 @@ export default makeStyles(theme => ({
     height: '43px',
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     flexDirection: 'row',
     textTransform: 'uppercase',
     justifyContent: 'space-between',
-  },
-  default: {
     background: theme.palette.common.white,
     color: theme.palette.common.black,
   },
-  primary: {
-    background: theme.palette.primary.main,
-    color: theme.palette.common.white,
+  contentEmphasis: {
+    color: theme.palette.primary.main,
+    fontWeight: 'bold',
+  },
+  info: {
+    margin: '12px 0',
+    padding: theme.spacing(2),
+    borderRadius: '5px',
+    width: '75%',
   },
 }));
