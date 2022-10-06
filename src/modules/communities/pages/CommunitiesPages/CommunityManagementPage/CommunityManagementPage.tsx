@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import {
   PageTitle,
   Loading,
-  CustomLabel,
   toast,
   CustomCardWithIcon,
 } from 'shared/components';
@@ -12,6 +11,7 @@ import BikeService from 'modules/bicycles/services/BikeService';
 import AmountBikesPerCommunity from 'modules/bicycles/utils/AmountBikesPerCommunity';
 import CommunityService from 'modules/communities/services/CommunityService';
 import Community from 'modules/communities/models/Community';
+import AmountBikes from '../components/AmountBikes/AmountBikes';
 import CommunityMenu from '../components/CommunityMenu/CommunityMenu';
 import useStyles from './CommunityManagementPage.styles';
 
@@ -135,30 +135,7 @@ const CommunityManagementPage: React.FC = () => {
         </Grid>
       </Grid>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Grid item xs={12} md={12}>
-            <CustomLabel
-              text="Total de bicicletas"
-              total={amountsBikesPerCommunity?.total}
-            />
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <CustomLabel
-              text="Bicicletas disponíveis"
-              total={amountsBikesPerCommunity?.available}
-            />
-          </Grid>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <CustomLabel
-            text="Bicicletas emprestadas"
-            total={amountsBikesPerCommunity?.borrowed}
-            variant="primary"
-          />
-        </Grid>
-      </Grid>
+      <AmountBikes amountBikes={amountsBikesPerCommunity} />
     </>
   );
 };
