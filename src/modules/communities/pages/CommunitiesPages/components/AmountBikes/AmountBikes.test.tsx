@@ -13,6 +13,7 @@ describe('AmountBikes', () => {
     const totalBikes = screen.getByTestId('total-bikes');
     const availableBikes = screen.getByTestId('available-bikes');
     const borrowedBikes = screen.getByTestId('borrowed-bikes');
+    const dividers = screen.getAllByTestId('divider');
 
     expect(totalBikes).toBeInTheDocument();
     expect(totalBikes.childElementCount).toBe(2);
@@ -25,6 +26,8 @@ describe('AmountBikes', () => {
     expect(borrowedBikes).toBeInTheDocument();
     expect(borrowedBikes.childElementCount).toBe(2);
     expect(borrowedBikes).toHaveStyle('color: rgb(63, 81, 181);');
+
+    expect(dividers).toHaveLength(2);
   });
 
   it.each`
