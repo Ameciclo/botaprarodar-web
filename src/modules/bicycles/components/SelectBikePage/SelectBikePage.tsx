@@ -1,31 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { Typography } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import { useHistory } from 'react-router-dom';
 import Bike from 'modules/users/models/Bike';
 import BikeService from 'modules/bicycles/services/BikeService';
 import toast from 'shared/components/Toast/Toast';
-import { Loading } from 'shared/components';
+import { EmptyState, Loading } from 'shared/components';
+import { User } from 'modules/users/models';
+import { FormValues } from 'modules/bicycles/pages/ReturnBike/ReturnBikeStepOne/ReturnBikeForm.schema';
+import { EmptyStateImage } from 'shared/assets/images';
+import BikeCard from '../BikeCard/BikeCard';
 import useStyles from './SelectBikePage.styles';
 
 export interface SelectBikeProps {
   communityId: string;
   actionType?: 'devolution' | 'withdraw' | null | undefined;
+  selectedUser?: User;
+  formValues?: FormValues;
 }
 
-const SelectBikeCard: React.FC<SelectBikeProps> = ({
+const SelectBikePage: React.FC<SelectBikeProps> = ({
   communityId,
   actionType,
+  selectedUser,
+  formValues,
 }) => {
   const history = useHistory();
   const classes = useStyles();
   const [bikes, setBikes] = useState<Bike[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const nextStepBike = (selectedBike: string) => {
-    const params = { communityId, selectedBike };
+  const nextStepBike = (selectedBike: Bike) => {
+    const params = { communityId, selectedBike, selectedUser, formValues };
     let path = '';
 
     if (actionType === 'devolution') {
@@ -33,7 +38,7 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
     }
 
     if (actionType === 'withdraw') {
-      path = '/comunidades/emprestar-bicicleta';
+      path = '/comunidades/emprestar-bicicleta/confirmacao';
     }
 
     history.push(path, params);
@@ -56,50 +61,42 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
   return (
     <>
       <div className={classes.cardPosition} data-testid="bikeList">
-        <Typography component="h5" variant="h5" className={classes.titleStyle}>
-          Selecione a bicicleta
-        </Typography>
+        {bikes.length ? (
+          <Typography
+            component="h5"
+            variant="h5"
+            className={classes.titleStyle}
+          >
+            Selecione a bicicleta
+          </Typography>
+        ) : (
+          ''
+        )}
         <>
           {loading ? (
             <Loading />
           ) : (
             bikes?.map(item => {
               return (
-                <Card
-                  data-testid="select-bike-page"
-                  className={classes.root}
+                <BikeCard
                   key={item.name}
-                  onClick={() => nextStepBike(item.id)}
-                >
-                  <CardMedia
-                    className={classes.cover}
-                    image={item.photoThumbnailPath}
-                  />
-                  <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                      <Typography component="h3" variant="h3">
-                        ORDEM: {item.orderNumber}
-                      </Typography>
-                      <Typography
-                        component="h4"
-                        variant="h4"
-                        color="textSecondary"
-                      >
-                        {item.name}
-                      </Typography>
-                      <Typography
-                        component="h5"
-                        variant="h5"
-                        color="textSecondary"
-                      >
-                        SÉRIE: {item.serialNumber}
-                      </Typography>
-                    </CardContent>
-                    <div className={classes.controls} />
-                  </div>
-                </Card>
+                  imagePath={item.photoThumbnailPath}
+                  orderNumber={item.orderNumber}
+                  serialNumber={item.serialNumber}
+                  id={item.id}
+                  name={item.name}
+                  cardClick={() => nextStepBike(item)}
+                />
               );
             })
+          )}
+
+          {!bikes.length && !loading && (
+            <EmptyState
+              imgSrc={EmptyStateImage}
+              heading="Nenhuma bicicleta disponível!"
+              subheading="Verifique as bicicletas cadastradas e tente novamente."
+            />
           )}
         </>
       </div>
@@ -107,8 +104,10 @@ const SelectBikeCard: React.FC<SelectBikeProps> = ({
   );
 };
 
-SelectBikeCard.defaultProps = {
+SelectBikePage.defaultProps = {
   actionType: null,
+  selectedUser: undefined,
+  formValues: undefined,
 };
 
-export default SelectBikeCard;
+export default SelectBikePage;

@@ -22,10 +22,13 @@ const UserService = {
     }
   },
 
-  async getUserById(id: string) {
-    const { data } = await api.get(`/users/${id}.json`);
+  async getUserById(id: string | undefined) {
+    if (id) {
+      const { data } = await api.get(`/users/${id}.json`);
 
-    return data;
+      return data;
+    }
+    return {};
   },
 
   async getUsersByCommunity(communityId: string) {
@@ -55,13 +58,13 @@ const UserService = {
       schoolingStatus: body.schoolingStatus,
       income: body.income,
       communityId: body.communityId,
-      telephone: body.telephone,
+      telephone: body.phone,
       id: uuidv4(),
       isBlocked: false,
       userQuiz: {
         alreadyUseBPR: body.alreadyUseBPR,
-        alreadyUseBPROpenQuestion: body.reason,
-        motivationOpenQuestion: body.alreadyUseBPROpenQuestion,
+        motivation: Number(body.motivation),
+        motivationOpenQuestion: body.motivationOpenQuestion,
         alreadyAccidentVictim: body.collision,
         problemsOnWayOpenQuestion: body.problems,
         timeOnWayOpenQuestion: body.timeToArrive,

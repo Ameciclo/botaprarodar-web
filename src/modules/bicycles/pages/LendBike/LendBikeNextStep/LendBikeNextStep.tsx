@@ -3,11 +3,13 @@ import { Typography } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader } from 'shared/components';
-import SelectBikePage from '../../components/SelectBikePage/SelectBikePage';
-import useStyles from './LendBikePage.styles';
+import { User } from 'modules/users/models';
+import SelectBikePage from '../../../components/SelectBikePage/SelectBikePage';
+import useStyles from '../LendBikePage.styles';
 
 type StateParams = {
   communityId?: string;
+  selectedUser?: User;
 };
 
 const LendBikeNextStep: React.FC = () => {
@@ -29,8 +31,9 @@ const LendBikeNextStep: React.FC = () => {
       {hasParams && (
         <>
           <FormHeader
-            link={`/comunidades/gerenciador-de-comunidade/${state.communityId}`}
+            link="/comunidades/emprestar-bicicleta"
             title="Voltar"
+            state={{ communityId: state.communityId }}
           />
           <Typography className={classes.pageNameStyle}>
             Emprestar bicicleta
@@ -39,6 +42,7 @@ const LendBikeNextStep: React.FC = () => {
             <SelectBikePage
               data-testId="SelectBikeCard"
               communityId={state.communityId || ''}
+              selectedUser={state.selectedUser || undefined}
               actionType="withdraw"
             />
           </div>

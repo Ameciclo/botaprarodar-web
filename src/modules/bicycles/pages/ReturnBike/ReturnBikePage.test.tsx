@@ -2,7 +2,7 @@ import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithRouterAndAuth } from 'setupTests';
 import ReturnBikePage from './ReturnBikePage';
 
-describe('LandBikePage', () => {
+describe('ReturnBikepage', () => {
   let communityId;
 
   describe('when has state params', () => {

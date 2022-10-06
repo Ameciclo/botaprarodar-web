@@ -5,6 +5,7 @@ import {
   LendBikeIcon,
   RegisterBikeIcon,
   RegisterUserIcon,
+  Confirm,
 } from 'shared/assets/icons';
 
 export type IconTypes =
@@ -12,7 +13,8 @@ export type IconTypes =
   | 'lendBike'
   | 'giveBackBike'
   | 'registerBike'
-  | 'registerUser';
+  | 'registerUser'
+  | 'confirm';
 
 interface Props {
   name: IconTypes;
@@ -25,6 +27,7 @@ const iconOptions = {
   giveBackBike: GiveBackBikeIcon,
   registerBike: RegisterBikeIcon,
   registerUser: RegisterUserIcon,
+  confirm: Confirm,
 };
 
 const Icon: FC<Props> = ({ name, description }) => {

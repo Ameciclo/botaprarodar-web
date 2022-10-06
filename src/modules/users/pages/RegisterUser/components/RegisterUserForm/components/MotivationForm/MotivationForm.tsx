@@ -2,10 +2,11 @@ import { FC } from 'react';
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input, Select } from 'shared/components';
 import { ReasonEnum } from 'modules/users/models/enums';
+import { ReasonTexts } from 'modules/users/models/enums/Reason.enum';
 import { FormValues } from '../../RegisterUserForm.schema';
 import useStyles from './MotivationForm.styles';
 
-type Fields = 'alreadyUseBPR' | 'alreadyUseBPROpenQuestion' | 'reason';
+type Fields = 'alreadyUseBPR' | 'motivationOpenQuestion' | 'motivation';
 type FormValue = Pick<FormValues, Fields>;
 
 export interface Props {
@@ -17,8 +18,9 @@ export interface Props {
 const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
   const classes = useStyles();
 
-  const hasReasonValue = values?.reason;
-  const hasChoosenOther = hasReasonValue && values.reason === ReasonEnum.Other;
+  const hasReasonValue = values?.motivation;
+  const hasChoosenOther =
+    hasReasonValue && values.motivation === ReasonEnum.Other;
   const shouldShowExtraField = hasChoosenOther;
 
   return (
@@ -45,45 +47,45 @@ const MotivationForm: FC<Props> = ({ onChange, values, control }) => {
 
           <Grid item xs={12} sm={6} md={6}>
             <Select
-              dataTestId="reason-test"
-              id="reason"
-              name="reason"
+              dataTestId="motivation-test"
+              id="motivation"
+              name="motivation"
               label="Por que a usuária começou a usar a bicicleta como meio de transporte?"
-              value={values?.reason || 'economy-of-money'}
+              value={values?.motivation || ReasonEnum.EconomyOFMoney}
               onChange={onChange}
               options={[
                 {
                   value: ReasonEnum.EconomyOFMoney,
-                  text: ReasonEnum.EconomyOFMoney,
+                  text: ReasonTexts.EconomyOFMoney,
                 },
                 {
                   value: ReasonEnum.Ecology,
-                  text: ReasonEnum.Ecology,
+                  text: ReasonTexts.Ecology,
                 },
                 {
                   value: ReasonEnum.EconomyOfTime,
-                  text: ReasonEnum.EconomyOfTime,
+                  text: ReasonTexts.EconomyOfTime,
                 },
                 {
                   value: ReasonEnum.Health,
-                  text: ReasonEnum.Health,
+                  text: ReasonTexts.Health,
                 },
                 {
                   value: ReasonEnum.Delivery,
-                  text: ReasonEnum.Delivery,
+                  text: ReasonTexts.Delivery,
                 },
-                { value: ReasonEnum.Other, text: ReasonEnum.Other },
+                { value: ReasonEnum.Other, text: ReasonTexts.Other },
               ]}
             />
           </Grid>
           {shouldShowExtraField && (
             <Grid item xs={12} sm={6} md={6}>
               <Input
-                dataTestId="already-use-bpr-open-question-test"
+                dataTestId="motivation-open-question-test"
                 label="Descreva porque começou a usar a bicicleta como meio de transporte, por favor."
                 type="text"
                 control={control}
-                name="alreadyUseBPROpenQuestion"
+                name="motivationOpenQuestion"
                 className="input"
                 defaultValue=""
                 rules={{ required: 'Descrever a razão é obrigatório.' }}

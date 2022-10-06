@@ -1,16 +1,60 @@
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
+import { InfoOutlined } from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
+import TitleBikePage from 'modules/bicycles/components/TitleBikePage/TitleBikePage';
 import { EmptyStateImage } from 'shared/assets/images';
-import { EmptyState, FormHeader } from 'shared/components';
+import { EmptyState, FormHeader, Select, Input } from 'shared/components';
+import { BikeUseEnum } from 'modules/bicycles/models/enum';
+import CustomRadioGroup from 'shared/components/CustomRadioGroup/CustomRadioGroup';
+import Bike from 'modules/users/models/Bike';
+import useStyles from './ReturnBikeStepOne.styles';
+import { defaultFormValues, FormValues } from './ReturnBikeForm.schema';
 
 type StateParams = {
   communityId?: string;
-  selectedBike?: string;
+  selectedBike?: Bike;
+  formValues?: FormValues;
 };
 
 const ReturnBikeStepOne: React.FC = () => {
   const location = useLocation();
   const state = location.state as StateParams;
+  const { control, setValue, watch, handleSubmit } = useForm<FormValues>(
+    !state || !state.formValues
+      ? {
+          defaultValues: defaultFormValues,
+        }
+      : {
+          defaultValues: {
+            bikeUse: state.formValues.bikeUse,
+            neighborhood: state.formValues.neighborhood,
+            accidents: state.formValues.accidents,
+            rideShare: state.formValues.rideShare,
+          },
+        },
+  );
+  const values = watch();
+  const classes = useStyles();
   const hasParams = !!state?.communityId && !!state?.selectedBike;
+  const yes = { label: 'Sim', value: 'Sim' };
+  const no = { label: 'Não', value: 'Não' };
+  const history = useHistory();
+
+  const onSubmit = async (formValues: any) => {
+    const params = {
+      communityId: state.communityId,
+      selectedBike: state.selectedBike,
+      formValues: { ...formValues },
+    };
+    history.push('/comunidades/devolver-bicicleta/confirmacao', params);
+  };
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setValue(name, value);
+  };
+
   return (
     <>
       {!hasParams && (
@@ -26,8 +70,114 @@ const ReturnBikeStepOne: React.FC = () => {
           <FormHeader
             link="/comunidades/devolver-bicicleta"
             title="Voltar"
-            state={{ communityId: state.communityId }}
+            state={{
+              communityId: state.communityId,
+              formValues: state.formValues,
+            }}
           />
+          <TitleBikePage title="Questionário" />
+          <Card>
+            <CardContent>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Typography
+                  component="h5"
+                  variant="h5"
+                  className={classes.cardsColumnsStyle}
+                >
+                  Responda ao questionário
+                  <InfoOutlined className={classes.icon} />
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="textPrimary"
+                  component="p"
+                  className={classes.questions}
+                >
+                  A bicicleta foi usada para que?
+                </Typography>
+                <Select
+                  id="bikeUse"
+                  label=""
+                  name="bikeUse"
+                  dataTestId="bike-use-test"
+                  value={values.bikeUse}
+                  onChange={handleChange}
+                  options={[
+                    {
+                      value: BikeUseEnum.AppDeliver,
+                      text: BikeUseEnum.AppDeliver,
+                    },
+                    {
+                      value: BikeUseEnum.GoToWork,
+                      text: BikeUseEnum.GoToWork,
+                    },
+                    {
+                      value: BikeUseEnum.GoToSchool,
+                      text: BikeUseEnum.GoToSchool,
+                    },
+                    {
+                      value: BikeUseEnum.TransportKids,
+                      text: BikeUseEnum.TransportKids,
+                    },
+                    {
+                      value: BikeUseEnum.Errands,
+                      text: BikeUseEnum.Errands,
+                    },
+                    {
+                      value: BikeUseEnum.Leisure,
+                      text: BikeUseEnum.Leisure,
+                    },
+                  ]}
+                />
+                <Typography
+                  variant="body1"
+                  color="textPrimary"
+                  component="p"
+                  className={classes.questions}
+                >
+                  Para qual bairro você foi?
+                </Typography>
+                <Input
+                  label=""
+                  type="text"
+                  name="neighborhood"
+                  className=""
+                  control={control}
+                  dataTestId="bike-neighborhood-test"
+                  rules={{
+                    required: 'Informação do bairro de destino é obrigatória',
+                  }}
+                  fullWidth
+                />
+                <CustomRadioGroup
+                  value={values?.accidents}
+                  onChange={handleChange}
+                  direction="row"
+                  title="Você sofreu alguma violência no trânsito durante o seu trajeto? (exemplo: carro passou perto e rápido demais, foi fechada numa curva, etc)?"
+                  name="accidents"
+                  options={[yes, no]}
+                />
+                <CustomRadioGroup
+                  value={values?.rideShare}
+                  onChange={handleChange}
+                  direction="row"
+                  title="Precisou levar carona?"
+                  name="rideShare"
+                  options={[yes, no]}
+                />
+                <span className={classes.buttonAlign}>
+                  <Button
+                    data-testid="submit-button"
+                    type="submit"
+                    className={classes.buttonStyle}
+                    disabled={false}
+                  >
+                    Confirmar Devolução
+                  </Button>
+                </span>
+              </form>
+            </CardContent>
+          </Card>
         </>
       )}
     </>

@@ -1,4 +1,4 @@
-export const ReasonEnum = {
+export const ReasonTexts = {
   EconomyOFMoney: 'Para economizar dinheiro. Usar bicicleta é mais barato',
   Ecology: 'Porque é mais ecológico. A bicicleta não polui o ambiente.',
   EconomyOfTime:
@@ -7,3 +7,12 @@ export const ReasonEnum = {
   Delivery: 'Porque começou a trabalhar com entregas.',
   Other: 'Outro',
 };
+
+export enum ReasonEnum {
+  EconomyOFMoney = '0',
+  Ecology = '1',
+  EconomyOfTime = '2',
+  Health = '3',
+  Delivery = '4',
+  Other = '5',
+}
