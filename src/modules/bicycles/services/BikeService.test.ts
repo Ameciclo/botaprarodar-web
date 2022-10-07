@@ -330,32 +330,52 @@ describe('Bike Service', () => {
 
     describe('lendBike', () => {
       describe('should return a borrowed bike when', () => {
-        it('valid user and bike are provided', async () => {
-          const bike = mockedBike();
-          const user = mockedUser();
+        const bike = mockedBike();
+        const user = mockedUser();
+        const newBike = mockedBike();
+        // these properties don't exist on the database when the bike was never used
+        delete newBike.devolutions;
+        delete newBike.withdraws;
 
-          const borrowedBike = mockedBike({
-            userId: user.id,
-            inUse: true,
-          });
-
-          const withdraw = {
-            date: new Date().toLocaleString('pt-BR'),
-            id: uuid,
-            user,
-          };
-
-          mockedApi.put.mockResolvedValueOnce({
-            data: borrowedBike,
-          });
-
-          mockedApi.put.mockResolvedValueOnce({
-            data: withdraw,
-          });
-
-          const returnedBike = await BikeService.lendBike(user, bike);
-          expect(returnedBike).toEqual(borrowedBike);
+        const borrowedBike = mockedBike({
+          userId: user.id,
+          inUse: true,
         });
+
+        const borrowedNewBike = {
+          ...newBike,
+          userId: user.id,
+          inUse: true,
+        };
+
+        const withdraw = {
+          date: new Date().toLocaleString('pt-BR'),
+          id: uuid,
+          user,
+        };
+
+        it.each`
+          testTitle                                                  | testedUser | testedBike | updateBikeReturn
+          ${'a valid user and bike are provided'}                    | ${user}    | ${bike}    | ${borrowedBike}
+          ${'a valid user and a recently created bike are provided'} | ${user}    | ${newBike} | ${borrowedNewBike}
+        `(
+          '$testTitle',
+          async ({ testedUser, testedBike, updateBikeReturn }) => {
+            mockedApi.put.mockResolvedValueOnce({
+              data: updateBikeReturn,
+            });
+
+            mockedApi.put.mockResolvedValueOnce({
+              data: withdraw,
+            });
+
+            const returnedBike = await BikeService.lendBike(
+              testedUser,
+              testedBike,
+            );
+            expect(returnedBike).toEqual(updateBikeReturn);
+          },
+        );
       });
     });
   });
