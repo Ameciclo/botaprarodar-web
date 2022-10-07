@@ -138,6 +138,9 @@ const BikeService = {
     if (user && user.id && bike && bike.id) {
       try {
         newBike = await this.updateBike(bike, user);
+        if (!newBike.withdraws) {
+          newBike.withdraws = [];
+        }
         newBike.withdraws.push(await this.updateBikeWithdraws(newBike, user));
         return newBike;
       } catch (error) {
@@ -184,6 +187,9 @@ const BikeService = {
           )[0].id;
         }
 
+        if (!newBike.devolutions) {
+          newBike.devolutions = [];
+        }
         newBike.devolutions.push(
           await this.updateBikeDevolutions(newBike, user, withdrawId, bikeQuiz),
         );
