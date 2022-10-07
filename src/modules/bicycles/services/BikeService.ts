@@ -138,7 +138,7 @@ const BikeService = {
     if (user && user.id && bike && bike.id) {
       try {
         newBike = await this.updateBike(bike, user);
-        if (!newBike.withdraws) {
+        if (newBike.withdraws === undefined) {
           newBike.withdraws = [];
         }
         newBike.withdraws.push(await this.updateBikeWithdraws(newBike, user));
