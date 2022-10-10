@@ -33,7 +33,10 @@ const DateUtils = {
       const day = dateSplit[0];
       const month = dateSplit[1];
       const year = dateSplit[2];
-      const dateObj = new Date(`${month}-${day}-${year} ${time}`);
+      const dateObj =
+        time === undefined
+          ? new Date(`${month}-${day}-${year}`)
+          : new Date(`${month}-${day}-${year} ${time}`);
 
       if (
         dateObj.toLocaleDateString('pt-BR') !== date ||
@@ -48,6 +51,13 @@ const DateUtils = {
 
   maxDate(dates: number[]) {
     return new Date(Math.max.apply(null, dates));
+  },
+
+  calculateAge(date: string) {
+    const dateObj = this.localeDateStringToDate(date);
+    const ageDifMs = Date.now() - dateObj.getTime();
+    const ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   },
 };
 

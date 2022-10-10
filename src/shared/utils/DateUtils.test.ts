@@ -61,14 +61,12 @@ describe('Util: DateUtils', () => {
     describe('should return an error message', () => {
       const notADate = 'abc';
       const invalidDate = '20/20/2022 10:10:10';
-      const dateWithoutTime = '10/10/2022';
       it.each`
-        testTitle                          | testedDate
-        ${'param is not a date'}           | ${notADate}
-        ${'param is blank'}                | ${''}
-        ${'param is null'}                 | ${null}
-        ${'param has an invalid date'}     | ${invalidDate}
-        ${'param has a date without time'} | ${dateWithoutTime}
+        testTitle                      | testedDate
+        ${'param is not a date'}       | ${notADate}
+        ${'param is blank'}            | ${''}
+        ${'param is null'}             | ${null}
+        ${'param has an invalid date'} | ${invalidDate}
       `('when $testTitle', async ({ testedDate }) => {
         expect(DateUtils.localeDateStringToDate(testedDate)).toEqual(
           DateUtils.errorMessage,

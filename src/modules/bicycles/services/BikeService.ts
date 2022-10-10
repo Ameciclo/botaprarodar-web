@@ -4,6 +4,7 @@ import Bike from 'modules/bicycles/models/Bike';
 import { User } from 'modules/users/models';
 import api from 'shared/services/api';
 import DateUtils from 'shared/utils/DateUtils';
+import DashboardService from 'modules/dashboard/services/DashboardService';
 import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 import BikeQuiz from '../models/types/BikeQuiz';
 
@@ -142,6 +143,7 @@ const BikeService = {
           newBike.withdraws = [];
         }
         newBike.withdraws.push(await this.updateBikeWithdraws(newBike, user));
+        await DashboardService.updateBikeUse('lend');
         return newBike;
       } catch (error) {
         const err = error as AxiosError;
@@ -193,6 +195,7 @@ const BikeService = {
         newBike.devolutions.push(
           await this.updateBikeDevolutions(newBike, user, withdrawId, bikeQuiz),
         );
+        await DashboardService.updateBikeUse('return', bikeQuiz);
         return newBike;
       } catch (error) {
         const err = error as AxiosError;
