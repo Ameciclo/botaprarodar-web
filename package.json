@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
-    "apexcharts": "3.28.1",
+    "apexcharts": "3.35.5",
     "axios": "^0.21.1",
     "chart.js": "^3.5.0",
     "clsx": "^1.1.1",
