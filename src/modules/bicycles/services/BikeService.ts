@@ -17,6 +17,11 @@ const BikeService = {
     return bikes;
   },
 
+  async getBikeById(id: string) {
+    const { data } = await api.get(`/bikes/${id}.json`);
+    return data;
+  },
+
   async getBikesPerCommunity(
     communityId: string,
     actionType: string | null | undefined,
@@ -77,7 +82,7 @@ const BikeService = {
 
   async updateBike(bike: Bike, user: User | undefined) {
     if (bike.available && !user?.isBlocked) {
-      const newBike = { ...bike };
+      const newBike = await this.getBikeById(bike.id);
       newBike.withdrawToUser = user ? user.id : '';
       newBike.inUse = !!user;
       const { data } = await api.put(`/bikes/${newBike.id}.json`, newBike);
@@ -142,7 +147,8 @@ const BikeService = {
         if (newBike.withdraws === undefined) {
           newBike.withdraws = [];
         }
-        newBike.withdraws.push(await this.updateBikeWithdraws(newBike, user));
+        const newWithdraw = await this.updateBikeWithdraws(newBike, user);
+        Object.assign(newBike.withdraws, { [newWithdraw.id]: newWithdraw });
         await DashboardService.updateBikeUse('lend');
         return newBike;
       } catch (error) {
@@ -159,13 +165,16 @@ const BikeService = {
     bikeQuiz: BikeQuiz,
   ) {
     let newBike;
+    let userWithdraws;
     if (user && user.id && bike && bike.id) {
       try {
         newBike = await this.updateBike(bike, undefined);
         let withdrawId;
-        let userWithdraws = newBike.withdraws.filter(
-          withdraw => withdraw.user.id === user.id,
-        );
+        if (bike && bike.withdraws) {
+          userWithdraws = bike.withdraws.filter(
+            withdraw => withdraw.user.id === user.id,
+          );
+        }
 
         if (userWithdraws.length === 1) {
           withdrawId = userWithdraws[0].id;
@@ -189,12 +198,15 @@ const BikeService = {
           )[0].id;
         }
 
-        if (!newBike.devolutions) {
-          newBike.devolutions = [];
-        }
-        newBike.devolutions.push(
-          await this.updateBikeDevolutions(newBike, user, withdrawId, bikeQuiz),
+        const newDevolution = await this.updateBikeDevolutions(
+          newBike,
+          user,
+          withdrawId,
+          bikeQuiz,
         );
+        Object.assign(newBike.devolutions, {
+          [newDevolution.id]: newDevolution,
+        });
         await DashboardService.updateBikeUse('return', bikeQuiz);
         return newBike;
       } catch (error) {

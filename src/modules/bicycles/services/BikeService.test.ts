@@ -178,6 +178,7 @@ describe('Bike Service', () => {
 
           mockedApiBikesResponse.data = [expectedBike];
           mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+          mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
 
           const bikeUpdated = await BikeService.updateBike(bike, undefined);
           expect(bikeUpdated[0].inUse).toEqual(false);
@@ -196,6 +197,7 @@ describe('Bike Service', () => {
 
           mockedApiBikesResponse.data = [expectedBike];
           mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+          mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
 
           const bikeUpdated = await BikeService.updateBike(bike, user);
           expect(bikeUpdated[0].inUse).toEqual(true);
@@ -381,6 +383,8 @@ describe('Bike Service', () => {
             mockedApi.get.mockResolvedValueOnce({ data: {} });
 
             mockedApi.put.mockResolvedValueOnce({ data: {} });
+
+            mockedApi.get.mockResolvedValueOnce(mockedApiBikesResponse);
 
             const returnedBike = await BikeService.lendBike(
               testedUser,
