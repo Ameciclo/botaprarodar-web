@@ -18,7 +18,7 @@ describe('SocialInfoForm', () => {
       values: {
         schooling: 'Não informado',
         gender: 'Não declarado',
-        race: 'Não Informado',
+        race: 'Outra/Não deseja informar',
         income: 'Não informado',
         schoolingStatus: '',
       },

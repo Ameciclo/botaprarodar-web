@@ -1,7 +1,7 @@
 export type RacialType =
-  | 'Asiático'
-  | 'Branco'
+  | 'Amarela'
+  | 'Branca'
   | 'Indígena'
   | 'Parda'
-  | 'Preto'
-  | 'Não Informado';
+  | 'Preta'
+  | 'Outra/Não deseja informar';

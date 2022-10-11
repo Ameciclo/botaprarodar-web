@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import api from 'shared/services/api';
+import DashboardService from 'modules/dashboard/services/DashboardService';
 import User from '../models/User';
 
 const UserService = {
@@ -53,7 +54,7 @@ const UserService = {
       gender: body.gender,
       profilePicture: '',
       age: body.age,
-      racial: body.racial,
+      racial: body.race,
       schooling: body.schooling,
       schoolingStatus: body.schoolingStatus,
       income: body.income,
@@ -72,6 +73,9 @@ const UserService = {
     };
 
     const { data } = await api.put(`/users/${payload.id}.json`, payload);
+    if (data) {
+      await DashboardService.updateUserDashboardInfo(data);
+    }
     return data;
   },
 

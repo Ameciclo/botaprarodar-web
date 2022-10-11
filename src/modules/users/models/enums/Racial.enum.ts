@@ -1,8 +1,8 @@
 export const RacialEnum = {
-  asian: 'Asiático',
-  white: 'Branco',
+  asian: 'Amarela',
+  white: 'Branca',
   indigenous: 'Indígena',
-  brown: 'Pardo',
-  black: 'Preto',
-  notInformed: 'Não Informado',
+  brown: 'Parda',
+  black: 'Preta',
+  notInformed: 'Outra/Não deseja informar',
 };

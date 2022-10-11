@@ -1,6 +1,7 @@
 import { act, waitFor } from '@testing-library/react';
 import { v4 as uuidv4 } from 'uuid';
 import { mockedUser } from 'modules/users/mocks/MockedUser';
+import DashboardService from 'modules/dashboard/services/DashboardService';
 import api from '../../../shared/services/api';
 import { mockedBike } from '../mocks/BikeMocks';
 import Bike from '../models/Bike';
@@ -20,6 +21,10 @@ const bikeWithCommunityId = mockedBike({
 const mockedApiBikesResponse = {
   data: [mockedBike(), mockedBike(), mockedBike(), mockedBike(), mockedBike()],
 };
+
+const mockedDashboardService = DashboardService as jest.Mocked<
+  typeof DashboardService
+>;
 
 describe('Bike Service', () => {
   describe('when api works', () => {
@@ -173,6 +178,7 @@ describe('Bike Service', () => {
 
           mockedApiBikesResponse.data = [expectedBike];
           mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+          mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
 
           const bikeUpdated = await BikeService.updateBike(bike, undefined);
           expect(bikeUpdated[0].inUse).toEqual(false);
@@ -191,6 +197,7 @@ describe('Bike Service', () => {
 
           mockedApiBikesResponse.data = [expectedBike];
           mockedApi.put.mockResolvedValue(mockedApiBikesResponse);
+          mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
 
           const bikeUpdated = await BikeService.updateBike(bike, user);
           expect(bikeUpdated[0].inUse).toEqual(true);
@@ -368,6 +375,16 @@ describe('Bike Service', () => {
             mockedApi.put.mockResolvedValueOnce({
               data: withdraw,
             });
+
+            mockedApi.put.mockResolvedValueOnce({
+              data: {},
+            });
+
+            mockedApi.get.mockResolvedValueOnce({ data: {} });
+
+            mockedApi.put.mockResolvedValueOnce({ data: {} });
+
+            mockedApi.get.mockResolvedValueOnce(mockedApiBikesResponse);
 
             const returnedBike = await BikeService.lendBike(
               testedUser,
