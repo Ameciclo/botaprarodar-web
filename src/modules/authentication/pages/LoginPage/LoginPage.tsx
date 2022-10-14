@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Button,
   FormHelperText,
@@ -128,6 +128,14 @@ const LoginPage: React.FC = () => {
             Entrar
           </Button>
         </form>
+        <Link
+          to="/esqueci-minha-senha"
+          data-testid="password-reset-link"
+          color="inherit"
+          style={{ display: 'flex' }}
+        >
+          Esqueci minha senha
+        </Link>
       </Paper>
     </div>
   );

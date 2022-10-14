@@ -27,8 +27,6 @@ describe('Login Service', () => {
 
   it('should call password reset method to reset a password', () => {
     LoginService.passwordReset('email');
-    expect(mockedAuth.sendPasswordResetEmail).toHaveBeenCalledWith(
-      'email'
-    );
+    expect(mockedAuth.sendPasswordResetEmail).toHaveBeenCalledWith('email');
   });
 });

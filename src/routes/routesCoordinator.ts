@@ -55,6 +55,13 @@ const BikeFinalPage = lazy(
   () => import('../modules/bicycles/pages/BikeFinalPage/BikeFinalPage'),
 );
 
+const PasswordResetPage = lazy(
+  () =>
+    import(
+      '../modules/authentication/pages/PasswordResetPage/PasswordResetPage'
+    ),
+);
+
 export const routes = [
   {
     path: '/',
@@ -130,5 +137,10 @@ export const routes = [
     path: '/comunidades/gerenciador-de-comunidade/:id',
     comp: CommunityManagementPage,
     private: true,
+  },
+  {
+    path: '/esqueci-minha-senha',
+    comp: PasswordResetPage,
+    private: false,
   },
 ];
