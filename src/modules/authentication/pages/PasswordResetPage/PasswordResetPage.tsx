@@ -15,9 +15,8 @@ const PasswordResetPage: React.FC = () => {
   const classes = useStyles();
 
   async function handlePasswordReset() {
-    let user;
     try {
-      user = await LoginService.passwordReset(values.email);
+      await LoginService.passwordReset(values.email);
     } catch (error) {
       // TODO: show error alert dialog
     }
@@ -33,7 +32,7 @@ const PasswordResetPage: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <form onSubmit={handleSubmit} className={classes.loginForm}>
+      <form onSubmit={handleSubmit}>
         <Typography variant="h2" gutterBottom>
           Esqueci minha senha
         </Typography>

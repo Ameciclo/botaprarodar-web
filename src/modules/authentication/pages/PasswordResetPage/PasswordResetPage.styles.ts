@@ -35,7 +35,7 @@ export default makeStyles(theme => ({
     maxHeight: '515px',
     background: '#FFFFFF',
   },
-  loginForm: {
+  passwordResetForm: {
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
