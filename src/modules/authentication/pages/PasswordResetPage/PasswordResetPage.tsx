@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   FormHelperText,
   TextField,
   Typography,
@@ -11,17 +16,24 @@ import LoginService from 'modules/authentication/services/LoginService';
 import useStyles from './PasswordResetPage.styles';
 
 const PasswordResetPage: React.FC = () => {
+  const [open, setOpen] = useState(false);
   const { values, errors, handleInputChange, formIsValid } = useFormControls();
   const classes = useStyles();
+  let errorPasswordReset = false;
 
   async function handlePasswordReset() {
     try {
       await LoginService.passwordReset(values.email);
-    } catch (error) {
-      // TODO: show error alert dialog
+    } catch (error: any) {
+      errorPasswordReset = true;
     }
-    // TODO: show success dialog
+    errorPasswordReset = false;
+    setOpen(true);
   }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,6 +81,31 @@ const PasswordResetPage: React.FC = () => {
           Enviar
         </Button>
       </form>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        data-testid="dialog"
+      >
+        <DialogTitle id="alert-dialog-title" data-testid="alert-dialog-title">
+          {errorPasswordReset
+            ? 'Erro ao recuperar senha'
+            : 'Confira seu e-mail'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {errorPasswordReset
+              ? 'Erro ao recuperar senha, confira o seu e-mail.'
+              : 'Enviamos o link de recuperação de senha para o seu e-mail.'}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="default">
+            Fechar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
