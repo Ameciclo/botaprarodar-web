@@ -59,20 +59,33 @@ describe('PasswordResetPage', () => {
     expect(LoginService.passwordReset('')).rejects.toThrow(Error);
   });
 
-  it('should show error messages when e-mail field is empty', async () => {
+  it('should show error messages when e-mail field is filled incorrectly', async () => {
     const emailField = screen.getByTestId('e-mail');
 
-    fireEvent.blur(emailField);
+    fireEvent.change(emailField, {
+      target: { value: 'invalid@email' },
+    });
 
-    expect(screen.getByText('Digite seu e-mail')).toBeInTheDocument();
+    expect(screen.getByText('E-mail inválido')).toBeInTheDocument();
   });
 
   it('should show success dialog when form is submitted correctly', async () => {
     await act(async () => {
+      mockedLoginService.passwordReset.mockResolvedValue();
       await fillAndSubmitPasswordResetForm('newEmail@example.com');
       expect(await screen.findByTestId('dialog')).toBeInTheDocument();
-      const dialogTitle = screen.getByTestId('alert-dialog-title');
+      const dialogTitle = await screen.findByTestId('alert-dialog-title');
       expect(dialogTitle).toHaveTextContent('Confira seu e-mail');
+    });
+  });
+
+  it('should show failure dialog when form is submitted with not found email', async () => {
+    await act(async () => {
+      mockedLoginService.passwordReset.mockRejectedValue(new Error());
+      await fillAndSubmitPasswordResetForm('vxcvcxzvzxc@rewrwe.com');
+      expect(await screen.findByTestId('dialog')).toBeInTheDocument();
+      const dialogTitle = screen.getByTestId('alert-dialog-title');
+      expect(dialogTitle).toHaveTextContent('Erro ao recuperar senha');
     });
   });
 });

@@ -132,7 +132,7 @@ const LoginPage: React.FC = () => {
           to="/esqueci-minha-senha"
           data-testid="password-reset-link"
           color="inherit"
-          style={{ display: 'flex' }}
+          className={classes.passwordResetLink}
         >
           Esqueci minha senha
         </Link>

@@ -83,4 +83,13 @@ export default makeStyles(theme => ({
     fontFamily: 'Roboto',
     color: 'red',
   },
+  passwordResetLink: {
+    display: 'flex',
+    textDecoration: 'none',
+    fontSize: 16,
+    color: 'black',
+    '&:hover': {
+      color: '#0187867F',
+    },
+  },
 }));
