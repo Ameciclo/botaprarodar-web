@@ -100,15 +100,15 @@ const PasswordResetPage: React.FC = () => {
             recuperar a sua senha.
           </Typography>
           <TextField
-            label="E-mail"
+            label="Email"
             type="text"
             name="email"
             onError={err => err}
             variant="outlined"
             inputProps={{
-              'data-testid': 'e-mail',
+              'data-testid': 'email',
             }}
-            className={classes.fieldsLogin}
+            className={classes.emailField}
             onChange={handleInputChange}
             onBlur={handleInputChange}
             error={!!errors.email}

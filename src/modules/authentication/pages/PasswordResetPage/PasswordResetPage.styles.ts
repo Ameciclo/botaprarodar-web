@@ -13,16 +13,6 @@ export default makeStyles(theme => ({
       backgroundColor: '#D8D8D8',
     },
   },
-  imageEdit: {
-    height: '135px',
-    width: '240px',
-    alignSelf: 'center',
-
-    [theme.breakpoints.down('sm')]: {
-      width: '90%',
-      height: '80%',
-    },
-  },
   loginPaper: {
     justifyContent: 'space-evenly',
     alignItems: 'center',
@@ -35,13 +25,7 @@ export default makeStyles(theme => ({
     maxHeight: '515px',
     background: '#FFFFFF',
   },
-  passwordResetForm: {
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-  },
-  fieldsLogin: {
+  emailField: {
     margin: '10px',
     width: '90%',
   },
@@ -74,13 +58,5 @@ export default makeStyles(theme => ({
     color: 'red',
     alignSelf: 'flex-start',
     paddingLeft: '40px',
-  },
-  errorMessageLogin: {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: 14,
-    fontStyle: 'normal',
-    fontFamily: 'Roboto',
-    color: 'red',
   },
 }));

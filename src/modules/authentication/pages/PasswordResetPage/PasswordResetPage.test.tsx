@@ -13,7 +13,7 @@ jest.mock('../../services/LoginService', () => {
 const mockedLoginService = LoginService as jest.Mocked<typeof LoginService>;
 
 async function fillAndSubmitPasswordResetForm(email: string) {
-  const emailField = await screen.findByTestId('e-mail');
+  const emailField = await screen.findByTestId('email');
   fireEvent.change(emailField, {
     target: { value: email },
   });
@@ -34,7 +34,7 @@ describe('PasswordResetPage', () => {
   });
 
   it('should have e-mail field', () => {
-    const emailField = screen.getByTestId('e-mail');
+    const emailField = screen.getByTestId('email');
     expect(emailField).toBeInTheDocument();
   });
 
@@ -60,7 +60,7 @@ describe('PasswordResetPage', () => {
   });
 
   it('should show error messages when e-mail field is filled incorrectly', async () => {
-    const emailField = screen.getByTestId('e-mail');
+    const emailField = screen.getByTestId('email');
 
     fireEvent.change(emailField, {
       target: { value: 'invalid@email' },
