@@ -1,6 +1,7 @@
 export interface UserQuiz {
   alreadyUseBPR: boolean;
   alreadyUseBPROpenQuestion: string;
+  motivation: number;
   motivationOpenQuestion: string;
   alreadyAccidentVictim: boolean;
   problemsOnWayOpenQuestion: string;
