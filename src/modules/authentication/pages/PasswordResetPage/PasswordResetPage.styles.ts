@@ -26,15 +26,15 @@ export default makeStyles(theme => ({
     background: '#FFFFFF',
   },
   emailField: {
-    margin: '10px',
     width: '90%',
+    margin: '10px',
   },
   buttonStyle: {
     margin: '10px',
     background: '#018786',
     borderRadius: '4px',
-    width: '90%',
     height: '100%',
+    width: '90%',
     fontStyle: 'normal',
     color: '#FFFFFF',
     fontFamily: 'Roboto',
@@ -44,19 +44,5 @@ export default makeStyles(theme => ({
     '&:hover': {
       backgroundColor: '#0187867F',
     },
-  },
-  errorIconStyle: {
-    fontSize: 14,
-  },
-  errorMessageFields: {
-    display: 'flex',
-    alignItems: 'center',
-    alignContent: 'flex-start',
-    fontSize: 14,
-    fontStyle: 'normal',
-    fontFamily: 'Roboto',
-    color: 'red',
-    alignSelf: 'flex-start',
-    paddingLeft: '40px',
   },
 }));

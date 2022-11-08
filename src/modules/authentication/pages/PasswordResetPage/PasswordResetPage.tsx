@@ -114,8 +114,8 @@ const PasswordResetPage: React.FC = () => {
             error={!!errors.email}
           />
           {errors.email && (
-            <FormHelperText error className={classes.errorMessageFields}>
-              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+            <FormHelperText error>
+              <ErrorIcon fontSize="small"> </ErrorIcon>
               &nbsp;{errors.email}
             </FormHelperText>
           )}
