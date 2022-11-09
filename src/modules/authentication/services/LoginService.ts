@@ -20,6 +20,9 @@ const LoginService = {
       currentCommunity: '',
     };
   },
+  async passwordReset(email: string): Promise<void> {
+    await auth.sendPasswordResetEmail(email);
+  },
 };
 
 export default LoginService;

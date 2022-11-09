@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
+import PasswordResetPage from 'modules/authentication/pages/PasswordResetPage/PasswordResetPage';
 import LoginPage from '../modules/authentication/pages/LoginPage/LoginPage';
 import Menu from '../shared/components/Menu/Menu';
 import Route from './Route';
@@ -9,6 +10,11 @@ const Routes: React.FC = () => {
   return (
     <Switch>
       <Route path="/login" isPrivate={false} comp={LoginPage} />
+      <Route
+        path="/esqueci-minha-senha"
+        isPrivate={false}
+        comp={PasswordResetPage}
+      />
       <Menu>
         {routes.map(route => (
           <Route
