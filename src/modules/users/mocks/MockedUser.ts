@@ -20,6 +20,7 @@ export const mockedUser = (): User => ({
   userQuiz: {
     alreadyUseBPR: false,
     alreadyUseBPROpenQuestion: 'Trabalho',
+    motivation: 5,
     motivationOpenQuestion: 'trabalho',
     alreadyAccidentVictim: true,
     problemsOnWayOpenQuestion: 'Não',

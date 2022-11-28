@@ -5,34 +5,11 @@ import { LockOutlined, PlaceOutlined } from '@material-ui/icons';
 import { toast } from 'shared/components';
 import UserMenu from '../UserMenu/UserMenu';
 import UserService from '../../../../services/UserService';
+import User from '../../../../models/User';
 import useStyles, { StyledBadgeUserCard } from './UserCard.styles';
 
 interface UserCardProps {
-  user: {
-    name: string;
-    createDate: string;
-    address: string;
-    gender: string;
-    profilePicture: string;
-    age: string;
-    racial: string;
-    schooling: string;
-    schoolingStatus: string;
-    income: string;
-    communityId: string;
-    telephone: string;
-    status: boolean;
-    id: string;
-    isBlocked: boolean;
-    userQuiz: {
-      alreadyUseBPR: boolean;
-      alreadyUseBPROpenQuestion: string;
-      motivationOpenQuestion: string;
-      alreadyAccidentVictim: boolean;
-      problemsOnWayOpenQuestion: string;
-      timeOnWayOpenQuestion: string;
-    };
-  };
+  user: User;
 }
 
 const UserCard: React.FC<UserCardProps> = ({ user, ...rest }) => {
