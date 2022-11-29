@@ -54,7 +54,4 @@ export default makeStyles(() => ({
     color: 'red',
     alignSelf: 'flex-start',
   },
-  dialogButton: {
-    marginBottom: '24px',
-  },
 }));
