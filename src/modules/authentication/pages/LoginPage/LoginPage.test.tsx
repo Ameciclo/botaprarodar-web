@@ -109,4 +109,10 @@ describe('Login Page', () => {
       expect(wrapper.history.location.pathname).toBe('/selecao-de-comunidades'),
     );
   });
+
+  it('should have forgot password link', () => {
+    const forgotPassword = screen.getByTestId('password-reset-link');
+
+    expect(forgotPassword).toBeInTheDocument();
+  });
 });

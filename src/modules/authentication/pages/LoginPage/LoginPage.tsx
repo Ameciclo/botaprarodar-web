@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Button,
   FormHelperText,
@@ -80,7 +80,7 @@ const LoginPage: React.FC = () => {
           />
           {errors.email && (
             <FormHelperText error className={classes.errorMessageFields}>
-              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              <ErrorIcon> </ErrorIcon>
               &nbsp;{errors.email}
             </FormHelperText>
           )}
@@ -110,7 +110,7 @@ const LoginPage: React.FC = () => {
           />
           {errors.password && (
             <FormHelperText error className={classes.errorMessageFields}>
-              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              <ErrorIcon> </ErrorIcon>
               &nbsp;{errors.password}
             </FormHelperText>
           )}
@@ -128,6 +128,13 @@ const LoginPage: React.FC = () => {
             Entrar
           </Button>
         </form>
+        <Link
+          to="/esqueci-minha-senha"
+          data-testid="password-reset-link"
+          className={classes.passwordResetLink}
+        >
+          Esqueci minha senha
+        </Link>
       </Paper>
     </div>
   );

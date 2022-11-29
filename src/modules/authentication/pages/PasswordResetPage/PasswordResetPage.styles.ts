@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export default makeStyles(theme => ({
+export default makeStyles(() => ({
   root: {
     backgroundColor: '#E5E5E5',
     display: 'flex',
@@ -11,16 +11,6 @@ export default makeStyles(theme => ({
   disabled: {
     '&.Mui-disabled': {
       backgroundColor: '#D8D8D8',
-    },
-  },
-  imageEdit: {
-    height: '135px',
-    width: '240px',
-    alignSelf: 'center',
-
-    [theme.breakpoints.down('sm')]: {
-      width: '90%',
-      height: '80%',
     },
   },
   loginPaper: {
@@ -35,22 +25,16 @@ export default makeStyles(theme => ({
     maxHeight: '515px',
     background: '#FFFFFF',
   },
-  loginForm: {
-    alignItems: 'center',
-    display: 'flex',
-    flexDirection: 'column',
+  emailField: {
     width: '100%',
-  },
-  fieldsLogin: {
     margin: '10px 0',
-    width: '100%',
   },
   buttonStyle: {
-    margin: '10px 0',
+    marginTop: '10px',
     background: '#018786',
     borderRadius: '4px',
-    width: '100%',
     height: '100%',
+    width: '100%',
     fontStyle: 'normal',
     color: '#FFFFFF',
     fontFamily: 'Roboto',
@@ -61,7 +45,7 @@ export default makeStyles(theme => ({
       backgroundColor: '#0187867F',
     },
   },
-  errorMessageFields: {
+  errorMessageField: {
     display: 'flex',
     alignItems: 'center',
     alignContent: 'flex-start',
@@ -69,21 +53,5 @@ export default makeStyles(theme => ({
     fontStyle: 'normal',
     color: 'red',
     alignSelf: 'flex-start',
-  },
-  errorMessageLogin: {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: 14,
-    fontStyle: 'normal',
-    color: 'red',
-  },
-  passwordResetLink: {
-    display: 'flex',
-    textDecoration: 'none',
-    fontSize: 16,
-    color: '#018786',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
   },
 }));
