@@ -80,7 +80,7 @@ const LoginPage: React.FC = () => {
           />
           {errors.email && (
             <FormHelperText error className={classes.errorMessageFields}>
-              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              <ErrorIcon> </ErrorIcon>
               &nbsp;{errors.email}
             </FormHelperText>
           )}
@@ -110,7 +110,7 @@ const LoginPage: React.FC = () => {
           />
           {errors.password && (
             <FormHelperText error className={classes.errorMessageFields}>
-              <ErrorIcon className={classes.errorIconStyle}> </ErrorIcon>
+              <ErrorIcon> </ErrorIcon>
               &nbsp;{errors.password}
             </FormHelperText>
           )}
@@ -131,7 +131,6 @@ const LoginPage: React.FC = () => {
         <Link
           to="/esqueci-minha-senha"
           data-testid="password-reset-link"
-          color="inherit"
           className={classes.passwordResetLink}
         >
           Esqueci minha senha

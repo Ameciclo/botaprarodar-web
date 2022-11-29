@@ -48,7 +48,7 @@ function SimpleDialog(props: SimpleDialogProps) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="default">
+        <Button onClick={handleClose} color="primary" variant="contained">
           Fechar
         </Button>
       </DialogActions>
@@ -114,7 +114,7 @@ const PasswordResetPage: React.FC = () => {
             error={!!errors.email}
           />
           {errors.email && (
-            <FormHelperText error>
+            <FormHelperText error className={classes.errorMessageField}>
               <ErrorIcon fontSize="small"> </ErrorIcon>
               &nbsp;{errors.email}
             </FormHelperText>
