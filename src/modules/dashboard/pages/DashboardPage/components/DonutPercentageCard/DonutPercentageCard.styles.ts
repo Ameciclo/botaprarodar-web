@@ -2,8 +2,6 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
   label: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 26,
     letterSpacing: 0.18,

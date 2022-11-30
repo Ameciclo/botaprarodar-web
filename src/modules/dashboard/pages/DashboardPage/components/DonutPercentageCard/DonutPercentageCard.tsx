@@ -42,8 +42,6 @@ const DonutPercentageCard: React.FC<DonutProps> = ({
           },
           value: {
             fontSize: '28px',
-            fontFamily: 'Roboto',
-            fontStyle: 'normal',
             fontWeight: 'bold',
             show: true,
             offsetY: 8,

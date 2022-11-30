@@ -15,8 +15,6 @@ export default makeStyles(theme => ({
     },
   },
   heading: {
-    fontFamily: 'Roboto',
-    fontStyle: 'light',
     fontWeight: 300,
     fontSize: 38,
     [theme.breakpoints.down('sm')]: {
@@ -26,8 +24,6 @@ export default makeStyles(theme => ({
     marginBottom: 10,
   },
   subheading: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 700,
     fontSize: 18,
     [theme.breakpoints.down('sm')]: {

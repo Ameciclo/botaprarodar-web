@@ -5,8 +5,6 @@ export default makeStyles(theme => ({
     margin: '0px 15px',
   },
   heading: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 24,
     letterSpacing: '0.18px',

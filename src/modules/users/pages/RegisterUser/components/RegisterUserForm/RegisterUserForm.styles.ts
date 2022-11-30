@@ -5,7 +5,6 @@ export default makeStyles({
     background: '#018786',
     borderRadius: '4px',
     color: '#FFFFFF',
-    fontFamily: 'Roboto',
     fontWeight: 500,
     fontSize: 14,
     letterSpacing: '1.25px',

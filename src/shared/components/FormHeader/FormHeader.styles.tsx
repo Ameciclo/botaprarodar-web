@@ -16,8 +16,6 @@ export default makeStyles(() => ({
     zIndex: -1,
   },
   heading: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 24,
     letterSpacing: '0.18px',

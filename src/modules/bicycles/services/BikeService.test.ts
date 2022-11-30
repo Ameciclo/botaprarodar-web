@@ -1,7 +1,6 @@
 import { act, waitFor } from '@testing-library/react';
 import { v4 as uuidv4 } from 'uuid';
 import { mockedUser } from 'modules/users/mocks/MockedUser';
-import DashboardService from 'modules/dashboard/services/DashboardService';
 import api from '../../../shared/services/api';
 import { mockedBike } from '../mocks/BikeMocks';
 import Bike from '../models/Bike';
@@ -21,10 +20,6 @@ const bikeWithCommunityId = mockedBike({
 const mockedApiBikesResponse = {
   data: [mockedBike(), mockedBike(), mockedBike(), mockedBike(), mockedBike()],
 };
-
-const mockedDashboardService = DashboardService as jest.Mocked<
-  typeof DashboardService
->;
 
 describe('Bike Service', () => {
   describe('when api works', () => {

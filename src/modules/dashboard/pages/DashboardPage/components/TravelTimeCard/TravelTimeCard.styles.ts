@@ -6,8 +6,6 @@ export default makeStyles({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
   },
   infoContainer: {
     display: 'flex',
@@ -33,7 +31,6 @@ export default makeStyles({
   averageTimeLabel: {
     fontSize: '18px',
     fontWeight: 'bold',
-    fontFamily: 'Roboto',
     textTransform: 'none',
     color: '#018786',
   },
