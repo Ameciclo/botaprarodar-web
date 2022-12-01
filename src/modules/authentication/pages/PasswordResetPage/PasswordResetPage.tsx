@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import {
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   FormHelperText,
   Paper,
   TextField,
@@ -15,46 +10,8 @@ import ErrorIcon from '@material-ui/icons/Error';
 import { useHistory } from 'react-router-dom';
 import { useFormControls } from 'modules/authentication/hooks/index';
 import LoginService from 'modules/authentication/services/LoginService';
+import SimpleDialog from '../../../../shared/components/SimpleDialog/SimpleDialog';
 import useStyles from './PasswordResetPage.styles';
-
-export interface SimpleDialogProps {
-  open: boolean;
-  title: string;
-  content: string;
-  onClose: (value: string) => void;
-}
-
-function SimpleDialog(props: SimpleDialogProps) {
-  const { onClose, title, content, open } = props;
-
-  const handleClose = () => {
-    onClose('');
-  };
-
-  return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-      data-testid="dialog"
-    >
-      <DialogTitle id="alert-dialog-title" data-testid="alert-dialog-title">
-        {title}
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          {content}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary" variant="contained">
-          Fechar
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
 
 const PasswordResetPage: React.FC = () => {
   const [open, setOpen] = useState(false);
