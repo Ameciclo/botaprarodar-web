@@ -2,8 +2,6 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
   userTitle: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 24,
     lineHeight: '20px',

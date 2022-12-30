@@ -6,11 +6,9 @@ export default makeStyles({
     textTransform: 'uppercase',
     letterSpacing: 0.83,
     fontWeight: 'bold',
-    fontStyle: 'normal',
     lineHeight: '31px',
   },
   cardContent: {
-    fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 20,
     lineHeight: '24px',

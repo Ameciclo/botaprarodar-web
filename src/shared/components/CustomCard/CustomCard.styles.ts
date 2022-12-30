@@ -2,8 +2,6 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
   cardHeader: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 16,
     lineHeight: '20px',
@@ -16,8 +14,6 @@ export default makeStyles({
     borderBottom: '2px solid #F6F6F6',
   },
   cardContent: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 500,
     fontSize: 14,
     lineHeight: '16px',

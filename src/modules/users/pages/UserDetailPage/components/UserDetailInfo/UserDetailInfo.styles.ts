@@ -22,7 +22,6 @@ export default makeStyles(theme => ({
   },
   cardHeader: {
     '& span': {
-      fontFamily: 'Roboto',
       fontWeight: 400,
       fontSize: 16,
       color: '#515151',
@@ -70,8 +69,6 @@ export default makeStyles(theme => ({
     width: '100%',
   },
   username: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontSize: 36,
     fontWeight: 300,
     color: '#000000',

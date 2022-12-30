@@ -6,8 +6,6 @@ export default makeStyles(() => ({
     height: '88vh',
   },
   heading: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 24,
     color: '#1C1C28',
