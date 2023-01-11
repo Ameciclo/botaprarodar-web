@@ -25,7 +25,13 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               control={control}
               dataTestId="name-test"
               defaultValue=""
-              rules={{ required: 'Nome do usuário é obrigatório' }}
+              rules={{
+                required: 'Nome do usuário é obrigatório',
+                pattern: {
+                  value: /^(?!\s)[\w\s-]*$/,
+                  message: 'O campo não pode iniciar com espaço em branco',
+                },
+              }}
               fullWidth
             />
           </Grid>
@@ -38,7 +44,13 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               control={control}
               dataTestId="address-test"
               defaultValue=""
-              rules={{ required: 'Endereço do usuário é obrigatório' }}
+              rules={{
+                required: 'Endereço do usuário é obrigatório',
+                pattern: {
+                  value: /^(?!\s)[\w\s-]*$/,
+                  message: 'O campo não pode iniciar com espaço em branco',
+                },
+              }}
               fullWidth
             />
           </Grid>

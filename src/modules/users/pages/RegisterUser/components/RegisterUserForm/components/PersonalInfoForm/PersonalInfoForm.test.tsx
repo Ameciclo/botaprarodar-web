@@ -26,4 +26,20 @@ describe('PersonalInfoForm', () => {
       screen.getByText('Telefone do usuário é obrigatório'),
     ).toBeInTheDocument();
   });
+  it('should show error when submitting empty spaces before text', async () => {
+    const leadingEmptySpaceinputText = ' abcd';
+    const nameField = await screen.findByTestId('name-test');
+
+    fireEvent.change(nameField, {
+      target: { value: leadingEmptySpaceinputText },
+    });
+   
+    await act(async () => {
+      fireEvent.click(screen.getByText('CONCLUIR CADASTRO'));
+    });
+
+    expect(
+      screen.getByText('O campo não pode iniciar com espaço em branco'),
+    ).toBeInTheDocument();
+  });
 });
