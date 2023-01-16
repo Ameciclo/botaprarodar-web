@@ -48,9 +48,9 @@ const UserService = {
 
   async createUser(body: any) {
     const payload = {
-      name: body.name,
+      name: body.name.trim(),
       createDate: new Date(),
-      address: body.address,
+      address: body.address.trim(),
       gender: body.gender,
       profilePicture: '',
       age: body.age,
@@ -71,7 +71,8 @@ const UserService = {
         timeOnWayOpenQuestion: body.timeToArrive,
       },
     };
-
+    /* eslint-disable no-debugger */
+    debugger;
     const { data } = await api.put(`/users/${payload.id}.json`, payload);
     if (data) {
       await DashboardService.updateUserDashboardInfo(data);
