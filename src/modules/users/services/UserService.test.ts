@@ -2,7 +2,6 @@ import { act, waitFor } from '@testing-library/react';
 import api from '../../../shared/services/api';
 import { MockedFirstUser, MockedSecondUser } from '../mocks/MockedUser';
 import User from '../models/User';
-import DashboardService from '../../dashboard/services/DashboardService';
 import UserService from './UserService';
 
 jest.mock('shared/services/api');
@@ -115,11 +114,11 @@ describe('User Service', () => {
     );
   });
 
-  it('should remove empty spaces in the end of name and address properties', async () => {
+  it('should remove empty spaces in the end of name, address and problems properties', async () => {
     const userBody = {
-      name: 'name with space  ',
+      name: '   name with space  ',
       createDate: new Date(),
-      address: 'address with end space  ',
+      address: '   address with end space  ',
       gender: 'Outro',
       profilePicture: '',
       age: '11/11/2000',
@@ -131,76 +130,22 @@ describe('User Service', () => {
       telephone: '71 99999-9999',
       id: '-MX3cVfnbxJQo6Pt0TJH',
       isBlocked: false,
-      userQuiz: {
-        alreadyUseBPR: false,
-        motivation: 0,
-        motivationOpenQuestion: '',
-        alreadyAccidentVictim: '',
-        problemsOnWayOpenQuestion: '',
-        timeOnWayOpenQuestion: '30:00',
-      },
+      alreadyUseBPR: false,
+      motivation: 0,
+      motivationOpenQuestion: '',
+      collision: '',
+      problems: '    Problems On Way Open Question   ',
+      timeToArrive: '30:00',
     };
 
     mockedApi.put.mockResolvedValue({ data: {} });
     await UserService.createUser(userBody);
     const payloadParams = mockedApi.put.mock.calls[0][1];
-    console.log(payloadParams);
+
     expect(payloadParams.name).toBe('name with space');
     expect(payloadParams.address).toBe('address with end space');
+    expect(payloadParams.userQuiz.problemsOnWayOpenQuestion).toBe(
+      'Problems On Way Open Question',
+    );
   });
 });
-
-// it('should remove empty spaces in the end of name and address properties', async () => {
-//   const userBody = {
-//     name: 'name with space  ',
-//     createDate: new Date(),
-//     address: 'address with end space  ',
-//     gender: 'Outro',
-//     profilePicture: '',
-//     age: '11/11/2000',
-//     racial: 'Outra/Não deseja informar',
-//     schooling: 'Não informado',
-//     schoolingStatus: 'Em curso',
-//     income: '150-300',
-//     communityId: 'MLDOXs3p35DEHg0gdUU',
-//     telephone: '71 99999-9999',
-//     id: '-MX3cVfnbxJQo6Pt0TJH',
-//     isBlocked: false,
-//     userQuiz: {
-//       alreadyUseBPR: false,
-//       motivation: 0,
-//       motivationOpenQuestion: '',
-//       alreadyAccidentVictim: '',
-//       problemsOnWayOpenQuestion: '',
-//       timeOnWayOpenQuestion: '30:00',
-//     },
-//   };
-
-// //   const expectedUserData = {
-//     name: 'name with space',
-//     createDate: new Date(),
-//     address: 'address with end space',
-//     gender: 'Outro',
-//     profilePicture: '',
-//     age: '11/11/2000',
-//     racial: 'Outra/Não deseja informar',
-//     schooling: 'Não informado',
-//     schoolingStatus: 'Em curso',
-//     income: '150-300',
-//     communityId: 'MLDOXs3p35DEHg0gdUU',
-//     telephone: '71 99999-9999',
-//     id: '-MX3cVfnbxJQo6Pt0TJH',
-//     isBlocked: false,
-//     userQuiz: {
-//       alreadyUseBPR: false,
-//       motivation: 0,
-//       motivationOpenQuestion: '',
-//       alreadyAccidentVictim: '',
-//       problemsOnWayOpenQuestion: '',
-//       timeOnWayOpenQuestion: '30:00',
-//     },
-//   };
-//   const data = await UserService.createUser(userBody);
-//   expect(data.name).toBe(expectedUserData.name);
-//   expect(data.name).toBe(expectedUserData.name);
-// });

@@ -67,12 +67,11 @@ const UserService = {
         motivation: Number(body.motivation),
         motivationOpenQuestion: body.motivationOpenQuestion,
         alreadyAccidentVictim: body.collision,
-        problemsOnWayOpenQuestion: body.problems,
+        problemsOnWayOpenQuestion: body.problems.trim(),
         timeOnWayOpenQuestion: body.timeToArrive,
       },
     };
-    /* eslint-disable no-debugger */
-    debugger;
+
     const { data } = await api.put(`/users/${payload.id}.json`, payload);
     if (data) {
       await DashboardService.updateUserDashboardInfo(data);

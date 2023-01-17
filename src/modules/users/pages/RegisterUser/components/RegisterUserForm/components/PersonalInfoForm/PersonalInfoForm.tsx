@@ -9,6 +9,11 @@ interface PersonalInfoFormProps {
 
 const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
   const classes = useStyles();
+  const validateInputEmpty = (text: string) => {
+    if (text.trim() === '') return 'Este campo não pode ser vazio';
+    return true;
+  };
+
   return (
     <Card>
       <CardContent>
@@ -27,10 +32,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               defaultValue=""
               rules={{
                 required: 'Nome do usuário é obrigatório',
-                pattern: {
-                  value: /^(?!\s)[\w\s-]*$/,
-                  message: 'O campo não pode iniciar com espaço em branco',
-                },
+                validate: validateInputEmpty,
               }}
               fullWidth
             />
@@ -46,10 +48,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               defaultValue=""
               rules={{
                 required: 'Endereço do usuário é obrigatório',
-                pattern: {
-                  value: /^(?!\s)[\w\s-]*$/,
-                  message: 'O campo não pode iniciar com espaço em branco',
-                },
+                validate: validateInputEmpty,
               }}
               fullWidth
             />
