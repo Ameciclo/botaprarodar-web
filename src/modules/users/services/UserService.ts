@@ -48,9 +48,9 @@ const UserService = {
 
   async createUser(body: any) {
     const payload = {
-      name: body.name,
+      name: body.name.trim(),
       createDate: new Date(),
-      address: body.address,
+      address: body.address.trim(),
       gender: body.gender,
       profilePicture: '',
       age: body.age,
@@ -67,7 +67,7 @@ const UserService = {
         motivation: Number(body.motivation),
         motivationOpenQuestion: body.motivationOpenQuestion,
         alreadyAccidentVictim: body.collision,
-        problemsOnWayOpenQuestion: body.problems,
+        problemsOnWayOpenQuestion: body.problems.trim(),
         timeOnWayOpenQuestion: body.timeToArrive,
       },
     };

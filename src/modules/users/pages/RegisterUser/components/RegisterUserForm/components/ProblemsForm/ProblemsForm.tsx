@@ -15,6 +15,11 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
   values,
 }) => {
   const classes = useStyles();
+  const validateInputEmpty = (text: string) => {
+    if (text.trim() === '') return 'Este campo não pode ser vazio';
+    return true;
+  };
+
   return (
     <Card>
       <CardContent>
@@ -51,7 +56,10 @@ const ProblemsForm: React.FC<ProblemsFormProps> = ({
               control={control}
               dataTestId="problems-test"
               defaultValue=""
-              rules={{ required: 'Citar problemas é obrigatório' }}
+              rules={{
+                required: 'Citar problemas é obrigatório',
+                validate: validateInputEmpty,
+              }}
               fullWidth
             />
             <Typography

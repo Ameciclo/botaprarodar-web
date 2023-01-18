@@ -40,7 +40,7 @@ const LendBikeNextStep: React.FC = () => {
           </Typography>
           <div className={classes.cardsColumnsStyle}>
             <SelectBikePage
-              data-testId="SelectBikeCard"
+              data-testid="SelectBikeCard"
               communityId={state.communityId || ''}
               selectedUser={state.selectedUser || undefined}
               actionType="withdraw"

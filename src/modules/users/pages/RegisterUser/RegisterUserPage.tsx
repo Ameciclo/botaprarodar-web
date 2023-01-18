@@ -33,7 +33,7 @@ const RegisterUserPage: React.FC = () => {
           />
           <div className={classes.root}>
             <RegisterUserForm
-              data-testId="form-register"
+              data-testid="form-register"
               communityId={state.communityId || ''}
             />
           </div>
