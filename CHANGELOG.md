@@ -2,6 +2,19 @@
 
 Qualquer mudança significativa no código do projeto estará presente neste change logs.
 
+## [2.2.0](https://github.com/Ameciclo/botaprarodar-web/compare/2.1.1...2.2.0) (19-01-2022)
+
+### Feature
+Empréstimo e devolução de bicicleta.
+Página de "esqueci minha senha".
+
+### Docs
+Alteração de documentação.
+
+### Bug Fixes
+Correção de bugs e refatoração de código.
+Atualização de versão de dependências.
+
 ## [2.1.1](https://github.com/Ameciclo/botaprarodar-web/compare/2.1...2.1.1) (06-9-2022)
 
 Esta release contempla apenas uma ajuste no fluxo do usuário durante a seleção de comunidades:
