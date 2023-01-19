@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { FormHeader, EmptyState } from 'shared/components';
 import { EmptyStateImage } from 'shared/assets/images';
 import RegisterUserForm from './components/RegisterUserForm/RegisterUserForm';
+import useStyles from './RegisterUserPage.styles';
 
 type StateParams = {
   communityId?: string;
@@ -12,6 +13,7 @@ const RegisterUserPage: React.FC = () => {
   const location = useLocation();
   const state = location.state as StateParams;
   const hasParams = !!state?.communityId;
+  const classes = useStyles();
 
   return (
     <>
@@ -19,7 +21,7 @@ const RegisterUserPage: React.FC = () => {
         <EmptyState
           imgSrc={EmptyStateImage}
           heading="Opss!"
-          subheading="Pagina não encontrada"
+          subheading="Página não encontrada"
         />
       )}
 
@@ -29,11 +31,12 @@ const RegisterUserPage: React.FC = () => {
             link={`/comunidades/gerenciador-de-comunidade/${state.communityId}`}
             title="Voltar"
           />
-
-          <RegisterUserForm
-            data-testId="form-register"
-            communityId={state.communityId || ''}
-          />
+          <div className={classes.root}>
+            <RegisterUserForm
+              data-testid="form-register"
+              communityId={state.communityId || ''}
+            />
+          </div>
         </>
       )}
     </>

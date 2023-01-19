@@ -1,6 +1,7 @@
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ReasonEnum } from 'modules/users/models/enums';
+import { ReasonTexts } from 'modules/users/models/enums/Reason.enum';
 import MotivationForm, { Props } from './MotivationForm';
 
 jest.mock('shared/components/Input/Input', () => () => `Input-component-mock`);
@@ -14,8 +15,8 @@ describe('MotivationForm', () => {
       control: jest.fn(),
       values: {
         alreadyUseBPR: 'No',
-        alreadyUseBPROpenQuestion: '',
-        reason: 'Porque começou a trabalhar com entregas.',
+        motivationOpenQuestion: '',
+        motivation: ReasonEnum.Delivery,
       },
     };
   });
@@ -26,13 +27,13 @@ describe('MotivationForm', () => {
     expect(
       screen.getByTestId('select-already-use-bpr-test'),
     ).toBeInTheDocument();
-    expect(screen.getByTestId('select-reason-test')).toBeInTheDocument();
+    expect(screen.getByTestId('select-motivation-test')).toBeInTheDocument();
   });
 
   it('should show additional option when selecting other', async () => {
     const { rerender } = render(<MotivationForm {...defaultProps} />);
 
-    const view = screen.getByTestId('select-reason-test');
+    const view = screen.getByTestId('select-motivation-test');
     const select = within(view).getByRole('button', {
       name: /porque começou a trabalhar com entregas\./i,
     });
@@ -44,25 +45,23 @@ describe('MotivationForm', () => {
     ).toBeVisible();
     userEvent.click(select);
     await waitFor(() =>
-      userEvent.click(screen.getByRole('option', { name: ReasonEnum.Other })),
+      userEvent.click(screen.getByRole('option', { name: ReasonTexts.Other })),
     );
 
     expect(
-      screen.getByRole('button', { name: ReasonEnum.Other }),
+      screen.getByRole('button', { name: ReasonTexts.Other }),
     ).toBeVisible();
     await rerender(
       <MotivationForm
         {...defaultProps}
         values={{
           alreadyUseBPR: 'Yes',
-          alreadyUseBPROpenQuestion: '',
-          reason: 'Outro',
+          motivationOpenQuestion: '',
+          motivation: ReasonEnum.Other,
         }}
       />,
     );
 
-    expect(
-      screen.queryAllByText('Input-component-mock').length,
-    ).toBeGreaterThanOrEqual(1);
+    expect(screen.queryAllByText('Input-component-mock')).toHaveLength(1);
   });
 });

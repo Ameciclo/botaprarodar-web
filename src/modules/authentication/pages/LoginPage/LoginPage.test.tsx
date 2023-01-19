@@ -100,11 +100,19 @@ describe('Login Page', () => {
       displayName: 'string',
       email: 'string',
       authenticated: true,
+      uid: 'id',
+      currentCommunity: '',
     });
 
     await fillAndSubmitLoginForm('newEmail@example.com', '1234');
     await waitFor(() =>
       expect(wrapper.history.location.pathname).toBe('/selecao-de-comunidades'),
     );
+  });
+
+  it('should have forgot password link', () => {
+    const forgotPassword = screen.getByTestId('password-reset-link');
+
+    expect(forgotPassword).toBeInTheDocument();
   });
 });

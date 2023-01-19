@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import api from 'shared/services/api';
+import DashboardService from 'modules/dashboard/services/DashboardService';
 import User from '../models/User';
 
 const UserService = {
@@ -22,39 +23,59 @@ const UserService = {
     }
   },
 
-  async getUserById(id: string) {
-    const { data } = await api.get(`/users/${id}.json`);
+  async getUserById(id: string | undefined) {
+    if (id) {
+      const { data } = await api.get(`/users/${id}.json`);
 
-    return data;
+      return data;
+    }
+    return {};
+  },
+
+  async getUsersByCommunity(communityId: string) {
+    const { data } = await api.get('/users.json');
+
+    const dataArray = Object.keys(data).map(key => {
+      return data[key];
+    });
+
+    const users: User[] = communityId
+      ? dataArray.filter(d => d?.communityId === communityId)
+      : dataArray;
+
+    return users;
   },
 
   async createUser(body: any) {
     const payload = {
-      name: body.name,
+      name: body.name.trim(),
       createDate: new Date(),
-      address: body.address,
+      address: body.address.trim(),
       gender: body.gender,
       profilePicture: '',
       age: body.age,
-      racial: body.racial,
+      racial: body.race,
       schooling: body.schooling,
       schoolingStatus: body.schoolingStatus,
       income: body.income,
       communityId: body.communityId,
-      telephone: body.telephone,
+      telephone: body.phone,
       id: uuidv4(),
       isBlocked: false,
       userQuiz: {
         alreadyUseBPR: body.alreadyUseBPR,
-        alreadyUseBPROpenQuestion: body.alreadyUseBPROpenQuestion,
-        motivationOpenQuestion: body.reason,
+        motivation: Number(body.motivation),
+        motivationOpenQuestion: body.motivationOpenQuestion,
         alreadyAccidentVictim: body.collision,
-        problemsOnWayOpenQuestion: body.problems,
+        problemsOnWayOpenQuestion: body.problems.trim(),
         timeOnWayOpenQuestion: body.timeToArrive,
       },
     };
 
     const { data } = await api.put(`/users/${payload.id}.json`, payload);
+    if (data) {
+      await DashboardService.updateUserDashboardInfo(data);
+    }
     return data;
   },
 

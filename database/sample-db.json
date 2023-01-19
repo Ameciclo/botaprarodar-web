@@ -1,0 +1,285 @@
+{
+   "admins": {
+      "test": ""
+   },
+   "bikes":{
+      "-MgfY_VbmvPc8TyJj8jr":{
+         "available":true,
+         "communityId":"-MLDOXs3p35DEHg0gdUU",
+         "createdDate":"07/07/2022",
+         "devolutions":{
+            
+         },
+         "id":"-MgfY_VbmvPc8TyJj8jr",
+         "inUse":false,
+         "name":"Bicicleta 1",
+         "orderNumber":1,
+         "path":"bikes",
+         "photoPath":"https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fbike%2F431234%20_1628523346.jpg?alt=media&token=d85ae2de-e27a-4b48-ad98-7547721b26d0",
+         "photoThumbnailPath":"https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fbike%2F431234%20_thumb_1628523346.jpg?alt=media&token=0f97dbe7-1442-4ffc-9ef8-44b41757075a",
+         "serialNumber":"00001",
+         "withdrawToUser":"",
+         "withdraws":[
+            
+         ]
+      }
+   },
+   "communities":{
+      "-MLDOXs3p35DEHg0gdUU":{
+         "address":"Rua da comunidade",
+         "created_date":1604411814596,
+         "description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+         "id":"-MLDOXs3p35DEHg0gdUU",
+         "name":"Comunidade Teste 1",
+         "org_email":"teste@teste.com",
+         "org_name":"Teste"
+      }
+   },
+   "dashboardInfo":{
+      "age":[
+         {
+            "label":"Entre 21 e 30 anos",
+            "quantity":1
+         },
+         {
+            "label":"Não especificado",
+            "quantity":0
+         },
+         {
+            "label":"Entre 31 e 40 anos",
+            "quantity":0
+         },
+         {
+            "label":"Entre 11 e 20 anos",
+            "quantity":0
+         },
+         {
+            "label":"Entre 41 e 50 anos",
+            "quantity":0
+         }
+      ],
+      "bikesInUse":0,
+      "bikesQuantity":1,
+      "communitiesQuantity":1,
+      "destination":[
+         {
+            "label":"Teste",
+            "quantity":1
+         }
+      ],
+      "gender":[
+         {
+            "label":"Masculino",
+            "quantity":1
+         },
+         {
+            "label":"Feminino",
+            "quantity":0
+         },
+         {
+            "label":"Outro",
+            "quantity":0
+         },
+         {
+            "label":"Prefere não responder",
+            "quantity":0
+         }
+      ],
+      "incidentsHappened":0,
+      "income":[
+         {
+            "label":"Até R$150",
+            "quantity":1
+         },
+         {
+            "label":"Desejo não informar",
+            "quantity":0
+         },
+         {
+            "label":"Entre R$1100 e R$2000",
+            "quantity":0
+         },
+         {
+            "label":"Mais de R$2000",
+            "quantity":0
+         },
+         {
+            "label":"Entre R$150 e R$350",
+            "quantity":0
+         },
+         {
+            "label":"Entre R$500 e R$750",
+            "quantity":0
+         },
+         {
+            "label":"Entre R$750 e R$1100",
+            "quantity":0
+         }
+      ],
+      "lastUpdate":"2022-06-02T03:00:03.023Z",
+      "newUsers":1,
+      "racialInfo":[
+         {
+            "label":"Outra/Não deseja informar",
+            "quantity":1
+         },
+         {
+            "label":"Branca",
+            "quantity":0
+         },
+         {
+            "label":"Amarela",
+            "quantity":0
+         },
+         {
+            "label":"Preta",
+            "quantity":0
+         },
+         {
+            "label":"Indígena",
+            "quantity":0
+         },
+         {
+            "label":"Parda",
+            "quantity":0
+         }
+      ],
+      "schooling":[
+         {
+            "label":"Ensino superior Completo",
+            "quantity":0
+         },
+         {
+            "label":"Ensino fundamental 1 Incompleto",
+            "quantity":1
+         },
+         {
+            "label":"Ensino fundamental 1 Completo",
+            "quantity":0
+         },
+         {
+            "label":"Ensino fundamental 1 Cursando",
+            "quantity":0
+         },
+         {
+            "label":"Ensino fundamental 2 Incompleto",
+            "quantity":0
+         },
+         {
+            "label":"Ensino fundamental 2 Completo",
+            "quantity":0
+         },
+         {
+            "label":"Ensino fundamental 2 Cursando",
+            "quantity":0
+         },
+         {
+            "label":"Não determinado",
+            "quantity":0
+         },
+         {
+            "label":"Ensino médio Completo",
+            "quantity":0
+         },
+         {
+            "label":"Ensino médio Incompleto",
+            "quantity":0
+         },
+         {
+            "label":"Ensino médio Cursando",
+            "quantity":0
+         },
+         {
+            "label":"Ensino superior Cursando",
+            "quantity":0
+         },
+         {
+            "label":"Ensino superior Incompleto",
+            "quantity":0
+         },
+         {
+            "label":"Ensino técnico Incompleto",
+            "quantity":0
+         },
+         {
+            "label":"Ensino técnico Completo",
+            "quantity":0
+         },
+         {
+            "label":"Ensino técnico Cursando",
+            "quantity":0
+         }
+      ],
+      "travelTimeInMinutes":[1],
+      "travelsDone":1,
+      "travelsWithRideGiven":0,
+      "usersQuantity":1,
+      "withdrawalsReason":[
+         {
+            "label":"Seu local de trabalho",
+            "quantity":0
+         },
+         {
+            "label":"Seu local de estudo",
+            "quantity":0
+         },
+         {
+            "label":"Seu local de lazer / convivência social",
+            "quantity":0
+         },
+         {
+            "label":"Seu local de compras",
+            "quantity":0
+         },
+         {
+            "label":"Local de estudo da criança",
+            "quantity":0
+         },
+         {
+            "label":"Outro motivo não especificado",
+            "quantity":0
+         },
+         {
+            "label":"Entrega de aplicativos",
+            "quantity":0
+         }
+      ],
+      "womenUsers":0
+   },
+   "users":{
+      "-MVQyYF390PNQ5gBIMBP":{
+         "address":"Rua 123",
+         "age":"01/01/1990",
+         "available":true,
+         "communityId":"-MLDOXs3p35DEHg0gdUU",
+         "createdDate":"01/01/2022",
+         "docNumber":9090909,
+         "docPicture":"https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fuser%2F9090909%20_1615377075.jpg?alt=media&token=f8d04548-7fbd-4941-b179-7cf96c46130b",
+         "docPictureBack":"https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fuser%2F9090909%20_1615377078.jpg?alt=media&token=e9120700-96df-49d7-a4a6-fea9f61c6e65",
+         "docType":0,
+         "gender":"Masculino",
+         "hasActiveWithdraw":false,
+         "id":"-MVQyYF390PNQ5gBIMBP",
+         "income":"Até R$150",
+         "isBlocked":false,
+         "name":"Usuário Teste",
+         "path":"users",
+         "profilePicture":"https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fuser%2F9090909%20_1615377069.jpg?alt=media&token=c839d6f6-3dac-4141-a398-8f6917ddc514",
+         "profilePictureThumbnail":"https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fuser%2F9090909%20_thumb_1615377069.jpg?alt=media&token=4641a77d-8d1f-480a-bf85-9193d53e37f1",
+         "racial":"Outra/Não deseja informar",
+         "residenceProofPicture":"https://firebasestorage.googleapis.com/v0/b/bpr-dev.appspot.com/o/community%2Fuser%2F9090909%20_1615377082.jpg?alt=media&token=896c2b3e-a827-42e0-9b7d-43446852dd8f",
+         "schooling":"Ensino fundamental 1",
+         "schoolingStatus":"Incompleto",
+         "telephone":"99 99999-999",
+         "userQuiz":{
+            "alreadyAccidentVictim":false,
+            "alreadyUseBPR":false,
+            "alreadyUseBPROpenQuestion":"",
+            "motivation":5,
+            "motivationOpenQuestion":"teste",
+            "problemsOnWayOpenQuestion":"Vários",
+            "timeOnWayOpenQuestion":"12:33"
+         }
+      }
+   }
+}

@@ -4,7 +4,7 @@ export default makeStyles(() => ({
   root: {
     display: 'flex',
     alignItems: 'flex-start',
-    height: 100,
+    height: 65,
   },
   formHeaderBackground: {
     background: 'rgba(1, 135, 134, 0.5)',
@@ -16,8 +16,6 @@ export default makeStyles(() => ({
     zIndex: -1,
   },
   heading: {
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 24,
     letterSpacing: '0.18px',

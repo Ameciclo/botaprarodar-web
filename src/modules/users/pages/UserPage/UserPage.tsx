@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Typography, Grid } from '@material-ui/core';
 import { EmptyStateImage } from 'shared/assets/images';
 import EmptyState from 'shared/components/EmptyState/EmptyState';
@@ -9,12 +10,14 @@ import UserCard from './components/UserCard/UserCard';
 import useStyles from './UserPage.styles';
 
 const UserPage: React.FC = () => {
+  const location = useLocation();
+  const communityId = location.state?.communityId;
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const classes = useStyles();
 
   useEffect(() => {
-    UserService.getAllUsers()
+    UserService.getUsersByCommunity(communityId)
       .then(res => {
         setUsers(res);
       })
@@ -24,7 +27,7 @@ const UserPage: React.FC = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [communityId]);
 
   return (
     <div className={classes.root}>
@@ -39,7 +42,7 @@ const UserPage: React.FC = () => {
           data-testid="userList"
           className={classes.userList}
           direction="row"
-          justifyContent="space-between"
+          justifyContent="flex-start"
           spacing={3}
         >
           {users?.map(user => {
@@ -56,7 +59,7 @@ const UserPage: React.FC = () => {
         <EmptyState
           imgSrc={EmptyStateImage}
           heading="Nenhuma usuária cadastrada!"
-          subheading="Cadastre uma nova usuária em nosso aplicaticativo."
+          subheading="Cadastre uma nova usuária em nosso aplicativo."
         />
       )}
     </div>

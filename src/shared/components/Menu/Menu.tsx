@@ -131,7 +131,7 @@ const Menu: React.FC = ({ children }) => {
             >
               <img
                 src={ArrowBack}
-                alt="Logo do projeto Bota pra rodar"
+                alt="Botão de sair da aplicação"
                 className={classes.arrowStyle}
               />
               Sair

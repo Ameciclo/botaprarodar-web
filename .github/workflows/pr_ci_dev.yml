@@ -6,11 +6,13 @@ on:
       - main
 jobs:
   TestingPR:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get main
-        run: git fetch origin main
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Cleanup cache
+        run: npm cache clean --force
       - name: Install dependencies
         run: npm install
       - name: Install Jest globally

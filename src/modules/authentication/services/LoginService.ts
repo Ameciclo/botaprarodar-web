@@ -17,7 +17,11 @@ const LoginService = {
       email: userDetails?.email || '',
       authenticated: userDetails?.emailVerified || false,
       uid: userDetails?.uid || '',
+      currentCommunity: '',
     };
+  },
+  async passwordReset(email: string): Promise<void> {
+    await auth.sendPasswordResetEmail(email);
   },
 };
 

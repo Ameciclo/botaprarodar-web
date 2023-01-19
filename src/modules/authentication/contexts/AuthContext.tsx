@@ -20,6 +20,7 @@ export const INITIAL_AUTH: AuthInterface = {
   email: '',
   displayName: '',
   uid: '',
+  currentCommunity: '',
 };
 
 const AuthContext = createContext<AuthContextType>([
@@ -88,12 +89,14 @@ const mapAuthValue = ({
   email,
   displayName,
   uid,
+  currentCommunity,
 }: AuthInterface) => ({
   token,
   authenticated,
   email,
   displayName,
   uid,
+  currentCommunity,
 });
 
 export { AuthProvider, useAuth, useGetAuth, useHandleAuth, useClearAuth };

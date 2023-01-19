@@ -6,8 +6,6 @@
 
 A self-managed bike sharing system like alternative to socio-spatial inequalities.
 
-<img width="1648" alt="Captura de Tela 2021-08-10 às 13 41 50" src="https://user-images.githubusercontent.com/31252524/128899506-b49bcebb-a7c0-403d-ae99-535aaddc0a56.png">
-
 ## Project structure
 
 ```
@@ -39,22 +37,37 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 - Firebase Realtime Database
 - Jest
 - React Testing Library
-
----
-
-## Tecnologies required
-
 - Node 14 or above
 - NPM Package manager
 
----
+## Initial Configuration
+
+1. Clone this repository: `git clone git@github.com:Ameciclo/botaprarodar-web.git`
+1. Have the Node 14 installed on your machine (Using brew: `brew install node@14`)
+1. Put the node command on your bashrc: `echo 'export PATH="/usr/local/opt/node@14/bin:$PATH"' >> ~/.zshrc`
+1. On project root folder install packages: `npm install`
+1. Using the `.sample-env` as template ask the team for environment variables.
+1. You are ready to go.
+
+## Process for integration
+
+1. Every feature or change **should go through a pull request and point to `main`. Every PR will trigger the CI to Test and Build the PR. Once the CI is finished and the PR approved, it can be merged into main.** 
+**IMPORTANT:** Always squash your commits.
+1. When merged into `main` the GitHub Action will trigger the CI/CD to deploy on the DEV environment(see link below).
+1. If the team consider that there are enough code to justify a production deploy, a new PR should be created from `main` to `production`. The last commit for this PR - integrating `main` into `production` - should have the changelogs updated. A merge commit should be created in `production` for this PR. DO NOT SQUASH COMMITS ON THIS PR.
+1. Once this PR is merged GitHub Actions will begin the deploy on PROD environment.(see link below)
+1. After the merge between `main` into `production` a new tag should be created on the commit created from the step 3 using the following commands:
+  >   `git checkout production && git pull && git tag <version_number> && git push --tags`
+
+Once this whole process is finished the admin can create a release from the tag on the `tag` button above.
+
 
 ## NPM Important commands
 
 - `npm run build` - Builds the application
 - `npm start` - Start applications
 - `npm test` - Runs unit tests
-- `npm run test-coverage ` - Create coverage report [file path: Users/<user_name>/<project_path>/botaprarodar-web/coverage/lcov-report/index.html]
+- `npm run test-coverage ` - Create coverage report [file path: `Users/<user_name>/<project_path>/botaprarodar-web/coverage/lcov-report/index.html`]
 
 ## Check-in dance
 
@@ -72,9 +85,8 @@ A self-managed bike sharing system like alternative to socio-spatial inequalitie
 1. Check Git Action
    1. RED? Fix immediately or git revert
 
-## Important informations
+## Environments
 
-`main` branch ├── [DEV Environment](https://dev-botaprarodar.netlify.app/login)
-`production` branch ├── [PROD Environment](https://botaprarodar.netlify.app/login)
+`main branch ├──` [DEV Environment](https://dev-botaprarodar.netlify.app/login)
 
-We are developing and integrating code using feature branch. Our `main` branch is the development branch. This means that every new code you may want to integrate to the project should have a PR point towards the `main` branch. Once the PR is validated and integrated into the `main` branch, the project will decide when is the time to integrate on the `production` branch, which is the branch used for deploying on the production environment.
+`production branch ├──` [PROD Environment](https://botaprarodar.netlify.app/login)

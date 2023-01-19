@@ -41,8 +41,6 @@ export default makeStyles({
   },
   name: {
     color: '#515151',
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 500,
     fontSize: '16px',
     lineHeight: '10px',
@@ -58,8 +56,6 @@ export default makeStyles({
   icon: { marginRight: '12px', color: '#515151' },
   text: {
     color: '#515151',
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: '14px',
     lineHeight: '20px',

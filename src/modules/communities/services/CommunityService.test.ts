@@ -38,7 +38,7 @@ describe('Community Service', () => {
         '-MLDOXs3p35DEHg0gdUU': MockedFirstCommunity,
       },
     });
-    let data: Community[];
+    let data: Community;
 
     await act(async () => {
       data = await CommunityService.getCommunityById('MLDOXs3p35DEHg0gdUU');
@@ -81,15 +81,22 @@ describe('Community Service', () => {
   });
 
   it('should delete a community by ID', async () => {
-    mockedApi.put.mockResolvedValue({ data: {} });
+    mockedApi.put.mockResolvedValueOnce({ data: {} });
     let data: Community;
+
+    mockedApi.get.mockResolvedValueOnce({ data: {} });
+
+    mockedApi.put.mockResolvedValueOnce({ data: {} });
+
     await act(async () => {
       data = await CommunityService.deleteCommunityById('-MLDOXs3p35DEHg0gdUU');
     });
+
     expect(mockedApi.put).toHaveBeenCalledWith(
       '/communities/-MLDOXs3p35DEHg0gdUU.json',
       {},
     );
+
     await waitFor(() => expect(data).toStrictEqual({}));
   });
 });

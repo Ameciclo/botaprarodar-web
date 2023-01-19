@@ -1,5 +1,6 @@
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { Input } from 'shared/components';
+import DateUtils from 'shared/utils/DateUtils';
 import useStyles from './PersonalInfoForm.styles';
 
 interface PersonalInfoFormProps {
@@ -8,6 +9,11 @@ interface PersonalInfoFormProps {
 
 const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
   const classes = useStyles();
+  const validateInputEmpty = (text: string) => {
+    if (text.trim() === '') return 'Este campo não pode ser vazio';
+    return true;
+  };
+
   return (
     <Card>
       <CardContent>
@@ -24,7 +30,10 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               control={control}
               dataTestId="name-test"
               defaultValue=""
-              rules={{ required: 'Nome do usuário é obrigatório' }}
+              rules={{
+                required: 'Nome do usuário é obrigatório',
+                validate: validateInputEmpty,
+              }}
               fullWidth
             />
           </Grid>
@@ -37,7 +46,10 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               control={control}
               dataTestId="address-test"
               defaultValue=""
-              rules={{ required: 'Endereço do usuário é obrigatório' }}
+              rules={{
+                required: 'Endereço do usuário é obrigatório',
+                validate: validateInputEmpty,
+              }}
               fullWidth
             />
           </Grid>
@@ -76,6 +88,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({ control }) => {
               defaultValue=""
               rules={{
                 required: 'Data de nascimento do usuário é obrigatória',
+                validate: (date: string) => DateUtils.validateDate(date),
               }}
               fullWidth
             />
