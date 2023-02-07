@@ -54,7 +54,6 @@ const Input: React.FC<InputProps> = ({
                   label={label}
                   name={name}
                   variant="outlined"
-                  defaultValue={defaultValue}
                   inputProps={{ 'data-testid': dataTestId }}
                   fullWidth={fullWidth}
                   error={!!error}
@@ -66,9 +65,9 @@ const Input: React.FC<InputProps> = ({
                       </span>
                     ) : null
                   }
+                  disableunderline="true"
                   {...inputProps}
                   type="tel"
-                  disableUnderline
                 />
               )}
             </InputMask>
@@ -79,7 +78,6 @@ const Input: React.FC<InputProps> = ({
               value={value}
               onChange={onChange}
               variant="outlined"
-              defaultValue={defaultValue}
               inputProps={{ 'data-testid': dataTestId }}
               fullWidth={fullWidth}
               error={!!error}
