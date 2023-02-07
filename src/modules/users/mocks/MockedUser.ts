@@ -27,9 +27,13 @@ export const mockedUser = (): User => ({
     timeOnWayOpenQuestion: '50min',
   },
 });
+export const mockedSecoundUser = (): User => ({
+  ...mockedUser(),
+  id: '1234',
+});
 
 export const MockedFirstUser: User = mockedUser();
 
-export const MockedSecondUser: User = mockedUser();
+export const MockedSecondUser: User = mockedSecoundUser();
 
 export const mockUserMissingInfo: User = mockedUser();

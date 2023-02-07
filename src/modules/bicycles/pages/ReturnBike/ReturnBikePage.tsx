@@ -33,7 +33,7 @@ const ReturnBikePage: React.FC = () => {
           />
           <TitleBikePage title="Devolver bicicleta" />
           <SelectBikePage
-            data-testId="SelectBikeCard"
+            data-testid="SelectBikeCard"
             communityId={state.communityId || ''}
             formValues={state.formValues}
             actionType="devolution"
