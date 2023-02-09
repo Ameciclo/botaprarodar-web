@@ -1,13 +1,13 @@
 export interface RegisterBikeFormData {
   name: string;
   serialNumber: string;
-  orderNumber: number | null;
+  orderNumber?: number;
   photoThumbnailPath: File | null;
 }
 
 export const defaultFormValues: RegisterBikeFormData = {
   name: '',
   serialNumber: '',
-  orderNumber: null,
+  orderNumber: undefined,
   photoThumbnailPath: null,
 };
