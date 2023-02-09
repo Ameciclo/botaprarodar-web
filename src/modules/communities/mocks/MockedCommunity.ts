@@ -16,7 +16,7 @@ export const MockedLoggedInUserManager: Community = {
   address: 'Recife',
   created_date: new Date(),
   description: 'Comunidade em Recife',
-  id: '-MLDOXs3p35DEHg0gdUU',
+  id: '-MLDOXs3p35DEHg0gdUI',
   name: 'Comunidade Gerenciada',
   org_email: 'email@example.com',
   org_name: 'John',
