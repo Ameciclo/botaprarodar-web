@@ -11,24 +11,15 @@ interface Props {
   name: string;
   dataTestId: string;
   control: any;
-  rules: Record<string, unknown>;
 }
 
-const UploadImage = ({
-  title,
-  id,
-  dataTestId,
-  name,
-  control,
-  rules,
-}: Props) => {
+const UploadImage = ({ title, id, dataTestId, name, control }: Props) => {
   const classes = useStyles();
 
   return (
     <Controller
       name={name}
       control={control}
-      rules={rules}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <div>
@@ -52,7 +43,7 @@ const UploadImage = ({
                       accept="image/*"
                       type="file"
                       data-testid={dataTestId}
-                      onChange={e => onChange(e.target.files?.[0] ?? '')}
+                      onChange={e => onChange(e.target.files?.[0] ?? null)}
                       className={classes.input}
                     />
                     <label htmlFor={id}>

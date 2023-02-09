@@ -15,7 +15,7 @@ interface InputProps {
   className: string;
   defaultValue?: string;
   mask?: MaskType;
-  rules: Record<string, unknown>;
+  rules?: Record<string, unknown>;
   fullWidth?: boolean;
 }
 
@@ -52,7 +52,6 @@ const Input: React.FC<InputProps> = ({
               {inputProps => (
                 <TextField
                   label={label}
-                  name={name}
                   variant="outlined"
                   inputProps={{ 'data-testid': dataTestId }}
                   fullWidth={fullWidth}

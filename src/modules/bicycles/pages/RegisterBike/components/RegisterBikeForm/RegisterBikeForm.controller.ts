@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
 import BikeService from 'modules/bicycles/services/BikeService';
 import { toast } from 'shared/components';
 import {
   defaultFormValues,
   RegisterBikeFormData,
+  registerBikeSchema,
 } from './RegisterBikeForm.schema';
 
 const useRegisterBikeFormController = (communityId: string) => {
   const history = useHistory();
   const { handleSubmit, control } = useForm<RegisterBikeFormData>({
     defaultValues: defaultFormValues,
+    resolver: yupResolver(registerBikeSchema),
   });
   const [loading, setLoading] = useState(false);
 
@@ -34,32 +37,9 @@ const useRegisterBikeFormController = (communityId: string) => {
     history.push(`/comunidades/gerenciador-de-comunidade/${communityId}`);
   };
 
-  const validateInputEmpty = (text: string) => {
-    if (text.trim() === '') return 'Este campo não pode ser vazio';
-
-    if (!text.match(/^[a-zA-Z0-9 ]*$/)) {
-      return 'Este campo deve contar apenas letras, números e espaço';
-    }
-
-    return true;
-  };
-
-  const validateInputNumberEmpty = (text: number) => {
-    if (text <= 0) return 'Este campo deve ser maior que 0';
-    return true;
-  };
-
-  const validateFileInputEmpty = (file: File | null) => {
-    if (!file) return 'Este campo não pode ser vazio';
-    return true;
-  };
-
   return {
     control,
     loading,
-    validateInputEmpty,
-    validateInputNumberEmpty,
-    validateFileInputEmpty,
     onSubmit: handleSubmit(onSubmit),
     onCancel,
   };

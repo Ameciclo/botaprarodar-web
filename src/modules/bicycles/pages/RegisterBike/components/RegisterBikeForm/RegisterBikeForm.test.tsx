@@ -7,12 +7,6 @@ let defaultProps: any;
 
 jest.mock('modules/bicycles/services/BikeService');
 
-jest.mock('./components/UploadImage', () => () => `UploadImage-mock`);
-jest.mock(
-  '../../../../../../shared/components/Input/Input',
-  () => () => `Input-mock`,
-);
-
 describe('RegisterUserForm', () => {
   beforeEach(() => {
     defaultProps = {
@@ -23,10 +17,10 @@ describe('RegisterUserForm', () => {
   it('should render correctly', async () => {
     render(<RegisterBikeForm {...defaultProps} />);
 
-    expect(screen.getAllByText('Input-mock')[0]).toBeInTheDocument();
-    expect(screen.getAllByText('Input-mock')[1]).toBeInTheDocument();
-    expect(screen.getAllByText('Input-mock')[2]).toBeInTheDocument();
-    expect(screen.getByText('UploadImage-mock')).toBeInTheDocument();
+    expect(screen.getAllByRole('textbox')[0]).toBeInTheDocument();
+    expect(screen.getByRole('spinbutton')).toBeInTheDocument();
+    expect(screen.getAllByRole('textbox')[1]).toBeInTheDocument();
+    expect(screen.getByTestId('photo-thumbnail-path-test')).toBeInTheDocument();
 
     expect(screen.getByText('CANCELAR')).toBeInTheDocument();
     expect(screen.getByText('CONCLUIR CADASTRO')).toBeInTheDocument();
@@ -43,6 +37,22 @@ describe('RegisterUserForm', () => {
     );
 
     expect(history.location.pathname).toBe('/comunidades/cadastrar-bicicleta');
+
+    fireEvent.change(screen.getByTestId('photo-thumbnail-path-test'), {
+      target: { files: [new File([], 'file.png')] },
+    });
+
+    fireEvent.input(screen.getAllByRole('textbox')[0], {
+      target: { value: 'test' },
+    });
+
+    fireEvent.input(screen.getAllByRole('textbox')[1], {
+      target: { value: 'test' },
+    });
+
+    fireEvent.input(screen.getByRole('spinbutton'), {
+      target: { value: 123 },
+    });
 
     const button = screen.getByRole('button', { name: /concluir cadastro/i });
 

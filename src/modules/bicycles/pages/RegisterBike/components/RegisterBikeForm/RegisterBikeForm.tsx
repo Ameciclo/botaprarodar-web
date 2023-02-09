@@ -11,15 +11,8 @@ interface Props {
 
 const RegisterBikeForm = ({ communityId }: Props) => {
   const classes = useStyles();
-  const {
-    control,
-    loading,
-    onSubmit,
-    onCancel,
-    validateInputEmpty,
-    validateFileInputEmpty,
-    validateInputNumberEmpty,
-  } = useRegisterBikeFormController(communityId);
+  const { control, loading, onSubmit, onCancel } =
+    useRegisterBikeFormController(communityId);
 
   return (
     <form onSubmit={onSubmit}>
@@ -32,10 +25,6 @@ const RegisterBikeForm = ({ communityId }: Props) => {
             className="bikeName"
             control={control}
             dataTestId="name-test"
-            rules={{
-              required: 'Nome da bicicleta é obrigatório',
-              validate: validateInputEmpty,
-            }}
             fullWidth
           />
         </Grid>
@@ -48,10 +37,6 @@ const RegisterBikeForm = ({ communityId }: Props) => {
               className="bikeOrderNumber"
               control={control}
               dataTestId="order-number-test"
-              rules={{
-                required: 'Número da ordem é obrigatório',
-                validate: validateInputNumberEmpty,
-              }}
               fullWidth
             />
           </Grid>
@@ -63,10 +48,6 @@ const RegisterBikeForm = ({ communityId }: Props) => {
               className="bikeSerialNumber"
               control={control}
               dataTestId="serial-number-test"
-              rules={{
-                required: 'Número de série é obrigatório',
-                validate: validateInputEmpty,
-              }}
               fullWidth
             />
           </Grid>
@@ -78,10 +59,6 @@ const RegisterBikeForm = ({ communityId }: Props) => {
             title="Adicione uma foto da Bicicleta"
             dataTestId="photo-thumbnail-path-test"
             control={control}
-            rules={{
-              required: 'Imagem da bicicleta é obrigatória',
-              validate: validateFileInputEmpty,
-            }}
           />
         </Grid>
       </Grid>
