@@ -8,6 +8,7 @@ import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 import BikeService from './BikeService';
 
 jest.mock('shared/services/api');
+jest.mock('shared/services/firebase');
 const uuid = 'abc1234';
 jest.mock('uuid', () => ({ v4: () => uuid }));
 const mockedApi = api as jest.Mocked<typeof api>;
@@ -23,6 +24,26 @@ const mockedApiBikesResponse = {
 
 describe('Bike Service', () => {
   describe('when api works', () => {
+    it('should create bike', async () => {
+      const createdBike = mockedBike({
+        communityId: '-MLy8y1-5v5GLg7Z428y',
+      });
+
+      mockedApi.put.mockResolvedValue(createdBike);
+
+      await act(async () => {
+        await BikeService.createBike({
+          name: createdBike.name,
+          serialNumber: createdBike.serialNumber,
+          orderNumber: createdBike.orderNumber,
+          photoThumbnailPath: new File([], 'fake.png'),
+          communityId: createdBike.communityId,
+        });
+      });
+
+      expect(mockedApi.put).toHaveBeenCalled();
+    });
+
     it('should get all bikes', async () => {
       mockedApi.get.mockResolvedValue(mockedApiBikesResponse);
       let data: Bike[];
