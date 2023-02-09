@@ -36,6 +36,11 @@ const useRegisterBikeFormController = (communityId: string) => {
 
   const validateInputEmpty = (text: string) => {
     if (text.trim() === '') return 'Este campo não pode ser vazio';
+
+    if (!text.match(/^[a-zA-Z0-9 ]*$/)) {
+      return 'Este campo deve contar apenas letras, números e espaço';
+    }
+
     return true;
   };
 
