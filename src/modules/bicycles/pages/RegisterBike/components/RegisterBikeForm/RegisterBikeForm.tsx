@@ -26,6 +26,7 @@ const RegisterBikeForm = ({ communityId }: Props) => {
             control={control}
             dataTestId="name-test"
             fullWidth
+            required
           />
         </Grid>
         <Grid container item direction="row" spacing={3}>
@@ -38,6 +39,7 @@ const RegisterBikeForm = ({ communityId }: Props) => {
               control={control}
               dataTestId="order-number-test"
               fullWidth
+              required
             />
           </Grid>
           <Grid item xs={6}>
@@ -49,6 +51,7 @@ const RegisterBikeForm = ({ communityId }: Props) => {
               control={control}
               dataTestId="serial-number-test"
               fullWidth
+              required
             />
           </Grid>
         </Grid>
@@ -59,6 +62,7 @@ const RegisterBikeForm = ({ communityId }: Props) => {
             title="Adicione uma foto da Bicicleta"
             dataTestId="photo-thumbnail-path-test"
             control={control}
+            required
           />
         </Grid>
       </Grid>

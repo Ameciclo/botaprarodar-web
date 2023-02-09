@@ -16,6 +16,7 @@ interface InputProps {
   defaultValue?: string;
   mask?: MaskType;
   rules?: Record<string, unknown>;
+  required?: boolean;
   fullWidth?: boolean;
 }
 
@@ -33,6 +34,7 @@ const Input: React.FC<InputProps> = ({
   rules,
   defaultValue,
   mask,
+  required,
   fullWidth = false,
   ...props
 }) => {
@@ -51,7 +53,7 @@ const Input: React.FC<InputProps> = ({
             <InputMask mask={enumMask[mask]} value={value} onChange={onChange}>
               {inputProps => (
                 <TextField
-                  label={label}
+                  label={label + (required ? ' *' : '')}
                   variant="outlined"
                   inputProps={{ 'data-testid': dataTestId }}
                   fullWidth={fullWidth}
@@ -72,7 +74,7 @@ const Input: React.FC<InputProps> = ({
             </InputMask>
           ) : (
             <TextField
-              label={label}
+              label={label + (required ? ' *' : '')}
               name={name}
               value={value}
               onChange={onChange}

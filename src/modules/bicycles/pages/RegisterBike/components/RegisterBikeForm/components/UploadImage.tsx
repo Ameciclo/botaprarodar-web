@@ -11,9 +11,17 @@ interface Props {
   name: string;
   dataTestId: string;
   control: any;
+  required?: boolean;
 }
 
-const UploadImage = ({ title, id, dataTestId, name, control }: Props) => {
+const UploadImage: React.FC<Props> = ({
+  title,
+  id,
+  dataTestId,
+  name,
+  control,
+  required,
+}) => {
   const classes = useStyles();
 
   return (
@@ -34,7 +42,9 @@ const UploadImage = ({ title, id, dataTestId, name, control }: Props) => {
                 spacing={1}
               >
                 <Grid item>
-                  <Typography className={classes.title}>{title}</Typography>
+                  <Typography className={classes.title}>
+                    {title + (required ? ' *' : '')}
+                  </Typography>
                 </Grid>
                 <Grid container item alignItems="center">
                   <Grid item>
