@@ -18,8 +18,8 @@ describe('RegisterUserForm', () => {
     render(<RegisterBikeForm {...defaultProps} />);
 
     expect(screen.getAllByRole('textbox')[0]).toBeInTheDocument();
-    expect(screen.getByRole('spinbutton')).toBeInTheDocument();
     expect(screen.getAllByRole('textbox')[1]).toBeInTheDocument();
+    expect(screen.getAllByRole('textbox')[2]).toBeInTheDocument();
     expect(screen.getByTestId('photo-thumbnail-path-test')).toBeInTheDocument();
 
     expect(screen.getByText('CANCELAR')).toBeInTheDocument();
@@ -43,15 +43,18 @@ describe('RegisterUserForm', () => {
     });
 
     fireEvent.input(screen.getAllByRole('textbox')[0], {
+      // bikeName
+      target: { value: 'test' },
+    });
+
+    fireEvent.input(screen.getAllByRole('textbox')[2], {
+      // serialNumber
       target: { value: 'test' },
     });
 
     fireEvent.input(screen.getAllByRole('textbox')[1], {
-      target: { value: 'test' },
-    });
-
-    fireEvent.input(screen.getByRole('spinbutton'), {
-      target: { value: 123 },
+      // orderNumber
+      target: { value: '123' },
     });
 
     const button = screen.getByRole('button', { name: /concluir cadastro/i });

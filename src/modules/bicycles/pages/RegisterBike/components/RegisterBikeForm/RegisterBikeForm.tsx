@@ -33,7 +33,7 @@ const RegisterBikeForm = ({ communityId }: Props) => {
           <Grid item xs={6}>
             <Input
               label="Número da Ordem"
-              type="number"
+              type="text"
               name="orderNumber"
               className="bikeOrderNumber"
               control={control}
