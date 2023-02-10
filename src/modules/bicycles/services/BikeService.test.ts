@@ -1,6 +1,7 @@
 import { act, waitFor } from '@testing-library/react';
 import { v4 as uuidv4 } from 'uuid';
 import { mockedUser } from 'modules/users/mocks/MockedUser';
+import DashboardService from 'modules/dashboard/services/DashboardService';
 import api from '../../../shared/services/api';
 import { mockedBike } from '../mocks/BikeMocks';
 import Bike from '../models/Bike';
@@ -28,6 +29,10 @@ describe('Bike Service', () => {
       const createdBike = mockedBike({
         communityId: '-MLy8y1-5v5GLg7Z428y',
       });
+
+      jest.spyOn(BikeService, 'uploadBikeImage').mockResolvedValue('fake_url');
+
+      jest.spyOn(DashboardService, 'updateBikeQuantity').mockResolvedValue({});
 
       mockedApi.put.mockResolvedValue(createdBike);
 

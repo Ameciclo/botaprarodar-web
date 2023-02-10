@@ -21,18 +21,18 @@ const BikeService = {
   },
 
   async createBike(body: any) {
-    // const photoUrl = await BikeService.uploadBikeImage(body.photoThumbnailPath);
+    const photoUrl = await BikeService.uploadBikeImage(body.photoThumbnailPath);
 
     const payload = {
       id: uuidv4(),
       name: body.name.trim(),
       serialNumber: body.serialNumber.trim(),
-      orderNumber: body.orderNumber,
-      photoThumbnailPath: 'photoUrl',
+      orderNumber: Number(body.orderNumber),
+      photoThumbnailPath: photoUrl,
       communityId: body.communityId,
       available: true,
       inUse: false,
-      photoPath: 'photoUrl',
+      photoPath: photoUrl,
       withdraws: null,
       devolutions: null,
       withdrawToUser: '',
@@ -42,9 +42,9 @@ const BikeService = {
 
     const { data } = await api.put(`/bikes/${payload.id}.json`, payload);
 
-    /* if (data) {
+    if (data) {
       await DashboardService.updateBikeQuantity();
-    } */
+    }
 
     return data;
   },
