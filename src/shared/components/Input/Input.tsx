@@ -47,7 +47,10 @@ const Input: React.FC<InputProps> = ({
       control={control}
       defaultValue={defaultValue}
       rules={rules}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
+      render={({
+        field: { onChange, onBlur, value },
+        fieldState: { error },
+      }) => (
         <>
           {hasMask ? (
             <InputMask mask={enumMask[mask]} value={value} onChange={onChange}>
@@ -78,6 +81,7 @@ const Input: React.FC<InputProps> = ({
               name={name}
               value={value}
               onChange={onChange}
+              onBlur={onBlur}
               variant="outlined"
               inputProps={{ 'data-testid': dataTestId }}
               fullWidth={fullWidth}

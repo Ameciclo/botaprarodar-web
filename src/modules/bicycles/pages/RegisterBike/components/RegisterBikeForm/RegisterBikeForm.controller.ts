@@ -13,6 +13,7 @@ import {
 const useRegisterBikeFormController = (communityId: string) => {
   const history = useHistory();
   const { handleSubmit, control } = useForm<RegisterBikeFormData>({
+    mode: 'all',
     defaultValues: defaultFormValues,
     resolver: yupResolver(registerBikeSchema),
   });
