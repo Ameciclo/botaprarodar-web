@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Button, CircularProgress, Grid } from '@material-ui/core';
 import { Input } from 'shared/components';
 import UploadImage from './components/UploadImage';
