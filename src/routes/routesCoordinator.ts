@@ -55,6 +55,10 @@ const BikeFinalPage = lazy(
   () => import('../modules/bicycles/pages/BikeFinalPage/BikeFinalPage'),
 );
 
+const RegisterBikePage = lazy(
+  () => import('../modules/bicycles/pages/RegisterBike/RegisterBikePage'),
+);
+
 export const routes = [
   {
     path: '/',
@@ -74,6 +78,11 @@ export const routes = [
   {
     path: '/comunidades/cadastrar-usuario',
     comp: RegisterUserPage,
+    private: true,
+  },
+  {
+    path: '/comunidades/cadastrar-bicicleta',
+    comp: RegisterBikePage,
     private: true,
   },
   {

@@ -57,7 +57,7 @@ const CommunityManagementPage: React.FC = () => {
     fetchData(communityId);
   }, [communityId]);
 
-  const redirectToRegister = () => {
+  const redirectToRegisterUser = () => {
     const params = { communityId };
     history.push('/comunidades/cadastrar-usuario', params);
   };
@@ -70,6 +70,11 @@ const CommunityManagementPage: React.FC = () => {
   const redirectToReturnBike = () => {
     const params = { communityId };
     history.push('/comunidades/devolver-bicicleta', params);
+  };
+
+  const redirectToRegisterBike = () => {
+    const params = { communityId };
+    history.push('/comunidades/cadastrar-bicicleta', params);
   };
 
   if (loading) {
@@ -94,7 +99,16 @@ const CommunityManagementPage: React.FC = () => {
             iconName="registerUser"
             text="Cadastrar usuária"
             iconDescription="Cadastrar usuária"
-            onClick={redirectToRegister}
+            onClick={redirectToRegisterUser}
+          />
+        </Grid>
+        <Grid item xs={12} md={3} sm={6}>
+          <CustomCardWithIcon
+            id="cadastrar-bicicleta"
+            iconName="registerBike"
+            text="Cadastrar bicicleta"
+            iconDescription="Cadastrar bicicleta"
+            onClick={redirectToRegisterBike}
           />
         </Grid>
         <Grid item xs={12} md={3} sm={6}>

@@ -136,5 +136,17 @@ const DashboardService = {
 
     return data;
   },
+
+  async updateBikeQuantity() {
+    const currentDashBoardInfo = await this.dashboardInfo();
+
+    currentDashBoardInfo.bikesQuantity += 1;
+
+    currentDashBoardInfo.lastUpdate = new Date().toISOString();
+
+    const { data } = await api.put('/dashboardInfo.json', currentDashBoardInfo);
+
+    return data;
+  },
 };
 export default DashboardService;

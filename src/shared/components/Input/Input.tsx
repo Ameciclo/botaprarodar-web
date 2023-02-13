@@ -15,7 +15,8 @@ interface InputProps {
   className: string;
   defaultValue?: string;
   mask?: MaskType;
-  rules: Record<string, unknown>;
+  rules?: Record<string, unknown>;
+  required?: boolean;
   fullWidth?: boolean;
 }
 
@@ -33,6 +34,7 @@ const Input: React.FC<InputProps> = ({
   rules,
   defaultValue,
   mask,
+  required,
   fullWidth = false,
   ...props
 }) => {
@@ -45,14 +47,16 @@ const Input: React.FC<InputProps> = ({
       control={control}
       defaultValue={defaultValue}
       rules={rules}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
+      render={({
+        field: { onChange, onBlur, value },
+        fieldState: { error },
+      }) => (
         <>
           {hasMask ? (
             <InputMask mask={enumMask[mask]} value={value} onChange={onChange}>
               {inputProps => (
                 <TextField
-                  label={label}
-                  name={name}
+                  label={label + (required ? ' *' : '')}
                   variant="outlined"
                   inputProps={{ 'data-testid': dataTestId }}
                   fullWidth={fullWidth}
@@ -73,10 +77,11 @@ const Input: React.FC<InputProps> = ({
             </InputMask>
           ) : (
             <TextField
-              label={label}
+              label={label + (required ? ' *' : '')}
               name={name}
               value={value}
               onChange={onChange}
+              onBlur={onBlur}
               variant="outlined"
               inputProps={{ 'data-testid': dataTestId }}
               fullWidth={fullWidth}

@@ -5,10 +5,50 @@ import { User } from 'modules/users/models';
 import api from 'shared/services/api';
 import DateUtils from 'shared/utils/DateUtils';
 import DashboardService from 'modules/dashboard/services/DashboardService';
+import { storage } from 'shared/services/firebase';
 import AmountBikesPerCommunity from '../utils/AmountBikesPerCommunity';
 import BikeQuiz from '../models/types/BikeQuiz';
 
 const BikeService = {
+  async uploadBikeImage(file: File) {
+    const storageRef = storage.ref(`community/bike/${file.name}`);
+
+    const snapshot = await storageRef.put(file);
+
+    const downloadUrl = await snapshot.ref.getDownloadURL();
+
+    return downloadUrl;
+  },
+
+  async createBike(body: any) {
+    const photoUrl = await BikeService.uploadBikeImage(body.photoThumbnailPath);
+
+    const payload = {
+      id: uuidv4(),
+      name: body.name.trim(),
+      serialNumber: body.serialNumber.trim(),
+      orderNumber: Number(body.orderNumber),
+      photoThumbnailPath: photoUrl,
+      communityId: body.communityId,
+      available: true,
+      inUse: false,
+      photoPath: photoUrl,
+      withdraws: null,
+      devolutions: null,
+      withdrawToUser: '',
+      path: 'bikes',
+      createDate: new Date(),
+    };
+
+    const { data } = await api.put(`/bikes/${payload.id}.json`, payload);
+
+    if (data) {
+      await DashboardService.updateBikeQuantity();
+    }
+
+    return data;
+  },
+
   async getAllBikes() {
     const { data } = await api.get('/bikes.json');
 
