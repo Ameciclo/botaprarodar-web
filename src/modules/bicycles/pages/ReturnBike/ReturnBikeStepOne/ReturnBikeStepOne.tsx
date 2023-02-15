@@ -1,3 +1,4 @@
+import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import { InfoOutlined } from '@material-ui/icons';
@@ -137,18 +138,46 @@ const ReturnBikeStepOne: React.FC = () => {
                 >
                   Para qual bairro você foi?
                 </Typography>
-                <Input
+                <Select
+                  id="neighborhood"
                   label=""
-                  type="text"
                   name="neighborhood"
-                  className=""
-                  control={control}
                   dataTestId="bike-neighborhood-test"
-                  rules={{
-                    required: 'Informação do bairro de destino é obrigatória',
-                  }}
-                  fullWidth
+                  value={values.neighborhood}
+                  onChange={handleChange}
+                  options={[
+                    { value: '0', text: 'Option 1' },
+                    { value: '1', text: 'Option 2' },
+                    { value: '2', text: 'Option 3' },
+                    { value: '3', text: 'Option 4' },
+                    { value: '4', text: 'Outros Bairros' },
+                  ]}
                 />
+                {values.neighborhood === '4' && (
+                  <>
+                    <Typography
+                      variant="body1"
+                      color="textPrimary"
+                      component="label"
+                      className={classes.questions}
+                    >
+                      <span>Outro bairro:</span>
+                      <Input
+                        label=""
+                        type="text"
+                        name="customNeighborhood"
+                        className=""
+                        control={control}
+                        dataTestId="bike-customNeighborhood-test"
+                        rules={{
+                          required:
+                            'Informação do bairro de destino é obrigatória',
+                        }}
+                        fullWidth
+                      />
+                    </Typography>
+                  </>
+                )}
                 <CustomRadioGroup
                   value={values?.accidents}
                   onChange={handleChange}
