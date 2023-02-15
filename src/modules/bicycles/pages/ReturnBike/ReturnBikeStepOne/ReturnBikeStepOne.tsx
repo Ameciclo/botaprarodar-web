@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import { InfoOutlined } from '@material-ui/icons';
@@ -9,6 +9,9 @@ import { EmptyState, FormHeader, Select, Input } from 'shared/components';
 import { BikeUseEnum } from 'modules/bicycles/models/enum';
 import CustomRadioGroup from 'shared/components/CustomRadioGroup/CustomRadioGroup';
 import Bike from 'modules/users/models/Bike';
+import Neighborhoods from 'modules/bicycles/models/Neighborhoods';
+import ReturnBikeService from 'modules/bicycles/services/ReturnBikeService';
+import SelectOptionsLabel from 'shared/models/SelectOptionsLabel';
 import useStyles from './ReturnBikeStepOne.styles';
 import { defaultFormValues, FormValues } from './ReturnBikeForm.schema';
 
@@ -21,6 +24,9 @@ type StateParams = {
 const ReturnBikeStepOne: React.FC = () => {
   const location = useLocation();
   const state = location.state as StateParams;
+  const [neighborhoodsState, setNeighborhoodsState] = useState<Neighborhoods[]>(
+    [],
+  );
   const { control, setValue, watch, handleSubmit } = useForm<FormValues>(
     !state || !state.formValues
       ? {
@@ -55,6 +61,25 @@ const ReturnBikeStepOne: React.FC = () => {
     const { name, value } = event.target;
     setValue(name, value);
   };
+
+  useEffect(() => {
+    ReturnBikeService.getAllNeighborhoods()
+      .then(res => {
+        setNeighborhoodsState(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
+  const neighborhoodsOptions: SelectOptionsLabel[] = neighborhoodsState.map(
+    item => ({ value: item.id.toString(), text: item.name }),
+  );
+
+  neighborhoodsOptions.push({
+    value: neighborhoodsState.length.toString(),
+    text: 'Outros Bairros',
+  } as SelectOptionsLabel);
 
   return (
     <>
@@ -145,15 +170,10 @@ const ReturnBikeStepOne: React.FC = () => {
                   dataTestId="bike-neighborhood-test"
                   value={values.neighborhood}
                   onChange={handleChange}
-                  options={[
-                    { value: '0', text: 'Option 1' },
-                    { value: '1', text: 'Option 2' },
-                    { value: '2', text: 'Option 3' },
-                    { value: '3', text: 'Option 4' },
-                    { value: '4', text: 'Outros Bairros' },
-                  ]}
+                  options={neighborhoodsOptions}
                 />
-                {values.neighborhood === '4' && (
+                {values.neighborhood ===
+                  neighborhoodsState.length.toString() && (
                   <>
                     <Typography
                       variant="body1"
