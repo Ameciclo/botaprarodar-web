@@ -3,13 +3,13 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import { InfoOutlined } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
+import Neighborhoods from 'modules/bicycles/models/Neighborhoods';
 import TitleBikePage from 'modules/bicycles/components/TitleBikePage/TitleBikePage';
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader, Select, Input } from 'shared/components';
 import { BikeUseEnum } from 'modules/bicycles/models/enum';
 import CustomRadioGroup from 'shared/components/CustomRadioGroup/CustomRadioGroup';
 import Bike from 'modules/users/models/Bike';
-import Neighborhoods from 'modules/bicycles/models/Neighborhoods';
 import ReturnBikeService from 'modules/bicycles/services/ReturnBikeService';
 import SelectOptionsLabel from 'shared/models/SelectOptionsLabel';
 import useStyles from './ReturnBikeStepOne.styles';
@@ -36,6 +36,7 @@ const ReturnBikeStepOne: React.FC = () => {
           defaultValues: {
             bikeUse: state.formValues.bikeUse,
             neighborhood: state.formValues.neighborhood,
+            customNeighborhood: state.formValues.customNeighborhood,
             accidents: state.formValues.accidents,
             rideShare: state.formValues.rideShare,
           },
@@ -48,12 +49,19 @@ const ReturnBikeStepOne: React.FC = () => {
   const no = { label: 'Não', value: 'Não' };
   const history = useHistory();
 
-  const onSubmit = async (formValues: any) => {
+  const onSubmit = async (formValues: FormValues | any) => {
     const params = {
       communityId: state.communityId,
       selectedBike: state.selectedBike,
-      formValues: { ...formValues },
+      formValues: {
+        ...formValues,
+        customNeighborhood:
+          formValues.neighborhood !== neighborhoodsState.length.toString()
+            ? ''
+            : formValues.customNeighborhood,
+      },
     };
+
     history.push('/comunidades/devolver-bicicleta/confirmacao', params);
   };
 
@@ -174,29 +182,27 @@ const ReturnBikeStepOne: React.FC = () => {
                 />
                 {values.neighborhood ===
                   neighborhoodsState.length.toString() && (
-                  <>
-                    <Typography
-                      variant="body1"
-                      color="textPrimary"
-                      component="label"
-                      className={classes.questions}
-                    >
-                      <span>Outro bairro:</span>
-                      <Input
-                        label=""
-                        type="text"
-                        name="customNeighborhood"
-                        className=""
-                        control={control}
-                        dataTestId="bike-customNeighborhood-test"
-                        rules={{
-                          required:
-                            'Informação do bairro de destino é obrigatória',
-                        }}
-                        fullWidth
-                      />
-                    </Typography>
-                  </>
+                  <Typography
+                    variant="body1"
+                    color="textPrimary"
+                    component="label"
+                    className={classes.questions}
+                  >
+                    <span>Outro bairro:</span>
+                    <Input
+                      label=""
+                      type="text"
+                      name="customNeighborhood"
+                      className=""
+                      control={control}
+                      dataTestId="bike-customNeighborhood-test"
+                      // rules={{
+                      //   required:
+                      //     'Informação do bairro de destino é obrigatória',
+                      // }}
+                      fullWidth
+                    />
+                  </Typography>
                 )}
                 <CustomRadioGroup
                   value={values?.accidents}
