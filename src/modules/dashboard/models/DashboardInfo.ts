@@ -1,3 +1,4 @@
+import Community from 'modules/communities/models/Community';
 import ChartDataProps from '../../../shared/models/ChartDataProps';
 import { BikesPerCommunities } from './BikesPerCommunities';
 
@@ -22,4 +23,5 @@ export default interface DashboardInfo {
   income: ChartDataProps[];
   age: ChartDataProps[];
   travelTimeInMinutes: number[];
+  communities: Community[];
 }

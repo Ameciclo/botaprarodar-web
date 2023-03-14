@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import DashboardService from 'modules/dashboard/services/DashboardService';
+import CommunityService from 'modules/communities/services/CommunityService';
 import { Loading } from 'shared/components';
 import DashboardInfo from '../../models/DashboardInfo';
 import Dashboard from './fragments/Dashboard/Dashboard';
@@ -25,6 +26,7 @@ const INITIAL_DASHBOARD: DashboardInfo = {
   income: [{ label: '', quantity: 0 }],
   age: [{ label: '', quantity: 0 }],
   travelTimeInMinutes: [],
+  communities: [],
 };
 
 const DashboardPage: FC = () => {
@@ -43,7 +45,24 @@ const DashboardPage: FC = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  });
+
+  useEffect(() => {
+    setLoading(true);
+    CommunityService.getAllCommunities()
+      .then(data => {
+        setDashboardData({
+          ...dashboardData,
+          communities: data,
+        });
+      })
+      .catch(error => {
+        console.error(`ERRO!!!:${error}`);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [dashboardData]);
 
   return (
     <>{loading ? <Loading /> : <Dashboard dashboardData={dashboardData} />}</>

@@ -1,5 +1,12 @@
 import React, { FC } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import {
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from '@material-ui/core';
 import { useGetAuth } from 'modules/authentication/contexts/AuthContext';
 import DashboardInfo from 'modules/dashboard/models/DashboardInfo';
 import CustomCard from 'shared/components/CustomCard/CustomCard';
@@ -20,11 +27,37 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
   return (
     <Grid container spacing={1}>
       {auth.authenticated && (
-        <Grid item xl={12} lg={12} sm={12} xs={12}>
-          <Typography
-            className={classes.userTitle}
-          >{`Olá, ${auth.displayName} esses são os dados gerais do Bota Pra Rodar!`}</Typography>
-        </Grid>
+        <>
+          <Grid item xl={8} lg={8} sm={8} xs={8}>
+            <Typography className={classes.userTitle}>
+              {`Olá, ${auth.displayName} esses são os dados gerais do Bota Pra Rodar!`}
+            </Typography>
+          </Grid>
+          <Grid item xl={4} lg={4} sm={4} xs={4}>
+            {dashboardData?.communities?.length > 0 ? (
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Comunidade
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value="Geral"
+                  label="Comunidade"
+                >
+                  <MenuItem value="Geral">Todas</MenuItem>
+                  {dashboardData?.communities?.map(community => (
+                    <MenuItem key={community.id} value={community.id}>
+                      {community.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : (
+              <></>
+            )}
+          </Grid>
+        </>
       )}
       <>
         <>
