@@ -12,7 +12,7 @@ export type FormValues = {
 
 export const defaultFormValues: FormValues = {
   bikeUse: 'Para realizar entregas de aplicativos.',
-  neighborhood: '',
+  neighborhood: 'Afogados',
   customNeighborhood: '',
   accidents: 'Não',
   rideShare: 'Não',

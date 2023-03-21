@@ -182,13 +182,15 @@ const ReturnBikeStepOne: React.FC = () => {
                   options={neighborhoodsOptions}
                 />
                 {values.neighborhood === otherNeighborhoodName && (
-                  <Typography
-                    variant="body1"
-                    color="textPrimary"
-                    component="label"
-                    className={classes.questions}
-                  >
-                    <span>Outro bairro:</span>
+                  <>
+                    <Typography
+                      variant="body1"
+                      color="textPrimary"
+                      component="p"
+                      className={classes.questions}
+                    >
+                      Outro bairro:
+                    </Typography>
                     <Input
                       label=""
                       type="text"
@@ -202,7 +204,7 @@ const ReturnBikeStepOne: React.FC = () => {
                       }}
                       fullWidth
                     />
-                  </Typography>
+                  </>
                 )}
                 <CustomRadioGroup
                   value={values?.accidents}
