@@ -48,6 +48,7 @@ const ReturnBikeStepOne: React.FC = () => {
   const yes = { label: 'Sim', value: 'Sim' };
   const no = { label: 'Não', value: 'Não' };
   const history = useHistory();
+  const otherNeighborhoodName = 'Outros Bairros';
 
   const onSubmit = async (formValues: FormValues | any) => {
     const params = {
@@ -56,7 +57,7 @@ const ReturnBikeStepOne: React.FC = () => {
       formValues: {
         ...formValues,
         customNeighborhood:
-          formValues.neighborhood !== neighborhoodsState.length.toString()
+          formValues.neighborhood !== otherNeighborhoodName
             ? ''
             : formValues.customNeighborhood,
       },
@@ -73,6 +74,11 @@ const ReturnBikeStepOne: React.FC = () => {
   useEffect(() => {
     ReturnBikeService.getAllNeighborhoods()
       .then(res => {
+        res.push({
+          id: res.length,
+          name: otherNeighborhoodName,
+        });
+
         setNeighborhoodsState(res);
       })
       .catch(err => {
@@ -81,13 +87,8 @@ const ReturnBikeStepOne: React.FC = () => {
   }, []);
 
   const neighborhoodsOptions: SelectOptionsLabel[] = neighborhoodsState.map(
-    item => ({ value: item.id.toString(), text: item.name }),
+    item => ({ value: item.name, text: item.name }),
   );
-
-  neighborhoodsOptions.push({
-    value: neighborhoodsState.length.toString(),
-    text: 'Outros Bairros',
-  } as SelectOptionsLabel);
 
   return (
     <>
@@ -180,8 +181,7 @@ const ReturnBikeStepOne: React.FC = () => {
                   onChange={handleChange}
                   options={neighborhoodsOptions}
                 />
-                {values.neighborhood ===
-                  neighborhoodsState.length.toString() && (
+                {values.neighborhood === otherNeighborhoodName && (
                   <Typography
                     variant="body1"
                     color="textPrimary"
@@ -196,10 +196,10 @@ const ReturnBikeStepOne: React.FC = () => {
                       className=""
                       control={control}
                       dataTestId="bike-customNeighborhood-test"
-                      // rules={{
-                      //   required:
-                      //     'Informação do bairro de destino é obrigatória',
-                      // }}
+                      rules={{
+                        required:
+                          'Informação do bairro de destino é obrigatória',
+                      }}
                       fullWidth
                     />
                   </Typography>
