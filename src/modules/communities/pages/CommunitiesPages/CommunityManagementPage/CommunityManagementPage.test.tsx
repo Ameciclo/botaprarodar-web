@@ -92,7 +92,7 @@ describe('Community Management Page', () => {
         const cardName = screen.queryAllByText(
           'CustomCardWithIcon-component-mock',
         );
-        expect(cardName).toHaveLength(3);
+        expect(cardName).toHaveLength(4);
       });
     });
 

@@ -30,7 +30,7 @@ const AmountBikes: FC<Props> = ({ amountBikes }) => {
         <span>Bicicletas disponíveis</span>
         <span>{amountBikes?.available || 0}</span>
       </Typography>
-      <Divider data-testId="divider" />
+      <Divider data-testid="divider" />
       <Typography
         component="p"
         className={`${classes.content} ${classes.contentEmphasis}`}

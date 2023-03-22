@@ -27,7 +27,7 @@ module.exports = {
     { value: 'WIP', name: 'WIP:      Work in progress' },
   ],
 
-  scopes: [{ name: 'dashboard' }, { name: 'login' }, { name: 'users' }, { name: 'communities' }],
+  scopes: [{ name: 'dashboard' }, { name: 'login' }, { name: 'users' }, { name: 'communities' }, { name: 'bikes' }],
 
   allowTicketNumber: false,
   isTicketNumberRequired: false,
