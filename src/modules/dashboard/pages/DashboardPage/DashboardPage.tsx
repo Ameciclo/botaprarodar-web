@@ -54,24 +54,7 @@ const DashboardPage: FC = () => {
     setLoading(true);
     CommunityService.getAllCommunities()
       .then(data => {
-        setDashboardData({
-          ...dashboardData,
-          communities: data,
-        });
-      })
-      .catch(error => {
-        console.error(`ERRO!!!:${error}`);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [dashboardData]);
-
-  useEffect(() => {
-    setLoading(true);
-    CommunityService.getAllCommunities()
-      .then(data => {
-        setCommunities([...data]);
+        setCommunities(data);
       })
       .catch(error => {
         console.error(`ERRO!!!:${error}`);
