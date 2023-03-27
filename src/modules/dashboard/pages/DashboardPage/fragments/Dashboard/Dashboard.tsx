@@ -13,6 +13,7 @@ import CustomCard from 'shared/components/CustomCard/CustomCard';
 import DashboardCard from 'shared/components/DashboardCard/DashboardCard';
 import HorizontalBarChart from 'shared/components/HorizontalBarChart/HorizontalBarChart';
 import VerticalBarChart from 'shared/components/VerticalBarChart/VerticalBarChart';
+import Community from 'modules/communities/models/Community';
 import TravelTimeCard from '../../components/TravelTimeCard/TravelTimeCard';
 import MultipleCharts from '../MultipleCharts/MultipleCharts';
 import DonutPercentageCard from '../../components/DonutPercentageCard/DonutPercentageCard';
@@ -20,8 +21,9 @@ import DashboardStyles from './Dashboard.styles';
 
 interface DashboardProps {
   dashboardData: DashboardInfo;
+  communities: Community[];
 }
-const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
+const Dashboard: FC<DashboardProps> = ({ dashboardData, communities }) => {
   const classes = DashboardStyles();
   const { value: auth } = useGetAuth();
   return (
@@ -34,7 +36,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
             </Typography>
           </Grid>
           <Grid item xl={4} lg={4} sm={4} xs={4}>
-            {dashboardData?.communities?.length > 0 ? (
+            {communities?.length > 0 ? (
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">
                   Comunidade
@@ -46,7 +48,7 @@ const Dashboard: FC<DashboardProps> = ({ dashboardData }) => {
                   label="Comunidade"
                 >
                   <MenuItem value="Geral">Todas</MenuItem>
-                  {dashboardData?.communities?.map(community => (
+                  {communities?.map(community => (
                     <MenuItem key={community.id} value={community.id}>
                       {community.name}
                     </MenuItem>
