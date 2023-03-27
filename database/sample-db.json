@@ -281,5 +281,31 @@
             "timeOnWayOpenQuestion":"12:33"
          }
       }
+   },
+   "neighborhoods": {
+      "0": {
+        "id": 0,
+        "name": "Afogados"
+      },
+      "1": {
+        "id": 1,
+        "name": "Casa Amarela"
+      },
+      "2": {
+        "id": 2,
+        "name": "Casa Forte"
+      },
+      "3": {
+        "id": 3,
+        "name": "Cordeiro"
+      },
+      "4": {
+        "id": 4,
+        "name": "Madalena"
+      },
+      "5": {
+        "id": 5,
+        "name": "Torre"
+      }
    }
 }

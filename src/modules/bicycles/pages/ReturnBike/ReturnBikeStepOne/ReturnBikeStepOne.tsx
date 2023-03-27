@@ -1,13 +1,17 @@
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import { InfoOutlined } from '@material-ui/icons';
 import { useForm } from 'react-hook-form';
+import Neighborhoods from 'modules/bicycles/models/Neighborhoods';
 import TitleBikePage from 'modules/bicycles/components/TitleBikePage/TitleBikePage';
 import { EmptyStateImage } from 'shared/assets/images';
 import { EmptyState, FormHeader, Select, Input } from 'shared/components';
 import { BikeUseEnum } from 'modules/bicycles/models/enum';
 import CustomRadioGroup from 'shared/components/CustomRadioGroup/CustomRadioGroup';
 import Bike from 'modules/users/models/Bike';
+import ReturnBikeService from 'modules/bicycles/services/ReturnBikeService';
+import SelectOptionsLabel from 'shared/models/SelectOptionsLabel';
 import useStyles from './ReturnBikeStepOne.styles';
 import { defaultFormValues, FormValues } from './ReturnBikeForm.schema';
 
@@ -20,6 +24,9 @@ type StateParams = {
 const ReturnBikeStepOne: React.FC = () => {
   const location = useLocation();
   const state = location.state as StateParams;
+  const [neighborhoodsState, setNeighborhoodsState] = useState<Neighborhoods[]>(
+    [],
+  );
   const { control, setValue, watch, handleSubmit } = useForm<FormValues>(
     !state || !state.formValues
       ? {
@@ -29,6 +36,7 @@ const ReturnBikeStepOne: React.FC = () => {
           defaultValues: {
             bikeUse: state.formValues.bikeUse,
             neighborhood: state.formValues.neighborhood,
+            customNeighborhood: state.formValues.customNeighborhood,
             accidents: state.formValues.accidents,
             rideShare: state.formValues.rideShare,
           },
@@ -40,13 +48,21 @@ const ReturnBikeStepOne: React.FC = () => {
   const yes = { label: 'Sim', value: 'Sim' };
   const no = { label: 'Não', value: 'Não' };
   const history = useHistory();
+  const otherNeighborhoodName = 'Outros Bairros';
 
-  const onSubmit = async (formValues: any) => {
+  const onSubmit = async (formValues: FormValues | any) => {
     const params = {
       communityId: state.communityId,
       selectedBike: state.selectedBike,
-      formValues: { ...formValues },
+      formValues: {
+        ...formValues,
+        customNeighborhood:
+          formValues.neighborhood !== otherNeighborhoodName
+            ? ''
+            : formValues.customNeighborhood,
+      },
     };
+
     history.push('/comunidades/devolver-bicicleta/confirmacao', params);
   };
 
@@ -54,6 +70,25 @@ const ReturnBikeStepOne: React.FC = () => {
     const { name, value } = event.target;
     setValue(name, value);
   };
+
+  useEffect(() => {
+    ReturnBikeService.getAllNeighborhoods()
+      .then(res => {
+        res.push({
+          id: res.length,
+          name: otherNeighborhoodName,
+        });
+
+        setNeighborhoodsState(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
+  const neighborhoodsOptions: SelectOptionsLabel[] = neighborhoodsState.map(
+    item => ({ value: item.name, text: item.name }),
+  );
 
   return (
     <>
@@ -137,18 +172,40 @@ const ReturnBikeStepOne: React.FC = () => {
                 >
                   Para qual bairro você foi?
                 </Typography>
-                <Input
+                <Select
+                  id="neighborhood"
                   label=""
-                  type="text"
                   name="neighborhood"
-                  className=""
-                  control={control}
                   dataTestId="bike-neighborhood-test"
-                  rules={{
-                    required: 'Informação do bairro de destino é obrigatória',
-                  }}
-                  fullWidth
+                  value={values.neighborhood}
+                  onChange={handleChange}
+                  options={neighborhoodsOptions}
                 />
+                {values.neighborhood === otherNeighborhoodName && (
+                  <>
+                    <Typography
+                      variant="body1"
+                      color="textPrimary"
+                      component="p"
+                      className={classes.questions}
+                    >
+                      Outro bairro:
+                    </Typography>
+                    <Input
+                      label=""
+                      type="text"
+                      name="customNeighborhood"
+                      className=""
+                      control={control}
+                      dataTestId="bike-customNeighborhood-test"
+                      rules={{
+                        required:
+                          'Informação do bairro de destino é obrigatória',
+                      }}
+                      fullWidth
+                    />
+                  </>
+                )}
                 <CustomRadioGroup
                   value={values?.accidents}
                   onChange={handleChange}

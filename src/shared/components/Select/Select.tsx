@@ -4,12 +4,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import SelectBase from '@material-ui/core/Select';
 import Label from '@material-ui/core/InputLabel';
 import Option from '@material-ui/core/MenuItem';
+import SelectOptionsLabel from '../../models/SelectOptionsLabel';
 import useStyles from './Select.styles';
-
-interface SelectOptionsLabel {
-  value: string;
-  text: string;
-}
 
 export interface Props {
   id: string;
