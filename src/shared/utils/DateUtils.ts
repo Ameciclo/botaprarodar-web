@@ -27,7 +27,7 @@ const DateUtils = {
   localeDateStringToDate(localeDate: string): any {
     if (localeDate) {
       const localeDateSplit = localeDate.split(' ');
-      const date = localeDateSplit[0];
+      const date = localeDateSplit[0].replace(',', '');
       const time = localeDateSplit[1];
       const dateSplit = date.split('/');
       const day = dateSplit[0];
@@ -37,7 +37,6 @@ const DateUtils = {
         time === undefined
           ? new Date(`${month}-${day}-${year}`)
           : new Date(`${month}-${day}-${year} ${time}`);
-
       if (
         dateObj.toLocaleDateString('pt-BR') !== date ||
         dateObj.toString() === 'Invalid Date'

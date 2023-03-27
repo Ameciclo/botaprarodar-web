@@ -1,19 +1,19 @@
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import TitleBikePage from 'modules/bicycles/components/TitleBikePage/TitleBikePage';
+import { FormHeader, EmptyState } from 'shared/components';
 import { EmptyStateImage } from 'shared/assets/images';
-import { EmptyState, FormHeader } from 'shared/components';
-import SelectBikePage from '../../components/SelectBikePage/SelectBikePage';
-import { FormValues } from './ReturnBikeStepOne/ReturnBikeForm.schema';
+import useStyles from './RegisterBikePage.styles';
+import RegisterBikeForm from './components/RegisterBikeForm/RegisterBikeForm';
 
 type StateParams = {
   communityId?: string;
-  formValues?: FormValues;
 };
 
-const ReturnBikePage: React.FC = () => {
+const RegisterBikePage = () => {
   const location = useLocation();
   const state = location.state as StateParams;
   const hasParams = !!state?.communityId;
+  const classes = useStyles();
 
   return (
     <>
@@ -31,17 +31,16 @@ const ReturnBikePage: React.FC = () => {
             link={`/comunidades/gerenciador-de-comunidade/${state.communityId}`}
             title="Voltar"
           />
-          <TitleBikePage title="Devolver bicicleta" />
-          <SelectBikePage
-            data-testid="SelectBikeCard"
-            communityId={state.communityId || ''}
-            formValues={state.formValues}
-            actionType="devolution"
-          />
+          <div className={classes.root}>
+            <RegisterBikeForm
+              data-testid="form-register"
+              communityId={state.communityId || ''}
+            />
+          </div>
         </>
       )}
     </>
   );
 };
 
-export default ReturnBikePage;
+export default RegisterBikePage;
